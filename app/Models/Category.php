@@ -13,6 +13,6 @@ class Category extends Model
     public $guarded = [];
 
     public function product(){
-        return $this->hasMany(Product::class, 'cat_id');
+        return $this->hasMany(Product::class, 'category_id');
     }
 }
