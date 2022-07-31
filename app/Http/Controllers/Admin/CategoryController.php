@@ -41,11 +41,11 @@ class CategoryController extends Controller
             return redirect(route('tutor.department.list'));
         }
         $category->fill($request->all());
-//        if($request->hasFile('file_upload')){
-//            $newFileName = uniqid(). '-' . $request->file_upload->getClientOriginalName();
-//            $path = $request->file_upload->storeAs('public/uploads/departments', $newFileName);
-//            $departments->image = str_replace('public/', '', $path);
-//        }
+        if($request->hasFile('file_upload')){
+          $newFileName = uniqid(). '-' . $request->file_upload->getClientOriginalName();
+          $path = $request->file_upload->storeAs('public/uploads/departments', $newFileName);
+          $departments->image = str_replace('public/', '', $path);
+        }
         $category->save();
         return redirect(route('admin.category.list'))->with('msg', 'Sửa thành công!');
     }
