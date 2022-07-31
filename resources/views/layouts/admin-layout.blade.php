@@ -50,15 +50,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./user.html">
+                        <a class="nav-link" href="{{ route('admin.brand.list') }}">
                             <i class="nc-icon nc-circle-09"></i>
-                            <p>User Profile</p>
+                            <p>Brand</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./table.html">
+                        <a class="nav-link" href="{{ route('admin.category.list') }}">
                             <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
+                            <p>Category</p>
                         </a>
                     </li>
                     <li>

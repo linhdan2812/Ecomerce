@@ -25,10 +25,10 @@ class CreateProductsTable extends Migration
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->float('price');
             $table->float('discount')->nullabale();
-            $table->unsignedBigInteger('cat_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
-            // $table->foreign('brand_id')->references('id')->on('brands')->onDelete('SET NULL');
-            // $table->foreign('cat_id')->references('id')->on('categories')->onDelete('SET NULL');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('SET NULL');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
