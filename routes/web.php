@@ -24,7 +24,7 @@ Route::get('/', [ClientDashboardController::class, 'index'])->name('client.home'
 Route::prefix('/')->group(function() {
 
 });
-Route::prefix('admin/')->middleware('authadmin')->group(function() {
+Route::prefix('admin/')->group(function() {
     Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
     //Category
     Route::prefix('category/')->group(function() {
