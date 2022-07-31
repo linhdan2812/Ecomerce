@@ -1,4 +1,4 @@
-<!-- 
+<!--
 =========================================================
  Light Bootstrap Dashboard - v2.0.1
 =========================================================
@@ -44,9 +44,9 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" href="{{route('admin.category.list')}}">
                             <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Dashboard</p>
+                            <p>Categories</p>
                         </a>
                     </li>
                     <li>
@@ -157,7 +157,7 @@
             </nav>
 
             @yield('content')
-            
+
             <footer class="footer">
                 <div class="container-fluid">
                     <nav>
