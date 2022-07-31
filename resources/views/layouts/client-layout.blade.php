@@ -69,16 +69,29 @@
                             </div>
 
                             <div class="header-icon-area">
+                                @if(!!!Auth::check())
                                 <div class="account-dropdown">
-                                    <a href="my-account.html">Login / Register <i class="pe-7s-angle-down"></i></a>
-
-                                    <ul class="account-dropdown__list">
-                                        <li><a href="my-account.html">My account</a></li>
-                                        <li><a href="cart.html">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="order-tracking.html">Order Tracking</a></li>
-                                    </ul>
+                                    <a href="{{route('login')}}">Đăng nhập</a>
                                 </div>
+                                @else
+                                    <div class="account-dropdown">
+                                        <a href="my-account.html">Tài khoản của tôi <i class="pe-7s-angle-down"></i></a>
+
+                                        <ul class="account-dropdown__list">
+                                            <li><a href="cart.html">Shopping cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="order-tracking.html">Order Tracking</a></li>
+                                            <li>
+                                                <a class="" href="{{route('logout')}}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-decoration: none;">Đăng
+                                                xuất</a>
+                                                <form action="{{route('logout')}}" id="logout-form" method="GET">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
 
                                 <div class="header-icon">
                                     <ul class="header-icon__list">
