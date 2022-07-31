@@ -62,9 +62,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./typography.html">
+                        <a class="nav-link" href="{{ route('admin.product.list') }}">
                             <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
+                            <p>Product</p>
                         </a>
                     </li>
                     <li>

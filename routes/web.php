@@ -34,6 +34,11 @@ Route::prefix('admin/')->group(function () {
 
         Route::get('add', [ProductController::class, 'add'])->name('admin.product.add');
         Route::post('add', [ProductController::class, 'saveAdd']);
+
+        Route::get('edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
+        Route::post('edit/{id}', [ProductController::class, 'saveEdit']);
+
+        
     });
 
     //Brand
@@ -53,10 +58,13 @@ Route::prefix('admin/')->group(function () {
     //Category
     Route::prefix('category/')->group(function () {
         Route::get('list', [CategoryController::class, 'list'])->name('admin.category.list');
+
         Route::get('add', [CategoryController::class, 'addForm'])->name('admin.category.add');
         Route::post('add', [CategoryController::class, 'saveAdd']);
+
         Route::get('update/{id}', [CategoryController::class, 'editForm'])->name('admin.category.update');
         Route::post('update/{id}', [CategoryController::class, 'saveEdit']);
+
         Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
     });
 });

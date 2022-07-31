@@ -14,13 +14,12 @@
               <th scope="col">Photo</th>
               <th scope="col">Stock</th>
               <th scope="col">Size</th>
-              <th scope="col">Condition</th>
               <th scope="col">Status</th>
               <th scope="col">Price</th>
               <th scope="col">Discount</th>
-              <th scope="col">Is featured</th>
               <th scope="col">Category ID</th>
               <th scope="col">Brand ID</th>
+              <th><a class="btn btn-primary" href="{{ route('admin.product.add') }}">Add</a></th>
             </tr>
           </thead>
           <tbody>
@@ -31,16 +30,18 @@
                     <td>{{ $item->slug }}</td>
                     <td>{{ $item->summary }}</td>
                     <td>{{ $item->description }}</td>
-                    <td>{{ $item->photo }}</td>
+                    <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="200"></td>
                     <td>{{ $item->stock }}</td>
                     <td>{{ $item->size }}</td>
-                    <td>{{ $item->condition }}</td>
                     <td>{{ $item->status }}</td>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->discount }}</td>
-                    <td>{{ $item->is_featured }}</td>
-                    <td>{{ $item->cat_id }}</td>
+                    <td>{{ $item->category_id }}</td>
                     <td>{{ $item->brand_id }}</td>
+                    <td>
+                      <a class="btn btn-primary" href="{{ route('admin.product.edit', ['id' => $item->id]) }}">Edit</a>
+                      <a class="btn btn-danger" href="">Delete</a>
+                    </td>
                 </tr>
                 
             @endforeach

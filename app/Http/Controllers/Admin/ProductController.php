@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +19,9 @@ class ProductController extends Controller
 
     public function add()
     {
-        return view('admin.product.add');
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('admin.product.add',compact('brands','categories'));
     }
 
     public function saveAdd(Request $request)
@@ -36,6 +40,25 @@ class ProductController extends Controller
             'cat_id' => $request->cat_id,
             'brand_id' => $request->brand_id,
         ]);
+        if($request->hasFile('photo')){
+                       $newFileName = uniqid(). '-' . $request->photo->getClientOriginalName();
+                       $path = $request->photo->storeAs('public/uploads/products', $newFileName);
+                       $product->photo = str_replace('public/', '', $path);
+                   }
+        $product->save();
+        return redirect(route('admin.product.list'));
+    }
+
+    public function edit($id){
+        $product = Product::find($id);
+        $brands = Brand::all();
+        $categories = Category::all();
+        return view('admin.product.edit',compact('product','brands','categories'));
+    }
+
+    public function saveEdit($id , Request $request){
+        $product = Product::find($id);
+        $product->fill($request->all());
         $product->save();
         return redirect(route('admin.product.list'));
     }
