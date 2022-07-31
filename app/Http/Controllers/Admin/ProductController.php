@@ -59,7 +59,21 @@ class ProductController extends Controller
     public function saveEdit($id , Request $request){
         $product = Product::find($id);
         $product->fill($request->all());
+        if($request->hasFile('photo')){
+            $newFileName = uniqid(). '-' . $request->photo->getClientOriginalName();
+            $path = $request->photo->storeAs('public/uploads/products', $newFileName);
+            $product->photo = str_replace('public/', '', $path);
+        }
         $product->save();
         return redirect(route('admin.product.list'));
+    }
+
+    public function delete($id){
+        $product = Product::find($id);
+        if(!$product){
+            return redirect(route('admin.product.list'));
+        }
+        $product->delete();
+        return redirect()->back();
     }
 }

@@ -38,7 +38,7 @@ Route::prefix('admin/')->group(function () {
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('edit/{id}', [ProductController::class, 'saveEdit']);
 
-        
+        Route::get('delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delte');
     });
 
     //Brand

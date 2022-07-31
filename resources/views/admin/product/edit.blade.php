@@ -3,7 +3,7 @@
     <div class="container">
         <div class="col-md-12 mb-5">
             <h2>Add product</h2>
-            <form method="post" action="">
+            <form method="post" action="" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="">Title</label>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Photo</label>
-                    <input type="file" name="photo" value="{{ $product->photo }}" class="form-control">
+                    <input type="file" name="photo" value="{{ old($product->photo) }}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Stock</label>

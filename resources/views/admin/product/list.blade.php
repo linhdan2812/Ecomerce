@@ -40,10 +40,10 @@
                     <td>{{ $item->brand_id }}</td>
                     <td>
                       <a class="btn btn-primary" href="{{ route('admin.product.edit', ['id' => $item->id]) }}">Edit</a>
-                      <a class="btn btn-danger" href="">Delete</a>
+                      <a class="btn btn-danger" href="{{ route('admin.product.delte', ['id' => $item->id]) }}">Delete</a>
                     </td>
                 </tr>
-                
+
             @endforeach
           </tbody>
     </table>
