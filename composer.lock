@@ -5,7 +5,7 @@
         "This file is @generated automatically"
     ],
 
-    "content-hash": "a4c367fd97144ebda4631321d1e91139",
+    "content-hash": "eaf881d5a1ea2c1e98f3f6a65b61dcac",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
