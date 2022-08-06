@@ -1,21 +1,38 @@
-@extends('layout')
+@extends('index')
    
 @section('content')
     
 <div class="row">
-    @foreach($products as $product)
-        <div class="col-xs-18 col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="{{ $product->image }}" alt="">
-                <div class="caption">
-                    <h4>{{ $product->name }}</h4>
-                    <p>{{ $product->description }}</p>
-                    <p><strong>Price: </strong> {{ $product->price }}$</p>
-                    <p class="btn-holder"><a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+    <div class="col-lg-12">
+        <!--=======  banner grid wrapper  =======-->
+
+        <div class="banner-grid-wrapper">
+            <div class="row">
+                <div class="col-md-4">
+                    <!--=======  single banner  =======-->
+                    @foreach ($products as $item)
+                        <div class="single-banner">
+                            <div class="single-banner__image">
+                                <a href="shop-left-sidebar.html">
+                                    <img src="{{$item->photo}}" class="img-fluid" alt="">
+                                </a>
+                            </div>
+
+                            <div class="single-banner__content single-banner__content--overlay">
+                                <p class="banner-small-text">{{$item->title}}</p>
+                                <p class="banner-big-text">{{$item->description}}</p>
+                                <p class="banner-small-text banner-small-text--end">{{$item->price}}</p>
+                                <a href="{{ route('add.to.cart', $item->id) }}" class="theme-button theme-button--alt theme-button--banner">SHOP NOW</a>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <!--=======  End of single banner  =======-->
                 </div>
             </div>
         </div>
-    @endforeach
+
+        <!--=======  End of banner grid wrapper  =======-->
+    </div>
 </div>
-    
 @endsection

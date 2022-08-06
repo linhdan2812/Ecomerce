@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PublicController;
 
 
 /*
@@ -24,7 +25,7 @@ Route::get('/',[ClientDashboardController::class,'index'])->name('client.home');
 Route::prefix('/')->group(function() {
 
 });
-Route::get('/', [ProductController::class, 'index']);  
+Route::get('/', [PublicController::class, 'index']);  
 Route::get('cart', [ProductController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');

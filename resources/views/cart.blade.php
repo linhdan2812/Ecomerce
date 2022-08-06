@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('index')
   
-@section('content')
+@section('content') 
 <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
@@ -19,6 +19,7 @@
                 <tr data-id="{{ $id }}">
                     <td data-th="Product">
                         <div class="row">
+                            {{-- @dd($details); --}}
                             <div class="col-sm-3 hidden-xs"><img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive"/></div>
                             <div class="col-sm-9">
                                 <h4 class="nomargin">{{ $details['name'] }}</h4>
