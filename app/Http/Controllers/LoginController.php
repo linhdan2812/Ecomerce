@@ -30,19 +30,19 @@ class LoginController extends Controller
     public function handleGoogleCallback(){
         $user = Socialite::driver('google')->stateless()->user();
         $this->createOrUpdateUser($user,'google');
-        // $mail = substr($user->email,-11);
+
         if(Str::endsWith($user->email, '@gmail.com') =='true'){
             $this->createOrUpdateUser($user,'google');
             if(Auth::user()->role === 'user'){
                 return redirect()->route('client.home');
             }
         }
-        // elseif(Str::endsWith($user->email, '@fpt.edu.vn')=='true'){
-        //     $this->createOrUpdateUser($user,'google');
-        //     if(Auth::user()->role === 'TT'){
-        //         return redirect()->route('tutor.dashboard');
-        //     }  
-        // }
+        if(Str::endsWith($user->email, '@gmail.com') =='true'){
+            $this->createOrUpdateUser($user,'google');
+            if(Auth::user()->role === 'admin'){
+                return redirect()->route('admin.dashboard');
+            }
+        }
         else{
             return redirect()->route('login')->with('msg1','Tài khoản Google không hợp lệ');
         }

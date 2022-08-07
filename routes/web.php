@@ -5,11 +5,10 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
 // use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController as ControllersProductController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
 
 
 /*
@@ -22,35 +21,37 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/',[ClientDashboardController::class,'index'])->name('client.home');
+//Trang chủ
 Route::get('/', [ClientDashboardController::class, 'index'])->name('client.home');
+
 //Client
-Route::prefix('/')->group(function() {
-
+Route::prefix('/')->middleware('auth')->group(function() {
+    Route::get('cart', [ControllersProductController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [ControllersProductController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('update-cart', [ControllersProductController::class, 'update'])->name('update.cart');
+    Route::delete('remove-from-cart', [ControllersProductController::class, 'remove'])->name('remove.from.cart');
 });
-Route::get('/', [ProductController::class, 'index']);  
 
-Route::get('/', [ProductController::class, 'index']);  
-Route::get('cart', [ProductController::class, 'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
-Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
+//Admin
+Route::prefix('admin/')->middleware('authadmin')->group(function() {
 
-Route::prefix('admin/')->group(function() {
+    //Dashboard
     Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+
     //Category
     Route::prefix('category/')->group(function() {
         Route::get('list',[CategoryController::class,'list'])->name('admin.category.list');
+
         Route::get('add',[CategoryController::class,'addForm'])->name('admin.category.add');
         Route::post('add',[CategoryController::class,'saveAdd']);
+
         Route::get('update/{id}',[CategoryController::class,'editForm'])->name('admin.category.update');
         Route::post('update/{id}',[CategoryController::class,'saveEdit']);
+
         Route::get('delete/{id}',[CategoryController::class,'delete'])->name('admin.category.delete');
     });
+
     //Product
-    Route::prefix('product/')->group(function() {
-        Route::get('list',[ProductController::class,'list'])->name('admin.product.list');
     Route::prefix('product/')->group(function () {
 
         Route::get('list', [ProductController::class, 'list'])->name('admin.product.list');
@@ -76,19 +77,6 @@ Route::prefix('admin/')->group(function() {
         Route::post('edit/{id}', [BrandController::class, 'saveEdit']);
 
         Route::get('delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
-    });
-
-    //Category
-    Route::prefix('category/')->group(function () {
-        Route::get('list', [CategoryController::class, 'list'])->name('admin.category.list');
-
-        Route::get('add', [CategoryController::class, 'addForm'])->name('admin.category.add');
-        Route::post('add', [CategoryController::class, 'saveAdd']);
-
-        Route::get('update/{id}', [CategoryController::class, 'editForm'])->name('admin.category.update');
-        Route::post('update/{id}', [CategoryController::class, 'saveEdit']);
-
-        Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
     });
 });
 

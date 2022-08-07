@@ -1,51 +1,53 @@
 @extends('layouts.admin-layout')
 @section('content')
-
-<div class="col-md-12">
-    <h2>This is product List</h2>
-    <table class="table">
-        <thead>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Danh sách sản phẩm</h2>
+        <table class="table">
+          <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Title</th>
-              <th scope="col">Slug</th>
-              <th scope="col">Summary</th>
-              <th scope="col">Description</th>
-              <th scope="col">Photo</th>
-              <th scope="col">Stock</th>
-              <th scope="col">Size</th>
-              <th scope="col">Status</th>
-              <th scope="col">Price</th>
-              <th scope="col">Discount</th>
-              <th scope="col">Category ID</th>
-              <th scope="col">Brand ID</th>
-              <th><a class="btn btn-primary" href="{{ route('admin.product.add') }}">Add</a></th>
+              <th scope="col">STT</th>
+              <th scope="col">Tên sản phẩm</th>
+              <th scope="col">Ảnh</th>
+              <th scope="col">Kích thước</th>
+              <th scope="col">Giá</th>
+              <th scope="col">Loại hàng</th>
+              <th scope="col">Thương hiệu</th>
+              <th scope="col">Trạng thái</th>
+              <th><a class="btn btn-success" href="{{ route('admin.product.add') }}">Thêm mới</a></th>
             </tr>
           </thead>
+          @php
+          $stt = 1;
+          @endphp
           <tbody>
             @foreach ($products as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->title }}</td>
-                    <td>{{ $item->slug }}</td>
-                    <td>{{ $item->summary }}</td>
-                    <td>{{ $item->description }}</td>
-                    <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="200"></td>
-                    <td>{{ $item->stock }}</td>
-                    <td>{{ $item->size }}</td>
-                    <td>{{ $item->status }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->discount }}</td>
-                    <td>{{ $item->category_id }}</td>
-                    <td>{{ $item->brand_id }}</td>
-                    <td>
-                      <a class="btn btn-primary" href="{{ route('admin.product.edit', ['id' => $item->id]) }}">Edit</a>
-                      <a class="btn btn-danger" href="{{ route('admin.product.delte', ['id' => $item->id]) }}">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+              <th scope="row">{{$stt++}}</th>
+              <td>{{ $item->title }}</td>
+              <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="200"></td>
+              <td>{{ $item->size }}</td>
+              <td>{{ $item->price }}</td>
+              <td>{{ $item->category->title }}</td>
+              <td>{{ $item->brand->title }}</td>
+              @if( $item->status == 'inactive')
+                <td>Không hoạt động</td>
+              @else
+                <td>Hoạt động</td>
+              @endif
+              <td>
+                <a class="btn btn-warning" href="{{ route('admin.product.edit', ['id' => $item->id]) }}">Sửa</a>
+                <a class="btn btn-danger" href="{{ route('admin.product.delte', ['id' => $item->id]) }}">Xóa</a>
+              </td>
+            </tr>
 
             @endforeach
           </tbody>
-    </table>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

@@ -14,6 +14,7 @@ class ProductController extends Controller
     public function list()
     {
         $products = Product::all();
+        $products->load('category','brand');
         return view('admin.product.list', compact('products'));
     }
 
@@ -38,7 +39,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount' => $request->discount,
             'cat_id' => $request->cat_id,
-            'brand_id' => $request->brand_id,
+            'brand_id' => $request->brand_id
         ]);
         if($request->hasFile('photo')){
                        $newFileName = uniqid(). '-' . $request->photo->getClientOriginalName();

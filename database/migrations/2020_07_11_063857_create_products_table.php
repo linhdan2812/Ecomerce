@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable();
             $table->text('summary');
             $table->longText('description')->nullable();
             $table->text('photo');
@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('size')->default('M')->nullable();
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->float('price');
-            $table->float('discount')->nullabale();
+            $table->float('discount')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('SET NULL');
