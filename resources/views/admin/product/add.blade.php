@@ -51,7 +51,7 @@
                         <label for="brand_id">Thương hiệu</label>
                         <select class="form-control" name="brand_id" id="brand_id">
                             @foreach ($categories as $item)
-                            <option value="<?= $item->id ?>"><?= $item->id ?></option>
+                            <option value="<?= $item->id ?>"><?= $item->title ?></option>
                             @endforeach
                         </select>
                     </div>
