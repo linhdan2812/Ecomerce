@@ -28,19 +28,7 @@ class ProductController extends Controller
     public function saveAdd(Request $request)
     {
         $product = new Product();
-        $product->fill([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'summary' => $request->summary,
-            'description' => $request->description,
-            'photo' => $request->photo,
-            'stock' => $request->stock,
-            'size' => $request->size,
-            'price' => $request->price,
-            'discount' => $request->discount,
-            'cat_id' => $request->cat_id,
-            'brand_id' => $request->brand_id
-        ]);
+        $product->fill($request->all());
         if($request->hasFile('photo')){
                        $newFileName = uniqid(). '-' . $request->photo->getClientOriginalName();
                        $path = $request->photo->storeAs('public/uploads/products', $newFileName);

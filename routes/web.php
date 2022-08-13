@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 // use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
+use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController as ControllersProductController;
 use Illuminate\Support\Facades\Route;
@@ -26,10 +27,13 @@ Route::get('/', [ClientDashboardController::class, 'index'])->name('client.home'
 
 //Client
 Route::prefix('/')->middleware('auth')->group(function() {
-    Route::get('cart', [ControllersProductController::class, 'cart'])->name('cart');
-    Route::get('add-to-cart/{id}', [ControllersProductController::class, 'addToCart'])->name('add.to.cart');
-    Route::patch('update-cart', [ControllersProductController::class, 'update'])->name('update.cart');
-    Route::delete('remove-from-cart', [ControllersProductController::class, 'remove'])->name('remove.from.cart');
+
+    //Shop
+    Route::get('shop',[ShopController::class,'index'])->name('shop');
+    // Route::get('cart', [ControllersProductController::class, 'cart'])->name('cart');
+    // Route::get('add-to-cart/{id}', [ControllersProductController::class, 'addToCart'])->name('add.to.cart');
+    // Route::patch('update-cart', [ControllersProductController::class, 'update'])->name('update.cart');
+    // Route::delete('remove-from-cart', [ControllersProductController::class, 'remove'])->name('remove.from.cart');
 });
 
 //Admin
