@@ -30,7 +30,6 @@ class ProductController extends Controller
         $product = new Product();
         $product->fill([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
             'summary' => $request->summary,
             'description' => $request->description,
             'photo' => $request->photo,

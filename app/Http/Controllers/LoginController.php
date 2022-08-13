@@ -36,9 +36,6 @@ class LoginController extends Controller
             if(Auth::user()->role === 'user'){
                 return redirect()->route('client.home');
             }
-        }
-        if(Str::endsWith($user->email, '@gmail.com') =='true'){
-            $this->createOrUpdateUser($user,'google');
             if(Auth::user()->role === 'admin'){
                 return redirect()->route('admin.dashboard');
             }
