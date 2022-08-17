@@ -3,12 +3,11 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
-// use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
 use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController as ControllersProductController;
+use App\Http\Controllers\ChatsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,10 +29,13 @@ Route::prefix('/')->middleware('auth')->group(function() {
 
     //Shop
     Route::get('shop',[ShopController::class,'index'])->name('shop');
-    // Route::get('cart', [ControllersProductController::class, 'cart'])->name('cart');
-    // Route::get('add-to-cart/{id}', [ControllersProductController::class, 'addToCart'])->name('add.to.cart');
-    // Route::patch('update-cart', [ControllersProductController::class, 'update'])->name('update.cart');
-    // Route::delete('remove-from-cart', [ControllersProductController::class, 'remove'])->name('remove.from.cart');
+    Route::get('cart', [ShopController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
+    Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
+    // Route::get('/chat', [ChatsController::class,'index']);
+    // Route::get('messages', [ChatsController::class,'fetchMessages']);
+    // Route::post('messages', [ChatsController::class,'sendMessage']);
 });
 
 //Admin
