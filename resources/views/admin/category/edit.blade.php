@@ -26,9 +26,9 @@
                     @enderror
                     <div class="form-group">
                         <label for="status">Trạng thái</label>
-                        <select class="form-control" name="status" value="{{ $category->status }}" id="status">
-                            <option value="active">Hoạt động</option>
-                            <option value="inactive">Không hoạt động</option>
+                        <select class="form-control" name="status" id="status">
+                            <option {{old('status',$category->status)=="active"? 'selected':''}}  value="active">Hoạt động</option>
+                            <option {{old('status',$category->status)=="inactive"? 'selected':''}} value="inactive">Không hoạt động</option>
                         </select>
                     </div>
                     @error('status')
