@@ -21,9 +21,9 @@ class ProductController extends Controller
 
     public function add()
     {
-        $brands = Brand::all();
+        // $brands = Brand::all();
         $categories = Category::all();
-        return view('admin.product.add', compact('brands', 'categories'));
+        return view('admin.product.add', compact('categories'));
     }
 
     public function saveAdd(ProductRequest $request)
