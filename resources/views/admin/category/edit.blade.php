@@ -12,14 +12,14 @@
                     @csrf
                     <div class="form-group">
                         <label for="">Tên loại hàng</label>
-                        <input class="form-control" type="text" name="title" value="{{$category->title}}">
+                        <input class="form-control" type="text" name="title" value="{{old('title', $category->title)}}">
                     </div>
                     @error('title')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
                     <div class="form-group">
                         <label for="">Mô tả</label>
-                        <textarea class="form-control" type="text" name="summary">{{$category->summary}}</textarea>
+                        <textarea class="form-control" type="text" name="summary">{{old('summary', $category->summary)}}</textarea>
                     </div>
                     @error('summary')
                     <span class="text-danger">{{$message}}</span>
