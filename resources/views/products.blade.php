@@ -11,6 +11,7 @@
                 <div class="col-md-4">
                     <!--=======  single banner  =======-->
                     @foreach ($products as $item)
+                    @dd($items);
                         <div class="single-banner">
                             <div class="single-banner__image">
                                 <a href="shop-left-sidebar.html">
