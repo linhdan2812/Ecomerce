@@ -177,11 +177,11 @@
                                             <span class="hot">Mới</span>
                                         </div>
                                         <a href="" class="image-wrap">
-                                            <img src="{{asset('client/img/products/product-9-1-600x800.jpg')}}" class="img-fluid" alt="">
-                                            <img src="{{asset('client/img/products/product-9-2-600x800.jpg')}}" class="img-fluid" alt="">
+                                            <img src="{{$item->photo}}" class="img-fluid" alt="">
+                                            <img src="{{$item->photo}}" class="img-fluid" alt="">
                                         </a>
                                         <div class="product-hover-icon-wrapper">
-                                            <span class="single-icon single-icon--add-to-cart"><a href="#" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"> <i class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ hàng</span> </a></span>
+                                            <span class="single-icon single-icon--add-to-cart"><a href="{{ route('add.to.cart', $item->id) }}" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"> <i class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ hàng</span> </a></span>
                                         </div>
                                     </div>
                                     <div class="single-grid-product__content">
