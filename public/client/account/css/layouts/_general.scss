@@ -1,0 +1,212 @@
+.wrap {
+    overflow: hidden;
+}
+.head-pri{
+    font-size: 6.2rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    text-align: center;
+    position: relative;
+    padding: 3rem 0 2rem 0;
+    margin-bottom: 4rem;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 12.9rem;
+        height: 12.9rem;
+        background: url('../images/logo-decor.png') no-repeat center;
+        background-size: 100% 100%;
+        z-index: -1;
+    }
+    &.none {
+        font-weight: 700;
+        margin-bottom: 4rem;
+        &:before {
+            display: none;
+        }
+    }
+    &.intro{
+        text-align: left;
+        line-height: 1.3;
+        padding-bottom: 0;
+        &:before{
+            top: 0;
+            left: -6.45rem;
+            transform: translateX(0);
+        }
+    }
+    span{
+        color: $c1;
+        font-weight: 700;
+    }
+    &.sm{
+        font-size: 5.2rem;
+        text-align: left;
+        line-height: 1.3;
+        padding-bottom: 0;
+        &:before{
+            top: 0;
+            left: -6.45rem;
+            transform: translateX(0);
+        }
+    }
+    &.white{
+        font-size: 6rem;
+        color: #fff;
+        padding-bottom: 0;
+        padding-top: 4.5rem;
+        span{
+            color: #fff;
+        }
+        &:before{
+            display: none;
+        }
+    }
+}
+.view-pri{
+    position: relative;
+    z-index: 1;
+    .title-view{
+        text-transform: uppercase;
+        color: #fff;
+        display: inline-flex;
+        position: relative;
+        height: 7.2rem;
+        align-items: center;
+        font-weight: 600;
+        padding-right: 3.5rem;
+        transition: 0.4s ease-in-out;
+        span{
+            position: relative;
+        }
+        &:before{
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 7.2rem;
+            background-color: $c2;
+            right: 0;
+            border-radius: 50%;
+            transition: 0.4s ease-in-out;
+        }
+        &:hover{
+            padding-left: 3.5rem;
+            &:before{
+                width: 100%;
+                border-radius: 4rem;
+            }
+        }
+    }
+    &.v-black{
+        .title-view{
+            color: $c-text;
+        }
+    }
+}
+@media (max-width: 1199px) {
+    .head-pri{
+        font-size: 5.2rem;
+    }
+}
+@media (max-width: 991px) {
+    .head-pri{
+        font-size: 4.2rem !important;
+        &:before{
+            width: 10rem;
+            height: 10rem;
+        }
+        &.sm{
+            margin-bottom: 1rem;
+            &:before{
+                left: -5rem;
+            }
+        }
+    }
+}
+@media (max-width: 767px) {
+    .head-pri{
+        margin-bottom: 3rem !important;
+        &.sm{
+            &:before{
+                left: 0;
+            }
+        }
+    }
+    .view-pri{
+        .title-view{
+            height: 5rem;
+            font-size: 1.5rem;
+            &:before{
+                width: 5rem;
+                padding-right: 2rem;
+            }
+            &:hover{
+                padding-left: 2rem;
+                padding-right: 2rem;
+                &:before{
+                    width: 100%;
+                    border-radius: 2rem;
+                }
+            }
+        }
+    }
+}
+.delay01 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+.delay02 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+.delay03 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+.delay04 {
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+.delay05 {
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+}
+.delay06 {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+.delay07 {
+    -webkit-animation-delay: 0.7s;
+    animation-delay: 0.7s;
+}
+.delay08 {
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+}
+.delay09 {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+.delay10 {
+    -webkit-animation-delay: 1.0s;
+    animation-delay: 1.0s;
+}
+.delay12 {
+    -webkit-animation-delay: 1.2s;
+    animation-delay: 1.2s;
+}
+.delay14 {
+    -webkit-animation-delay: 1.4s;
+    animation-delay: 1.4s;
+}
+.delay16 {
+    -webkit-animation-delay: 1.6s;
+    animation-delay: 1.6s;
+}
+.delay18 {
+    -webkit-animation-delay: 1.8s;
+    animation-delay: 1.8s;
+}

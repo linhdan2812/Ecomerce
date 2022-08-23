@@ -61,6 +61,9 @@ class LoginController extends Controller
                 $user = User::create([
                     'name' => $data->name,
                     'email' => $data->email,
+                    'phone' => null,
+                    'birthday' => null,
+                    'gender' => null,
                     'provider' => $provider,
                     'provider_id' => $data->id,
                     'photo' => $data->avatar,
