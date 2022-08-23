@@ -33,6 +33,8 @@ Route::prefix('/')->middleware('auth')->group(function() {
     Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
     Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
     Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
+    Route::get('getcheckout', [ShopController::class, 'getcheckout'])->name('getcheckout');
+    Route::post('postcheckout', [ShopController::class, 'postcheckout'])->name('postcheckout');
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);

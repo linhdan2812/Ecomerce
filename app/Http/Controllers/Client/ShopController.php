@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Requests\CheckoutRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Response;
 
 class ShopController extends Controller
 {
@@ -84,5 +89,42 @@ class ShopController extends Controller
             }
             session()->flash('success', 'Product removed successfully');
         }
+    }
+    public function getcheckout(Request $request)
+    {
+        // CheckoutRequest $request phải thay cho request
+        // Thêm thông tin truyền ra ngoài
+        $quantities = [];
+        $names = [];
+        $prices = [];
+        $quantities = $request->input('quantity');
+        $names = $request->input('name');
+        $subs = $request->input('sub');
+        $total = $request->input('total');
+        $users = User::where('id',Auth()->user()->id)->first();
+        return view('client.shop.checkout',compact('users','quantities','names','subs','total'));
+    }
+    // CheckoutRequest $request phải thay cho request
+        // Thêm thông tin truyền ra ngoài
+    public function postcheckout(Request $request, Response $response)
+    {
+        $orders = Order::create([
+            'order_number' => time(),
+            'user_id' => Auth()->user()->id,
+            'sub_total' => $request->input('total'),
+            'shipping_id' => 1,
+            'coupon' => 1,
+            'total_amount'=> $request->input('total'),
+            'quantity' => 1,
+            'payment_method' => 1,
+            'payment_status'=> 1,
+            'status' => 1,
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'address1' => $request->input('address1'),
+            'address2' => $request->input('address2'),
+        ]);
+        return redirect()->back()->with('Thanh Cong');
     }
 }

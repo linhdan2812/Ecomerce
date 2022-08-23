@@ -139,7 +139,7 @@
                                                         @endif
                                                 <div class="minicart-wrapper__buttons">
                                                     <a href="{{ route('cart') }}" class="theme-button theme-button--minicart-button">VIEW CART</a>
-                                                    <a href="checkout.html" class="theme-button theme-button--alt theme-button--minicart-button theme-button--minicart-button--alt mb-0">CHECKOUT</a>
+                                                    <a href="{{ route('getcheckout') }}" class="theme-button theme-button--alt theme-button--minicart-button theme-button--minicart-button--alt mb-0">CHECKOUT</a>
                                                 </div>
                                                 <p class="minicart-wrapper__featuretext">Free Shipping on All Orders Over $100!</p>
                                             </div>
