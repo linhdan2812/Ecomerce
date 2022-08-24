@@ -76,9 +76,9 @@ class CategoryController extends Controller
                                       'summary' => 'required',
                                   ],
                                   [
-                                      'title.required'   => 'Hãy nhập tên danh mục',
-                                      'title.unique'     => 'Tên danh mục đã tồn tại',
-                                      'title.max:255'    => 'Tên danh mục quá ký tự cho phép',
+                                      'title.required'   => 'Hãy nhập tên loại hàng',
+                                      'title.unique'     => 'Tên loại hàng đã tồn tại',
+                                      'title.max:255'    => 'Tên loại hàng quá ký tự cho phép',
                                       'summary.required' => 'Hãy nhập mô tả',
                                   ]
         );
