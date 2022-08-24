@@ -24,6 +24,17 @@
                         @error('summary')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
+                        <div class="form-group">
+                            <label for="status">Trạng thái</label>
+                            <select class="form-control" name="status" id="status">
+                                <option selected value="active" name="active">
+                                    Hoạt động
+                                </option>
+                                <option value="inactive" name="inactive">
+                                    Không hoạt động
+                                </option>
+                            </select>
+                        </div>
                         <div class="mt-3">
                             <button class="btn btn-success" type="submit">Lưu</button>
                         </div>
