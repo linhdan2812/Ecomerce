@@ -1,0 +1,453 @@
+.wallet {
+    padding: 3.5rem 1.5rem;
+    border: 1px solid #E1E1E1;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -2rem;
+    margin-bottom: 2.8rem;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        .left {
+            flex: unset;
+            max-width: unset;
+            margin-bottom: 2rem;
+            .money {
+                display: block;
+            }
+        }
+    }
+    .left, .right {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .left {
+        flex: 0 0 70%;
+        max-width: 70%;
+        h4 {
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+        .money {
+            font-size: 4rem;
+            font-weight: 700;
+            color: $c1;
+            margin-right: 2.8rem;
+            white-space: nowrap;
+        }
+        .add-link {
+            color: #111111;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: 0.2s;
+            &:hover {
+                color: $c2;
+            }
+            i {
+                font-size: 1.2rem;
+            }
+        }
+    }
+    .right {
+        .btn {
+            width: 17.6rem;
+            height: 5rem;
+            border-radius: 2.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+    }
+}
+.wallet-ads {
+    @media (min-width: 1199px) {
+        .row {
+            margin-left: -1.45rem;
+            margin-right: -1.45rem;
+        }
+        .col-lg-4 {
+            padding-left: 1.45rem;
+            padding-right: 1.45rem;
+        }
+    }
+    margin-bottom: 5.3rem;
+    .item-ads {
+        position: relative;
+        border-radius: 3rem;
+        overflow: hidden;
+        @media (max-width: 991px) {
+            margin-bottom: 4rem;
+        }
+        .img {
+            height: 18rem;
+            img {
+                width: 100%;
+                height: 100%;
+                transition: 0.4s ease-in-out;
+            }
+        }
+		&:hover{
+			.img{
+				img{
+					transform: scale(1.05);
+				}
+			}
+
+		}
+    }
+}
+.order-list {
+    padding: 3.5rem 3.6rem;
+    border-radius: 3rem;
+    border: 1px solid #E1E1E1;
+    margin-bottom: 6.7rem;
+    .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: 480px) {
+            flex-direction: column;
+        }
+        .title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #111111;
+            text-transform: uppercase;
+        }
+        .form-group {
+            width: 24rem;
+        }
+    }
+    .order-history-table {
+        td,th {
+            border: none;
+            font-size: 1.8rem;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            min-width: 160px;
+        }
+        &.coin-table {
+            td {
+                @media (min-width: 1200px) {
+                    min-width: 260px;
+                }
+            }
+        }
+        thead {
+            tr {
+                border-bottom: 1px solid;
+                border-color: rgba(#000000, 0.1);
+            }
+        }
+        tbody {
+            tr {
+                &:not(:last-child) {
+                    border-bottom: 1px solid;
+                    border-color: rgba(#000000, 0.1);
+                }
+            }
+        }
+        th {
+            font-weight: 600;
+            color: #B5000A;
+            padding: 2.2rem 0;
+        }
+        td {
+            color: #4F4F4F;
+            padding: 2.6rem 0;
+            @media (max-width: 767px) {
+                min-width: 150px;
+                max-width: 250px;
+                white-space: normal;
+            }
+            &.coin {
+                min-width: 50px;
+                max-width: 100px;
+            }
+            &.status {
+                &.complete {
+                    color: #3DB409;
+                }
+                &.processing {
+                    color: #111111;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}
+.daterangepicker .drp-buttons .btn {
+    display: inline-block;
+    &.cancelBtn {
+        background: #fff;
+        color: $c2;
+        border: 1px solid $c2;
+        &:hover {
+            background: $c2;
+            color: #fff;
+        }
+    }
+    &.applyBtn {
+        border: 1px solid $c2;
+        &:focus,&:disabled {
+            background: $c2;
+            color: #fff;
+        }
+    }
+}
+.daterangepicker{
+    td {
+        &.active {
+            background-color: $c2;
+            &:hover {
+                background-color: $c2;
+            }
+        }
+    }
+}
+.wallet-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1.36rem;
+    margin-right: -1.36rem;
+    @media (max-width: 768px) {
+        align-items: center;
+        justify-content: center;
+    }
+    .wallet-item {
+        padding-left: 1.36rem;
+        padding-right: 1.36rem;
+        .img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20rem;
+            height: 20rem;
+            position: relative;
+            border-radius: 4rem;
+            overflow: hidden;
+            box-shadow: 0px 0px 5px 0px rgba(#000000, 0.2);
+            transition: 0.4s;
+            &:hover {
+                img {
+                    transform: scale(1.05);
+                }
+            }
+        }
+        .ct {
+            .title {
+                font-size: 2rem;
+                line-height: 1.8;
+                font-weight: 600;
+                margin: 2.5rem 0;
+                text-align: center;
+            }
+        }
+    }
+}
+.body-content {
+    .back {
+        color: #111111;
+        opacity: 0.5;
+        text-decoration: underline;
+        font-size: 1.8rem;
+        line-height: 2;
+        transition: 0.2s;
+        &:hover {
+            color: $c2;
+        }
+        i {
+            margin-right: 1rem;
+            font-size: 1.6rem;
+        }
+    }
+}
+.coin-wallet {
+    .left {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 1.75rem; 
+        }
+        .info {
+            display: flex;
+            flex-direction: column;
+            .money {
+                &.v1 {
+                    color: #FFA200;
+                    margin-right: 1.7rem;
+                }
+            } 
+        }
+    }
+}
+.order-list {
+    .button-coin {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .btn-used {
+            width: 15rem;
+            height: 4.2rem;
+            border-radius: 2.1rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-right: 1.1rem;
+        }
+        .btn-received {
+            width: 15rem;
+            height: 4.2rem;
+            border-radius: 2.1rem;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #111111;
+            background: #EDEDED;
+            border: 1px solid #B7B7B7;
+            &:hover {
+                background: darken($color: #EDEDED, $amount: 10%);
+            }
+        }
+    }
+}
+.order-list .order-history-table td {
+    &.coin {
+        color: #FFA200;
+    }
+}
+.gift-list {
+    @media (min-width: 1199px) {
+        .row {
+            margin-left: -1.73rem;
+            margin-right: -1.73rem;
+        }
+        .col-lg-4 {
+            padding-left: 1.73rem;
+            padding-right: 1.73rem;
+        }
+    }
+    padding-bottom: 2.2rem;
+    .gift-item {
+        margin-bottom: 4rem;
+        .img {
+            height: 23rem;
+            @media (min-width: 420px) and (max-width: 991px) {
+                height: 40rem;
+            }
+            position: relative;
+            overflow: hidden;
+            border-radius: 2.6rem;
+            img {
+                width: 100%;
+                height: 100%;
+                transition: 0.4s ease-in-out;
+            }
+            &:hover{
+                img{
+                    transform: scale(1.05);
+                }
+            }
+        }
+        .ct {
+            .title {
+                font-size: 1.8rem;
+                font-weight: 400;
+                line-height: 1.5;
+                @include set-lineMax(2,1.5em);
+                margin: 2.5rem 0 2rem 0;
+                transition: 0.2s;
+                &:hover {
+                    color: $c2;
+                }
+            }
+            .info {
+                width: 17rem;
+                display: flex;
+                align-items: flex-end;
+                padding: 0.7rem 0.8rem;
+                border-radius: 4rem;
+                border: 1px solid #B7B7B7;
+                background: #EDEDED;
+                img {
+                    width: 2.8rem;
+                    height: 2.8rem;
+                    margin-right: 1rem;
+                }
+                .price {
+                    font-size: 2.2rem;
+                    font-weight: 600;
+                    color: $c2;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+}
+
+.modal {
+    .exchange-gift {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2.9rem;
+        .i-number {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            button {
+                width: 5rem;
+                height: 5rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: #ECECEC;
+                margin: 0.6rem 0;
+                font-size: 2.4rem;
+                color: #111;
+                margin: 0 0.5rem;
+            }
+            input {
+                width: 10.8rem;
+                height: 5rem;
+                border-radius: 5rem;
+                background: #ECECEC;
+                border: none;
+                margin: 0.6rem 0;
+                font-size: 2.4rem;
+                text-align: center;
+                color: #111;
+                &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+                    appearance: none;
+                }
+            }
+        }
+        .gift-info {
+            span {
+                display: block;
+                font-size: 2rem;
+                font-weight: 400;
+                color: #111111;
+                text-align: center;
+            }
+            .info {
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                img {
+                    width: 2.8rem;
+                    height: 2.8rem;
+                    margin-right: 1rem;
+                }
+                .price {
+                    font-size: 3.2rem;
+                    font-weight: 600;
+                    color: $c2;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+}

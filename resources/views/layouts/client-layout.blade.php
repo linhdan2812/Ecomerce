@@ -69,17 +69,20 @@
 
                             <div class="header-icon-area">
                                 <div class="account-dropdown">
-                                    <a href="my-account.html">Login / Register <i class="pe-7s-angle-down"></i></a>
+                                    @if(Auth::check())
+                                    <a href="#">My account<i class="pe-7s-angle-down"></i></a>
 
                                     <ul class="account-dropdown__list">
-                                        <li><a href="my-account.html">My account</a></li>
+                                        <li><a href="{{route('myaccount')}}">My account</a></li>
                                         <li><a href="cart.html">Shopping cart</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
                                         <li><a href="order-tracking.html">Order Tracking</a></li>
                                     </ul>
+                                    @else
+                                    <a title="Register or Login" href="{{route('login')}}">Login</a>
+                                    @endif
                                 </div>
-
-                                <div class="header-icon">
+                                 <div class="header-icon">
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>
                                         <li>

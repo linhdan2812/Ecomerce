@@ -127,4 +127,25 @@ class ShopController extends Controller
         ]);
         return redirect()->back()->with('Thanh Cong');
     }
+    public function postMyaccount(Request $request, Response $response) 
+    { dd($request->all());
+        // $orders = Order::create([
+        //     'order_number' => time(),
+        //     'user_id' => Auth()->user()->id,
+        //     'sub_total' => $request->input('total'),
+        //     'shipping_id' => 1,
+        //     'coupon' => 1,
+        //     'total_amount'=> $request->input('total'),
+        //     'quantity' => 1,
+        //     'payment_method' => 1,
+        //     'payment_status'=> 1,
+        //     'status' => 1,
+        //     'name' => $request->input('name'),
+        //     'email' => $request->input('email'),
+        //     'phone' => $request->input('phone'),
+        //     'address1' => $request->input('address1'),
+        //     'address2' => $request->input('address2'),
+        // ]);
+        return view('client.myaccount');
+    }
 }
