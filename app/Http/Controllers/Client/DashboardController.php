@@ -38,23 +38,23 @@ class DashboardController extends Controller
         // ->setMessage('Thành công');
     }
     public function postAddress(Request $request) {
-        // $orders = Order::create([
-        //     'order_number' => time(),
-        //     'user_id' => Auth()->user()->id,
-        //     'sub_total' => $request->input('total'),
-        //     'shipping_id' => 1,
-        //     'coupon' => 1,
-        //     'total_amount'=> $request->input('total'),
-        //     'quantity' => 1,
-        //     'payment_method' => 1,
-        //     'payment_status'=> 1,
-        //     'status' => 1,
-        //     'name' => $request->input('name'),
-        //     'email' => $request->input('email'),
-        //     'phone' => $request->input('phone'),
-        //     'address1' => $request->input('address1'),
-        //     'address2' => $request->input('address2'),
-        // ]);
-        return view('client.myaccount',compact('user'));
+        $check = Address::where('user_id',Auth()->user()->id)->count();
+        if($check >= 3){
+            return redirect()->back()->with('đã lưu 3 địa chỉ');
+        }
+        else{
+            $address = Address::create([
+                'name' => $request->input('name'),
+                'phone' => $request->input('phone'),
+                'city' => $request->input('city'),
+                'district' => $request->input('district'),
+                'ward' => $request->input('ward'),
+                'detailadress' => $request->input('detaileadress'),
+                'data' => $request->input('detaileadress') . ' (Phường/Xã) ' . $request->input('ward') . ' ( Quận/Huyện) ' . $request->input('district') . ' ( Tỉnh/Thành Phố) ' . $request->input('city'),
+                'status' => 0,
+                'user_id' => Auth()->user()->id,
+            ]);
+            return view('client.myaccount',compact('address'));
+        }
     }
 }

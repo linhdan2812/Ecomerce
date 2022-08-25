@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\City;
+use App\Models\District;
+use App\Models\Ward;
 use Illuminate\Support\Facades\Response;
 
 class Location extends Controller
@@ -27,6 +29,21 @@ class Location extends Controller
         $data = City::all();
         return $data;
     }
+    public function getDistrict(Request $request, Response $response)
+    {
+        $data = [];
+        $data = District::where('parent_code',$request->input('id'))->pluck('name','id')->toArray();
+        
+        return response()->json($data);
+    }
+    public function getWard(Request $request, Response $response)
+    {
+        $data = [];
+        $data = Ward::where('parent_code',$request->input('id'))->pluck('name','id')->toArray();
+
+        return response()->json($data);
+    }
+
 
     /**
      * Show the form for creating a new resource.

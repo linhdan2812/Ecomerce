@@ -1,4 +1,4 @@
-@extends('index')
+@extends('layouts.client-layout')
 
 @section('content') 
 
@@ -38,39 +38,38 @@
                                             <h4 class="checkout-title">Billing Address</h4>
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
-                                                    <label>Name</label>
-                                                    <input type="text"  name="name" value={{$users->name}} placeholder="{{$users->name}}">
+                                                    <label>Họ tên</label>
+                                                    <input type="text"  name="name" value={{$user->name}} placeholder="{{$user->name}}">
                                                 </div>
                                                 <div class="col-md-6 col-12">
-                                                    <label>Email Address*</label>
-                                                    <input type="email" name="email" value={{$users->email}} placeholder="{{$users->email}}">
+                                                    <label>Địa chỉ Email</label>
+                                                    <input type="email" name="email" value={{$user->email}} placeholder="{{$user->email}}">
                                                 </div>
                                                 <div class="col-md-6 col-12">
-                                                    <label>Phone no*</label>
-                                                    <input type="text" name="phone" placeholder="Phone number">
+                                                    <label>Số điện thoại</label>
+                                                    <input type="text" name="phone" value={{$user->phone ?? null}} placeholder="{{$user->phone ?? 'Nhập số điện thoại'}}">
                                                 </div>
-                                                <div class="col-12">
-                                                    <label>Company Name</label>
-                                                    <input type="text" name="" placeholder="Company Name">
-                                                </div>
-                                                <div class="col-12">
-                                                    <label>Address*</label>
-                                                    <input type="text" name="address1" placeholder="Address line 1">
-                                                    <input type="text" name="address2" placeholder="Address line 2">
-                                                </div>
-                                                {{-- <div class="col-md-6 col-12">
-                                                    <label>Country*</label>
-                                                    <select name="" class="nice-select">
-                                                        <option>Bangladesh</option>
-                                                        <option>China</option>
-                                                        <option>country</option>
-                                                        <option>India</option>
-                                                        <option>Japan</option>
+                                                <div class="col-md-6 col-12 form-group select-box">
+                                                    <select name="city" id="city" class="form-control">
+                                                        <option value="">Tỉnh/Thành Phố</option>
                                                     </select>
-                                                </div> --}}
+                                                    <i class="fas fa-caret-circle-down"></i>
+                                                </div>
+                                                <div class="col-md-6 col-12 form-group select-box">
+                                                    <select name="district" id="district" class="form-control">
+                                                        <option value="">Quận/Huyện</option>
+                                                    </select>
+                                                    <i class="fas fa-caret-circle-down"></i>
+                                                </div>
+                                                <div class="col-md-6 col-12 form-group select-box">
+                                                    <select name="ward" id="ward" class="form-control">
+                                                        <option value="">Phường/Xã</option>
+                                                    </select>
+                                                    <i class="fas fa-caret-circle-down"></i>
+                                                </div>
                                                 <div class="col-md-6 col-12">
-                                                    <label>Town/City*</label>
-                                                    <input type="text" name="city" placeholder="Town/City">
+                                                    <label>Địa chỉ cụ thể</label>
+                                                    <input type="text" name="addressdetail" value={{$address->detailadress ?? null}} placeholder="{{$address->detailadress ?? 'Nhập địa chị cụ thể'}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -190,5 +189,49 @@
     </div>
 
     <!--====================  End of page content wrapper  ====================-->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+       $( document ).ready(function(){
+            let url = "{{route('getCity')}}"
+            $.get(url).done(function( data ) {
+                let text = "";
+                data.forEach(element => {
+                    text +=`
+                            <option value="${element.name}" data-id="${element.id}">${element.name}</option>
+                            `; 
+                });
+                document.getElementById("city").innerHTML = text;
+            });
+        });
+        $('#city').change(function(){
+            let city = $( "#city option:selected" ).data("id");
+            let city2 = $( "#city option:selected" ).text();
+            let url = "{{route('getDistrict')}}"
+            $.get(url,{id:city , text:city2}).done(function( data ) {
+                const entries = Object.entries(data);
+                let text = "";
+                entries.forEach(element => {
+                    text +=`
+                            <option value="${element[1]}" data-id="${element[0]}">${element[1]}</option>
+                            `; 
+                });
+                document.getElementById("district").innerHTML = text;
+            });
+        });
+        $('#district').change(function(){
+            let district = $( "#district option:selected" ).data("id");
+            let district2 = $( "#district option:selected" ).text();
+            let url = "{{route('getWard')}}"
+            $.get(url,{id:district, text:district2}).done(function( data ) {
+                let text = "";
+                const entries = Object.entries(data);
+                entries.forEach(element => {
+                    text +=`
+                            <option value="${element[1]}">${element[1]}</option>
+                            `; 
+                });
+                document.getElementById("ward").innerHTML = text;
+            });
+        })
+    </script>
 @endsection
