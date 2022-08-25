@@ -15,7 +15,7 @@ class Order extends Model
         'order_number',
         'user_id',
         'sub_total',
-        'shipping_id',
+        // 'shipping_id',
         'coupon',
         'total_amount',
         'quantity',
@@ -25,7 +25,9 @@ class Order extends Model
         'name',
         'email',
         'phone',
-        'address1',
-        'address2',
+        'city',
+        'district',
+        'ward',
+        'addressdetail',
     ];
 }

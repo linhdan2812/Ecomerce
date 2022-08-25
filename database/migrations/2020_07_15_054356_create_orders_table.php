@@ -32,10 +32,11 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('country');
             $table->string('post_code')->nullable();
-            $table->text('address1');
-            $table->text('address2')->nullable();
+            $table->text('city');
+            $table->text('district');
+            $table->text('ward');
+            $table->text('addressdetail');
             $table->timestamps();
         });
     }

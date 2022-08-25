@@ -1,3 +1,5 @@
+{{-- @extends('layouts.client-layout')
+@section('content') --}}
 <link href="
 {{ asset('client/account/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
 <!-- <link href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"> -->
@@ -93,3 +95,4 @@
         {{ asset('client/account/js/datepicker.min.js') }}" type="text/javascript"></script>
     <script src="
         {{ asset('client/account/js/daterangepicker.js') }}" type="text/javascript"></script>
+{{-- @endsection --}}
