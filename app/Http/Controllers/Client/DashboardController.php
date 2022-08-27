@@ -50,7 +50,7 @@ class DashboardController extends Controller
                 'district' => $request->input('district'),
                 'ward' => $request->input('ward'),
                 'detailadress' => $request->input('detaileadress'),
-                'data' => $request->input('detaileadress') . ' (Phường/Xã) ' . $request->input('ward') . ' ( Quận/Huyện) ' . $request->input('district') . ' ( Tỉnh/Thành Phố) ' . $request->input('city'),
+                'data' => $request->input('detaileadress') . '--' . $request->input('ward') . '--' . $request->input('district') . '--' . $request->input('city'),
                 'status' => 0,
                 'user_id' => Auth()->user()->id,
             ]);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\Address;
 use Illuminate\Support\Facades\Response;
 
 class Location extends Controller
@@ -33,7 +34,7 @@ class Location extends Controller
     {
         $data = [];
         $data = District::where('parent_code',$request->input('id'))->pluck('name','id')->toArray();
-        
+
         return response()->json($data);
     }
     public function getWard(Request $request, Response $response)
@@ -43,7 +44,18 @@ class Location extends Controller
 
         return response()->json($data);
     }
-
+    public function deleteAddres($id)
+    {
+        $address = Address::find($id)->first();
+        $address -> delete();
+        return redirect()->back();
+    }
+    public function setDefaut($id)
+    {
+        Address::where('status',1)->update(['status' => 0]);
+        Address::where('id',$id)->where('status',0)->update(['status' => 1]);
+        return redirect()->back();
+    }
 
     /**
      * Show the form for creating a new resource.
