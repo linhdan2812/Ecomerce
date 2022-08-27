@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -89,6 +90,19 @@ Route::prefix('admin/')->middleware('authadmin')->group(function() {
         Route::post('edit/{id}', [BrandController::class, 'saveEdit']);
 
         Route::get('delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
+    });
+    //Banners
+    Route::prefix('banners')->group(function () {
+
+        Route::get('list', [BannerController::class, 'list'])->name('admin.banner.list');
+
+        Route::get('add', [BannerController::class, 'add'])->name('admin.banner.add');
+        Route::post('add', [BannerController::class, 'saveAdd']);
+
+        Route::get('edit/{id}', [BannerController::class, 'edit'])->name('admin.banner.edit');
+        Route::post('edit/{id}', [BannerController::class, 'saveEdit']);
+
+        Route::get('delete/{id}', [BannerController::class, 'delete'])->name('admin.banner.delete');
     });
 });
 
