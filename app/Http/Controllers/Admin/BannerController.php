@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
-    public function getBanner(){
-        $banners = Banner::query()->where('status','=','active')
-                                ->orderBy('id', 'DESC')->limit(5)->get();
-        return view('index', compact('banners'));
-    }
     public function list()
     {
         $banners = Banner::all();
