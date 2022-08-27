@@ -87,18 +87,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="brand_id">Thương hiệu</label>
-                            <select class="form-control" name="brand_id" id="brand_id">
-                                @foreach ($brands as $item)
-                                    <option value="<?= $item->id ?>"><?= $item->title ?></option>
-                                @endforeach
-                            </select>
-                            @error('brand_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label for="status">Trạng thái</label>
                             <select class="form-control" name="status" id="status">
                                 <option value="active">Hoạt động</option>

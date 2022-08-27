@@ -27,14 +27,16 @@ class CreateOrdersTable extends Migration
             $table->enum('status',['new','process','delivered','cancel'])->default('new');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('SET NULL');
-            $table->string('first_name');
-            $table->string('last_name');
+            // $table->string('first_name');
+            // $table->string('last_name');
+            $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('country');
             $table->string('post_code')->nullable();
-            $table->text('address1');
-            $table->text('address2')->nullable();
+            $table->text('city');
+            $table->text('district');
+            $table->text('ward');
+            $table->text('addressdetail');
             $table->timestamps();
         });
     }

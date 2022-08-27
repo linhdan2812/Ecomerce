@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -33,6 +34,12 @@ Route::prefix('/')->middleware('auth')->group(function() {
     Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
     Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
     Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
+    Route::get('getcheckout', [ShopController::class, 'getcheckout'])->name('getcheckout');
+    Route::post('postcheckout', [ShopController::class, 'postcheckout'])->name('postcheckout');
+    Route::get('myaccount',[ClientDashboardController::class, 'myaccount'])->name('myaccount');
+    Route::get('address',[ClientDashboardController::class, 'address'])->name('address');
+    Route::post('postMyaccount',[ClientDashboardController::class, 'postMyaccount'])->name('postMyaccount');
+    Route::post('postAddress',[ClientDashboardController::class, 'postAddress'])->name('postAddress');
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);
@@ -83,6 +90,19 @@ Route::prefix('admin/')->middleware('authadmin')->group(function() {
         Route::post('edit/{id}', [BrandController::class, 'saveEdit']);
 
         Route::get('delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
+    });
+    //Banners
+    Route::prefix('banners')->group(function () {
+
+        Route::get('list', [BannerController::class, 'list'])->name('admin.banner.list');
+
+        Route::get('add', [BannerController::class, 'add'])->name('admin.banner.add');
+        Route::post('add', [BannerController::class, 'saveAdd']);
+
+        Route::get('edit/{id}', [BannerController::class, 'edit'])->name('admin.banner.edit');
+        Route::post('edit/{id}', [BannerController::class, 'saveEdit']);
+
+        Route::get('delete/{id}', [BannerController::class, 'delete'])->name('admin.banner.delete');
     });
 });
 

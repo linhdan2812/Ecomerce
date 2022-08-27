@@ -48,7 +48,6 @@
     <div class="header-area header-area--one header-sticky">
 
         <!--=======  header info area  =======-->
-
         <div class="header-info-area d-none d-lg-block">
             <div class="container">
                 <div class="row">
@@ -57,8 +56,8 @@
 
                             <div class="header-contact-info">
                                 <ul class="header-contact-info__list">
-                                    <li><i class="pe-7s-phone"></i> <a href="tel://12452456012">(+84) 5560 7744 </a></li>
-                                    <li><i class="pe-7s-mail-open"></i> <a href="mailto:info@yourdomain.com">bamboostreetwear@gmail.com</a></li>
+                                    <li><i class="pe-7s-phone"></i> <a href="tel://12452456012">(1245) 2456 012 </a></li>
+                                    <li><i class="pe-7s-mail-open"></i> <a href="mailto:info@yourdomain.com">info@yourdomain.com</a></li>
                                 </ul>
                             </div>
 
@@ -69,31 +68,21 @@
                             </div>
 
                             <div class="header-icon-area">
-                                @if(!!!Auth::check())
                                 <div class="account-dropdown">
-                                    <a href="{{route('login')}}">Đăng nhập</a>
+                                    @if(Auth::check())
+                                    <a href="#">My account<i class="pe-7s-angle-down"></i></a>
+
+                                    <ul class="account-dropdown__list">
+                                        <li><a href="{{route('myaccount')}}">My account</a></li>
+                                        <li><a href="cart.html">Shopping cart</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="order-tracking.html">Order Tracking</a></li>
+                                    </ul>
+                                    @else
+                                    <a title="Register or Login" href="{{route('login')}}">Login</a>
+                                    @endif
                                 </div>
-                                @else
-                                    <div class="account-dropdown">
-                                        <a href="">Tài khoản của tôi <i class="pe-7s-angle-down"></i></a>
-
-                                        <ul class="account-dropdown__list">
-                                            <li><a href="">Giỏ hàng</a></li>
-                                            <li><a href="">Thanh toán</a></li>
-                                            <li><a href="">Theo dõi đơn hàng</a></li>
-                                            <li>
-                                                <a class="" href="{{route('logout')}}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-decoration: none;">Đăng
-                                                xuất</a>
-                                                <form action="{{route('logout')}}" id="logout-form" method="GET">
-                                                    @csrf
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endif
-
-                                <div class="header-icon">
+                                 <div class="header-icon">
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>
                                         <li>
@@ -122,56 +111,39 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <a href="cart.html"><i class="fa fa-shopping-basket"></i><span class="item-count">3</span></a>
+                                            <a href="{{ route('cart') }}"><i class="fa fa-shopping-basket"></i><span class="item-count">{{ count((array) session('cart')) }}</span></a>
                                             <div class="minicart-wrapper">
                                                 <p class="minicart-wrapper__title">CART</p>
-
                                                 <div class="minicart-wrapper__items ps-scroll">
-                                                    <div class="minicart-wrapper__items__single">
-                                                        <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                        <div class="image">
-                                                            <a href="product-details-basic.html">
-                                                                <img src="{{asset('client/img/products/product-1-90x100.jpg')}}" class="img-fluid" alt="">
-                                                            </a>
+                                                    <div class="row total-header-section">
+                                                        <div class="col-lg-6 col-sm-6 col-6">
+                                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                                                         </div>
-                                                        <div class="content">
-                                                            <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
-                                                            <p class="product-calculation"><span class="count">1</span> x <span class="price">$900</span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="minicart-wrapper__items__single">
-                                                        <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                        <div class="image">
-                                                            <a href="product-details-basic.html">
-                                                                <img src="{{asset('client/img/products/product-2-90x100.jpg')}}" class="img-fluid" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="content">
-                                                            <p class="product-title"><a href="product-details-basic.html">Jane Lauren Rebel Sofa</a></p>
-                                                            <p class="product-calculation"><span class="count">1</span> x <span class="price">$900</span></p>
+                                                        @php $total = 0 @endphp
+                                                        @foreach((array) session('cart') as $id => $details)
+                                                            @php $total += $details['price'] * $details['quantity'] @endphp
+                                                        @endforeach
+                                                        <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
+                                                            <p>Total: <span class="text-info">$ {{ $total }}</span></p>
                                                         </div>
                                                     </div>
-                                                    <div class="minicart-wrapper__items__single">
-                                                        <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                        <div class="image">
-                                                            <a href="product-details-basic.html">
-                                                                <img src="{{asset('client/img/products/product-1-90x100.jpg')}}" class="img-fluid" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="content">
-                                                            <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
-                                                            <p class="product-calculation"><span class="count">1</span> x <span class="price">$900</span></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <p class="minicart-wrapper__subtotal">SUBTOTAL: <span>$1800</span></p>
-
+                                                @if(session('cart'))
+                                                            @foreach(session('cart') as $id => $details)
+                                                                <div class="row cart-detail">
+                                                                    <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                                                        <img src="{{ $details['image'] }}" height="100px" width="80px" />
+                                                                    </div>
+                                                                    <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                                                        <p>{{ $details['name'] }}</p>
+                                                                        <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
                                                 <div class="minicart-wrapper__buttons">
-                                                    <a href="cart.html" class="theme-button theme-button--minicart-button">VIEW CART</a>
-                                                    <a href="checkout.html" class="theme-button theme-button--alt theme-button--minicart-button theme-button--minicart-button--alt mb-0">CHECKOUT</a>
+                                                    <a href="{{ route('cart') }}" class="theme-button theme-button--minicart-button">VIEW CART</a>
+                                                    <a href="{{ route('getcheckout') }}" class="theme-button theme-button--alt theme-button--minicart-button theme-button--minicart-button--alt mb-0">CHECKOUT</a>
                                                 </div>
-
                                                 <p class="minicart-wrapper__featuretext">Free Shipping on All Orders Over $100!</p>
                                             </div>
                                         </li>
@@ -183,7 +155,6 @@
                 </div>
             </div>
         </div>
-
         <!--=======  End of header info area  =======-->
 
         <!--=======  navigation area  =======-->
@@ -285,60 +256,6 @@
                                             <div class="minicart-wrapper__buttons mb-0">
                                                 <a href="wishlist.html" class="theme-button theme-button--minicart-button mb-0">VIEW WISHLIST</a>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="cart.html"><i class="fa fa-shopping-basket"></i><span class="item-count">3</span></a>
-                                        <div class="minicart-wrapper">
-                                            <p class="minicart-wrapper__title">CART</p>
-
-                                            <div class="minicart-wrapper__items ps-scroll">
-                                                <div class="minicart-wrapper__items__single">
-                                                    <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                    <div class="image">
-                                                        <a href="product-details-basic.html">
-                                                            <img src="{{asset('client/img/products/product-1-90x100.jpg')}}" class="img-fluid" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
-                                                        <p class="product-calculation"><span class="count">1</span> x <span class="price">$900</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="minicart-wrapper__items__single">
-                                                    <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                    <div class="image">
-                                                        <a href="product-details-basic.html">
-                                                            <img src="{{asset('client/img/products/product-2-90x100.jpg')}}" class="img-fluid" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p class="product-title"><a href="product-details-basic.html">Jane Lauren Rebel Sofa</a></p>
-                                                        <p class="product-calculation"><span class="count">1</span> x <span class="price">$900</span></p>
-                                                    </div>
-                                                </div>
-                                                <div class="minicart-wrapper__items__single">
-                                                    <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                    <div class="image">
-                                                        <a href="product-details-basic.html">
-                                                            <img src="{{asset('client/img/products/product-1-90x100.jpg')}}" class="img-fluid" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
-                                                        <p class="product-calculation"><span class="count">1</span> x <span class="price">$900</span></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <p class="minicart-wrapper__subtotal">SUBTOTAL: <span>$1800</span></p>
-
-                                            <div class="minicart-wrapper__buttons">
-                                                <a href="cart.html" class="theme-button theme-button--minicart-button">VIEW CART</a>
-                                                <a href="checkout.html" class="theme-button theme-button--alt theme-button--minicart-button theme-button--minicart-button--alt mb-0">CHECKOUT</a>
-                                            </div>
-
-                                            <p class="minicart-wrapper__featuretext">Free Shipping on All Orders Over $100!</p>
                                         </div>
                                     </li>
                                 </ul>

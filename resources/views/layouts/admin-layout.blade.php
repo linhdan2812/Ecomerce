@@ -62,9 +62,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="{{ route('admin.brand.list') }}">
+                        <a class="nav-link" href="{{ route('admin.banner.list') }}">
                             <i class="nc-icon nc-circle-09"></i>
-                            <p>Thương hiệu</p>
+                            <p>Banner</p>
                         </a>
                     </li>
                     <li>

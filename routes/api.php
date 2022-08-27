@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('getCity',[Location::class,'getCity'])->name('getCity');
+Route::get('getDistrict',[Location::class,'getDistrict'])->name('getDistrict');
+Route::get('getWard',[Location::class,'getWard'])->name('getWard');

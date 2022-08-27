@@ -14,7 +14,7 @@
               <th scope="col">Kích thước</th>
               <th scope="col">Giá</th>
               <th scope="col">Loại hàng</th>
-              <th scope="col">Thương hiệu</th>
+              <!-- <th scope="col">Thương hiệu</th> -->
               <th scope="col">Trạng thái</th>
               <th><a class="btn btn-success" href="{{ route('admin.product.add') }}">Thêm mới</a></th>
             </tr>
@@ -31,7 +31,7 @@
               <td>{{ $item->size }}</td>
               <td>{{ $item->price }}</td>
               <td>{{ $item->category->title }}</td>
-              <td>{{ $item->brand->title }}</td>
+              <!-- <td>{{ $item->brand->title }}</td> -->
               @if( $item->status == 'inactive')
                 <td>Không hoạt động</td>
               @else
