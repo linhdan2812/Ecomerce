@@ -41,16 +41,24 @@
                             <tr>
                                 <th scope="row">{{$stt++}}</th>
                                 <td>{{$item->order_number}}</td>
-                                <td>{{$item->user->name}}</td>
+                                <td>{{$item->user_id}}</td>
                                 <td>{{$item->sub_total}}</td>
-                                <td>{{$item->shipping->shipping_id}}</td>
-                                <td>{{$item->coupon->code}}</td>
+                                <td>{{$item->shipping_id}}</td>
+                                <td>{{$item->coupon}}</td>
                                 <td>{{$item->total_amount}}</td>
                                 <td>{{$item->quantity}}</td>
                                 <td>{{$item->payment_method}}</td>
                                 <td>{{$item->payment_status}}</td>
                                 <td>{{$item->status}}</td>
-                                <td>{{$item->}}</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->phone}}</td>
+                                <td>{{$item->post_code}}</td>
+                                <td>{{$item->city}}</td>
+                                <td>{{$item->district}}</td>
+                                <td>{{$item->ward}}</td>
+                                <td>{{$item->addressdetail}}</td>
+
 
 
                                 <td>
