@@ -90,17 +90,18 @@
                                                     @if (session('cart'))
                                                         @foreach (session('cart') as $id => $details)
                                                             @php $total += $details['price'] * $details['quantity'] @endphp
-                                                        
-                                                    <tr  data-id="{{ $id }}">
-                                                            <td data-th="Product" class="product-name">
+                                                    <table style="width:100%">
+                                                        <tr data-id="{{ $id }}">
+                                                            <td style="width:50%" data-th="Product" class="product-name">
                                                                 <a href="product-details-basic.html">{{ $details['name'] }}</a>
                                                             </td>
-                                                            <td data-th="Price" class="product-price"><span class="price">${{ $details['price'] }}</span></td>
-                                                            <td data-th="Quantity">
-                                                            {{ $details['quantity'] }}
+                                                            <td style="width:20;text-align: end;%" data-th="Price" class="product-price"><span class="price">{{ $details['price'] }}</span></td>
+                                                            <td style="width:10%;text-align: end;" data-th="Quantity" >
+                                                                X           {{ $details['quantity'] }}
                                                             </td>
-                                                            <td data-th="Subtotal" class="total-price"><span class="price"> ${{ $details['price'] * $details['quantity'] }}</span></td>
-                                                </tr>
+                                                            <td style="width:20%;text-align: end;" data-th="Subtotal" class="total-price"><span class="price"> {{ $details['price'] * $details['quantity'] }}</span></td>
+                                                        </tr>
+                                                    </table>
                                                 <br>
                                                 @endforeach
                                                 @endif
@@ -119,7 +120,7 @@
                                                     </ul> --}}  
 
                                                     <p>Sub Total <span>{{$total}}</span></p>
-                                                    <p>Shipping Fee <span>$00.00</span></p>
+                                                    <p>Shipping Fee <span>00.00</span></p>
 
                                                     <h4>Grand Total <span>{{$total}}</span></h4>
                                                     <input type="hidden" name="total" value="{{ $total }}">
