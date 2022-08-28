@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
@@ -13,7 +14,9 @@ use Illuminate\Support\Facades\Response;
 class DashboardController extends Controller
 {
     public function index() {
-        return view('client.index');
+            $bannerSlide = Banner::query()->where('status','=','active')
+                                 ->orderBy('id', 'DESC')->limit(5)->get();
+        return view('client.index',compact('bannerSlide'));
     }
     public function myaccount() {
 

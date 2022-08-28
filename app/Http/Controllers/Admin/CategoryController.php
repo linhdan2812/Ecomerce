@@ -40,13 +40,12 @@ class CategoryController extends Controller
 
     public function saveEdit($id, Request $request)
     {
-        $oldCate = Category::query()->where('id','=',$id)->first();
-        if ($request->title != $oldCate->id){
-            $this->messages($request);
-        }
         $category = Category::find($id);
         if (!$category) {
-            return redirect(route('tutor.department.list'));
+            return redirect(route('admin.category.list'));
+        }
+        if ($request->title != $category->title){
+            $this->messages($request);
         }
         $category->fill($request->all());
         $category->save();
