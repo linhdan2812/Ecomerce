@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
 use App\Http\Controllers\Client\ShopController;
@@ -77,7 +78,7 @@ Route::prefix('admin/')->middleware('authadmin')->group(function() {
 
         Route::get('delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delte');
     });
-    
+
     //Brand
     Route::prefix('brand/')->group(function () {
 
@@ -103,6 +104,11 @@ Route::prefix('admin/')->middleware('authadmin')->group(function() {
         Route::post('edit/{id}', [BannerController::class, 'saveEdit']);
 
         Route::get('delete/{id}', [BannerController::class, 'delete'])->name('admin.banner.delete');
+    });
+
+    //Orders
+    Route::prefix('orders')->group(function(){
+        Route::get('/',[OrderController::class,'index'])->name('admin.order.list');
     });
 });
 
