@@ -23,4 +23,4 @@ Route::get('getCity',[Location::class,'getCity'])->name('getCity');
 Route::get('getDistrict',[Location::class,'getDistrict'])->name('getDistrict');
 Route::get('getWard',[Location::class,'getWard'])->name('getWard');
 Route::get('deleteAddres/{id}',[Location::class,'deleteAddres'])->name('deleteAddres');
-Route::get('setDefaut/{id}',[Location::class,'setDefaut'])->name('setDefaut');
+Route::get('setDefaut/{id}',[Location   ::class,'setDefaut'])->name('setDefaut');

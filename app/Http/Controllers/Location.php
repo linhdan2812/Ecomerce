@@ -33,14 +33,14 @@ class Location extends Controller
     public function getDistrict(Request $request, Response $response)
     {
         $data = [];
-        $data = District::where('parent_code',$request->input('id'))->pluck('name','id')->toArray();
+        $data = District::where('parent_code',sprintf("%02d", $request->input('id')))->pluck('name','id')->toArray();
 
         return response()->json($data);
     }
     public function getWard(Request $request, Response $response)
     {
         $data = [];
-        $data = Ward::where('parent_code',$request->input('id'))->pluck('name','id')->toArray();
+        $data = Ward::where('parent_code',sprintf("%03d", $request->input('id')))->pluck('name','id')->toArray();
 
         return response()->json($data);
     }
