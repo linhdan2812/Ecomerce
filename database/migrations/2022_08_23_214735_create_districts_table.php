@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('path');
             $table->string('path_with_type');
             $table->string('parent_code');
+            $table->string('code');
             $table->timestamps();
         });
     }
