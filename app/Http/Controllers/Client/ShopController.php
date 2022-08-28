@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Address;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
@@ -119,7 +120,7 @@ class ShopController extends Controller
             'coupon' => 1,
             'country' => 1,
             'total_amount'=> $request->input('total'),
-            'quantity' => 1,
+            'quantity' => $request->input('quantity'),
             'payment_method' => 1,
             'payment_status'=> 1,
             'status' => 1,
@@ -131,7 +132,8 @@ class ShopController extends Controller
             'ward' => $request->input('ward'),
             'addressdetail' => $request->input('addressdetail')
         ]);
-        return $response;
+        Session::flash('success');
+        return redirect('/');
         // ->setMessage('Thành Công');
     }
 }

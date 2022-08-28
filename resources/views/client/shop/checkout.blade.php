@@ -123,6 +123,7 @@
                                                     <p>Shipping Fee <span>00.00</span></p>
 
                                                     <h4>Grand Total <span>{{$total}}</span></h4>
+                                                    <input type="hidden" name="quantity" value="{{ $details['quantity'] }}">
                                                     <input type="hidden" name="total" value="{{ $total }}">
                                                 </div>
                                             </div>
