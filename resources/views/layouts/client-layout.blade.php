@@ -24,7 +24,26 @@
     <link href="{{asset('client/revolution/css/settings.css')}}" rel="stylesheet">
     <link href="{{asset('client/revolution/css/navigation.css')}}" rel="stylesheet">
     <link href="{{asset('client/revolution/custom-setting.css')}}" rel="stylesheet">
-
+    <link href="
+    {{ asset('client/account/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+    <!-- <link href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"> -->
+    <link href="
+    {{ asset('client/account/fonts/fontawesome-pro-5.8.2-web/css/all.min.css') }}" type="text/css"
+        rel="stylesheet">
+    <link href="
+    {{ asset('client/account/fonts/elegantIcon/elegantIcon.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/slick.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/owl.carousel.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/datepicker.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/daterangepicker.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/animate.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/main.css') }}" type="text/css" rel="stylesheet">
 
 </head>
 
@@ -669,6 +688,31 @@
     <script type="text/javascript" src="{{asset('client/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/revolution/js/extensions/revolution.extension.parallax.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="
+        {{ asset('client/account/js/jquery.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/slick.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/owl.carousel.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/wow.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/wow.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/scrollspy.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/jquery.sticky-kit.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/script.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/moment.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/datepicker.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/daterangepicker.js') }}" type="text/javascript"></script>
 
 </body>
 

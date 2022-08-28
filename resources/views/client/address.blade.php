@@ -1,5 +1,5 @@
 @extends('layouts.account')
-@section('content')
+@section('section')
 
     <div class="col-lg-9">
         <div class="main-content">

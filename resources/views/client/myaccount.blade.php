@@ -1,5 +1,5 @@
 @extends('layouts.account')
-@section('content')
+@section('section')
 {{-- @endsection
 @extends('index')
 
