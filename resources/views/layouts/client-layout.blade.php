@@ -73,10 +73,11 @@
                                     <a href="#">My account<i class="pe-7s-angle-down"></i></a>
 
                                     <ul class="account-dropdown__list">
-                                        <li><a href="{{route('myaccount')}}">My account</a></li>
+                                        <li><a href="{{route('myaccount')}}">Tài khoản của tôi</a></li>
                                         <li><a href="cart.html">Shopping cart</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
                                         <li><a href="order-tracking.html">Order Tracking</a></li>
+                                        <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                     </ul>
                                     @else
                                     <a title="Register or Login" href="{{route('login')}}">Login</a>
