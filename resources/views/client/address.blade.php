@@ -16,7 +16,11 @@
                                 <div class="left-address">
                                     <div class="info-item">
                                         <div class="info-label">Họ và tên:</div>
-                                        <div class="info-ct name">{{Auth()->user()->name}}<span class="label">Mặc định</span></div>
+                                        <div class="info-ct name">{{Auth()->user()->name}}
+                                            @if($item->status == 1)<span class="label">Mặc định</span>
+                                            @else
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="info-item">
                                         <div class="info-label">Số điện thoại:</div>
@@ -29,14 +33,31 @@
                                 </div>
                                 <div class="right-address">
                                     <div class="top">
-                                        <a href="javascript:;" class="edit">Chỉnh sửa</a>
-                                        <a href="javascript:;" class="delete">Xóa</a>
+                                        @if($item->status != 1) <a href="javascript:;" class="delete" data-toggle="modal" data-target="#exampleModal">Xóa</a>@endif
                                     </div>
                                     <div class="bottom">
-                                        <button class="btn" disabled>Thiết lập mặc định</button>
+                                        <a  class="btn" href="{{route('setDefaut',['id'=>$item->id])}}" class="setDefaut" @if($item->status == 1) hidden @endif>Thiết lập mặc định</a>
                                     </div>
                                 </div>
                             </div>
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Xác nhận Xóa</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <a href="{{ route('deleteAddres',[ 'id' => $item->id ]) }}"  style="width:100px; text-align:center" class="btn btn-primary">Xác nhận</a>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                         @endforeach
                     </div>
                 </div>
@@ -83,12 +104,6 @@
                         </div>
                         <div class="form-group">
                             <input type="text" name="detaileadress" placeholder="Toà nhà, tên đường, số nhà..." class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label class="check-container">Đặt làm mặc định
-                                <input type="checkbox" name="status" checked="checked">
-                                <span class="checkmark"></span>
-                            </label>
                         </div>
                         <div class="form-group button">
                             <button class="btn">đăng ký</button>
@@ -141,6 +156,11 @@
             });
             document.getElementById("ward").innerHTML = text;
         });
+    })
+</script>
+<script>
+    $('.delete').click(function(){
+        
     })
 </script>
 @endsection

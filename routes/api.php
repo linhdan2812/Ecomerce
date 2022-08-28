@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('getCity',[Location::class,'getCity'])->name('getCity');
 Route::get('getDistrict',[Location::class,'getDistrict'])->name('getDistrict');
 Route::get('getWard',[Location::class,'getWard'])->name('getWard');
+Route::get('deleteAddres/{id}',[Location::class,'deleteAddres'])->name('deleteAddres');
+Route::get('setDefaut/{id}',[Location::class,'setDefaut'])->name('setDefaut');
