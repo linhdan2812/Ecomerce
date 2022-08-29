@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->float('total_amount');
             $table->integer('quantity');
             $table->enum('payment_method',['cod','paypal'])->default('cod');
-            $table->enum('payment_status',['Đang xử lý','Xác nhận'])->default('Đang xử lý');
+            $table->enum('payment_status',['Đang xử lý','Đã thanh toán'])->default('Đang xử lý');
             $table->enum('status',['Đang xử lý','Đang vận chuyển ','Giao hàng thành công','Đã hủy'])->default('Đang xử lý');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('SET NULL');
