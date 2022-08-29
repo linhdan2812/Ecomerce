@@ -60,8 +60,7 @@ class Location extends Controller
     public function setCancelOrder(Request $request, Response $response)
     {
         $detailOrder = Order::where('id',$request->input('id'))->update(['status' => 4]);
-        return response($detailOrder, 200)
-        ->header('Content-Type', 'text/plain');
+        return route('orders'); 
     }
     /**
      * Show the form for creating a new resource.

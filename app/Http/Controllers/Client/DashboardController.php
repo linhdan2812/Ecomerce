@@ -11,7 +11,8 @@ use App\Models\Order;
 use App\Http\Requests\AccountRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-
+use App\Models\wishlist;
+use App\Models\Product;
 class DashboardController extends Controller
 {
     public function index() {
@@ -71,4 +72,25 @@ class DashboardController extends Controller
         $detailorder = Order::where('id', '=', $id)->first();
         return view('client.detail-order',compact('detailorder'));
     }
+    public function wishlist()
+    {
+        $wishlists = Wishlist::where('user_id', '=', Auth::user()->id)->get();
+        $wishlists_id = [];
+        foreach ($wishlists as $key => $value) {
+            array_push($wishlists_id, $value->product_id);
+        }
+        $products = Product::whereIn('id',$wishlists_id)->get();
+        return view('client.wishlist',compact('wishlists','products'));
+    }
+    public function postWishlist($id)
+    {
+        $product = Product::where('id',$id)->first();
+        $wishlists = Wishlist::create([
+            'product_id' => $product->id,
+            'user_id' => Auth::user()->id,
+            'price' => $product->price,
+        ]);
+        return redirect()->back();
+    }
+    
 }

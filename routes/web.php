@@ -42,6 +42,8 @@ Route::prefix('/')->middleware('auth')->group(function() {
     Route::post('postAddress',[ClientDashboardController::class, 'postAddress'])->name('postAddress');
     Route::get('orders',[ClientDashboardController::class, 'orders'])->name('orders');
     Route::get('detailorder/{id}',[ClientDashboardController::class, 'detailorder'])->name('order.detail');
+    Route::get('wishlist',[ClientDashboardController::class, 'wishlist'])->name('wishlist');
+    Route::get('postWishlist/{id}',[ClientDashboardController::class, 'postWishlist'])->name('postWishlist');
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);
