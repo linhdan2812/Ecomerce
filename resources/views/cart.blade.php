@@ -87,14 +87,6 @@
 
                                         <!--=======  End of coupon form  =======-->
                                     </div>
-
-                                    <div class="col-lg-6 text-left text-lg-right">
-                                        <!--=======  update cart button  =======-->
-
-                                        <button class="theme-button">UPDATE CART</button>
-
-                                        <!--=======  End of update cart button  =======-->
-                                    </div>
                                 </div>
                             </div>
 
