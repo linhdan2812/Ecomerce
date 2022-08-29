@@ -20,8 +20,8 @@
                                         tài khoản</a></li>
                                 <li><a href="{{ route('address') }}" title=""><i
                                             class="fas fa-map-marker-alt"></i>Danh sách địa chỉ</a></li>
-                                {{-- <li><a href="" title=""><i class="fas fa-box-full"></i>Đơn hàng của tôi</a></li>
-                                <li><a href="" title=""><i class="fas fa-wallet"></i>Ví của tôi</a></li>
+                                <li><a href="{{ route('orders') }}" title=""><i class="fas fa-box-full"></i>Đơn hàng của tôi</a></li>
+                                {{--<li><a href="" title=""><i class="fas fa-wallet"></i>Ví của tôi</a></li>
                                 <li><a href="" title=""><i class="fas fa-dollar-sign"></i>Tài khoản xu</a></li>
                                 <li><a href="" title=""><i class="fas fa-gift"></i>Quà tặng</a></li>
                                 <li><a href="" title=""><i class="fas fa-sign-out-alt"></i>Đăng xuất</a></li> --}}

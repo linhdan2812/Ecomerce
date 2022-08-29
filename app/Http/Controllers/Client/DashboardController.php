@@ -7,6 +7,7 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Order;
 use App\Http\Requests\AccountRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -59,5 +60,10 @@ class DashboardController extends Controller
             ]);
             return view('client.myaccount',compact('address'));
         }
+    }
+    public function orders()
+    {
+        $orders = Order::where('user_id', '=', Auth()->user()->id)->paginate(10);
+        return view('client.order',compact('orders'));
     }
 }
