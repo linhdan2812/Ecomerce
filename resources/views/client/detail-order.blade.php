@@ -5,7 +5,7 @@
             <div class="wrap-process-order">
                 <div class="top">
                     <h3 class="head-page">Chi tiết đơn hàng</h3>
-                    @if($detailorder->status == 'new' && $detailorder->payment_status == 'unpaid')
+                    @if($detailorder->status == 'Đang xử lý' && $detailorder->payment_status == 'Đang xử lý')
                         <div class="right">
                             <button class="btn-second gray" id ="cancelorder" data-toggle="modal" data-target="#modal-cancel">Hủy đơn hàng</button>
                             <input type="hidden" name="detailorderid" value="{{ $detailorder->id }}" id="detailorderid">

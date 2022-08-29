@@ -177,8 +177,8 @@
                                             <span class="hot">Mới</span>
                                         </div>
                                         <a href="" class="image-wrap">
-                                            <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="">
-                                            <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="">
+                                            <img src="{{$item->photo}}" class="img-fluid" alt="{{ $item->name }}">
+                                            {{-- <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt=""> --}}
                                         </a>
                                         <div class="product-hover-icon-wrapper">
                                             <span class="single-icon single-icon--add-to-cart"><a href="{{ route('add.to.cart', $item->id) }}" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"> <i class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ hàng</span> </a></span>
@@ -201,10 +201,10 @@
                                                 <li><a href="#" data-tippy="Brown" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker brown"></span></a></li>
                                             </ul>
                                         </div> -->
-                                        <!-- <a href="#" class="favorite-icon" data-tippy="Add to Wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left">
+                                        <a href="{{ route('postWishlist',['id'=> $item->id]) }}" class="favorite-icon" data-tippy="Add to Wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left">
                                             <i class="fa fa-heart-o"></i>
                                             <i class="fa fa-heart"></i>
-                                        </a> -->
+                                        </a>
                                     </div>
                                 </div>
 
