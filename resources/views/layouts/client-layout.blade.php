@@ -95,7 +95,7 @@
                                         <li><a href="{{route('myaccount')}}">Tài khoản của tôi</a></li>
                                         <li><a href="cart.html">Shopping cart</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="order-tracking.html">Order Tracking</a></li>
+                                        <li><a href="{{ route('orders') }}">Order Tracking</a></li>
                                         <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                     </ul>
                                     @else

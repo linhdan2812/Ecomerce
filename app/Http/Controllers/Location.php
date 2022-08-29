@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\Address;
+use App\Models\Order;
 use Illuminate\Support\Facades\Response;
 
 class Location extends Controller
@@ -56,7 +57,12 @@ class Location extends Controller
         Address::where('id',$id)->where('status',0)->update(['status' => 1]);
         return redirect()->back();
     }
-
+    public function setCancelOrder(Request $request, Response $response)
+    {
+        $detailOrder = Order::where('id',$request->input('id'))->update(['status' => 4]);
+        return response($detailOrder, 200)
+        ->header('Content-Type', 'text/plain');
+    }
     /**
      * Show the form for creating a new resource.
      *

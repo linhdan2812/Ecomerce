@@ -66,4 +66,9 @@ class DashboardController extends Controller
         $orders = Order::where('user_id', '=', Auth()->user()->id)->paginate(10);
         return view('client.order',compact('orders'));
     }
+    public function detailorder($id)
+    {
+        $detailorder = Order::where('id', '=', $id)->first();
+        return view('client.detail-order',compact('detailorder'));
+    }
 }
