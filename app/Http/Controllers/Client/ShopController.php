@@ -10,6 +10,8 @@ use App\Http\Requests\CheckoutRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Comment;
+use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
@@ -140,6 +142,17 @@ class ShopController extends Controller
     {
         $productDetail = Product::where('id', $id)->first();
         $listSameProducts = Product::where('category_id', $productDetail->category_id)->get();
-        return view('client.detail-product',compact('productDetail','listSameProducts'));
+        $listComments = Comment::where('product_id', $id)->where('status', 1)->get();
+        return view('client.detail-product',compact('productDetail','listSameProducts','listComments'));
+    }
+    public function postComment(Request $request)
+    {
+        $comment = Comment::create([
+            'user_id' => Auth::user()->id,
+            'product_id' => $request->input('product_id'),
+            'content' => $request->input('reviewComment'),
+        ]);
+        Session::flash('message','Bình luận thành công! hãy chờ quản trị viên xác nhận !!!');
+        return redirect()->back();
     }
 }

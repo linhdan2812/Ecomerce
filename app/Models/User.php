@@ -30,6 +30,9 @@ class User extends Authenticatable
         'provider_id',
         'status'
     ];
+    public function comment(){
+        return $this->hasMany(Comment::class, 'user_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
