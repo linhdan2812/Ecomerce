@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                     <div class="single-grid-product__content">
-                                        <h3 class="title"><a href="">{{$item->title}}</a></h3>
+                                        <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{$item->title}}</a></h3>
                                         <div class="price"><span class="main-price discounted">{{$item->price}}</span> <span class="discounted-price">{{$item->discount}}</span></div>
                                         <!-- <div class="rating">
                                             <i class="fa fa-star active"></i>

@@ -136,4 +136,10 @@ class ShopController extends Controller
         return redirect('/');
         // ->setMessage('Thành Công');
     }
+    public function detailProduct($id)
+    {
+        $productDetail = Product::where('id', $id)->first();
+        $listSameProducts = Product::where('category_id', $productDetail->category_id)->get();
+        return view('client.detail-product',compact('productDetail','listSameProducts'));
+    }
 }
