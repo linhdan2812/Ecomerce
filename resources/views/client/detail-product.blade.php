@@ -207,11 +207,14 @@
         <div class="single-product-description-tab-area section-space">
             <!--=======  description tab navigation  =======-->
 
+            @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
             <div class="description-tab-navigation">
                 <div class="nav nav-tabs justify-content-center" id="nav-tab2" role="tablist">
                     <a class="nav-item nav-link active" id="description-tab" data-toggle="tab" href="#product-description" role="tab" aria-selected="true">DESCRIPTION</a>
                     <a class="nav-item nav-link" id="additional-info-tab" data-toggle="tab" href="#product-additional-info" role="tab" aria-selected="false">ADDITIONAL INFORMATION</a>
-                    <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#product-review" role="tab" aria-selected="false">REVIEWS (3)</a>
+                    <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#product-review" role="tab" aria-selected="false">REVIEWS ({{$listComments->count()}})</a>
                 </div>
             </div>
 
@@ -290,80 +293,23 @@
 
                                         <div class="review-comments">
 
-                                            <h4 class="review-comment-title">6 REVIEWS FOR OLIVIA SHAYN COVER CHAIR</h4>
+                                            <h4 class="review-comment-title"> {{$listComments->count()}} REVIEWS FOR OLIVIA SHAYN COVER CHAIR</h4>
 
                                             <!--=======  single-review comment  =======-->
-
+                                        
+                                        @foreach ($listComments as $item)
                                             <div class="single-review-comment">
                                                 <div class="single-review-comment__image">
-                                                    <img src="assets/img/review/one.png" class="img-fluid" alt="">
+                                                    <img src="" class="img-fluid" alt="{{ $item->user_id }}">
                                                 </div>
 
                                                 <div class="single-review-comment__content">
-                                                    <div class="review-time"><i class="fa fa-calendar"></i> June 7, 2019</div>
-                                                    <div class="rating">
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                    </div>
-
-                                                    <p class="review-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, in.
-                                                    </p>
+                                                    <div class="review-time"><i class="fa fa-calendar"></i>{{ $item->created_at }}</div>
+                                                    <p class="review-text">{{ $item->content }}</p>
                                                 </div>
                                             </div>
-
+                                        @endforeach
                                             <!--=======  End of single-review comment  =======-->
-
-                                            <!--=======  single-review comment  =======-->
-
-                                            <div class="single-review-comment">
-                                                <div class="single-review-comment__image">
-                                                    <img src="assets/img/review/two.jpg" class="img-fluid" alt="">
-                                                </div>
-
-                                                <div class="single-review-comment__content">
-                                                    <div class="review-time"><i class="fa fa-calendar"></i> June 8, 2019</div>
-                                                    <div class="rating">
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                    </div>
-
-                                                    <p class="review-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, in.
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <!--=======  End of single-review comment  =======-->
-
-                                            <!--=======  single-review comment  =======-->
-
-                                            <div class="single-review-comment">
-                                                <div class="single-review-comment__image">
-                                                    <img src="assets/img/review/three.jpg" class="img-fluid" alt="">
-                                                </div>
-
-                                                <div class="single-review-comment__content">
-                                                    <div class="review-time"><i class="fa fa-calendar"></i> June 9, 2019</div>
-                                                    <div class="rating">
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                    </div>
-
-                                                    <p class="review-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, in.
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <!--=======  End of single-review comment  =======-->
-
 
                                         </div>
 
@@ -375,30 +321,21 @@
                                             <h4 class="review-comment-title">Add a review</h4>
                                             <p class="review-comment-subtitle">Your email address will not be published. Required fields are marked *</p>
 
-                                            <form action="#">
-                                                <div class="form-group">
+                                            <form action="{{ route('postComment') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                {{-- <div class="form-group">
                                                     <label for="reviewerName">Name <span>*</span> </label>
-                                                    <input type="text" id="reviewerName" required>
+                                                    <input type="text" id="reviewerName" value="" name="reviewerName" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="reviewerEmail">Email <span>*</span> </label>
-                                                    <input type="email" id="reviewerEmail" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="reviewRating" class="d-inline-block mb-0">Your rating</label>
-                                                    <div class="rating d-inline-block" id="reviewRating">
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                        <i class="fa fa-star active"></i>
-                                                    </div>
-                                                </div>
+                                                    <input type="email" id="reviewerEmail" value="" name="reviewerEmail" required>
+                                                </div> --}}
                                                 <div class="form-group">
                                                     <label for="reviewComment">Your review <span>*</span></label>
                                                     <textarea name="reviewComment" id="reviewComment" cols="30" rows="10"></textarea>
                                                 </div>
-
+                                                <input type="hidden" name="product_id" id="product_id" value="{{$productDetail->id}}">
                                                 <button type="submit" class="theme-button">SUBMIT</button>
                                             </form>
                                         </div>
