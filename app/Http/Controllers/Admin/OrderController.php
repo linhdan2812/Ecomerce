@@ -18,7 +18,6 @@ class OrderController extends Controller
         $ship = Shipping::all();
         $coupons = Coupon::all();
         $users = User::all();
-        $orders->load('shipping','coupon','users');
         return view('admin.orders.index',compact('orders','ship','coupons','users'));
     }
 }
