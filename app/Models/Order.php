@@ -32,7 +32,7 @@ class Order extends Model
     ];
 
     public function shipping(){
-        return $this->hasOne(Shipping::class,'shipping_id');
+        return $this->hasOne(Shipping::class,'shippings');
     }
 
     public function coupon(){
