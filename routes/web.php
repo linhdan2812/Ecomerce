@@ -46,7 +46,7 @@ Route::prefix('/')->middleware('auth')->group(function() {
     Route::get('postWishlist/{id}',[ClientDashboardController::class, 'postWishlist'])->name('postWishlist');
     Route::get('detailProduct/{id}',[ShopController::class, 'detailProduct'])->name('detailProduct');
     Route::post('postComment',[ShopController::class, 'postComment'])->name('postComment');
-    
+    Route::get('updateNotification',[ClientDashboardController::class, 'updateNotification'])->name('updateNotification');
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);

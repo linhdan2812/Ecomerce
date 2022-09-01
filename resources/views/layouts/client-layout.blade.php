@@ -106,9 +106,9 @@
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>
                                         <li>
-                                            <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count"></span></a></li>
+                                            <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count">{{$notificationsRead->count()}}</span></a></li>
                                         <li>
-                                            <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count"></span></a>
+                                            <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count">{{$wishlists->count()}}</span></a>
                                         </li>
                                         <li>
                                             <a href="{{ route('cart') }}"><i class="fa fa-shopping-basket"></i><span class="item-count">{{ count((array) session('cart')) }}</span></a>
@@ -614,7 +614,9 @@
     <!--=============================================
     =            JS files        =
     =============================================-->
-
+    <div id="modalNotification">
+            A
+    </div>
     <!-- Vendor JS -->
     <script src="{{asset('client/js/vendors.js')}}"></script>
 
@@ -622,7 +624,6 @@
     <script src="{{asset('client/js/active.js')}}"></script>
 
     <!--=====  End of JS files ======-->
-
 
     <!-- Revolution Slider JS -->
     <script src="{{asset('client/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
@@ -661,7 +662,13 @@
         {{ asset('client/account/js/datepicker.min.js') }}" type="text/javascript"></script>
     <script src="
         {{ asset('client/account/js/daterangepicker.js') }}" type="text/javascript"></script>
-
+    <script>
+        $('#notifications').on('click', function(){
+            let url = "{{ route('updateNotification') }}";
+            $.get(url);
+            $('#modalNotification').show();
+        })
+    </script>
 </body>
 
 </html>
