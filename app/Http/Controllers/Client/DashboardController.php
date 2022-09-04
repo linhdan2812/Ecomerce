@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Address;
 use App\Models\Order;
 use App\Http\Requests\AccountRequest;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Models\wishlist;
@@ -16,9 +17,12 @@ use App\Models\Product;
 class DashboardController extends Controller
 {
     public function index() {
-            $bannerSlide = Banner::query()->where('status','=','active')
-                                 ->orderBy('id', 'DESC')->limit(5)->get();
-        return view('client.index',compact('bannerSlide'));
+        $user_id = Auth()->user()->id ?? null;
+        $bannerSlide = Banner::query()->where('status','=','active')->orderBy('id', 'DESC')->limit(5)->get();
+        $notificationsRead = Notification::where('user_id',$user_id)->where('read_at',0)->get();
+        $allNotifications = Notification::where('user_id',$user_id)->get();
+        $wishlists = Wishlist::where('user_id',$user_id)->get();
+        return view('client.index',compact('bannerSlide','notificationsRead','allNotifications','wishlists'));
     }
     public function myaccount() {
 
@@ -92,5 +96,9 @@ class DashboardController extends Controller
         ]);
         return redirect()->back();
     }
-    
+    public function updateNotification()
+    {
+        $allNotifications = Notification::where('user_id',Auth::user()->id)->update(['read_at'=>1]);
+        return $allNotifications;
+    }
 }
