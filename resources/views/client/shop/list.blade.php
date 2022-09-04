@@ -177,7 +177,7 @@
                                             <span class="hot">Mới</span>
                                         </div>
                                         <a href="" class="image-wrap">
-                                            <img src="{{$item->photo}}" class="img-fluid" alt="{{ $item->name }}">
+                                            <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}">
                                             {{-- <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt=""> --}}
                                         </a>
                                         <div class="product-hover-icon-wrapper">
