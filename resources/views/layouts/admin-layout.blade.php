@@ -68,9 +68,9 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('admin.order.list') }}">
                             <i class="nc-icon nc-atom"></i>
-                            <p>Ảnh bìa</p>
+                            <p>Đơn hàng</p>
                         </a>
                     </li>
                     <li>

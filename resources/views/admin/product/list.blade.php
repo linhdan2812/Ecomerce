@@ -31,7 +31,6 @@
               <td>{{ $item->size }}</td>
               <td>{{ $item->price }}</td>
               <td>{{ $item->category->title }}</td>
-              <!-- <td>{{ $item->brand->title }}</td> -->
               @if( $item->status == 'inactive')
                 <td>Không hoạt động</td>
               @else

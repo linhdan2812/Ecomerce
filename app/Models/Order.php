@@ -9,13 +9,13 @@ class Order extends Model
 {
     use HasFactory;
     protected $table = 'orders';
-    
+
     public $guarded = [];
     protected $fillable = [
         'order_number',
         'user_id',
         'sub_total',
-        // 'shipping_id',
+        'shipping_id',
         'coupon',
         'total_amount',
         'quantity',
@@ -30,4 +30,17 @@ class Order extends Model
         'ward',
         'addressdetail',
     ];
+
+    public function shipping(){
+        return $this->hasOne(Shipping::class,'shipping_id');
+    }
+
+    public function coupon(){
+        return $this->hasMany(Coupon::class , 'coupon');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class,'name');
+    }
+
 }
