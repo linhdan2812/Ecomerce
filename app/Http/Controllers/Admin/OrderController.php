@@ -15,10 +15,10 @@ class OrderController extends Controller
 {
     public function index(){
         $orders = Order::all();
-        $ship = Shipping::all();
-        $coupons = Coupon::all();
-        $users = User::all();
-        $orders->load('shipping','coupon','users');
-        return view('admin.orders.index',compact('orders','ship','coupons','users'));
+        $orders->load('shipping','coupon','user');
+        return view('admin.orders.index',compact('orders'));
+
+        $user = Order::find(1)->user();
+        dd($user);
     }
 }

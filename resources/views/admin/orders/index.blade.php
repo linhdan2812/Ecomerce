@@ -41,9 +41,9 @@
                             <tr>
                                 <th scope="row">{{$stt++}}</th>
                                 <td>{{$item->order_number}}</td>
-                                <td>{{$item->user_id}}</td>
+                                <td>{{$item->user->name}}</td>
                                 <td>{{$item->sub_total}}</td>
-                                <td>{{$item->shipping_id}}</td>
+                                <td>{{$item->shipping->type}}</td>
                                 <td>{{$item->coupon}}</td>
                                 <td>{{$item->total_amount}}</td>
                                 <td>{{$item->quantity}}</td>
