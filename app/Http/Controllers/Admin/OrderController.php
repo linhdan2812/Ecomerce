@@ -16,6 +16,6 @@ class OrderController extends Controller
     public function index(){
         $orders = Order::all();
         $orders->load('shipping','coupon','user');
-        return view('admin.orders.index',compact('orders','ship','coupons','users'));
+        return view('admin.orders.index',compact('orders'));
     }
 }

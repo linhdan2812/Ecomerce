@@ -33,12 +33,7 @@
                                 <th scope="row">{{$stt++}}</th>
                                 <td>{{$item->order_number}}</td>
                                 <td>{{$item->user->name}}</td>
-                                <td>{{$item->sub_total}}</td>
                                 <td>{{$item->shipping->type}}</td>
-                                <td>{{$item->coupon}}</td>
-                                <td>{{$item->total_amount}}</td>
-                                <td>{{$item->user_id}}</td>
-                                <td>{{$item->shipping_id}}</td>
                                 <td>{{$item->quantity}}</td>
                                 <td>{{$item->payment_method}}</td>
                                 <td>{{$item->payment_status}}</td>
@@ -46,7 +41,7 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->city}}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning">Sửa</a>
+                                    <a href="" class="btn btn-warning">Chi tiết</a>
                                     <a href="" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
                                 </td>
                             </tr>
