@@ -27,42 +27,42 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ClientDashboardController::class, 'index'])->name('client.home');
 
 //Client
-Route::prefix('/')->middleware('auth')->group(function() {
+Route::prefix('/')->middleware('auth')->group(function () {
 
     //Shop
-    Route::get('shop',[ShopController::class,'index'])->name('shop');
+    Route::get('shop', [ShopController::class, 'index'])->name('shop');
     Route::get('cart', [ShopController::class, 'cart'])->name('cart');
     Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
     Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
     Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
     Route::get('getcheckout', [ShopController::class, 'getcheckout'])->name('getcheckout');
     Route::post('postcheckout', [ShopController::class, 'postcheckout'])->name('postcheckout');
-    Route::get('myaccount',[ClientDashboardController::class, 'myaccount'])->name('myaccount');
-    Route::get('address',[ClientDashboardController::class, 'address'])->name('address');
-    Route::post('postMyaccount',[ClientDashboardController::class, 'postMyaccount'])->name('postMyaccount');
-    Route::post('postAddress',[ClientDashboardController::class, 'postAddress'])->name('postAddress');
+    Route::get('myaccount', [ClientDashboardController::class, 'myaccount'])->name('myaccount');
+    Route::get('address', [ClientDashboardController::class, 'address'])->name('address');
+    Route::post('postMyaccount', [ClientDashboardController::class, 'postMyaccount'])->name('postMyaccount');
+    Route::post('postAddress', [ClientDashboardController::class, 'postAddress'])->name('postAddress');
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);
 });
 
 //Admin
-Route::prefix('admin/')->middleware('authadmin')->group(function() {
+Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
     //Dashboard
-    Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     //Category
-    Route::prefix('category/')->group(function() {
-        Route::get('list',[CategoryController::class,'list'])->name('admin.category.list');
+    Route::prefix('category/')->group(function () {
+        Route::get('list', [CategoryController::class, 'list'])->name('admin.category.list');
 
-        Route::get('add',[CategoryController::class,'addForm'])->name('admin.category.add');
-        Route::post('add',[CategoryController::class,'saveAdd']);
+        Route::get('add', [CategoryController::class, 'addForm'])->name('admin.category.add');
+        Route::post('add', [CategoryController::class, 'saveAdd']);
 
-        Route::get('update/{id}',[CategoryController::class,'editForm'])->name('admin.category.update');
-        Route::post('update/{id}',[CategoryController::class,'saveEdit']);
+        Route::get('update/{id}', [CategoryController::class, 'editForm'])->name('admin.category.update');
+        Route::post('update/{id}', [CategoryController::class, 'saveEdit']);
 
-        Route::get('delete/{id}',[CategoryController::class,'delete'])->name('admin.category.delete');
+        Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
     });
 
     //Product
@@ -107,23 +107,25 @@ Route::prefix('admin/')->middleware('authadmin')->group(function() {
     });
 
     //Orders
-    Route::prefix('orders')->group(function(){
-        Route::get('/',[OrderController::class,'index'])->name('admin.order.list');
+    Route::prefix('orders')->group(function () {
+
+        Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
+        Route::get('/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');
     });
 });
 
 //Đăng nhập
-Route::get('login',[LoginController::class,'loginForm'])->name('login');
+Route::get('login', [LoginController::class, 'loginForm'])->name('login');
 
 //Đăng nhập google
-Route::get('/login/google',[LoginController::class,'redirectToGoogle'])->name('login.google');
-Route::get('/login/google/callback',[LoginController::class,'handleGoogleCallback']);
+Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 //Đăng xuất
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 //403
-Route::get('403',function(){
+Route::get('403', function () {
     return view('403');
 });

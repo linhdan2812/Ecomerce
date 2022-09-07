@@ -18,4 +18,10 @@ class OrderController extends Controller
         $orders->load('shipping','coupon','user');
         return view('admin.orders.index',compact('orders'));
     }
+
+    public function detail($id){
+        $order = Order::find($id);
+        $order->load('shipping','coupon','user');
+        return view('admin.orders.detail',compact('order'));
+    }
 }

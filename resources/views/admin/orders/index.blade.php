@@ -19,9 +19,7 @@
                                 <th scope="col">status</th>
                                 <th scope="col">name</th>
                                 <th scope="col">city</th>
-                                <th scope="col">
-                                    <a href="" class="btn btn-success">Thêm mới</a>
-                                </th>
+                                
                             </tr>
                         </thead>
                         @php
@@ -41,7 +39,7 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->city}}</td>
                                 <td>
-                                    <a href="" class="btn btn-warning">Chi tiết</a>
+                                    <a href="{{ route('admin.order.detail', ['id'=>$item->id]) }}" class="btn btn-warning">Chi tiết</a>
                                     <a href="" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
                                 </td>
                             </tr>
