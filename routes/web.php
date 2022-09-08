@@ -10,6 +10,7 @@ use App\Http\Controllers\Client\DashboardController as ClientDashboardController
 use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ChatsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VnpayController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +26,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Trang chủ
-Route::get('/', [ClientDashboardController::class, 'index'])->name('client.home');
-
+Route::get('/', [HomeController::class, 'index'])->name('client');
+Route::get('home', [ClientDashboardController::class, 'index'])->name('home');
 Route::get('thanh-toan', [VnpayController::class, 'index'])->name('thanhtoan');
 Route::post('thanh-toan', [VnpayController::class, 'create']);
 Route::get('vnpay-return', [VnpayController::class, 'return']);
@@ -41,17 +42,17 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
     Route::get('getcheckout', [ShopController::class, 'getcheckout'])->name('getcheckout');
     Route::post('postcheckout', [ShopController::class, 'postcheckout'])->name('postcheckout');
-    Route::get('myaccount',[ClientDashboardController::class, 'myaccount'])->name('myaccount');
-    Route::get('address',[ClientDashboardController::class, 'address'])->name('address');
-    Route::post('postMyaccount',[ClientDashboardController::class, 'postMyaccount'])->name('postMyaccount');
-    Route::post('postAddress',[ClientDashboardController::class, 'postAddress'])->name('postAddress');
-    Route::get('orders',[ClientDashboardController::class, 'orders'])->name('orders');
-    Route::get('detailorder/{id}',[ClientDashboardController::class, 'detailorder'])->name('order.detail');
-    Route::get('wishlist',[ClientDashboardController::class, 'wishlist'])->name('wishlist');
-    Route::get('postWishlist/{id}',[ClientDashboardController::class, 'postWishlist'])->name('postWishlist');
-    Route::get('detailProduct/{id}',[ShopController::class, 'detailProduct'])->name('detailProduct');
-    Route::post('postComment',[ShopController::class, 'postComment'])->name('postComment');
-    Route::get('updateNotification',[ClientDashboardController::class, 'updateNotification'])->name('updateNotification');
+    Route::get('myaccount', [ClientDashboardController::class, 'myaccount'])->name('myaccount');
+    Route::get('address', [ClientDashboardController::class, 'address'])->name('address');
+    Route::post('postMyaccount', [ClientDashboardController::class, 'postMyaccount'])->name('postMyaccount');
+    Route::post('postAddress', [ClientDashboardController::class, 'postAddress'])->name('postAddress');
+    Route::get('orders', [ClientDashboardController::class, 'orders'])->name('orders');
+    Route::get('detailorder/{id}', [ClientDashboardController::class, 'detailorder'])->name('order.detail');
+    Route::get('wishlist', [ClientDashboardController::class, 'wishlist'])->name('wishlist');
+    Route::get('postWishlist/{id}', [ClientDashboardController::class, 'postWishlist'])->name('postWishlist');
+    Route::get('detailProduct/{id}', [ShopController::class, 'detailProduct'])->name('detailProduct');
+    Route::post('postComment', [ShopController::class, 'postComment'])->name('postComment');
+    Route::get('updateNotification', [ClientDashboardController::class, 'updateNotification'])->name('updateNotification');
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);

@@ -151,7 +151,7 @@
                             </div>
 
                             <div class="header-logo text-center">
-                                <a href="index.html">
+                                <a href="{{ route('home') }}">
                                     <img src="{{asset('client/img/logo.png')}}" class="img-fluid" alt="">
                                 </a>
                             </div>
@@ -163,8 +163,8 @@
 
                                     <ul class="account-dropdown__list">
                                         <li><a href="{{route('myaccount')}}">Tài khoản của tôi</a></li>
-                                        <li><a href="cart.html">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="{{ route('shop') }}">Shopping cart</a></li>
+                                        <li><a href="{{ route('getcheckout') }}">Checkout</a></li>
                                         <li><a href="{{ route('orders') }}">Order Tracking</a></li>
                                         <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                     </ul>
@@ -176,9 +176,13 @@
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>
                                         <li>
-                                            <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count">{{$notificationsRead->count()}}</span></a></li>
+                                            @if(!empty($notificationsRead))
+                                                <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count">{{$notificationsRead->count() ?? 0}}</span></a></li>
+                                            @endif
                                         <li>
-                                            <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count">{{$wishlists->count()}}</span></a>
+                                            @if(!empty($wishlists))
+                                                <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count">{{$wishlists->count() ?? 0}}</span></a>
+                                            @endif
                                         </li>
                                         <li>
                                             <a href="{{ route('cart') }}"><i class="fa fa-shopping-basket"></i><span class="item-count">{{ count((array) session('cart')) }}</span></a>
@@ -234,7 +238,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="header-logo header-logo--sticky">
-                            <a href="index.html">
+                            <a href="{{ route('home') }}">
                                 <img src="{{asset('client/img/logo-alt.png')}}" class="img-fluid" alt="">
                             </a>
                         </div>
@@ -244,7 +248,7 @@
                             <nav>
                                 <ul>
                                     <li class="">
-                                        <a href="{{route('client.home')}}">Trang chủ</a>
+                                        <a href="{{route('home')}}">Trang chủ</a>
                                     </li>
                                     <li class="">
                                         <a href="{{route('shop')}}">Cửa hàng</a>
@@ -692,10 +696,12 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-          @foreach ($allNotifications as $item)
-            <h1>{{ $item->type}}</h1>
-            <p>{{ $item->data}}</p>
-            @endforeach
+            @if(!empty($allNotifications))
+                @foreach ($allNotifications as $item)
+                    <h1>{{ $item->type}}</h1>
+                    <p>{{ $item->data}}</p>
+                @endforeach
+            @endif
         </div>
             <div class="modal-footer">
             </div>
