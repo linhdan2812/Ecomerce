@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('vnp_TmnCode',255)->nullable()->comment('Mã website của merchant trên hệ thống của VNPAY');
             $table->string('vnp_Amount',255)->nullable()->comment('Số tiền thanh toán');
             $table->string('vnp_BankCode',255)->nullable()->comment('Mã ngân hàng thanh toán');
-            $table->string('vnp_BankTranNo'255)->nullable()->comment('Mã giao dịch tại ngân hàng');
+            $table->string('vnp_BankTranNo',255)->nullable()->comment('Mã giao dịch tại ngân hàng');
             $table->string('vnp_CardType',255)->nullable()->comment('Loại tài khoản/thẻ khách hàng sử dụng');
             $table->string('vnp_PayDate',255)->nullable()->comment('Thời gian thanh toán');
             $table->string('vnp_OrderInfo',255)->nullable()->comment('Thông tin mô tả nội dung thanh toán');
