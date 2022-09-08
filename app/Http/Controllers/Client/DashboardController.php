@@ -19,10 +19,7 @@ class DashboardController extends Controller
     public function index() {
         $user_id = Auth()->user()->id ?? null;
         $bannerSlide = Banner::query()->where('status','=','active')->orderBy('id', 'DESC')->limit(5)->get();
-        $notificationsRead = Notification::where('user_id',$user_id)->where('read_at',0)->get();
-        $allNotifications = Notification::where('user_id',$user_id)->get();
-        $wishlists = Wishlist::where('user_id',$user_id)->get();
-        return view('client.index',compact('bannerSlide','notificationsRead','allNotifications','wishlists'));
+        return view('client.index',compact('bannerSlide'));
     }
     public function myaccount() {
 

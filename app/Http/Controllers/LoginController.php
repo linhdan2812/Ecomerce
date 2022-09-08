@@ -18,7 +18,7 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect(route('client.home'));
+        return redirect(route('home'));
     }
 
     //Google Login
@@ -34,7 +34,7 @@ class LoginController extends Controller
         if(Str::endsWith($user->email, '@gmail.com') =='true'){
             $this->createOrUpdateUser($user,'google');
             if(Auth::user()->role === 'user'){
-                return redirect()->route('client.home');
+                return redirect()->route('home');
             }
             if(Auth::user()->role === 'admin'){
                 return redirect()->route('admin.dashboard');
