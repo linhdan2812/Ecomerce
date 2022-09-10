@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -122,6 +123,19 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
     //Orders
     Route::prefix('orders')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
+    });
+    // Coupons
+    Route::prefix('coupons')->group(function () {
+
+        Route::get('list', [CouponController::class, 'list'])->name('admin.coupon.list');
+
+        Route::get('add', [CouponController::class, 'addForm'])->name('admin.coupon.add');
+        Route::post('add', [CouponController::class, 'saveAdd']);
+
+        Route::get('edit/{id}', [CouponController::class, 'editForm'])->name('admin.coupon.update');
+        Route::post('edit/{id}', [CouponController::class, 'saveEdit']);
+
+        Route::get('delete/{id}', [CouponController::class, 'delete'])->name('admin.coupon.delete');
     });
 });
 

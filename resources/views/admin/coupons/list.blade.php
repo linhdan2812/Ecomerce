@@ -7,17 +7,19 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Danh sách loại hàng</h2>
+                    <h2>Danh sách mã giảm giá</h2>
                     <div>
                         <table class="table">
                             <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">Tên loại hàng</th>
-                                <th scope="col">Mô tả</th>
+                                <th scope="col">Mã giảm giá</th>
+                                <th scope="col">Loại</th>
+                                <th scope="col">Giảm giá</th>
                                 <th scope="col">Trạng thái</th>
+                                <th scope="col">Ngày hết hạn</th>
                                 <th scope="col">
-                                    <a href="{{route('admin.category.add')}}" class="btn btn-success">Thêm mới</a>
+                                    <a href="{{route('admin.coupon.add')}}" class="btn btn-success">Thêm mới</a>
                                 </th>
                             </tr>
                             </thead>
@@ -25,20 +27,26 @@
                                 $stt = 1;
                             @endphp
                             <tbody>
-                            @foreach($categories as $item)
+                            @foreach($coupons as $item)
                                 <tr>
                                     <th scope="row">{{$stt++}}</th>
-                                    <td>{{$item->title}}</td>
-                                    <td>{{$item->summary}}</td>
+                                    <td>{{$item->code}}</td>
+                                    <td>{{$item->type}}</td>
+                                    @if($item->type == 'percent')
+                                        <td>{{$item->value}}%</td>
+                                    @else
+                                        <td>{{$item->value}}VND</td>
+                                    @endif
                                     @if( $item->status == 'inactive')
                                         <td>Không hoạt động</td>
                                     @else
                                         <td>Hoạt động</td>
                                     @endif
+                                    <td>{{$item->expired_at}}</td>
                                     <td>
-                                        <a href="{{route('admin.category.update',['id'=>$item->id])}}"
+                                        <a href="{{route('admin.coupon.update',['id'=>$item->id])}}"
                                            class="btn btn-warning">Sửa</a>
-                                        <a href="{{route('admin.category.delete',['id'=>$item->id])}}"
+                                        <a href="{{route('admin.coupon.delete',['id'=>$item->id])}}"
                                            class="btn btn-danger"
                                            onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
                                     </td>
