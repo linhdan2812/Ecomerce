@@ -26,8 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Trang chủ
-Route::get('/', [HomeController::class, 'index'])->name('client');
-Route::get('home', [ClientDashboardController::class, 'index'])->name('home');
+Route::get('/', [ClientDashboardController::class, 'index'])->name('home');
 Route::get('thanh-toan', [VnpayController::class, 'index'])->name('thanhtoan');
 Route::post('thanh-toan', [VnpayController::class, 'create']);
 Route::get('vnpay-return', [VnpayController::class, 'return']);
