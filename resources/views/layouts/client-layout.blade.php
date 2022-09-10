@@ -118,20 +118,12 @@
 </head>
 
 <body>
-    <!--=======  header offer sticker  =======-->
-
-    <div class="header-offer-sticker text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Sản phẩm mới & Giảm giá lên tới 70%. <a href="">Mua ngay</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--=======  End of header offer sticker  =======-->
-
+@php
+    $user_id = Auth()->user()->id ?? null;
+    $notificationsRead = \DB::table('notifications')->where('user_id',$user_id)->where('read_at',0)->get();
+    $allNotifications = \DB::table('notifications')->where('user_id',$user_id)->get();
+    $wishlists = \DB::table('wishlists')->where('user_id',$user_id)->get();
+@endphp
     <!--====================  header area ====================-->
 
     <div class="header-area header-area--one header-sticky">
@@ -256,48 +248,6 @@
                                     <li class="">
                                         <a href="">Tin tức</a>
                                     </li>
-                                    <!-- <li class="has-children">
-                                        <a href="javascript:void(0)">PAGE</a>
-                                        <ul class="submenu submenu--column-1">
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="contact-us.html">Contact Us</a></li>
-                                            <li><a href="faq.html">F.A.Q</a></li>
-                                            <li><a href="service.html">Our Service</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li class="has-children">
-                                        <a href="javascript:void(0)">ELEMENTS</a>
-                                        <ul class="submenu submenu--column-3">
-                                            <li>
-                                                <ul>
-                                                    <li class="megamenu-title">SHOP/PRODUCTS</li>
-                                                    <li><a href="element-product-category.html">Product Categories</a></li>
-                                                    <li><a href="element-product-carousel.html">Products Carousel</a></li>
-                                                    <li><a href="element-product-widget.html">Product Widget</a></li>
-                                                    <li><a href="element-recent-product.html">Recent Products</a></li>
-                                                    <li><a href="element-sale-product.html">Sale Products</a></li>
-                                                    <li><a href="element-featured-product.html">Featured Product</a></li>
-                                                    <li><a href="element-top-rated-product.html">Top Rated Products</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li class="megamenu-title">THEMING</li>
-                                                    <li><a href="element-blog-post.html">Blog Posts</a></li>
-                                                    <li><a href="element-mailchimp-form.html">MailChimp Form</a></li>
-                                                    <li><a href="element-accordion-toggles.html">Accordion/Toggles</a></li>
-                                                    <li><a href="element-progress-bar.html">Progress Bars</a></li>
-                                                    <li><a href="element-countdown-timer.html">Countdown Timer</a></li>
-                                                    <li><a href="element-button.html">Buttons</a></li>
-                                                    <li><a href="element-testimonial.html">Testimonials</a></li>
-                                                    <li><a href="element-google-map.html">Google Maps</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="megamenu-image">
-                                                <img src="{{asset('client/img/menu-image/sofa.png')}}" class="img-fluid" alt="">
-                                            </li>
-                                        </ul>
-                                    </li> -->
                                 </ul>
                             </nav>
                         </div>

@@ -58,9 +58,6 @@
                                 <td>{{$item->district}}</td>
                                 <td>{{$item->ward}}</td>
                                 <td>{{$item->addressdetail}}</td>
-
-
-
                                 <td>
                                     <a href="" class="btn btn-warning">Sửa</a>
                                     <a href="" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
