@@ -11,6 +11,7 @@ class Vnpay extends Model
     protected $table = 'vnpay';
 
     protected $fillable = [
+        'user_id',
         'vnp_TmnCode',
         'vnp_Amount',
         'vnp_BankCode',

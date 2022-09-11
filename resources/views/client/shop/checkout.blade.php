@@ -173,6 +173,7 @@
                                                 </div>
 
                                                 <button class="theme-button place-order-btn">PLACE ORDER</button>
+                                                <button class="theme-button place-order-btn"><a href="{{route('thanhtoan')}}/?total={{$total}}">VNPAY</a></button>
 
                                             </div>
 
