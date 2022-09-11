@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('vnpay', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('vnp_TmnCode',255)->nullable()->comment('Mã website của merchant trên hệ thống của VNPAY');
             $table->string('vnp_Amount',255)->nullable()->comment('Số tiền thanh toán');
             $table->string('vnp_BankCode',255)->nullable()->comment('Mã ngân hàng thanh toán');
