@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('coupons', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
+            $table->id();
+            $table->string('code')->unique();
+            $table->enum('type',['fixed','percent'])->default('fixed');
+            $table->decimal('value',20,2);
             $table->date('expired_at')->nullable();
+            $table->enum('status',['active','inactive'])->default('inactive');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('coupons', function (Blueprint $table) {
-            $table->dropColumn('expired_at');
-        });
+        Schema::dropIfExists('coupons');
     }
 };
