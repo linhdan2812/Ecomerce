@@ -121,6 +121,9 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
     //Orders
     Route::prefix('orders')->group(function () {
+
+        Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
+        Route::get('/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
     });
     // Coupons

@@ -32,15 +32,15 @@ class Order extends Model
     ];
 
     public function shipping(){
-        return $this->hasOne(Shipping::class,'shipping_id');
+        return $this->hasOne(Shipping::class,'id','shipping_id');
     }
 
     public function coupon(){
-        return $this->hasMany(Coupon::class , 'coupon');
+        return $this->hasMany(Coupon::class , 'id');
     }
 
     public function user(){
-        return $this->belongsTo(User::class,'name');
+        return $this->belongsTo(User::class,'user_id');
     }
 
 }
