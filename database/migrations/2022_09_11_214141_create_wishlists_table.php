@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->float('price');
             $table->integer('quantity')->nullable();
-            $table->float('amount');
+            $table->float('amount')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('SET NULL');

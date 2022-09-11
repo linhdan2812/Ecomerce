@@ -30,7 +30,7 @@
     ?>
     <div class="container">
         <div class="header clearfix">
-            <h3 class="text-muted">VNPAY DEMO</h3>
+            <h3 class="text-muted">Thanh toán VNPAY</h3>
         </div>
         <h3>Tạo mới đơn hàng</h3>
         <div class="table-responsive">
@@ -39,10 +39,7 @@
                 <div class="form-group">
                     <label for="language">Loại hàng hóa </label>
                     <select name="order_type" id="order_type" class="form-control">
-                        <option value="topup">Nạp tiền điện thoại</option>
                         <option value="billpayment">Thanh toán hóa đơn</option>
-                        <option value="fashion">Thời trang</option>
-                        <option value="other">Khác - Xem thêm tại VNPAY</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -52,11 +49,11 @@
                 </div>
                 <div class="form-group">
                     <label for="amount">Số tiền</label>
-                    <input class="form-control" id="amount" name="amount" type="number" value="10000" />
+                    <input class="form-control" id="amount" name="amount" type="number" value="{{$_GET['total']}}" />
                 </div>
                 <div class="form-group">
                     <label for="order_desc">Nội dung thanh toán</label>
-                    <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Noi dung thanh toan</textarea>
+                    <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Thanh toan hoa don mua hang</textarea>
                 </div>
                 <div class="form-group">
                     <label for="bank_code">Ngân hàng</label>

@@ -27,18 +27,22 @@
                         <table class="table order-history-table">
                             <tr>
                                 <th>Mã đơn hàng</th>
-                                <th>Ngày mua</th>
+                                <th>Ngày đặt hàng</th>
                                 <th>Tổng tiền</th>
                                 <th width="26%">Trạng thái thanh toán</th>
                                 <th width="20%">Trạng thái đơn hàng</th>
                             </tr>
                             @foreach ($orders as $item)
                                 <tr>
-                                    <td><a href="{{ route('order.detail',[ 'id' => $item->id])}}" title="">{{$item->order_number}}</a></td>
+                                    <td><a href="{{ route('order.detail',[ 'id' => $item->id])}}" title="">{{$item->vnp_BankTranNo}}</a></td>
                                     <td>{{$item->created_at}}</td>
-                                    <td><b>{{$item->total_amount}}</b></td>
-                                    <td>{{$item->payment_status}}</td>
-                                    <td>{{$item->status}}</td>
+                                    <td><b>{{$item->vnp_Amount}}</b></td>
+                                    @if($item->vnp_ResponseCode == '00')
+                                    <td>Thanh toán thành công</td>
+                                    @endif
+                                    @if($item->vnp_TransactionStatus == '00')
+                                    <td>Đang xử lý</td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </table>
