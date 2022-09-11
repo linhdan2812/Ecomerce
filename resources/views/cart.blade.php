@@ -32,7 +32,7 @@
                                                     <td data-th="Product" class="product-thumbnail">
                                                         <div class="row">
                                                         {{-- <a href="product-details-basic.html"> --}}
-                                                            <img src="{{ $details['image'] }}"
+                                                            <img src="{{asset('storage/'. $details['image'])}}"
                                                                     width="100" height="100" class="img-responsive" />
                                                         {{-- </a> --}}
                                                     </div>
@@ -86,14 +86,6 @@
                                         </div>
 
                                         <!--=======  End of coupon form  =======-->
-                                    </div>
-
-                                    <div class="col-lg-6 text-left text-lg-right">
-                                        <!--=======  update cart button  =======-->
-
-                                        <button class="theme-button">UPDATE CART</button>
-
-                                        <!--=======  End of update cart button  =======-->
                                     </div>
                                 </div>
                             </div>

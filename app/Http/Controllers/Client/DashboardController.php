@@ -3,17 +3,23 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Order;
 use App\Http\Requests\AccountRequest;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-
+use App\Models\wishlist;
+use App\Models\Product;
 class DashboardController extends Controller
 {
     public function index() {
-        return view('client.index');
+        $user_id = Auth()->user()->id ?? null;
+        $bannerSlide = Banner::query()->where('status','=','active')->orderBy('id', 'DESC')->limit(5)->get();
+        return view('client.index',compact('bannerSlide'));
     }
     public function myaccount() {
 
@@ -50,11 +56,46 @@ class DashboardController extends Controller
                 'district' => $request->input('district'),
                 'ward' => $request->input('ward'),
                 'detailadress' => $request->input('detaileadress'),
-                'data' => $request->input('detaileadress') . ' (Phường/Xã) ' . $request->input('ward') . ' ( Quận/Huyện) ' . $request->input('district') . ' ( Tỉnh/Thành Phố) ' . $request->input('city'),
+                'data' => $request->input('detaileadress') . '--' . $request->input('ward') . '--' . $request->input('district') . '--' . $request->input('city'),
                 'status' => 0,
                 'user_id' => Auth()->user()->id,
             ]);
             return view('client.myaccount',compact('address'));
         }
+    }
+    public function orders()
+    {
+        $orders = Order::where('user_id', '=', Auth()->user()->id)->paginate(10);
+        return view('client.order',compact('orders'));
+    }
+    public function detailorder($id)
+    {
+        $detailorder = Order::where('id', '=', $id)->first();
+        return view('client.detail-order',compact('detailorder'));
+    }
+    public function wishlist()
+    {
+        $wishlists = Wishlist::where('user_id', '=', Auth::user()->id)->get();
+        $wishlists_id = [];
+        foreach ($wishlists as $key => $value) {
+            array_push($wishlists_id, $value->product_id);
+        }
+        $products = Product::whereIn('id',$wishlists_id)->get();
+        return view('client.wishlist',compact('wishlists','products'));
+    }
+    public function postWishlist($id)
+    {
+        $product = Product::where('id',$id)->first();
+        $wishlists = Wishlist::create([
+            'product_id' => $product->id,
+            'user_id' => Auth::user()->id,
+            'price' => $product->price,
+        ]);
+        return redirect()->back();
+    }
+    public function updateNotification()
+    {
+        $allNotifications = Notification::where('user_id',Auth::user()->id)->update(['read_at'=>1]);
+        return $allNotifications;
     }
 }

@@ -10,7 +10,10 @@ use App\Http\Requests\CheckoutRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Comment;
+use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
@@ -119,7 +122,7 @@ class ShopController extends Controller
             'coupon' => 1,
             'country' => 1,
             'total_amount'=> $request->input('total'),
-            'quantity' => 1,
+            'quantity' => $request->input('quantity'),
             'payment_method' => 1,
             'payment_status'=> 1,
             'status' => 1,
@@ -131,7 +134,25 @@ class ShopController extends Controller
             'ward' => $request->input('ward'),
             'addressdetail' => $request->input('addressdetail')
         ]);
-        return $response;
+        Session::flash('success');
+        return redirect('/');
         // ->setMessage('Thành Công');
+    }
+    public function detailProduct($id)
+    {
+        $productDetail = Product::where('id', $id)->first();
+        $listSameProducts = Product::where('category_id', $productDetail->category_id)->get();
+        $listComments = Comment::where('product_id', $id)->where('status', 1)->get();
+        return view('client.detail-product',compact('productDetail','listSameProducts','listComments'));
+    }
+    public function postComment(Request $request)
+    {
+        $comment = Comment::create([
+            'user_id' => Auth::user()->id,
+            'product_id' => $request->input('product_id'),
+            'content' => $request->input('reviewComment'),
+        ]);
+        Session::flash('message','Bình luận thành công! hãy chờ quản trị viên xác nhận !!!');
+        return redirect()->back();
     }
 }

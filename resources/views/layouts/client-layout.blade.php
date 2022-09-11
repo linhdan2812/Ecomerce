@@ -24,25 +24,106 @@
     <link href="{{asset('client/revolution/css/settings.css')}}" rel="stylesheet">
     <link href="{{asset('client/revolution/css/navigation.css')}}" rel="stylesheet">
     <link href="{{asset('client/revolution/custom-setting.css')}}" rel="stylesheet">
-
-
+    <link href="
+    {{ asset('client/account/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+    <!-- <link href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"> -->
+    <link href="
+    {{ asset('client/account/fonts/fontawesome-pro-5.8.2-web/css/all.min.css') }}" type="text/css"
+        rel="stylesheet">
+    <link href="
+    {{ asset('client/account/fonts/elegantIcon/elegantIcon.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/slick.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/owl.carousel.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/datepicker.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/daterangepicker.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/animate.css') }}" type="text/css" rel="stylesheet">
+    <link href="
+    {{ asset('client/account/css/main.css') }}" type="text/css" rel="stylesheet">
+    <style>
+        
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          border-radius: 0 !important;
+        }
+        
+        /* Modal Content */
+        .modal-content {
+          position: relative;
+          background-color: #fefefe;
+          margin: auto;
+          padding: 0;
+          border: 1px solid #888 !important;
+          width: 80%;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+          -webkit-animation-name: animatetop;
+          -webkit-animation-duration: 0.4s;
+          animation-name: animatetop;
+          animation-duration: 0.4s;
+          border-radius: 0 !important;
+          border: 1px solid #EBEBEB !important;
+        }
+        
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+          from {top:-300px; opacity:0} 
+          to {top:0; opacity:1}
+        }
+        
+        @keyframes animatetop {
+          from {top:-300px; opacity:0}
+          to {top:0; opacity:1}
+        }
+        
+        /* The Close Button */
+        .close {
+          color: white;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        
+        .modal-header {
+          padding: 2px 16px;
+        }
+        
+        .modal-body {padding: 2px 16px;}
+        .modal-body h1 {font-size: 15; color:red}
+        .modal-footer {
+          padding: 2px 16px;
+        }
+        </style>
 </head>
 
 <body>
-    <!--=======  header offer sticker  =======-->
-
-    <div class="header-offer-sticker text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Sản phẩm mới & Giảm giá lên tới 70%. <a href="">Mua ngay</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--=======  End of header offer sticker  =======-->
-
+@php
+    $user_id = Auth()->user()->id ?? null;
+    $notificationsRead = \DB::table('notifications')->where('user_id',$user_id)->where('read_at',0)->get();
+    $allNotifications = \DB::table('notifications')->where('user_id',$user_id)->get();
+    $wishlists = \DB::table('wishlists')->where('user_id',$user_id)->get();
+@endphp
     <!--====================  header area ====================-->
 
     <div class="header-area header-area--one header-sticky">
@@ -62,7 +143,7 @@
                             </div>
 
                             <div class="header-logo text-center">
-                                <a href="index.html">
+                                <a href="{{ route('home') }}">
                                     <img src="{{asset('client/img/logo.png')}}" class="img-fluid" alt="">
                                 </a>
                             </div>
@@ -73,10 +154,11 @@
                                     <a href="#">My account<i class="pe-7s-angle-down"></i></a>
 
                                     <ul class="account-dropdown__list">
-                                        <li><a href="{{route('myaccount')}}">My account</a></li>
-                                        <li><a href="cart.html">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="order-tracking.html">Order Tracking</a></li>
+                                        <li><a href="{{route('myaccount')}}">Tài khoản của tôi</a></li>
+                                        <li><a href="{{ route('shop') }}">Shopping cart</a></li>
+                                        <li><a href="{{ route('getcheckout') }}">Checkout</a></li>
+                                        <li><a href="{{ route('orders') }}">Order Tracking</a></li>
+                                        <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                     </ul>
                                     @else
                                     <a title="Register or Login" href="{{route('login')}}">Login</a>
@@ -86,29 +168,13 @@
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>
                                         <li>
-                                            <a href="wishlist.html"><i class="fa fa-heart-o"></i><span class="item-count">1</span></a>
-                                            <div class="minicart-wrapper">
-                                                <p class="minicart-wrapper__title">WISHLIST</p>
-
-                                                <div class="minicart-wrapper__items ps-scroll">
-                                                    <div class="minicart-wrapper__items__single">
-                                                        <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                        <div class="image">
-                                                            <a href="product-details-basic.html">
-                                                                <img src="{{asset('client/img/products/product-1-90x100.jpg')}}" class="img-fluid" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="content">
-                                                            <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
-                                                            <p class="product-calculation"><span class="price">$900</span></p>
-                                                            <a href="javascript:void(0)" class="wishlist-cart-icon"><i class="fa fa-shopping-basket"></i> ADD TO CART</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="minicart-wrapper__buttons mb-0">
-                                                    <a href="wishlist.html" class="theme-button theme-button--minicart-button mb-0">VIEW WISHLIST</a>
-                                                </div>
-                                            </div>
+                                            @if(!empty($notificationsRead))
+                                                <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count">{{$notificationsRead->count() ?? 0}}</span></a></li>
+                                            @endif
+                                        <li>
+                                            @if(!empty($wishlists))
+                                                <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count">{{$wishlists->count() ?? 0}}</span></a>
+                                            @endif
                                         </li>
                                         <li>
                                             <a href="{{ route('cart') }}"><i class="fa fa-shopping-basket"></i><span class="item-count">{{ count((array) session('cart')) }}</span></a>
@@ -131,7 +197,7 @@
                                                             @foreach(session('cart') as $id => $details)
                                                                 <div class="row cart-detail">
                                                                     <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                                                        <img src="{{ $details['image'] }}" height="100px" width="80px" />
+                                                                        <img src="{{asset('storage/'. $details['image'])}}" height="100px" width="80px" />
                                                                     </div>
                                                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                                                         <p>{{ $details['name'] }}</p>
@@ -164,7 +230,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="header-logo header-logo--sticky">
-                            <a href="index.html">
+                            <a href="{{ route('home') }}">
                                 <img src="{{asset('client/img/logo-alt.png')}}" class="img-fluid" alt="">
                             </a>
                         </div>
@@ -174,7 +240,7 @@
                             <nav>
                                 <ul>
                                     <li class="">
-                                        <a href="{{route('client.home')}}">Trang chủ</a>
+                                        <a href="{{route('home')}}">Trang chủ</a>
                                     </li>
                                     <li class="">
                                         <a href="{{route('shop')}}">Cửa hàng</a>
@@ -182,48 +248,6 @@
                                     <li class="">
                                         <a href="">Tin tức</a>
                                     </li>
-                                    <!-- <li class="has-children">
-                                        <a href="javascript:void(0)">PAGE</a>
-                                        <ul class="submenu submenu--column-1">
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="contact-us.html">Contact Us</a></li>
-                                            <li><a href="faq.html">F.A.Q</a></li>
-                                            <li><a href="service.html">Our Service</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li class="has-children">
-                                        <a href="javascript:void(0)">ELEMENTS</a>
-                                        <ul class="submenu submenu--column-3">
-                                            <li>
-                                                <ul>
-                                                    <li class="megamenu-title">SHOP/PRODUCTS</li>
-                                                    <li><a href="element-product-category.html">Product Categories</a></li>
-                                                    <li><a href="element-product-carousel.html">Products Carousel</a></li>
-                                                    <li><a href="element-product-widget.html">Product Widget</a></li>
-                                                    <li><a href="element-recent-product.html">Recent Products</a></li>
-                                                    <li><a href="element-sale-product.html">Sale Products</a></li>
-                                                    <li><a href="element-featured-product.html">Featured Product</a></li>
-                                                    <li><a href="element-top-rated-product.html">Top Rated Products</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li class="megamenu-title">THEMING</li>
-                                                    <li><a href="element-blog-post.html">Blog Posts</a></li>
-                                                    <li><a href="element-mailchimp-form.html">MailChimp Form</a></li>
-                                                    <li><a href="element-accordion-toggles.html">Accordion/Toggles</a></li>
-                                                    <li><a href="element-progress-bar.html">Progress Bars</a></li>
-                                                    <li><a href="element-countdown-timer.html">Countdown Timer</a></li>
-                                                    <li><a href="element-button.html">Buttons</a></li>
-                                                    <li><a href="element-testimonial.html">Testimonials</a></li>
-                                                    <li><a href="element-google-map.html">Google Maps</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="megamenu-image">
-                                                <img src="{{asset('client/img/menu-image/sofa.png')}}" class="img-fluid" alt="">
-                                            </li>
-                                        </ul>
-                                    </li> -->
                                 </ul>
                             </nav>
                         </div>
@@ -234,7 +258,7 @@
                                 <ul class="header-icon__list header-icon__list header-icon__list header-icon__list--white-icon">
                                     <li><a href="javascript:void(0)" id="search-icon-2"><i class="fa fa-search"></i></a></li>
                                     <li>
-                                        <a href="wishlist.html"><i class="fa fa-heart-o"></i><span class="item-count">1</span></a>
+                                        <a href="{{ route('wishlist') }}"><i class="fa fa-heart-o"></i><span class="item-count">1</span></a>
                                         <div class="minicart-wrapper">
                                             <p class="minicart-wrapper__title">WISHLIST</p>
 
@@ -254,7 +278,7 @@
                                                 </div>
                                             </div>
                                             <div class="minicart-wrapper__buttons mb-0">
-                                                <a href="wishlist.html" class="theme-button theme-button--minicart-button mb-0">VIEW WISHLIST</a>
+                                                <a href="{{ route('wishlist') }}" class="theme-button theme-button--minicart-button mb-0">VIEW WISHLIST</a>
                                             </div>
                                         </div>
                                     </li>
@@ -267,38 +291,6 @@
         </div>
 
         <!--=======  End of navigation area  =======-->
-
-        <!--=======  mobile navigation area  =======-->
-
-        <div class="header-mobile-navigation d-block d-lg-none">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-6 col-md-6">
-                        <div class="header-logo">
-                            <a href="index.html">
-                                <img src="{{asset('client/img/logo.png')}}" class="img-fluid" alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-6">
-                        <div class="mobile-navigation text-right">
-                            <ul class="header-icon__list header-icon__list">
-                                <li>
-                                    <a href="wishlist.html"><i class="fa fa-heart-o"></i><span class="item-count">1</span></a>
-                                </li>
-                                <li>
-                                    <a href="cart.html"><i class="fa fa-shopping-basket"></i><span class="item-count">3</span></a>
-                                </li>
-                                <li><a href="javascript:void(0)" class="mobile-menu-icon" id="mobile-menu-trigger"><i class="fa fa-bars"></i></a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--=======  End of mobile navigation area  =======-->
     </div>
 
     <!--====================  End of header area  ====================-->
@@ -646,7 +638,26 @@
     <!--=============================================
     =            JS files        =
     =============================================-->
+    <div id="myModal" class="modal">
 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+            @if(!empty($allNotifications))
+                @foreach ($allNotifications as $item)
+                    <h1>{{ $item->type}}</h1>
+                    <p>{{ $item->data}}</p>
+                @endforeach
+            @endif
+        </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+      
+      </div>
     <!-- Vendor JS -->
     <script src="{{asset('client/js/vendors.js')}}"></script>
 
@@ -654,7 +665,6 @@
     <script src="{{asset('client/js/active.js')}}"></script>
 
     <!--=====  End of JS files ======-->
-
 
     <!-- Revolution Slider JS -->
     <script src="{{asset('client/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
@@ -668,7 +678,65 @@
     <script type="text/javascript" src="{{asset('client/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('client/revolution/js/extensions/revolution.extension.parallax.min.js')}}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="
+        {{ asset('client/account/js/jquery.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/slick.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/owl.carousel.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/wow.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/wow.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/scrollspy.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/jquery.sticky-kit.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/script.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/moment.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/datepicker.min.js') }}" type="text/javascript"></script>
+    <script src="
+        {{ asset('client/account/js/daterangepicker.js') }}" type="text/javascript"></script>
+    <script>
+        $('#notifications').on('click', function(){
+            let url = "{{ route('updateNotification') }}";
+            $.get(url);
+            $('#modalNotification').show();
+        })
+    </script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("notifications");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
 </body>
 
 </html>

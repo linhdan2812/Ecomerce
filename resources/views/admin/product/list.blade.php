@@ -30,13 +30,8 @@
               <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="100"></td>
               <td>{{ $item->size }}</td>
               <td>{{ $item->price }}</td>
-              <td>{{ $item->category->title }}</td>
-              <!-- <td>{{ $item->brand->title }}</td> -->
-              @if( $item->status == 'inactive')
-                <td>Không hoạt động</td>
-              @else
-                <td>Hoạt động</td>
-              @endif
+              <td>{{ $item->category_id }}</td>
+              <td>{{ $item->status == 'inactive' ? 'Không hoạt động' : 'Hoạt động'}}</td>
               <td>
                 <a class="btn btn-warning" href="{{ route('admin.product.edit', ['id' => $item->id]) }}">Sửa</a>
                 <a class="btn btn-danger" href="{{ route('admin.product.delte', ['id' => $item->id]) }}">Xóa</a>

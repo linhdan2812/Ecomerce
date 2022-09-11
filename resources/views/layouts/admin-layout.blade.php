@@ -74,7 +74,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('admin.coupon.list') }}">
                             <i class="nc-icon nc-pin-3"></i>
                             <p>Giảm giá</p>
                         </a>

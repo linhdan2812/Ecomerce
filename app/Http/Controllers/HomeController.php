@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
+use App\Models\Notification;
+use App\Models\wishlist;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('layouts.client-layout',compact('notificationsRead','allNotifications','wishlists'));
     }
 }
