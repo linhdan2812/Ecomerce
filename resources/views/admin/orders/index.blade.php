@@ -10,15 +10,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">order_number</th>
-                                <th scope="col">user</th>
-                                <th scope="col">shipping_id</th>
-                                <th scope="col">quantity</th>
-                                <th scope="col">payment_method</th>
-                                <th scope="col">payment_status</th>
-                                <th scope="col">status</th>
-                                <th scope="col">name</th>
-                                <th scope="col">city</th>
+                                <th scope="col">Đơn hàng</th>
+                                <th scope="col">Người mua</th>
+                                <th scope="col">Shipping</th>
+                                <th scope="col">Phương thức thanh toán</th>
+                                <th scope="col">Trạng thái thanh toán</th>
+                                <th scope="col">Trạng thái</th>
                                 
                             </tr>
                         </thead>
@@ -29,19 +26,15 @@
                             @foreach($orders as $item)
                             <tr>
                                 <th scope="row">{{$stt++}}</th>
-                                <td>{{$item->order_number}}</td>
+                                <td><a href="{{ route('admin.order.detail', ['id'=>$item->id]) }}">{{$item->order_number}}</a></td>
                                 <td>{{$item->user->name}}</td>
-                                <td>{{$item->shipping->type}}</td>
-                                <td>{{$item->quantity}}</td>
+                                <td></td>
                                 <td>{{$item->payment_method}}</td>
                                 <td>{{$item->payment_status}}</td>
                                 <td>{{$item->status}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->city}}</td>
-                                <td>
-                                    <a href="{{ route('admin.order.detail', ['id'=>$item->id]) }}" class="btn btn-warning">Chi tiết</a>
+                                {{-- <td>
                                     <a href="" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
-                                </td>
+                                </td> --}}
                             </tr>
                             @endforeach
                         </tbody>
