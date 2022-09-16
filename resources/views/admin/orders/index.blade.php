@@ -26,7 +26,7 @@
                             @foreach($orders as $item)
                             <tr>
                                 <th scope="row">{{$stt++}}</th>
-                                <td><a href="{{ route('admin.order.detail', ['id'=>$item->id]) }}">{{$item->order_number}}</a></td>
+                                <td><a href="{{ route('admin.order.detail', ['order_number'=>$item->order_number]) }}">{{$item->order_number}}</a></td>
                                 <td>{{$item->user->name}}</td>
                                 <td></td>
                                 <td>{{$item->payment_method}}</td>

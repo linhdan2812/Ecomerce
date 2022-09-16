@@ -27,7 +27,6 @@
                 <div class="card ">
                     <div class="card-header ">
                         <h4 class="card-title">Doanh số bán hàng</h4>
-                        <p class="card-category">12 tháng gần nhất</p>
                     </div>
                     <div class="card-body ">
                         <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
@@ -218,7 +217,7 @@
     const data = {
         labels: labels,
         datasets: [{
-        label: 'Doanh số bán hàng 1 tháng',
+        label: 'Doanh số bán hàng',
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
         data: users,
