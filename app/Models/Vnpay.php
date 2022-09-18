@@ -24,6 +24,12 @@ class Vnpay extends Model
         'vnp_TransactionStatus',
         'vnp_TxnRef',
         'vnp_SecureHashType',
-        'vnp_SecureHash'
+        'vnp_SecureHash',
+        'status_pay',
+        'status_transport'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

@@ -37,10 +37,10 @@
                                     <td><a href="{{ route('order.detail',[ 'id' => $item->id])}}" title="">{{$item->vnp_BankTranNo}}</a></td>
                                     <td>{{$item->created_at}}</td>
                                     <td><b>{{$item->vnp_Amount}}</b></td>
-                                    @if($item->vnp_ResponseCode == '00')
-                                    <td>Thanh toán thành công</td>
+                                    @if($item->status_pay == '0')
+                                    <td>Đang chờ xử lý</td>
                                     @endif
-                                    @if($item->vnp_TransactionStatus == '00')
+                                    @if($item->status_transport == '0')
                                     <td>Đang xử lý</td>
                                     @endif
                                 </tr>

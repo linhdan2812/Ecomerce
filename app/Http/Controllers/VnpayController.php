@@ -190,7 +190,9 @@ class VnpayController extends Controller
             'vnp_TransactionStatus' => $request->vnp_TransactionStatus,
             'vnp_TxnRef' => $request->vnp_TxnRef,
             'vnp_SecureHashType' => $request->vnp_SecureHashType,
-            'vnp_SecureHash' => $request->vnp_SecureHash
+            'vnp_SecureHash' => $request->vnp_SecureHash,
+            'status_pay'    => '0',
+            'status_transport'  => '0'
         ]);
         $test->save();
         $request->session()->flush();

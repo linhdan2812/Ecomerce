@@ -12,30 +12,29 @@
                                 <th scope="col">STT</th>
                                 <th scope="col">Đơn hàng</th>
                                 <th scope="col">Người mua</th>
-                                <th scope="col">Shipping</th>
-                                <th scope="col">Phương thức thanh toán</th>
-                                <th scope="col">Trạng thái thanh toán</th>
-                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Thanh toán</th>
+                                <th scope="col">Xác nhận thanh toán</th>
+                                <th scope="col">Xác nhận giao hàng</th>
                                 
                             </tr>
                         </thead>
-                        @php
-                        $stt = 1;
-                        @endphp
+                        </tbody>
                         <tbody>
-                            @foreach($orders as $item)
-                            <tr>
-                                <th scope="row">{{$stt++}}</th>
-                                <td><a href="{{ route('admin.order.detail', ['id'=>$item->id]) }}">{{$item->order_number}}</a></td>
-                                <td>{{$item->user->name}}</td>
-                                <td></td>
-                                <td>{{$item->payment_method}}</td>
-                                <td>{{$item->payment_status}}</td>
-                                <td>{{$item->status}}</td>
-                                {{-- <td>
-                                    <a href="" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
-                                </td> --}}
-                            </tr>
+                            @foreach($order_vnpay as $item)
+                                <tr>
+                                    <th>{{$loop->iteration}}</th>
+                                    <td>{{$item->vnp_BankTranNo}}</td>
+                                    <td>{{$item->user->name}}</td>
+                                    @if($item->vnp_ResponseCode == '00')
+                                    <td>Đã thanh toán</td>
+                                    @endif
+                                    @if($item->status_pay == '0')
+                                    <td>Đang chờ xử lý</td>
+                                    @endif
+                                    @if($item->status_transport == '0')
+                                    <td>Đang chờ xử lý</td>
+                                    @endif
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -39,15 +39,15 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
                                                     <label>Họ tên</label>
-                                                    <input type="text"  name="name" value={{$user->name}} placeholder="{{$user->name}}">
+                                                    <input type="text"  name="name" value="{{$user->name}}" placeholder="{{$user->name}}">
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label>Địa chỉ Email</label>
-                                                    <input type="email" name="email" value={{$user->email}} placeholder="{{$user->email}}">
+                                                    <input type="email" name="email" value="{{$user->email}}" placeholder="{{$user->email}}">
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label>Số điện thoại</label>
-                                                    <input type="text" name="phone" value={{$user->phone ?? null}} placeholder="{{$user->phone ?? 'Nhập số điện thoại'}}">
+                                                    <input type="text" name="phone" value="{{$user->phone ?? null}}" placeholder="{{$user->phone ?? 'Nhập số điện thoại'}}">
                                                 </div>
                                                 <div class="col-md-6 col-12 form-group select-box">
                                                     <select name="city" id="city" class="form-control">
