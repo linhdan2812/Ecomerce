@@ -16,8 +16,10 @@
                                 <th scope="col">Mã giảm giá</th>
                                 <th scope="col">Loại</th>
                                 <th scope="col">Giảm giá</th>
+                                <th scope="col">Đơn hàng nhỏ nhất</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">Ngày hết hạn</th>
+                               
                                 <th scope="col">
                                     <a href="{{route('admin.coupon.add')}}" class="btn btn-success">Thêm mới</a>
                                 </th>
@@ -34,8 +36,15 @@
                                     <td>{{$item->type}}</td>
                                     @if($item->type == 'percent')
                                         <td>{{$item->value}}%</td>
+                                    @elseif($item->type == 'all')
+                                        <td>{{$item->value}}%</td>    
                                     @else
                                         <td>{{$item->value}}VND</td>
+                                    @endif
+                                    @if($item->minbill == 0)
+                                        <td></td>
+                                    @else
+                                        <td>{{$item->minbill}}VND</td>
                                     @endif
                                     @if( $item->status == 'inactive')
                                         <td>Không hoạt động</td>
