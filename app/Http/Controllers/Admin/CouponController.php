@@ -28,13 +28,13 @@ class CouponController extends Controller
     {
         $this->validateMessage($request);
         $coupon = new Coupon();
-        if ($request->type == 'percent') {
-            if ($request->value < 0 || $request->value >= 100) {
-                $value = 'Hãy chọn giá trị trong khoảng từ 1 đến 100';
+        // if ($request->type == 'percent') {
+        //     if ($request->value < 0 || $request->value >= 100) {
+        //         $value = 'Hãy chọn giá trị trong khoảng từ 1 đến 100';
 
-                return redirect()->back()->with('alert', $value);
-            }
-        }
+        //         return redirect()->back()->with('alert', $value);
+        //     }
+        // }
         $coupon->fill($request->all());
         $coupon->code = str_replace(" ", "", strtoupper($request->code));
         $coupon->save();
