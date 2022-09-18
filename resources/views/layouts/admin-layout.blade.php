@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('admin/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" href="{{asset('admin/img/favicon.ico')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin Dashboard by Creative Tim</title>
+    <title>Light Bootstrap Dashboard - Free Bootstrap 4  Admin Dashboard by Creative Tim</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -144,5 +144,5 @@
 <script src="{{asset('admin/js/light-bootstrap-dashboard.js?v=2.0.0')}} " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('admin/js/demo.js')}}"></script>
-
+<script src="{{asset('admin/js/coupon.js')}}"></script>
 </html>
