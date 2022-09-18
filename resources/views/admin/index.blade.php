@@ -26,21 +26,20 @@
             <div class="col-md-8">
                 <div class="card ">
                     <div class="card-header ">
-                        <h4 class="card-title">Users Behavior</h4>
-                        <p class="card-category">24 Hours performance</p>
+                        <h4 class="card-title">Doanh số bán hàng</h4>
                     </div>
                     <div class="card-body ">
-                        <div id="chartHours" class="ct-chart"></div>
+                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
                     </div>
                     <div class="card-footer ">
-                        <div class="legend">
+                        {{-- <div class="legend">
                             <i class="fa fa-circle text-info"></i> Open
                             <i class="fa fa-circle text-danger"></i> Click
                             <i class="fa fa-circle text-warning"></i> Click Second Time
-                        </div>
+                        </div> --}}
                         <hr>
                         <div class="stats">
-                            <i class="fa fa-history"></i> Updated 3 minutes ago
+                            <i class="fa fa-history"></i>
                         </div>
                     </div>
                 </div>
@@ -208,4 +207,32 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var labels =  {{ Js::from($labels) }};
+    var users =  {{ Js::from($data) }};
+    var barColors = ["red", "green","blue","orange","brown"];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+        label: 'Doanh số bán hàng',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: users,
+        }]
+    };
+  
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
 @endsection

@@ -25,11 +25,13 @@ background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 
                     @if($order->status != 'Đang xử lý')
                         <p class="lead fw-normal mb-0" style="color: #a8729a;">{{ $order->status }}</p>
                     @else
-                        <select class="form-control col-md-2" name="" id="">
-                            <option value="">Hủy</option>
-                            <option value="">Xác nhận</option>
+                        <select class="form-control col-md-2" name="changedetail" id="changedetail">
+                            <option value="1">Hủy</option>
+                            <option value="2">Xác nhận</option>
                         </select>
+                        <button class="small text-muted mb-0" id="confirm">Xác nhận</button>
                     @endif
+                    <input type="hidden" name="id" id="id" value=" {{$order->id}}">
                     <p class="small text-muted mb-0">Receipt Voucher : {{ $order->order_number }}</p>
                   </div>
                   <div class="card shadow-0 border mb-4">
@@ -152,6 +154,15 @@ background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 
       </section>
     <script>
         $(document).ready(function(){
+          $('#confirm').click(function(){
+            var status = $("#changedetail option:selected" ).val();
+            var id = $("#id").val();
+            var url = "{{ route('changestatus') }}";
+
+            $.post(url,{id:id,status:status},function(){
+
+            });
+          })
         })
     </script>
 @endsection

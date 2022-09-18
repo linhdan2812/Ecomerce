@@ -35,6 +35,19 @@
                                     <td>Đang chờ xử lý</td>
                                     @endif
                                 </tr>
+                            @foreach($orders as $item)
+                            <tr>
+                                <th scope="row">{{$stt++}}</th>
+                                <td><a href="{{ route('admin.order.detail', ['order_number'=>$item->order_number]) }}">{{$item->order_number}}</a></td>
+                                <td>{{$item->user->name}}</td>
+                                <td></td>
+                                <td>{{$item->payment_method}}</td>
+                                <td>{{$item->payment_status}}</td>
+                                <td>{{$item->status}}</td>
+                                {{-- <td>
+                                    <a href="" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
+                                </td> --}}
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -28,7 +28,8 @@ class User extends Authenticatable
         'role',
         'provider',
         'provider_id',
-        'status'
+        'status',
+        'created_at',
     ];
     public function comment(){
         return $this->hasMany(Comment::class, 'user_id');

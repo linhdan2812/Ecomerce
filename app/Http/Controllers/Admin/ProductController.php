@@ -58,6 +58,7 @@ class ProductController extends Controller
             $product->photo = str_replace('public/', '', $path);
         }
         $product->save();
+        toastr()->info('Are you the 6 fingered man?');
         return redirect(route('admin.product.list'))->with('msg','Cập nhật thành công!');
     }
 
