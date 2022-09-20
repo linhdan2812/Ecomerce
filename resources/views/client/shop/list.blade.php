@@ -177,7 +177,7 @@
                                             <span class="hot">Mới</span>
                                         </div>
                                         <a href="" class="image-wrap">
-                                            <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}">
+                                            <img src="{{$item->photo}}" class="img-fluid" alt="{{ $item->name }}">
                                             {{-- <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt=""> --}}
                                         </a>
                                         <div class="product-hover-icon-wrapper">
@@ -219,15 +219,7 @@
 
                         <!--=======  pagination wrapper  =======-->
 
-                        <div class="pagination-wrapper">
-                            <ul>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
+                       {{$products->links() }}
 
                         <!--=======  End of pagination wrapper  =======-->
 
