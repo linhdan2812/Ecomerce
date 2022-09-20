@@ -15,14 +15,12 @@ use function React\Promise\all;
 class OrderController extends Controller
 {
     public function index(){
-        $order_vnpay = Vnpay::all();
-        $order_vnpay->load('user');
-        return view('admin.orders.index',compact('order_vnpay'));
+        $orders = Order::all();
+        return view('admin.orders.index',compact('orders'));
     }
 
     public function detail($order_number){
         $order = Order::where('order_number',$order_number)->first();
-        $order->load('shipping','coupon','user');
         return view('admin.orders.detail',compact('order'));
     }
     public function changestatus(Request $request){

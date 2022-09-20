@@ -20,7 +20,7 @@
                         </thead>
                         </tbody>
                         <tbody>
-                            @foreach($order_vnpay as $item)
+                            {{-- @foreach($order_vnpay as $item)
                                 <tr>
                                     <th>{{$loop->iteration}}</th>
                                     <td>{{$item->vnp_BankTranNo}}</td>
@@ -34,10 +34,10 @@
                                     @if($item->status_transport == '0')
                                     <td>Đang chờ xử lý</td>
                                     @endif
-                                </tr>
+                                </tr> --}}
                             @foreach($orders as $item)
                             <tr>
-                                <th scope="row">{{$stt++}}</th>
+                                <th scope="row">{{$item->id}}</th>
                                 <td><a href="{{ route('admin.order.detail', ['order_number'=>$item->order_number]) }}">{{$item->order_number}}</a></td>
                                 <td>{{$item->user->name}}</td>
                                 <td></td>

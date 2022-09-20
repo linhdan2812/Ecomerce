@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('coupon')->nullable();
             $table->float('total_amount');
             $table->integer('quantity');
+            $table->json('data');
             $table->enum('payment_method',['cod','paypal'])->default('cod');
             $table->enum('payment_status',['Đang xử lý','Đã thanh toán'])->default('Đang xử lý');
             $table->enum('status',['Đang xử lý','Đang vận chuyển ','Giao hàng thành công','Đã hủy'])->default('Đang xử lý');

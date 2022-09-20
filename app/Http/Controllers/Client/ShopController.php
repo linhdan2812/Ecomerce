@@ -19,7 +19,7 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(15);
         return view('client.shop.list', compact('products'));
     }
     // public function index()
@@ -114,7 +114,8 @@ class ShopController extends Controller
         // Thêm thông tin truyền ra ngoài
     public function postcheckout(Request $request, Response $response)
     {
-        $orders = Order::create([
+        // dd($request->input('data'));
+        $inputs = [
             'order_number' => time(),
             'user_id' => Auth()->user()->id,
             'sub_total' => $request->input('total'),
@@ -126,6 +127,7 @@ class ShopController extends Controller
             'payment_method' => 1,
             'payment_status'=> 1,
             'status' => 1,
+            'data' => [$request->input('data')],
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
@@ -133,7 +135,8 @@ class ShopController extends Controller
             'district' => $request->input('district'),
             'ward' => $request->input('ward'),
             'addressdetail' => $request->input('addressdetail')
-        ]);
+        ];
+        $orders = Order::create($inputs);
         Session::flash('success');
         return redirect('/');
         // ->setMessage('Thành Công');
