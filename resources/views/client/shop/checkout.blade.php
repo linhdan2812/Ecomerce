@@ -69,7 +69,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label>Địa chỉ cụ thể</label>
-                                                    <input type="text" name="addressdetail" value={{$address->detailadress ?? null}} placeholder="{{$address->detailadress ?? 'Nhập địa chị cụ thể'}}">
+                                                    <input type="text" name="addressdetail" value="{{$address->detailadress ?? null}}" placeholder="{{$address->detailadress ?? 'Nhập địa chị cụ thể'}}">
                                                 </div>
                                             </div>
                                         </div>
