@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\Comment;
+use App\Models\Coupon;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
@@ -105,22 +106,46 @@ class ShopController extends Controller
         $quantities = $request->input('quantity');
         $names = $request->input('name');
         $subs = $request->input('sub');
+        $coupon = $request->input('coupon');
         $total = $request->input('total');
         $user = User::where('id',$user_id)->first();
         $address = Address::where('user_id',$user_id)->where('status',1)->first();
-        return view('client.shop.checkout',compact('user','quantities','names','subs','total','address'));
+        return view('client.shop.checkout',compact('user','quantities','names','subs','total','coupon','address'));
     }
     // CheckoutRequest $request phải thay cho request
         // Thêm thông tin truyền ra ngoài
     public function postcheckout(Request $request, Response $response)
     {
-        // dd($request->input('data'));
+        $coupons = Coupon::all();
+        if(array_diff((array) $request->input('coupon'),(array) $coupons)){
+            $coupon = Coupon::where('code',$request->input('coupon'))->first();
+        }
+        if(!empty($coupon)){
+            if($coupon->type == 'fixed'){
+
+                $subtotal = $request->input('total') - $coupon->value;
+
+            }elseif($coupon->type == 'percent'){
+
+                $subtotal = $request->input('total') * $coupon->value / 100;
+
+            }
+            else{
+
+                $subtotal = $request->input('total') - $coupon->value;
+
+            }
+        }else{
+
+            $subtotal = $request->input('total');
+
+        }
         $inputs = [
             'order_number' => time(),
             'user_id' => Auth()->user()->id,
-            'sub_total' => $request->input('total'),
+            'sub_total' => $subtotal,
             // 'shipping_id' => 1,
-            'coupon' => 1,
+            'coupon' => $request->input('coupon') ?? null,
             'country' => 1,
             'total_amount'=> $request->input('total'),
             'quantity' => $request->input('quantity'),

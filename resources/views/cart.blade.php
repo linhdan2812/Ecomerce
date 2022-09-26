@@ -76,7 +76,7 @@
                                             <form action="#">
                                                 <div class="row row-5">
                                                     <div class="col-md-7 col-sm-7">
-                                                        <input type="text" placeholder="Enter your coupon code">
+                                                        <input type="text" name="coupon" value="" id="coupon" placeholder="Enter your coupon code">
                                                     </div>
                                                     <div class="col-md-5 col-sm-5">
                                                         <button class="theme-button theme-button--silver">APPLY COUPON</button>
