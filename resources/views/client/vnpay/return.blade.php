@@ -104,6 +104,9 @@
                 </label>
             </div>
         </div>
+        <div>
+            <a href="{{route('home')}}">Quay lại trang chủ</a>
+        </div>
         <p>
             &nbsp;
         </p>

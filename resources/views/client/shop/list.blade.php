@@ -178,7 +178,6 @@
                                         </div>
                                         <a href="" class="image-wrap">
                                             <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}">
-                                            {{-- <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt=""> --}}
                                         </a>
                                         <div class="product-hover-icon-wrapper">
                                             <span class="single-icon single-icon--add-to-cart"><a href="{{ route('add.to.cart', $item->id) }}" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"> <i class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ hàng</span> </a></span>
@@ -186,7 +185,16 @@
                                     </div>
                                     <div class="single-grid-product__content">
                                         <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{$item->title}}</a></h3>
-                                        <div class="price"><span class="main-price discounted">{{$item->price}}</span> <span class="discounted-price">{{$item->discount}}</span></div>
+                                        @if($item->discount == '')
+                                            <div class="price">
+                                                <span class="main-price discounted">{{$item->price}}</span>
+                                            </div>
+                                        @else
+                                            <div class="price">
+                                                <span class="main-price discounted">{{$item->price}}</span>
+                                                <span class="discounted-price">{{$item->discount}}</span>
+                                            </div>
+                                        @endif
                                         <!-- <div class="rating">
                                             <i class="fa fa-star active"></i>
                                             <i class="fa fa-star active"></i>
@@ -219,15 +227,7 @@
 
                         <!--=======  pagination wrapper  =======-->
 
-                        <div class="pagination-wrapper">
-                            <ul>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
+                       {{$products->links() }}
 
                         <!--=======  End of pagination wrapper  =======-->
 

@@ -19,22 +19,26 @@
                         @enderror
                         <div class="form-group">
                             <label for="status">Loại giảm giá</label>
-                            <select class="form-control" name="type" id="type">
-                                <option selected value="fixed" name="fixed">
-                                    Giảm theo số lượng
+                            <select class="form-control" name="type" id="type" onchange="onChangeSelect()">
+                                <option value="" name=""selected>
+                                    Loại giảm giá
+                                </option>
+                                <option value="fixed" name="fixed">
+                                    Giảm theo số tiền
                                 </option>
                                 <option value="percent" name="percent">
                                     Giảm theo %
                                 </option>
+                                <option value="all" name="all">
+                                    Giảm toàn bộ sản phẩm
+                                </option>
                             </select>
                         </div>
+
                         @error('type')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
-                        <div class="form-group">
-                            <label for="">Giảm giá</label>
-                            <input type="number" name="value" class="form-control">
-                        </div>
+                        <div id="money"></div>
                         @if(session('alert'))
                             <span class='alert text-danger'>{{session('alert')}}</span>
                         @endif

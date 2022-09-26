@@ -39,15 +39,15 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-12">
                                                     <label>Họ tên</label>
-                                                    <input type="text"  name="name" value={{$user->name}} placeholder="{{$user->name}}">
+                                                    <input type="text"  name="name" value="{{$user->name}}" placeholder="{{$user->name}}">
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label>Địa chỉ Email</label>
-                                                    <input type="email" name="email" value={{$user->email}} placeholder="{{$user->email}}">
+                                                    <input type="email" name="email" value="{{$user->email}}" placeholder="{{$user->email}}">
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label>Số điện thoại</label>
-                                                    <input type="text" name="phone" value={{$user->phone ?? null}} placeholder="{{$user->phone ?? 'Nhập số điện thoại'}}">
+                                                    <input type="text" name="phone" value="{{$user->phone ?? null}}" placeholder="{{$user->phone ?? 'Nhập số điện thoại'}}">
                                                 </div>
                                                 <div class="col-md-6 col-12 form-group select-box">
                                                     <select name="city" id="city" class="form-control">
@@ -69,7 +69,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label>Địa chỉ cụ thể</label>
-                                                    <input type="text" name="addressdetail" value={{$address->detailadress ?? null}} placeholder="{{$address->detailadress ?? 'Nhập địa chị cụ thể'}}">
+                                                    <input type="text" name="addressdetail" value="{{$address->detailadress ?? null}}" placeholder="{{$address->detailadress ?? 'Nhập địa chị cụ thể'}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -89,6 +89,7 @@
                                                     @php $total = 0 @endphp
                                                     @if (session('cart'))
                                                         @foreach (session('cart') as $id => $details)
+                                                        <input type="hidden" name="data[]" value="{{$id}}">
                                                             @php $total += $details['price'] * $details['quantity'] @endphp
                                                     <table style="width:100%">
                                                         <tr data-id="{{ $id }}">
@@ -111,7 +112,7 @@
                                                         @endforeach
                                                         @foreach ( $names as $name )
                                                         {{$name}}
-                                                        @endforeach
+                                                        @endforeac
                                                         @foreach ( $subs as $sub )
                                                         {{$sub}}
                                                         @endforeach
@@ -173,6 +174,7 @@
                                                 </div>
 
                                                 <button class="theme-button place-order-btn">PLACE ORDER</button>
+                                                <button class="theme-button place-order-btn"><a href="{{route('thanhtoan')}}/?total={{$total}}">VNPAY</a></button>
 
                                             </div>
 

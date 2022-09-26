@@ -28,9 +28,7 @@ use Illuminate\Support\Facades\Route;
 */
 //Trang chủ
 Route::get('/', [ClientDashboardController::class, 'index'])->name('home');
-Route::get('thanh-toan', [VnpayController::class, 'index'])->name('thanhtoan');
-Route::post('thanh-toan', [VnpayController::class, 'create']);
-Route::get('vnpay-return', [VnpayController::class, 'return']);
+
 //Client
 Route::prefix('/')->middleware('auth')->group(function () {
 
@@ -56,6 +54,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);
+
+    //Thanh toán vnpay
+    Route::get('thanh-toan', [VnpayController::class, 'index'])->name('thanhtoan');
+    Route::post('thanh-toan', [VnpayController::class, 'create']);
+    Route::get('vnpay-return', [VnpayController::class, 'return']);
 
 });
 
@@ -123,7 +126,7 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
     Route::prefix('orders')->group(function () {
 
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
-        Route::get('/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');
+        Route::get('/{order_number}', [OrderController::class, 'detail'])->name('admin.order.detail');
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
     });
     // Coupons

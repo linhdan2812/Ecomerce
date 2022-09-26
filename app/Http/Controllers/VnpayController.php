@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Vnpay;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Auth;
 
 class VnpayController extends Controller
 {
@@ -172,9 +174,28 @@ class VnpayController extends Controller
             $returnData['RspCode'] = '99';
             $returnData['Message'] = 'Unknow error';
         }
+        $user_id = Auth::user()->id;
         $test = new Vnpay();
-        $test->fill($request->all());
+        $test->fill([
+            'user_id' => $user_id,
+            'vnp_TmnCode' => $request->vnp_TmnCode,
+            'vnp_Amount' => $request->vnp_Amount,
+            'vnp_BankCode' => $request->vnp_BankCode,
+            'vnp_BankTranNo' => $request->vnp_BankTranNo,
+            'vnp_CardType' => $request->vnp_CardType,
+            'vnp_PayDate' => $request->vnp_PayDate,
+            'vnp_OrderInfo' => $request->vnp_OrderInfo,
+            'vnp_TransactionNo' => $request->vnp_TransactionNo,
+            'vnp_ResponseCode' => $request->vnp_ResponseCode,
+            'vnp_TransactionStatus' => $request->vnp_TransactionStatus,
+            'vnp_TxnRef' => $request->vnp_TxnRef,
+            'vnp_SecureHashType' => $request->vnp_SecureHashType,
+            'vnp_SecureHash' => $request->vnp_SecureHash,
+            'status_pay'    => '0',
+            'status_transport'  => '0'
+        ]);
         $test->save();
+        $request->session()->flush();
         return view('client.vnpay.return');
         //Trả lại VNPAY theo định dạng JSON
         echo json_encode($returnData);

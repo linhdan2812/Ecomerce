@@ -9,7 +9,7 @@
                     <div class="col-lg-3">
                         <div class="account-box wow fadeInLeft">
                             <div class="top-account">
-                                <img src="{{ Auth::user()->photo }}" alt="{{ Auth::user()->name }}">
+                                <img src="{{ Auth::user()->photo }}" width="50px" alt="{{ Auth::user()->name }}">
                                 <div class="info">
                                     <span>Tài khoản</span>
                                     <span class="name">{{ Auth::user()->name }}</span>
