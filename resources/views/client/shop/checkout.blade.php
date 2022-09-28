@@ -29,48 +29,99 @@
                     <div class="col-12">
                         <div class="checkout-form">
                             <!-- Checkout Form s-->
-                            <form action="{{route('postcheckout')}}" method="POST" enctype="multipart/form-data">
+                            <?php
+                            $vnp_TmnCode = 'TMAIHSK1'; //Website ID in VNPAY System
+                            $vnp_HashSecret = 'EYKIZFCSMVAZJGORHNILDOPRJGOITIML'; //Secret key
+                            $vnp_Url = 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html';
+                            $vnp_Returnurl = 'http://localhost/vnpay_php/vnpay_return.php';
+                            $vnp_apiUrl = 'http://sandbox.vnpayment.vn/merchant_webapi/merchant.html';
+                            //Config input format
+                            //Expire
+                            $startTime = date('YmdHis');
+                            $expire = date('YmdHis', strtotime('+15 minutes', strtotime($startTime)));
+                            ?>
+                            <form action="{{ url('thanh-toan') }}" id="create_form" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row row-40">
                                     <div class="col-lg-7">
-                                        <!-- Billing Address -->
                                         <div id="billing-form" class="billing-form">
-                                            <h4 class="checkout-title">Billing Address</h4>
-                                            <div class="row">
-                                                <div class="col-md-6 col-12">
-                                                    <label>Họ tên</label>
-                                                    <input type="text"  name="name" value="{{$user->name}}" placeholder="{{$user->name}}">
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <label>Địa chỉ Email</label>
-                                                    <input type="email" name="email" value="{{$user->email}}" placeholder="{{$user->email}}">
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <label>Số điện thoại</label>
-                                                    <input type="text" name="phone" value="{{$user->phone ?? null}}" placeholder="{{$user->phone ?? 'Nhập số điện thoại'}}">
-                                                </div>
-                                                <div class="col-md-6 col-12 form-group select-box">
-                                                    <select name="city" id="city" class="form-control">
-                                                        <option value="">Tỉnh/Thành Phố</option>
-                                                    </select>
-                                                    <i class="fas fa-caret-circle-down"></i>
-                                                </div>
-                                                <div class="col-md-6 col-12 form-group select-box">
-                                                    <select name="district" id="district" class="form-control">
-                                                        <option value="">Quận/Huyện</option>
-                                                    </select>
-                                                    <i class="fas fa-caret-circle-down"></i>
-                                                </div>
-                                                <div class="col-md-6 col-12 form-group select-box">
-                                                    <select name="ward" id="ward" class="form-control">
-                                                        <option value="">Phường/Xã</option>
-                                                    </select>
-                                                    <i class="fas fa-caret-circle-down"></i>
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <label>Địa chỉ cụ thể</label>
-                                                    <input type="text" name="addressdetail" value="{{$address->detailadress ?? null}}" placeholder="{{$address->detailadress ?? 'Nhập địa chị cụ thể'}}">
-                                                </div>
+                                            <h4 class="checkout-title">Tạo mới đơn hàng</h4>
+                                            <div class="form-group">
+                                                <label for="language">Loại hàng hóa </label>
+                                                <select name="order_type" id="order_type" class="form-control">
+                                                    <option value="billpayment">Thanh toán hóa đơn</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" id="order_id" name="order_id" type="hidden"
+                                                    value="<?php echo date('YmdHis'); ?>" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" id="order_desc" name="order_desc" type="hidden"
+                                                    value="Thanh toan hoa don mua hang" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="bank_code">Ngân hàng</label>
+                                                <select name="bank_code" id="bank_code" class="form-control">
+                                                    <option value="">Không chọn</option>
+                                                    <option value="NCB"> Ngan hang NCB</option>
+                                                    <option value="AGRIBANK"> Ngan hang Agribank</option>
+                                                    <option value="SCB"> Ngan hang SCB</option>
+                                                    <option value="SACOMBANK">Ngan hang SacomBank</option>
+                                                    <option value="EXIMBANK"> Ngan hang EximBank</option>
+                                                    <option value="MSBANK"> Ngan hang MSBANK</option>
+                                                    <option value="NAMABANK"> Ngan hang NamABank</option>
+                                                    <option value="VNMART"> Vi dien tu VnMart</option>
+                                                    <option value="VIETINBANK">Ngan hang Vietinbank</option>
+                                                    <option value="VIETCOMBANK"> Ngan hang VCB</option>
+                                                    <option value="HDBANK">Ngan hang HDBank</option>
+                                                    <option value="DONGABANK"> Ngan hang Dong A</option>
+                                                    <option value="TPBANK"> Ngân hàng TPBank</option>
+                                                    <option value="OJB"> Ngân hàng OceanBank</option>
+                                                    <option value="BIDV"> Ngân hàng BIDV</option>
+                                                    <option value="TECHCOMBANK"> Ngân hàng Techcombank</option>
+                                                    <option value="VPBANK"> Ngan hang VPBank</option>
+                                                    <option value="MBBANK"> Ngan hang MBBank</option>
+                                                    <option value="ACB"> Ngan hang ACB</option>
+                                                    <option value="OCB"> Ngan hang OCB</option>
+                                                    <option value="IVB"> Ngan hang IVB</option>
+                                                    <option value="VISA"> Thanh toan qua VISA/MASTER</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" name="language" value="vn" id="language">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" id="txtexpire" name="txtexpire" type="hidden"
+                                                    value="<?php echo $expire; ?>" />
+                                            </div>
+                                        </div>
+                                        <div id="billing-form" class="billing-form">
+                                            <div class="form-group">
+                                                <label >Họ tên (*)</label>
+                                                <input class="form-control" id="txt_billing_fullname"
+                                                    name="txt_billing_fullname" type="text" placeholder="Nhập vào họ tên"/>             
+                                            </div>
+                                            <div class="form-group">
+                                                <label >Email (*)</label>
+                                                <input class="form-control" id="txt_billing_email"
+                                                    name="txt_billing_email" type="text" placeholder="Nhập vào email"/>   
+                                            </div>
+                                            <div class="form-group">
+                                                <label >Số điện thoại (*)</label>
+                                                <input class="form-control" id="txt_billing_mobile"
+                                                    name="txt_billing_mobile" type="text" placeholder="Nhập vào số điện thoại"/>   
+                                            </div>
+                                            <div class="form-group select-box">
+                                                <label >Tỉnh/TP (*)</label>
+                                                <select name="txt_bill_city" id="city" class="form-control">
+                                                    <option value="">Tỉnh/Thành Phố</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label >Địa chỉ cụ thể (*)</label>
+                                                <input class="form-control" id="txt_billing_addr1"
+                                                    name="txt_billing_addr1" type="text" placeholder="Nhập vào địa chỉ"/>   
                                             </div>
                                         </div>
                                     </div>
@@ -81,11 +132,11 @@
                                             <!-- Cart Total -->
                                             <div class="col-12">
 
-                                                <h4 class="checkout-title">Cart Total</h4>
+                                                <h4 class="checkout-title">Tổng giá đơn hàng</h4>
 
                                                 <div class="checkout-cart-total">
 
-                                                    <h4>Product <span>Total</span></h4>
+                                                    <h4>Sản phẩm <span>Tổng</span></h4>
                                                     @php $total = 0 @endphp
                                                     @if (session('cart'))
                                                         @foreach (session('cart') as $id => $details)
@@ -94,7 +145,7 @@
                                                     <table style="width:100%">
                                                         <tr data-id="{{ $id }}">
                                                             <td style="width:50%" data-th="Product" class="product-name">
-                                                                <a href="product-details-basic.html">{{ $details['name'] }}</a>
+                                                                <a href="">{{ $details['name'] }}</a>
                                                             </td>
                                                             <td style="width:20;text-align: end;%" data-th="Price" class="product-price"><span class="price">{{ $details['price'] }}</span></td>
                                                             <td style="width:10%;text-align: end;" data-th="Quantity" >
@@ -120,62 +171,18 @@
                                                         
                                                     </ul> --}}  
 
-                                                    <p>Sub Total <span>{{$total}}</span></p>
-                                                    <p>Shipping Fee <span>00.00</span></p>
+                                                    <p>Tổng tiền tạm tính <span>{{$total}}</span></p>
+                                                    <p>Phí ship <span>00.00</span></p>
 
-                                                    <h4>Grand Total <span>{{$total}}</span></h4>
+                                                    <h4>Tổng cộng <span>{{$total}}</span></h4>
                                                     <input type="hidden" name="quantity" value="{{ $details['quantity'] }}">
-                                                    <input type="hidden" name="total" value="{{ $total }}">
+                                                    <input type="hidden" name="amount" value="{{ $total }}">
                                                 </div>
                                             </div>
 
                                             <!-- Payment Method -->
                                             <div class="col-12">
-
-                                                <h4 class="checkout-title">Payment Method</h4>
-
-                                                <div class="checkout-payment-method">
-
-                                                    <div class="single-method">
-                                                        <input type="radio" id="payment_check" name="payment-method" value="check">
-                                                        <label for="payment_check">Check Payment</label>
-                                                        <p data-method="check">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
-                                                    </div>
-
-                                                    <div class="single-method">
-                                                        <input type="radio" id="payment_bank" name="payment-method" value="bank">
-                                                        <label for="payment_bank">Direct Bank Transfer</label>
-                                                        <p data-method="bank">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
-                                                    </div>
-
-                                                    <div class="single-method">
-                                                        <input type="radio" id="payment_cash" name="payment-method" value="cash">
-                                                        <label for="payment_cash">Cash on Delivery</label>
-                                                        <p data-method="cash">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
-                                                    </div>
-
-                                                    <div class="single-method">
-                                                        <input type="radio" id="payment_paypal" name="payment-method" value="paypal">
-                                                        <label for="payment_paypal">Paypal</label>
-                                                        <p data-method="paypal">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
-                                                    </div>
-
-                                                    <div class="single-method">
-                                                        <input type="radio" id="payment_payoneer" name="payment-method" value="payoneer">
-                                                        <label for="payment_payoneer">Payoneer</label>
-                                                        <p data-method="payoneer">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
-                                                    </div>
-
-                                                    <div class="single-method">
-                                                        <input type="checkbox" id="accept_terms">
-                                                        <label for="accept_terms">I’ve read and accept the terms & conditions</label>
-                                                    </div>
-
-                                                </div>
-
-                                                <button class="theme-button place-order-btn">PLACE ORDER</button>
-                                                <button class="theme-button place-order-btn"><a href="{{route('thanhtoan')}}/?total={{$total}}">VNPAY</a></button>
-
+                                                <button type="submit" name="redirect" id="redirect" class="theme-button place-order-btn">Thanh toán</button>
                                             </div>
 
                                         </div>
