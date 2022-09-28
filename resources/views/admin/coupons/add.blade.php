@@ -38,7 +38,7 @@
                         @error('type')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
-                        S
+                        <div id="money"></div>
                         @if(session('alert'))
                             <span class='alert text-danger'>{{session('alert')}}</span>
                         @endif
