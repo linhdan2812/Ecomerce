@@ -166,6 +166,7 @@ class ShopController extends Controller
         ];
         $orders = Order::create($inputs);
         Session::flash('success');
+        session('cart')->flush();
         return redirect('/');
         // ->setMessage('Thành Công');
     }

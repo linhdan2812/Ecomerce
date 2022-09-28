@@ -191,6 +191,7 @@ class VnpayController extends Controller
             'vnp_TxnRef' => $request->vnp_TxnRef,
             'vnp_SecureHashType' => $request->vnp_SecureHashType,
             'vnp_SecureHash' => $request->vnp_SecureHash,
+            'data' => session('cart'),
             'status_pay'    => '0',
             'status_transport'  => '0'
         ]);
