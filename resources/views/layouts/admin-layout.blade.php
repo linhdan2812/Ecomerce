@@ -145,4 +145,5 @@
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('admin/js/demo.js')}}"></script>
 <script src="{{asset('admin/js/coupon.js')}}"></script>
+<script src="{{asset('admin/js/editCoupon.js')}}"></script>
 </html>

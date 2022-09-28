@@ -20,18 +20,22 @@
                         @enderror
                         <div class="form-group">
                             <label for="status">Loại giảm giá</label>
-                            <select class="form-control" name="type" id="type">
-                                <option {{old('type',$coupon->type)=="fixed"? 'selected':''}}  value="fixed">
+                            <select class="form-control" name="type" id="type1" onchange="onChangeSelectEdit()">
+                                <option value="fixed1" {{old('type',$coupon->type)=="fixed"? 'selected':''}} >
                                     Giảm theo số lượng
                                 </option>
-                                <option {{old('type',$coupon->type)=="percent"? 'selected':''}} value="percent">
+                                <option value="percent1" {{old('type',$coupon->type)=="percent"? 'selected':''}} >
                                     Giảm theo %
+                                </option>
+                                <option value="all1" {{old('type',$coupon->type)=="all"? 'selected':''}} >
+                                    Giảm tất cả sản phẩm
                                 </option>
                             </select>
                         </div>
                         @error('type')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
+                        <div id="a"></div>
                         <div class="form-group">
                             <label for="">Giảm giá</label>
                             <input type="number" name="value" class="form-control" value="{{old('value', $coupon->value)}}">
