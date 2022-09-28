@@ -155,7 +155,7 @@ class ShopController extends Controller
             'payment_method' => 1,
             'payment_status'=> 1,
             'status' => 1,
-            'data' => [$request->input('data')],
+            'data' => session('cart'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
