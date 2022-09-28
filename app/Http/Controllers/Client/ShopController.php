@@ -122,8 +122,11 @@ class ShopController extends Controller
         }
         if(!empty($coupon)){
             if($coupon->type == 'fixed'){
-
-                $subtotal = $request->input('total') - $coupon->value;
+                if ($coupon->minbill <= $request->input('total')){
+                    $subtotal = $request->input('total') - $coupon->value;
+                }else {
+                    $subtotal = $request->input('total');
+                }
 
             }elseif($coupon->type == 'percent'){
 

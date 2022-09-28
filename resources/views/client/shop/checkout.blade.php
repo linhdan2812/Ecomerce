@@ -204,7 +204,7 @@
                             <option value="${element.name}" data-id="${element.id}">${element.name}</option>
                             `; 
                 });
-                document.getElementById("city").innerHTML = text;
+                document.getElementById("city").innerHTML = '<option >Tỉnh/Thành Phố</option>' + text;
             });
         });
         $('#city').change(function(){
@@ -219,7 +219,7 @@
                             <option value="${element[1]}" data-id="${element[0]}">${element[1]}</option>
                             `; 
                 });
-                document.getElementById("district").innerHTML = text;
+                document.getElementById("district").innerHTML = '<option >Quận/Huyện</option>' + text;
             });
         });
         $('#district').change(function(){
@@ -234,7 +234,7 @@
                             <option value="${element[1]}">${element[1]}</option>
                             `; 
                 });
-                document.getElementById("ward").innerHTML = text;
+                document.getElementById("ward").innerHTML = '<option >Phường/Xã</option>' + text;
             });
         })
     </script>
