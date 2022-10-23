@@ -75,6 +75,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="{{ route('admin.error.order.list') }}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Báo lỗi</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{ route('admin.coupon.list') }}">
                             <i class="nc-icon nc-pin-3"></i>
                             <p>Giảm giá</p>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ErrorOrderController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
@@ -51,6 +52,14 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('detailProduct/{id}', [ShopController::class, 'detailProduct'])->name('detailProduct');
     Route::post('postComment', [ShopController::class, 'postComment'])->name('postComment');
     Route::get('updateNotification', [ClientDashboardController::class, 'updateNotification'])->name('updateNotification');
+
+    //Hủy đơn hàng
+    Route::get('cancel-order/{id}',[ClientDashboardController::class,'cancelOrder'])->name('cancel.order');
+
+    //Báo lỗi, báo hỏng
+    Route::get('error-order/{id}', [ClientDashboardController::class,'errorOrderForm'])->name('error.order');
+    Route::post('error-order-save/{id}', [ClientDashboardController::class,'errorOrderSave'])->name('error.order.save');
+
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
     // Route::post('messages', [ChatsController::class,'sendMessage']);
@@ -126,9 +135,25 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
     Route::prefix('orders')->group(function () {
 
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
-        Route::get('/{order_number}', [OrderController::class, 'detail'])->name('admin.order.detail');
-        Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
+
+        //Chi tiết đơn hàng
+        Route::get('/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');
+
+        //Chỉnh sửa đơn hàng
+        Route::get('edit-order/{id}', [OrderController::class, 'editOrder'])->name('admin.order.edit');
+
+        //Chuyển trạng thái đơn hàng
+        Route::get('state-change/{id}',[OrderController::class,'stateChange'])->name('admin.order.stateChange');
     });
+
+    //Báo lỗi
+    Route::prefix('error')->group(function () {
+        Route::get('/', [ErrorOrderController::class,'index'])->name('admin.error.order.list');
+
+        //Xác nhận đổi hàng cho khách
+        Route::get('change-order/{id}',[ErrorOrderController::class,'changeOrder'])->name('change.order');
+    });
+
     // Coupons
     Route::prefix('coupons')->group(function () {
 
