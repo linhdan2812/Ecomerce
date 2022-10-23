@@ -1,128 +1,84 @@
 @extends('layouts.admin-layout')
 @section('content')
-<style>
-    .gradient-custom {
-/* fallback for old browsers */
-background: #cd9cf2;
-
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1))
-}
-</style>
-    <section class="h-100 gradient-custom">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-10 col-xl-8">
-              <div class="card" style="border-radius: 10px;">
-                <div class="card-header px-4 py-5">
-                  <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">{{ $order->user->name }}</span>!</h5>
-                </div>
-                <div class="card-body p-4">
-                  <div class="d-flex justify-content-between align-items-center mb-4">
-                    @if($order->status != 'Đang xử lý')
-                        <p class="lead fw-normal mb-0" style="color: #a8729a;">{{ $order->status }}</p>
-                    @else
-                        <select class="form-control col-md-2" name="changedetail" id="changedetail">
-                            <option value="1">Hủy</option>
-                            <option value="2">Xác nhận</option>
-                        </select>
-                        <button class="small text-muted mb-0" id="confirm">Xác nhận</button>
-                    @endif
-                    <input type="hidden" name="id" id="id" value=" {{$order->id}}">
-                    <p class="small text-muted mb-0">Receipt Voucher : {{ $order->order_number }}</p>
-                  </div>
-                  @foreach ($order->data as $item)
-                  <div class="card shadow-0 border mb-4">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-2">
-                          <img src="{{$item['image']}}"
-                            class="img-fluid" alt="Phone">
-                        </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                          <p class="text-muted mb-0">{{$item['name']}}</p>
-                        </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                          <p class="text-muted mb-0 small">White</p>
-                        </div>
-                        {{-- <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                          <p class="text-muted mb-0 small">Capacity: 64GB</p>
-                        </div> --}}
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                          <p class="text-muted mb-0 small">Qty: {{$item['quantity']}}</p>
-                        </div>
-                        <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                          <p class="text-muted mb-0 small">{{$item['quantity']}}</p>
-                        </div>
-                      </div>
-                      <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-                      <div class="row d-flex align-items-center">
-                        <div class="col-md-2">
-                          <p class="text-muted mb-0 small">Track Order</p>
-                        </div>
-                        <div class="col-md-10">
-                          <div class="progress" style="height: 6px; border-radius: 16px;">
-                            <div class="progress-bar" role="progressbar"
-                              style="width: 65%; border-radius: 16px; background-color: #a8729a;" aria-valuenow="65"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                          <div class="d-flex justify-content-around mb-1">
-                            <p class="text-muted mt-1 mb-0 small ms-xl-5">Out for delivary</p>
-                            <p class="text-muted mt-1 mb-0 small ms-xl-5">Delivered</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  @endforeach
-      
-                  <div class="d-flex justify-content-between pt-2">
-                    <p class="fw-bold mb-0">Order Details</p>
-                    <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span>{{ $order->sub_total }}</p>
-                  </div>
-      
-                  <div class="d-flex justify-content-between pt-2">
-                    <p class="text-muted mb-0">Invoice Number : 788152</p>
-                    <p class="text-muted mb-0"><span class="fw-bold me-4">Discount</span> $19.00</p>
-                  </div>
-                  <div class="d-flex justify-content-between pt-2">
-                    <p class="text-muted mb-0">Phương thức thanh toán : {{ $order->payment_method }}</p>
-                    <p class="text-muted mb-0"><span class="fw-bold me-4">Tình trạng thanh toán</span> {{ $order->payment_status }}</p>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <p class="text-muted mb-0">Invoice Date : {{ $order->created_at }}</p>
-                    <p class="text-muted mb-0"><span class="fw-bold me-4">GST 18%</span> 123</p>
-                  </div>
-      
-                  <div class="d-flex justify-content-between mb-5">
-                    <p class="text-muted mb-0">Address : {{ $order->addressdetail }}</p>
-                    <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges</span> Free</p>
-                  </div>
-                </div>
-                <div class="card-footer border-0 px-4 py-5"
-                  style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                  <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
-                    paid: <span class="h2 mb-0 ms-2">{{ $order->sub_total }}</span></h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    <script>
-        $(document).ready(function(){
-          $('#confirm').click(function(){
-            var status = $("#changedetail option:selected" ).val();
-            var id = $("#id").val();
-            var url = "{{ route('changestatus') }}";
-
-            $.post(url,{id:id,status:status},function(){
-
-            });
-          })
-        })
-    </script>
+<div class="col-lg-9">
+  <div class="main-content">
+    <div class="wrap-process-order">
+      @if(Session::has('msg'))
+      <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
+      @endif
+      <div class="top">
+        <h3 class="head-page">Chi tiết đơn hàng</h3>
+      </div><br>
+      <div class="order-info">
+        <span class="code"><b>Đơn hàng:</b> {{ $detailorder->vnp_TxnRef}}</span><br>
+        <span class="time"><b>Ngày đặt hàng:</b> {{ $detailorder->created_at}}</span>
+      </div><br>
+      @if($request_order )
+      <div class="right">
+        <a><b><h3> Khách hàng báo lỗi </h3> </b></a>
+        <div>
+          <br>
+          <p><b style="color: red;">Sản phẩm lỗi:</b> {{$request_order->name_product ?? ''}}</p>
+          <p><b style="color: red;">Ghi chú của khách hàng:</b> {{$request_order->note ?? ''}}</p>
+          <p><b style="color: red;">Ảnh kèm theo:</b> <img src="{{asset('storage/'. $request_order->image)}}" width="200" alt=""></p>
+        </div><br>
+        <a href="{{route('change.order',['id'=>$request_order->id_order])}}" class="btn btn-primary">Xác nhận đổi hàng cho khách</a>
+      </div><br>
+      @endif
+      <div class="tb-cart v2">
+        <table class="table">
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Ảnh</th>
+            <th class="text-center">Giá</th>
+            <th class="text-center">Số lượng</th>
+            <th class="text-right">Thành tiền</th>
+          </tr>
+          <tr>
+            @foreach($test as $key)
+            <td>
+              <h3 class="title">
+                <a title="">{{$key['name']}}</a>
+              </h3>
+            </td>
+            <td><a class="img"><img src="{{asset('storage/'.$key['image'])}}" width="70" alt=""></a></td>
+            <td align="center">{{$key['price']}} VND</td>
+            <td align="center">{{$key['quantity']}}</td>
+            <td align="right">{{$key['price'] * $key['quantity']}} VND</td>
+            @endforeach
+          </tr>
+        </table>
+      </div>
+      <ul class="order-total">
+        <li><b>Tổng tiền hàng:</b> <span>{{ $detailorder->vnp_Amount}}</span></li>
+        <li><b>Giảm giá:</b> <span>{{ $detailorder->coupon ?? 0 }}</span></li>
+        <li><b>Phí vận chuyển:</b> <span>{{ $detailorder->shipping_id ?? 0}}</span></li>
+        <li><b>Tổng số tiền:</b> <b>{{ $detailorder->vnp_Amount}}</b></li>
+        <li><b>Phương thức thanh toán: </b> <small>{{ $detailorder->vnp_CardType}}</small></li>
+      </ul>
+      <div class="order-address-person">
+        <b>
+          <h4>Địa chỉ nhận hàng</h4>
+        </b>
+        <ul>
+          <li><span><b> Họ và tên: </b></span>{{ $detailorder->vnp_Bill_FirstName . ' ' . $detailorder->vnp_Bill_LastName ?? null}}</li>
+          <li><span><b>Số Điện thoại: </b></span>{{ $detailorder->vnp_Bill_Mobile ?? null}}</li>
+          <li><span><b> Địa chỉ: </b></span>{{ $detailorder->vnp_Bill_Address ?? null}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  $('#cancelorder').on('click', function() {
+    let url = "{{ route('setCancelOrder') }}";
+    let id = $('#detailorderid').val();
+    $.get(url, {
+      'id': id
+    }).done(function(data) {
+      console.log(data);
+    })
+  });
+</script>
 @endsection

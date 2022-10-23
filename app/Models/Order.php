@@ -30,6 +30,7 @@ class Order extends Model
         'district',
         'ward',
         'addressdetail',
+        'vnp_SecureHash'
     ];
 
     public function shipping(){

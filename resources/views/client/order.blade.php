@@ -34,15 +34,30 @@
                             </tr>
                             @foreach ($orders as $item)
                                 <tr>
-                                    <td><a href="{{ route('order.detail',[ 'id' => $item->id])}}" title="">{{$item->vnp_BankTranNo}}</a></td>
+                                    <td><a href="{{ route('order.detail',[ 'id' => $item->id])}}" title="">{{$item->vnp_TxnRef}}</a></td>
                                     <td>{{$item->created_at}}</td>
                                     <td><b>{{$item->vnp_Amount}}</b></td>
-                                    @if($item->status_pay == '0')
-                                    <td>Đang chờ xử lý</td>
+
+                                    <!-- Trạng thái thanh toán -->
+                                    @if($item->vnp_TransactionStatus == '00')
+                                    <td>Thanh toán thành công</td>
+                                    @elseif($item->vnp_TransactionStatus == null)
+                                    <td>Đã hủy giao dịch</td>
                                     @endif
-                                    @if($item->status_transport == '0')
+
+                                    <!-- Trạng thái đơn hàng -->
+                                    @if($item->status_order == 'pending' && $item->vnp_TransactionStatus == '00')
                                     <td>Đang xử lý</td>
+                                    @elseif($item->status_order == 'confirm' && $item->vnp_TransactionStatus == '00')
+                                    <td>Đã xác nhận</td>
+                                    @elseif( ( $item->status_order == 'cancel' || $item->status_order == 'pending' ) && ( $item->vnp_TransactionStatus == '00' || $item->vnp_TransactionStatus == null ))
+                                    <td>Đã hủy đơn hàng</td>
+                                    @elseif($item->status_order == 'shipping' && $item->vnp_TransactionStatus == '00')
+                                    <td>Đang giao hàng</td>
+                                    @elseif($item->status_order == 'success' && $item->vnp_TransactionStatus == '00')
+                                    <td>Đã giao hàng</td>
                                     @endif
+
                                 </tr>
                             @endforeach
                         </table>
@@ -50,7 +65,6 @@
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        {{ $orders->links()}}
                         {{-- <li class="page-item active"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
