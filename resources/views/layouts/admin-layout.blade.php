@@ -95,6 +95,7 @@
                 </ul>
             </div>
         </div>
+        @if(Auth::user()->role==="admin")
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
@@ -103,7 +104,7 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="">
-                                    <span class="no-icon">Account</span>
+                                    <span class="no-icon">{{Auth::user()->name}}</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -132,6 +133,7 @@
                 </div>
             </footer>
         </div>
+        @endif
     </div>
 </body>
 <!--   Core JS Files   -->
