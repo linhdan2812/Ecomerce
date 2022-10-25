@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->enum('type',['fixed','percent'])->default('fixed');
-            $table->decimal('value',20,2);
+            $table->enum('type',['fixed','percent','all'])->default('fixed');
+            $table->decimal('value',20,0);
+            $table->decimal('minbill',20,0);
             $table->date('expired_at')->nullable();
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->timestamps();

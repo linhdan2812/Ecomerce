@@ -122,8 +122,11 @@ class ShopController extends Controller
         }
         if(!empty($coupon)){
             if($coupon->type == 'fixed'){
-
-                $subtotal = $request->input('total') - $coupon->value;
+                if ($coupon->minbill <= $request->input('total')){
+                    $subtotal = $request->input('total') - $coupon->value;
+                }else {
+                    $subtotal = $request->input('total');
+                }
 
             }elseif($coupon->type == 'percent'){
 
@@ -152,7 +155,7 @@ class ShopController extends Controller
             'payment_method' => 1,
             'payment_status'=> 1,
             'status' => 1,
-            'data' => [$request->input('data')],
+            'data' => session('cart'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
@@ -163,6 +166,7 @@ class ShopController extends Controller
         ];
         $orders = Order::create($inputs);
         Session::flash('success');
+        session('cart')->flush();
         return redirect('/');
         // ->setMessage('Thành Công');
     }

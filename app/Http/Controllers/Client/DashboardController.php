@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Models\wishlist;
 use App\Models\Product;
+use App\Models\RequestOrder;
 use App\Models\Vnpay;
+use App\Models\VnpayTest;
 
 class DashboardController extends Controller
 {
@@ -65,16 +67,57 @@ class DashboardController extends Controller
             return view('client.myaccount',compact('address'));
         }
     }
-    public function orders()
+    public function orders(Request $request)
     {
-        $orders = Vnpay::where('user_id', '=', Auth()->user()->id)->paginate(10);
+        $user = $request->user();
+        $user->id;
+        $orders = VnpayTest::where('user_id','=',$user->id)->get();
         return view('client.order',compact('orders'));
     }
     public function detailorder($id)
     {
-        $detailorder = Order::where('id', '=', $id)->first();
-        return view('client.detail-order',compact('detailorder'));
+        $detailorder = VnpayTest::where('id', '=', $id)->first();
+        $cart = $detailorder->cart;
+        $test = json_decode($cart, true);
+        return view('client.detail-order',compact('detailorder', 'test'));
     }
+
+    public function cancelOrder($id){
+        $vnpay = VnpayTest::find($id);
+        $vnpay->fill([
+            'status_order' => 'cancel'
+        ]);
+        $vnpay->save();
+        return redirect()->back()->with('msg','Hủy đơn hàng thành công!');
+    }
+
+    public function errorOrderForm($id){
+        $order = VnpayTest::find($id);
+        $cart = $order->cart;
+        $product = json_decode($cart,true);
+        return view('client.error', compact('order','product'));
+    }
+
+    public function errorOrderSave($id, Request $request){
+        $user = $request->user();
+        $user->id;
+        $request_order = new RequestOrder();
+        $request_order->fill([
+            'id_user' => $user->id,
+            'id_order' => $id,
+            'name_product'  => $request->name_product,
+            'note'  => $request->note,
+            'type'  => 'C',
+        ]);
+        if ($request->hasFile('image')) {
+            $newFileName = uniqid() . '-' . $request->image->getClientOriginalName();
+            $path = $request->image->storeAs('public/uploads/products', $newFileName);
+            $request_order->image = str_replace('public/', '', $path);
+        }
+        $request_order->save();
+        return redirect()->route('order.detail',['id' => $id])->with('msg','Báo lỗi thành công');
+    }
+
     public function wishlist()
     {
         $wishlists = Wishlist::where('user_id', '=', Auth::user()->id)->get();

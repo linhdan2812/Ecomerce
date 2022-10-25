@@ -75,6 +75,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="{{ route('admin.error.order.list') }}">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Báo lỗi</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{ route('admin.coupon.list') }}">
                             <i class="nc-icon nc-pin-3"></i>
                             <p>Giảm giá</p>
@@ -145,4 +151,5 @@
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('admin/js/demo.js')}}"></script>
 <script src="{{asset('admin/js/coupon.js')}}"></script>
+<script src="{{asset('admin/js/editCoupon.js')}}"></script>
 </html>
