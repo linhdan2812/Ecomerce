@@ -67,14 +67,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Giảm giá</label>
-                            <input type="text" name="discount" class="form-control">
-                            @error('discount')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label for="category_id">Loại hàng</label>
                             <select class="form-control" name="category_id" id="category_id">
                                 @foreach ($categories as $item)
