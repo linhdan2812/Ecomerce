@@ -1,9 +1,9 @@
 // alert("hello");
-const money = document.querySelector('#money')
+const money = document.querySelector('#a')
 // const
-const _MONEY = "fixed"
-const _PRECENT = "percent"
-const _ALL = "all"
+const _MONEY1 = "fixed1"
+const _PRECENT1 = "percent1"
+const _ALL1 = "all1"
 const select = ''
 const input = ''
 const moneyElement = ` 
@@ -25,8 +25,8 @@ const alltElement = `
     <input type="number" name="value" class="form-control" min="1" max="50">
 </div>`
 
-const onChangeSelect = () => {
-    const mySelect = document.querySelector('#type')
-    console.log("mySelect" ,mySelect.value);
-    money.innerHTML = mySelect.value === _MONEY ? moneyElement : mySelect.value ===  _PRECENT ? precentElement : mySelect.value ===  _ALL ? alltElement : null
+const onChangeSelectEdit = () => {
+    const mySelect1 = document.querySelector('#type1')
+    console.log("mySelect1" ,mySelect1.value);
+    money.innerHTML = mySelect1.value === _MONEY1 ? moneyElement : mySelect1.value ===  _PRECENT1 ? precentElement : mySelect1.value ===  _ALL1 ? alltElement : null
 }

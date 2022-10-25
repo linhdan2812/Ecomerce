@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('vnp_TxnRef',255)->nullable()->comment('Mã tham chiếu của giao dịch tại hệ thống của merchant');
             $table->string('vnp_SecureHashType',255)->nullable()->comment('Loại mã băm');
             $table->string('vnp_SecureHash',255)->nullable()->comment('Mã kiểm tra để đảm bảo dữ liệu của giao dịch không bị thay đổi');
+            $table->json('data');
             $table->timestamps();
         });
     }
