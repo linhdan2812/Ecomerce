@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Mô tả tóm tắt</label>
-                            <input type="text" name="summary" value="{{ $product->summary }}" class="form-control">
+                            <textarea class="form-control" style="height: 10rem;" name="summary">{{ old('summary', $product->summary) }}</textarea>
                             @error('summary')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

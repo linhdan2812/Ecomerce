@@ -20,7 +20,7 @@
 
                         <div class="form-group">
                             <label for="">Mô tả tóm tắt</label>
-                            <input type="text" name="summary" class="form-control">
+                            <textarea name="summary" class="form-control" style="height: 10rem;"></textarea>
                             @error('summary')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
