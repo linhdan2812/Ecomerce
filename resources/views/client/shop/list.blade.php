@@ -32,94 +32,7 @@
     <div class="shop-page-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 order-2 order-lg-1">
-                    <!--=======  shop sidebar wrapper  =======-->
-
-                    <div class="shop-sidebar-wrapper">
-
-
-                        <!--=======  single sidebar widget  =======-->
-
-                        <div class="single-sidebar-widget">
-                            <h2 class="single-sidebar-widget__title">Tìm kiếm theo Giá</h2>
-                            <div class="sidebar-price">
-                                <div id="price-range"></div>
-                                <div class="output-wrapper">
-                                    <input type="text" id="price-amount" class="price-amount" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--=======  End of single sidebar widget  =======-->
-
-                        <!--=======  single sidebar widget  =======-->
-
-                        <div class="single-sidebar-widget">
-                            <h2 class="single-sidebar-widget__title">Tìm kiếm theo Loại hàng</h2>
-
-                            <ul class="single-sidebar-widget__dropdown" id="single-sidebar-widget__dropdown">
-                                <li class="has-children"><a href="shop-left-sidebar.html">Bathroom</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Bathroom Accessories</a></li>
-                                        <li><a href="shop-left-sidebar.html">Bathroom Storage</a></li>
-                                        <li><a href="shop-left-sidebar.html">Bathroom Textiles</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="shop-left-sidebar.html">Bedroom</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Bedroom Lighting</a></li>
-                                        <li><a href="shop-left-sidebar.html">Bedroom Textiles & Rugs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Beds</a></li>
-                                        <li><a href="shop-left-sidebar.html">Wardrobes</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="shop-left-sidebar.html">Dining Room</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Dining Chairs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Dining sets</a></li>
-                                        <li><a href="shop-left-sidebar.html">Dining Tables</a></li>
-                                        <li><a href="shop-left-sidebar.html">Stools & Benches</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="shop-left-sidebar.html">Living Room</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Armchairs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Cabinets</a></li>
-                                        <li><a href="shop-left-sidebar.html">Chairs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Decorative Lighting</a></li>
-                                        <li><a href="shop-left-sidebar.html">Footstools</a></li>
-                                        <li><a href="shop-left-sidebar.html">Living Room Lighting</a></li>
-                                        <li><a href="shop-left-sidebar.html">Sofas</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="shop-left-sidebar.html">Outdoor</a></li>
-                                <li><a href="shop-left-sidebar.html">Uncategorized</a></li>
-                            </ul>
-                        </div>
-
-                        <!--=======  End of single sidebar widget  =======-->
-
-                        <!--=======  single sidebar widget  =======-->
-
-                        <div class="single-sidebar-widget">
-                            <h2 class="single-sidebar-widget__title">Tìm kiếm theo Thương hiệu</h2>
-                            <ul class="single-sidebar-widget__dropdown">
-                                <li><a href="shop-left-sidebar.html">Alexa</a></li>
-                                <li><a href="shop-left-sidebar.html">Benington</a></li>
-                                <li><a href="shop-left-sidebar.html">Candice</a></li>
-                                <li><a href="shop-left-sidebar.html">Juliet Rowley</a></li>
-                                <li><a href="shop-left-sidebar.html">Olivia Shayn</a></li>
-                                <li><a href="shop-left-sidebar.html">Sarah Stencil</a></li>
-                            </ul>
-                        </div>
-
-                        <!--=======  End of single sidebar widget  =======-->
-                    </div>
-
-                    <!--=======  End of shop sidebar wrapper  =======-->
-                </div>
-
-                <div class="col-lg-9 order-1 order-lg-2">
+                <div class="col-lg-12 order-1 order-lg-2">
                     <!--=======  shop content wrapper  =======-->
 
                     <div class="shop-content-wrapper">
@@ -185,9 +98,9 @@
                                     </div>
                                     <div class="single-grid-product__content">
                                         <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{$item->title}}</a></h3>
-                                        @if($item->discount == '')
+                                        @if(empty($item->discount))
                                             <div class="price">
-                                                <span class="main-price discounted">{{$item->price}}</span>
+                                                <span class="discounted-price">{{$item->price}}</span>
                                             </div>
                                         @else
                                             <div class="price">

@@ -45,7 +45,7 @@
                                                     <td data-th="Price" class="product-price"><span class="price">${{ $details['price'] }}</span></td>
                                                     <td data-th="Quantity">
                                                         <input type="number"value="{{ $details['quantity'] }}"
-                                                            class="form-control quantity update-cart" />
+                                                            class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
                                                     </td>
                                                     <td data-th="Subtotal" class="total-price"><span class="price"> ${{ $details['price'] * $details['quantity'] }}</span></td>
                                                     <td class="product-remove" data-th="">
