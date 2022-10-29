@@ -44,31 +44,44 @@
                                 <div class="col-sm-6 col-12">
                                     <!--=======  header left content  =======-->
 
-                                    <div class="shop-header__left">
+                                    {{-- <div class="shop-header__left">
                                         <p class="result-text d-inline-block mb-0">Hiển thị 1–9 trong số 50 kết quả</p>
-                                    </div>
+                                    </div> --}}
 
                                     <!--=======  End of header left content  =======-->
                                 </div>
 
                                 <div class="col-sm-6 col-12">
-
-                                    <!--=======  header right content  =======-->
-
-                                    <div class="shop-header__right d-flex justify-content-start justify-content-sm-end align-items-center">
-                                        <div class="sort-by-dropdown">
-                                            <select name="sort-by" id="sort-by" class="nice-select">
-                                                <option value="0">Sắp xếp</option>
-                                                <option value="0">Sort By Average Rating</option>
-                                                <option value="0">Sort By Newness</option>
-                                                <option value="0">Sort By Price: Low to High</option>
-                                                <option value="0">Sort By Price: High to Low</option>
-                                            </select>
+                                    <form action="{{ route('shop')}}" method="get">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="">Tìm kiếm theo tên</label>
+                                            <input type="text" class="form-control" name="title" id="title"  placeholder="Nhập tìm kiếm...">
                                         </div>
-                                    </div>
-
-                                    <!--=======  End of header right content  =======-->
-
+                                        <div div class="shop-header__right d-flex justify-content-start justify-content-sm-end align-items-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort" id="exampleRadios1" value="price" checked>
+                                                <label class="form-check-label" for="exampleRadios1">Giá</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="title">
+                                                <label class="form-check-label" for="exampleRadios2">Tên</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="updated_at">
+                                                <label class="form-check-label" for="exampleRadios2">Mới/Cũ</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort_by" id="exampleRadios1" value="desc" checked>
+                                                <label class="form-check-label" for="exampleRadios1">Giảm dần</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort_by" id="exampleRadios2" value="asc">
+                                                <label class="form-check-label" for="exampleRadios2">Tăng dần</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary my-1">Tìm kiếm</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
