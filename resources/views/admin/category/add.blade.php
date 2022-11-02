@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>Thêm mới loại hàng</h2>
-                    @if(Session::has('msg'))
-                        <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
+                    @if (Session::has('msg'))
+                        <div class="alert alert-success" role="alert">{{ Session::get('msg') }}</div>
                     @endif
                     <form action="" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -15,14 +15,15 @@
                             <input type="text" name="title" class="form-control">
                         </div>
                         @error('title')
-                        <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                         <div class="form-group">
-                            <label for="">Mô tả</label>
-                            <input type="text" name="summary" class="form-control">
+                            <label>Mô tả</label>
+                            <textarea name="summary" class="form-control" style="height: 10rem;"></textarea>
                         </div>
+
                         @error('summary')
-                        <span class="text-danger">{{$message}}</span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                         <div class="form-group">
                             <label for="status">Trạng thái</label>

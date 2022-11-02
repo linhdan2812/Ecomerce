@@ -20,7 +20,7 @@
 
                         <div class="form-group">
                             <label for="">Mô tả tóm tắt</label>
-                            <input type="text" name="summary" class="form-control">
+                            <textarea name="summary" class="form-control" style="height: 10rem;"></textarea>
                             @error('summary')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -62,14 +62,6 @@
                             <label for="">Giá</label>
                             <input type="text" name="price" class="form-control">
                             @error('price')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Giảm giá</label>
-                            <input type="text" name="discount" class="form-control">
-                            @error('discount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
