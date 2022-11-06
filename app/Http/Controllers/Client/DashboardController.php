@@ -22,7 +22,7 @@ class DashboardController extends Controller
 {
     public function index() {
         $user_id = Auth()->user()->id ?? null;
-        $bannerSlide = Banner::query()->where('status','=','active')->orderBy('id', 'DESC')->limit(5)->get();
+        $bannerSlide = Banner::query()->where('status','=','active')->orderBy('created_at', 'DESC')->limit(5)->get();
         return view('client.index',compact('bannerSlide'));
     }
     public function myaccount() {
