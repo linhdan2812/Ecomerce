@@ -27,8 +27,7 @@ class ShopController extends Controller
         $page = $request['page'] ?? '';
         $keyword = $request['title'] ?? '';
         $sort_by = $request['sort_by'] ?? 'asc';
-
-        $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)->take($page)->limit((int)$perPage * (int)$page)->paginate($perPage);
+        $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)->take($page)->limit((int)$perPage * (int)$page)->paginate((int)$page);
         return view('client.shop.list', compact('products'));
     }
     // public function index()
