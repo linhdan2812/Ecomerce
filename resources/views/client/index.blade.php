@@ -343,99 +343,103 @@
     <div class="banner-area section-space">
         <div class="container">
             <div class="row masonry-layout--banner">
-                <div class="col-md-4 masonry-item--banner">
-                    <!--=======  single banner  =======-->
+                
+                @if (empty($arrivals))
+                    @foreach ($arrivals as $item)
+                        <div class="col-md-4 masonry-item--banner">
+                            <!--=======  single banner  =======-->
 
-                    <div class="single-banner">
-                        <div class="single-banner__image">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/banners/banner-homepage2_1.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
+                            <div class="single-banner">
+                                <div class="single-banner__image">
+                                    <a href="shop-left-sidebar.html">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_1.png') }}" class="img-fluid"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <div class="single-banner__content single-banner__content--overlay">
+                                    <p class="banner-small-text">NEW COLLECTION</p>
+                                    <p class="banner-big-text">From 99$</p>
+                                    <p class="banner-small-text banner-small-text--end">Complete your interior with our wide range
+                                        <br>
+                                        of furniture</p>
+                                    <a href="shop-left-sidebar.html"
+                                        class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
+                                </div>
+                            </div>
+
+                            <!--=======  End of single banner  =======-->
                         </div>
+                        <div class="col-md-8 masonry-item--banner">
+                            <!--=======  single banner  =======-->
 
-                        <div class="single-banner__content single-banner__content--overlay">
-                            <p class="banner-small-text">NEW COLLECTION</p>
-                            <p class="banner-big-text">From 99$</p>
-                            <p class="banner-small-text banner-small-text--end">Complete your interior with our wide range
-                                <br>
-                                of furniture</p>
-                            <a href="shop-left-sidebar.html"
-                                class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
+                            <div class="single-banner">
+                                <div class="single-banner__image">
+                                    <a href="shop-left-sidebar.html">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_3.png') }}" class="img-fluid"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <div class="single-banner__content single-banner__content--overlay">
+                                    <p class="banner-small-text">DISCOVERY</p>
+                                    <p class="banner-big-text">Designer Lighting</p>
+                                    <p class="banner-small-text banner-small-text--end">From table lamps to chandeliers, discover
+                                        over 200 lighting solutions.</p>
+                                    <a href="shop-left-sidebar.html"
+                                        class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
+                                </div>
+                            </div>
+
+                            <!--=======  End of single banner  =======-->
                         </div>
-                    </div>
+                        <div class="col-md-8 masonry-item--banner">
+                            <!--=======  single banner  =======-->
 
-                    <!--=======  End of single banner  =======-->
-                </div>
-                <div class="col-md-8 masonry-item--banner">
-                    <!--=======  single banner  =======-->
+                            <div class="single-banner">
+                                <div class="single-banner__image">
+                                    <a href="shop-left-sidebar.html">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_4.png') }}" class="img-fluid"
+                                            alt="">
+                                    </a>
+                                </div>
 
-                    <div class="single-banner">
-                        <div class="single-banner__image">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/banners/banner-homepage2_3.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
+                                <div class="single-banner__content single-banner__content--overlay">
+                                    <p class="banner-small-text">LUXURY FURNISHINGS FOR EVERY ROOM</p>
+                                    <p class="banner-big-text">Plants Everywhere</p>
+                                    <p class="banner-small-text banner-small-text--end">Refresh your interior for less with our wide
+                                        range of contemporary furniture.</p>
+                                    <a href="shop-left-sidebar.html"
+                                        class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
+                                </div>
+                            </div>
+
+                            <!--=======  End of single banner  =======-->
                         </div>
+                        <div class="col-md-4 masonry-item--banner">
+                            <!--=======  single banner  =======-->
 
-                        <div class="single-banner__content single-banner__content--overlay">
-                            <p class="banner-small-text">DISCOVERY</p>
-                            <p class="banner-big-text">Designer Lighting</p>
-                            <p class="banner-small-text banner-small-text--end">From table lamps to chandeliers, discover
-                                over 200 lighting solutions.</p>
-                            <a href="shop-left-sidebar.html"
-                                class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
+                            <div class="single-banner">
+                                <div class="single-banner__image">
+                                    <a href="shop-left-sidebar.html">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_2.png') }}" class="img-fluid"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <div class="single-banner__content single-banner__content--overlay">
+                                    <p class="banner-small-text">DESIGNER LIGHTING</p>
+                                    <p class="banner-big-text">Marble Stuffs</p>
+                                    <p class="banner-small-text banner-small-text--end">25% Off For Limited Time</p>
+                                    <a href="shop-left-sidebar.html"
+                                        class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
+                                </div>
+                            </div>
+
+                            <!--=======  End of single banner  =======-->
                         </div>
-                    </div>
-
-                    <!--=======  End of single banner  =======-->
-                </div>
-                <div class="col-md-8 masonry-item--banner">
-                    <!--=======  single banner  =======-->
-
-                    <div class="single-banner">
-                        <div class="single-banner__image">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/banners/banner-homepage2_4.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <div class="single-banner__content single-banner__content--overlay">
-                            <p class="banner-small-text">LUXURY FURNISHINGS FOR EVERY ROOM</p>
-                            <p class="banner-big-text">Plants Everywhere</p>
-                            <p class="banner-small-text banner-small-text--end">Refresh your interior for less with our wide
-                                range of contemporary furniture.</p>
-                            <a href="shop-left-sidebar.html"
-                                class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
-                        </div>
-                    </div>
-
-                    <!--=======  End of single banner  =======-->
-                </div>
-                <div class="col-md-4 masonry-item--banner">
-                    <!--=======  single banner  =======-->
-
-                    <div class="single-banner">
-                        <div class="single-banner__image">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/banners/banner-homepage2_2.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <div class="single-banner__content single-banner__content--overlay">
-                            <p class="banner-small-text">DESIGNER LIGHTING</p>
-                            <p class="banner-big-text">Marble Stuffs</p>
-                            <p class="banner-small-text banner-small-text--end">25% Off For Limited Time</p>
-                            <a href="shop-left-sidebar.html"
-                                class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
-                        </div>
-                    </div>
-
-                    <!--=======  End of single banner  =======-->
-                </div>
-
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -1922,4 +1926,47 @@
         <i class="fa fa-angle-up"></i>
     </button>
     <!-- end of scroll to top -->
+    <html>
+<head>
+    <title>How to Install And Use CKEditor In Laravel? - ItSolutionStuff.com</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2 mt-5">
+                <div class="card">
+                    <div class="card-header bg-info">
+                        <h6 class="text-white">How to Install And Use CKEditor In Laravel? - ItSolutionStuff.com</h6>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control"/>
+                            </div>  
+                            <div class="form-group">
+                                <label><strong>Description :</strong></label>
+                                <textarea class="ckeditor form-control" name="description"></textarea>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</body>
+   
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('.ckeditor').ckeditor();
+    });
+</script>
+  
+</html>
 @endsection

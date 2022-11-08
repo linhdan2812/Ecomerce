@@ -7,6 +7,7 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Arrival;
 use App\Models\Order;
 use App\Http\Requests\AccountRequest;
 use App\Models\Notification;
@@ -23,7 +24,8 @@ class DashboardController extends Controller
     public function index() {
         $user_id = Auth()->user()->id ?? null;
         $bannerSlide = Banner::query()->where('status','=','active')->orderBy('created_at', 'DESC')->limit(5)->get();
-        return view('client.index',compact('bannerSlide'));
+        $arrivals = Arrival::all();
+        return view('client.index',compact('bannerSlide','arrivals'));
     }
     public function myaccount() {
 
