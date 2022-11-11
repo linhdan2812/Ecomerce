@@ -19,7 +19,7 @@
                         @enderror
                         <div class="form-group">
                             <label>Mô tả</label>
-                            <textarea name="summary" class="form-control" style="height: 10rem;"></textarea>
+                            <textarea name="summary" class="ckeditor form-control" style="height: 10rem;"></textarea>
                         </div>
 
                         @error('summary')
@@ -44,4 +44,11 @@
             </div>
         </div>
     </div>
+
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection

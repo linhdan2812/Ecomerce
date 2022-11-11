@@ -28,7 +28,7 @@
 
                         <div class="form-group">
                             <label for="">Chi tiết sản phẩm</label>
-                            <input type="text" name="description" class="form-control">
+                            <textarea class="ckeditor form-control" name="description"></textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -91,4 +91,12 @@
             </div>
         </div>
     </div>
+
+
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection
