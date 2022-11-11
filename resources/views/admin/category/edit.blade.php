@@ -20,7 +20,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="">Mô tả</label>
-                            <textarea class="form-control" style="height: 10rem;" name="summary">{{ old('summary', $category->summary) }}</textarea>
+                            <textarea class="ckeditor form-control" style="height: 10rem;" name="summary">{{ old('summary', $category->summary) }}</textarea>
                         </div>
                         @error('summary')
                             <span class="text-danger">{{ $message }}</span>
@@ -47,4 +47,11 @@
             </div>
         </div>
     </div>
+
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection
