@@ -18,9 +18,16 @@ use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(15);
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['title'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'asc';
+        $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)->take($page)->limit((int)$perPage * (int)$page)->paginate((int)$page);
         return view('client.shop.list', compact('products'));
     }
     // public function index()

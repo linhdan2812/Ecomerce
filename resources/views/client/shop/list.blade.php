@@ -32,94 +32,7 @@
     <div class="shop-page-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 order-2 order-lg-1">
-                    <!--=======  shop sidebar wrapper  =======-->
-
-                    <div class="shop-sidebar-wrapper">
-
-
-                        <!--=======  single sidebar widget  =======-->
-
-                        <div class="single-sidebar-widget">
-                            <h2 class="single-sidebar-widget__title">Tìm kiếm theo Giá</h2>
-                            <div class="sidebar-price">
-                                <div id="price-range"></div>
-                                <div class="output-wrapper">
-                                    <input type="text" id="price-amount" class="price-amount" readonly>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--=======  End of single sidebar widget  =======-->
-
-                        <!--=======  single sidebar widget  =======-->
-
-                        <div class="single-sidebar-widget">
-                            <h2 class="single-sidebar-widget__title">Tìm kiếm theo Loại hàng</h2>
-
-                            <ul class="single-sidebar-widget__dropdown" id="single-sidebar-widget__dropdown">
-                                <li class="has-children"><a href="shop-left-sidebar.html">Bathroom</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Bathroom Accessories</a></li>
-                                        <li><a href="shop-left-sidebar.html">Bathroom Storage</a></li>
-                                        <li><a href="shop-left-sidebar.html">Bathroom Textiles</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="shop-left-sidebar.html">Bedroom</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Bedroom Lighting</a></li>
-                                        <li><a href="shop-left-sidebar.html">Bedroom Textiles & Rugs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Beds</a></li>
-                                        <li><a href="shop-left-sidebar.html">Wardrobes</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="shop-left-sidebar.html">Dining Room</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Dining Chairs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Dining sets</a></li>
-                                        <li><a href="shop-left-sidebar.html">Dining Tables</a></li>
-                                        <li><a href="shop-left-sidebar.html">Stools & Benches</a></li>
-                                    </ul>
-                                </li>
-                                <li class="has-children"><a href="shop-left-sidebar.html">Living Room</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-left-sidebar.html">Armchairs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Cabinets</a></li>
-                                        <li><a href="shop-left-sidebar.html">Chairs</a></li>
-                                        <li><a href="shop-left-sidebar.html">Decorative Lighting</a></li>
-                                        <li><a href="shop-left-sidebar.html">Footstools</a></li>
-                                        <li><a href="shop-left-sidebar.html">Living Room Lighting</a></li>
-                                        <li><a href="shop-left-sidebar.html">Sofas</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="shop-left-sidebar.html">Outdoor</a></li>
-                                <li><a href="shop-left-sidebar.html">Uncategorized</a></li>
-                            </ul>
-                        </div>
-
-                        <!--=======  End of single sidebar widget  =======-->
-
-                        <!--=======  single sidebar widget  =======-->
-
-                        <div class="single-sidebar-widget">
-                            <h2 class="single-sidebar-widget__title">Tìm kiếm theo Thương hiệu</h2>
-                            <ul class="single-sidebar-widget__dropdown">
-                                <li><a href="shop-left-sidebar.html">Alexa</a></li>
-                                <li><a href="shop-left-sidebar.html">Benington</a></li>
-                                <li><a href="shop-left-sidebar.html">Candice</a></li>
-                                <li><a href="shop-left-sidebar.html">Juliet Rowley</a></li>
-                                <li><a href="shop-left-sidebar.html">Olivia Shayn</a></li>
-                                <li><a href="shop-left-sidebar.html">Sarah Stencil</a></li>
-                            </ul>
-                        </div>
-
-                        <!--=======  End of single sidebar widget  =======-->
-                    </div>
-
-                    <!--=======  End of shop sidebar wrapper  =======-->
-                </div>
-
-                <div class="col-lg-9 order-1 order-lg-2">
+                <div class="col-lg-12 order-1 order-lg-2">
                     <!--=======  shop content wrapper  =======-->
 
                     <div class="shop-content-wrapper">
@@ -131,31 +44,44 @@
                                 <div class="col-sm-6 col-12">
                                     <!--=======  header left content  =======-->
 
-                                    <div class="shop-header__left">
+                                    {{-- <div class="shop-header__left">
                                         <p class="result-text d-inline-block mb-0">Hiển thị 1–9 trong số 50 kết quả</p>
-                                    </div>
+                                    </div> --}}
 
                                     <!--=======  End of header left content  =======-->
                                 </div>
 
                                 <div class="col-sm-6 col-12">
-
-                                    <!--=======  header right content  =======-->
-
-                                    <div class="shop-header__right d-flex justify-content-start justify-content-sm-end align-items-center">
-                                        <div class="sort-by-dropdown">
-                                            <select name="sort-by" id="sort-by" class="nice-select">
-                                                <option value="0">Sắp xếp</option>
-                                                <option value="0">Sort By Average Rating</option>
-                                                <option value="0">Sort By Newness</option>
-                                                <option value="0">Sort By Price: Low to High</option>
-                                                <option value="0">Sort By Price: High to Low</option>
-                                            </select>
+                                    <form action="{{ route('shop')}}" method="get">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="">Tìm kiếm theo tên</label>
+                                            <input type="text" class="form-control" name="title" id="title"  placeholder="Nhập tìm kiếm...">
                                         </div>
-                                    </div>
-
-                                    <!--=======  End of header right content  =======-->
-
+                                        <div div class="shop-header__right d-flex justify-content-start justify-content-sm-end align-items-center">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort" id="exampleRadios1" value="price" checked>
+                                                <label class="form-check-label" for="exampleRadios1">Giá</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="title">
+                                                <label class="form-check-label" for="exampleRadios2">Tên</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort" id="exampleRadios2" value="updated_at">
+                                                <label class="form-check-label" for="exampleRadios2">Mới/Cũ</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort_by" id="exampleRadios1" value="desc" checked>
+                                                <label class="form-check-label" for="exampleRadios1">Giảm dần</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="sort_by" id="exampleRadios2" value="asc">
+                                                <label class="form-check-label" for="exampleRadios2">Tăng dần</label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary my-1">Tìm kiếm</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -185,9 +111,9 @@
                                     </div>
                                     <div class="single-grid-product__content">
                                         <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{$item->title}}</a></h3>
-                                        @if($item->discount == '')
+                                        @if(empty($item->discount))
                                             <div class="price">
-                                                <span class="main-price discounted">{{$item->price}}</span>
+                                                <span class="discounted-price">{{$item->price}}</span>
                                             </div>
                                         @else
                                             <div class="price">
