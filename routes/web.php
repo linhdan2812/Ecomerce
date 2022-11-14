@@ -94,7 +94,7 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
     Route::prefix('product/')->group(function () {
 
         Route::get('list', [ProductController::class, 'list'])->name('admin.product.list');
-
+        Route::get('export/', [ProductController::class, 'export'])->name('product.export');;
         Route::get('add', [ProductController::class, 'add'])->name('admin.product.add');
         Route::post('add', [ProductController::class, 'saveAdd']);
 
