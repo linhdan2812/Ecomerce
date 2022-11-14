@@ -8,6 +8,8 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -70,5 +72,9 @@ class ProductController extends Controller
         }
         $product->delete();
         return redirect()->back();
+    }
+    public function export() 
+    {
+        return Excel::download(new ProductExport, 'get.csv');
     }
 }
