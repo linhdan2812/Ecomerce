@@ -73,8 +73,9 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back();
     }
-    public function export() 
+    public function export(Request $request) 
     {
-        return Excel::download(new ProductExport, 'get.csv');
+        $time = $request->input('number');
+        return Excel::download(new ProductExport($time), 'get.csv');
     }
 }
