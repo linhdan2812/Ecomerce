@@ -16,7 +16,8 @@
                                 <table class="cart-table">
                                     <thead>
                                         <tr>
-                                            <th class="product-name" colspan="2">Tên sản phẩm</th>
+                                            <th class="product-name">Tên sản phẩm</th>
+                                            <th class="product-name">Ảnh sản phẩm</th>
                                             <th class="product-price">Giá</th>
                                             <th style="width:15%" class="product-quantity">Số lượng</th>
                                             <th class="product-subtotal">Tổng giá</th>
@@ -29,22 +30,23 @@
                                                     @php $total += $details['price'] * $details['quantity'] @endphp
 
                                             <tr  data-id="{{ $id }}">
-                                                    <td data-th="Product" class="product-thumbnail">
-                                                        <div class="row">
-                                                        {{-- <a href="product-details-basic.html"> --}}
-                                                            <img src="{{asset('storage/'. $details['image'])}}"
-                                                                    width="100" height="100" class="img-responsive" />
-                                                        {{-- </a> --}}
-                                                    </div>
-                                                    </td>
+
                                                     <td data-th="Product" class="product-name">
                                                         <a href="">{{ $details['name'] }}</a>
 {{--                                                        <span class="product-variation">Color: Black</span>--}}
                                                     </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            {{-- <a href="product-details-basic.html"> --}}
+                                                            <img src="{{asset('storage/'. $details['image'])}}"
+                                                                 width="100" height="100" class="img-responsive" />
+                                                            {{-- </a> --}}
+                                                        </div>
+                                                    </td>
 
                                                     <td data-th="Price" class="product-price"><span class="price">${{ $details['price'] }}</span></td>
                                                     <td data-th="Quantity">
-                                                        <input type="number"value="{{ $details['quantity'] }}"
+                                                        <input type="number"value="{{ $details['quantity'] }}" min="1"
                                                             class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
                                                     </td>
                                                     <td data-th="Subtotal" class="total-price"><span class="price"> ${{ $details['price'] * $details['quantity'] }}</span></td>
