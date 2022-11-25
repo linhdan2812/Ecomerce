@@ -35,9 +35,9 @@
 
                         <div class="product-details-slider-area product-details-slider-area--side-move">
 
-                            <div class="product-badge-wrapper">
-                                <span class="hot">Hot</span>
-                            </div>
+{{--                            <div class="product-badge-wrapper">--}}
+{{--                                <span class="hot">Hot</span>--}}
+{{--                            </div>--}}
 
                             <div class="row row-5">
                                 <div class="col-md-9 order-1 order-md-2">
@@ -66,18 +66,18 @@
                                             <div class="single-image">
                                                 <img src="{{asset('storage/'. $productDetail->photo)}}" class="img-fluid" alt="">
                                             </div>
-                                            <div class="single-image">
-                                                <img src="assets/img/products/big1-2.jpg" class="img-fluid" alt="">
-                                            </div>
-                                            <div class="single-image">
-                                                <img src="assets/img/products/big1-3.jpg" class="img-fluid" alt="">
-                                            </div>
-                                            <div class="single-image">
-                                                <img src="assets/img/products/big1-4.jpg" class="img-fluid" alt="">
-                                            </div>
-                                            <div class="single-image">
-                                                <img src="assets/img/products/big1-5.jpg" class="img-fluid" alt="">
-                                            </div>
+{{--                                            <div class="single-image">--}}
+{{--                                                <img src="assets/img/products/big1-2.jpg" class="img-fluid" alt="">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="single-image">--}}
+{{--                                                <img src="assets/img/products/big1-3.jpg" class="img-fluid" alt="">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="single-image">--}}
+{{--                                                <img src="assets/img/products/big1-4.jpg" class="img-fluid" alt="">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="single-image">--}}
+{{--                                                <img src="assets/img/products/big1-5.jpg" class="img-fluid" alt="">--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -104,21 +104,21 @@
                 {"breakpoint":575, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} },
                 {"breakpoint":479, "settings": {"slidesToShow": 2, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} }
             ]'>
-                                        <div class="single-image">
-                                            <img src="{{asset('storage/'. $productDetail->photo)}}" class="img-fluid" alt="">
-                                        </div>
-                                        <div class="single-image">
-                                            <img src="assets/img/products/big1-2.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <div class="single-image">
-                                            <img src="assets/img/products/big1-3.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <div class="single-image">
-                                            <img src="assets/img/products/big1-4.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <div class="single-image">
-                                            <img src="assets/img/products/big1-5.jpg" class="img-fluid" alt="">
-                                        </div>
+{{--                                        <div class="single-image">--}}
+{{--                                            <img src="{{asset('storage/'. $productDetail->photo)}}" class="img-fluid" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="single-image">--}}
+{{--                                            <img src="assets/img/products/big1-2.jpg" class="img-fluid" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="single-image">--}}
+{{--                                            <img src="assets/img/products/big1-3.jpg" class="img-fluid" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="single-image">--}}
+{{--                                            <img src="assets/img/products/big1-4.jpg" class="img-fluid" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="single-image">--}}
+{{--                                            <img src="assets/img/products/big1-5.jpg" class="img-fluid" alt="">--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -135,20 +135,18 @@
                         <div class="product-details-description-wrapper">
                             <h2 class="item-title">{{$productDetail->title}}</h2>
                             <p class="price">
-                                <span class="main-price discounted">{{$productDetail->price}}</span>
+                                <span class="main-price">{{$productDetail->price}}</span>
                                 <span class="discounted-price">{{$productDetail->discount ?? null}}</span>
                             </p>
-
-                            <p class="description">{{$productDetail->description ?? null}}</p>
-
+                            <p class="description">{{$productDetail->description ?? ''}}</p>
                             <div class="add-to-cart-btn d-inline-block">
-                                <a class="theme-button theme-button--alt" href="{{ route('add.to.cart', $productDetail->id) }}">BUY NOW</a>
+                                <a class="theme-button theme-button--alt" href="{{ route('add.to.cart', $productDetail->id) }}">Thêm vào giỏ hàng</a>
                             </div>
 
                             <div class="quick-view-other-info">
                                 <div class="other-info-links">
-                                    <a href="{{ route('postWishlist',['id'=> $productDetail->id]) }}"><i class="fa fa-heart-o"></i> ADD TO WISHLIST</a>
-                                    <a href="javascript:void(0)"><i class="fa fa-exchange"></i> COMPARE</a>
+                                    <a href="{{ route('postWishlist',['id'=> $productDetail->id]) }}"><i class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>
+                                    <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a>
                                 </div>
 
                                 <div class="product-brand">
@@ -159,37 +157,37 @@
 
                                 <table>
                                     <tr class="single-info">
-                                        <td class="quickview-title">Brand: </td>
-                                        <td class="quickview-value">{{$productDetail->brand_id ?? null}}</td>
-                                    </tr>
-                                    <tr class="single-info">
-                                        <td class="quickview-title">SKU: </td>
-                                        <td class="quickview-value">12345</td>
-                                    </tr>
-                                    <tr class="single-info">
-                                        <td class="quickview-title">Categories: </td>
-                                        <td class="quickview-value">
-                                            <a href="#">{{$productDetail->category_id ?? null}}</a>
+                                        <td class="quickview-title">
+                                            Thương hiệu: {{$productDetail->brand->name ?? null}}
                                         </td>
                                     </tr>
+{{--                                    <tr class="single-info">--}}
+{{--                                        <td class="quickview-title">SKU: </td>--}}
+{{--                                        <td class="quickview-value">12345</td>--}}
+{{--                                    </tr>--}}
                                     <tr class="single-info">
-                                        <td class="quickview-title">Tags: </td>
-                                        <td class="quickview-value">
-                                            <a href="#">Decor</a>,
-                                            <a href="#">Light</a>
+                                        <td class="quickview-title">
+                                            Danh mục sản phẩm: <a href="#">{{$productDetail->category->title ?? null}}</a>
                                         </td>
                                     </tr>
-                                    <tr class="single-info">
-                                        <td class="quickview-title">Share on: </td>
-                                        <td class="quickview-value">
-                                            <ul class="quickview-social-icons">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                            </ul>
-                                        </td>
-                                    </tr>
+{{--                                    <tr class="single-info">--}}
+{{--                                        <td class="quickview-title">Tags: </td>--}}
+{{--                                        <td class="quickview-value">--}}
+{{--                                            <a href="#">Decor</a>,--}}
+{{--                                            <a href="#">Light</a>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                    <tr class="single-info">--}}
+{{--                                        <td class="quickview-title">Share on: </td>--}}
+{{--                                        <td class="quickview-value">--}}
+{{--                                            <ul class="quickview-social-icons">--}}
+{{--                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>--}}
+{{--                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>--}}
+{{--                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>--}}
+{{--                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
                                 </table>
                             </div>
                         </div>
@@ -212,9 +210,9 @@
             @endif
             <div class="description-tab-navigation">
                 <div class="nav nav-tabs justify-content-center" id="nav-tab2" role="tablist">
-                    <a class="nav-item nav-link active" id="description-tab" data-toggle="tab" href="#product-description" role="tab" aria-selected="true">DESCRIPTION</a>
-                    <a class="nav-item nav-link" id="additional-info-tab" data-toggle="tab" href="#product-additional-info" role="tab" aria-selected="false">ADDITIONAL INFORMATION</a>
-                    <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#product-review" role="tab" aria-selected="false">REVIEWS ({{$listComments->count()}})</a>
+                    <a class="nav-item nav-link active" id="description-tab" data-toggle="tab" href="#product-description" role="tab" aria-selected="true">Chi tiết sản phẩm</a>
+                    <a class="nav-item nav-link" id="additional-info-tab" data-toggle="tab" href="#product-additional-info" role="tab" aria-selected="false">Thông tin bổ sung</a>
+                    <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#product-review" role="tab" aria-selected="false">Đánh giá ({{$listComments->count()}})</a>
                 </div>
             </div>
 
@@ -368,7 +366,7 @@
                     <div class="col-lg-12">
 
                         <div class="section-title-area text-center">
-                            <h2 class="section-title">RELATED PRODUCTS</h2>
+                            <h2 class="section-title">Sản phẩm liên quan</h2>
                         </div>
                     </div>
                 </div>
@@ -400,13 +398,13 @@
 
                                         <div class="single-grid-product">
                                             <div class="single-grid-product__image">
-                                                <div class="product-badge-wrapper">
-                                                    <span class="onsale">-17%</span>
-                                                    <span class="hot">Hot</span>
-                                                </div>
-                                                <a href="product-details-basic.html" class="image-wrap">
-                                                    <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="">
-                                                    <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="">
+{{--                                                <div class="product-badge-wrapper">--}}
+{{--                                                    <span class="onsale">-17%</span>--}}
+{{--                                                    <span class="hot">Hot</span>--}}
+{{--                                                </div>--}}
+                                                <a href="{{ route('detailProduct',['id'=> $item->id]) }}" class="image-wrap">
+                                                    <img src="{{asset('storage/'. $item->photo)}}" class="img" alt="" height="400px">
+{{--                                                    <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="">--}}
                                                 </a>
                                                 <div class="product-hover-icon-wrapper">
                                                     <span class="single-icon single-icon--quick-view"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="fa fa-search"></i></a></span>
@@ -415,8 +413,8 @@
                                                 </div>
                                             </div>
                                             <div class="single-grid-product__content">
-                                                <h3 class="title"><a href="product-details-basic.html">{{ $item->title }}</a></h3>
-                                                <div class="price"><span class="main-price discounted">{{ $item->price }}</span> <span class="discounted-price">{{ $item->discount }}</span></div>
+                                                <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{ $item->title }}</a></h3>
+                                                <div class="price"><span class="main-price">{{ $item->price }}</span> <span class="discounted-price">{{ $item->discount }}</span></div>
                                                 <div class="rating">
                                                     <i class="fa fa-star active"></i>
                                                     <i class="fa fa-star active"></i>
@@ -424,13 +422,13 @@
                                                     <i class="fa fa-star active"></i>
                                                     <i class="fa fa-star"></i>
                                                 </div>
-                                                <div class="color">
-                                                    <ul>
-                                                        <li><a class="active" href="#" data-tippy="Black" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker black"></span></a></li>
-                                                        <li><a href="#" data-tippy="Blue" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker blue"></span></a></li>
-                                                        <li><a href="#" data-tippy="Brown" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker brown"></span></a></li>
-                                                    </ul>
-                                                </div>
+{{--                                                <div class="color">--}}
+{{--                                                    <ul>--}}
+{{--                                                        <li><a class="active" href="#" data-tippy="Black" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker black"></span></a></li>--}}
+{{--                                                        <li><a href="#" data-tippy="Blue" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker blue"></span></a></li>--}}
+{{--                                                        <li><a href="#" data-tippy="Brown" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker brown"></span></a></li>--}}
+{{--                                                    </ul>--}}
+{{--                                                </div>--}}
                                                 <a href="#" class="favorite-icon" data-tippy="Add to Wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left">
                                                     <i class="fa fa-heart-o"></i>
                                                     <i class="fa fa-heart"></i>

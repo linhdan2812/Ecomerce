@@ -186,7 +186,7 @@ class ShopController extends Controller
     }
     public function detailProduct($id)
     {
-        $productDetail = Product::where('id', $id)->first();
+        $productDetail = Product::query()->with('brand','category')->where('id', $id)->first();
         $listSameProducts = Product::where('category_id', $productDetail->category_id)->get();
         $listComments = Comment::where('product_id', $id)->where('status', 1)->get();
         return view('client.detail-product',compact('productDetail','listSameProducts','listComments'));
