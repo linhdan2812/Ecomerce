@@ -19,22 +19,21 @@
                         </div>
                         <div class="form-group">
                             <label for="">Mô tả tóm tắt</label>
-                            <input type="text" name="summary" value="{{ $product->summary }}" class="form-control">
+                            <textarea class="form-control" style="height: 10rem;" name="summary">{{ old('summary', $product->summary) }}</textarea>
                             @error('summary')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Chi tiết sản phẩm</label>
-                            <input type="text" name="description" value="{{ $product->description }}"
-                                class="form-control">
-                                @error('description')
+                            <textarea class="ckeditor form-control" name="description" value="">{{ $product->description }}</textarea>
+                            @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Ảnh</label>
-                            <input type="file" name="photo" value="{{ old($product->photo) }}" class="form-control">
+                            <input type="file" name="photo" value="{{ $product->photo }}" class="form-control">
                             @error('photo')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -61,26 +60,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="">Giảm giá</label>
-                            <input type="text" name="discount" value="{{ $product->discount }}" class="form-control">
-                            @error('discount')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="category_id">Loại hàng</label>
                             <select class="form-control" name="category_id" value="{{ $product->category_id }}"
                                 id="category_id">
                                 @foreach ($categories as $item)
                                     <option value="<?= $item->id ?>"><?= $item->title ?></option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="brand_id">Thương hiệu</label>
-                            <select class="form-control" name="brand_id" value="{{ $product->brand_id }}" id="brand_id">
-                                @foreach ($brands as $item)
-                                    <option value="<?= $item->id ?>"><?= $item->id ?></option>
                                 @endforeach
                             </select>
                         </div>
@@ -97,4 +81,11 @@
             </div>
         </div>
     </div>
+
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection

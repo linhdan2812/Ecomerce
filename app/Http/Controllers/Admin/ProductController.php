@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\SaveProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -51,7 +52,7 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('product', 'brands', 'categories'));
     }
 
-    public function saveEdit($id, ProductRequest $request)
+    public function saveEdit($id, SaveProductRequest $request)
     {
         $product = Product::find($id);
         $product->fill($request->all());

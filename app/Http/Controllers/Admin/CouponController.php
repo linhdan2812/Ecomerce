@@ -105,6 +105,7 @@ class CouponController extends Controller
                                       'code.required'          => 'Hãy nhập mã giảm giá',
                                       'code.unique'            => 'Mã giảm giá đã tồn tại',
                                       'code.max'               => 'Mã giảm giá dài quá 10 ký tự',
+                                      'type.required'          => 'Hãy nhập loại giảm giá',
                                       'value.required'         => 'Hãy nhập giá muốn giảm',
                                       'value.numeric'          => 'Hãy nhập số',
                                       'expired_at.required'    => 'Hãy chọn ngày',

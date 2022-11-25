@@ -20,7 +20,7 @@
 
                         <div class="form-group">
                             <label for="">Mô tả tóm tắt</label>
-                            <input type="text" name="summary" class="form-control">
+                            <textarea name="summary" class="form-control" style="height: 10rem;"></textarea>
                             @error('summary')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -28,7 +28,7 @@
 
                         <div class="form-group">
                             <label for="">Chi tiết sản phẩm</label>
-                            <input type="text" name="description" class="form-control">
+                            <textarea class="ckeditor form-control" name="description"></textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -60,16 +60,8 @@
 
                         <div class="form-group">
                             <label for="">Giá</label>
-                            <input type="text" name="price" class="form-control">
+                            <input  name="price" class="form-control">
                             @error('price')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Giảm giá</label>
-                            <input type="text" name="discount" class="form-control">
-                            @error('discount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -99,4 +91,12 @@
             </div>
         </div>
     </div>
+
+
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection

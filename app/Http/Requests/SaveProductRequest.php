@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductRequest extends FormRequest
+class SaveProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -36,7 +36,6 @@ class ProductRequest extends FormRequest
                 'required'
             ],
             'photo' => [
-                'required',
                 'mimes:jpg,png'
             ],
             'stock' => [
@@ -59,6 +58,7 @@ class ProductRequest extends FormRequest
         ];
         return $formRules;
     }
+
     public function messages()
     {
         $message = [
@@ -66,7 +66,6 @@ class ProductRequest extends FormRequest
             'title.unique' => 'Tên đã tồn tại',
             'summary.required' => 'Hãy nhập tóm tắt',
             'description.required' => 'Hãy nhập nội dung chi tiết',
-            'photo.required' => 'Hãy nhập ảnh sản phẩm',
             'photo.mimes' => 'Hãy chọn đúng file ảnh',
             'stock.required' => 'Hãy nhập tên số lượng trong kho',
             'stock.integer' => 'Số lượng phải là số',
