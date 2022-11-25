@@ -15,6 +15,7 @@ use App\Models\Coupon;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ShopController extends Controller
 {
@@ -27,7 +28,11 @@ class ShopController extends Controller
         $page = $request['page'] ?? '';
         $keyword = $request['title'] ?? '';
         $sort_by = $request['sort_by'] ?? 'asc';
-        $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)->take($page)->limit((int)$perPage * (int)$page)->paginate((int)$page);
+        $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)
+        // ->take($page)->limit((int)$perPage * (int)$page)
+        ->simplePaginate(
+            $perPage = 15, $columns = ['*'], $pageName = 'Shop'
+        );
         return view('client.shop.list', compact('products'));
     }
     // public function index()
@@ -172,6 +177,8 @@ class ShopController extends Controller
             'addressdetail' => $request->input('addressdetail')
         ];
         $orders = Order::create($inputs);
+        // Sử lý QrCode
+        QrCode::size(250)->generate('ItSolutionStuff.com');
         Session::flash('success');
         session('cart')->flush();
         return redirect('/');
@@ -179,7 +186,7 @@ class ShopController extends Controller
     }
     public function detailProduct($id)
     {
-        $productDetail = Product::where('id', $id)->first();
+        $productDetail = Product::query()->with('brand','category')->where('id', $id)->first();
         $listSameProducts = Product::where('category_id', $productDetail->category_id)->get();
         $listComments = Comment::where('product_id', $id)->where('status', 1)->get();
         return view('client.detail-product',compact('productDetail','listSameProducts','listComments'));

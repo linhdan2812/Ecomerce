@@ -18,7 +18,7 @@
                                 <th scope="col">Thanh toán</th>
                                 <th scope="col">Chi tiết đơn hàng</th>
                                 <th scope="col">Tình trạng đơn hàng</th>
-
+                                <th><a class="btn btn-success" href="{{ route('product.export') }}">Xuất file CSV</a></th>
                             </tr>
                         </thead>
                         <tbody>

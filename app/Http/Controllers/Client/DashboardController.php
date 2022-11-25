@@ -25,7 +25,8 @@ class DashboardController extends Controller
         $user_id = Auth()->user()->id ?? null;
         $bannerSlide = Banner::query()->where('status','=','active')->orderBy('created_at', 'DESC')->limit(5)->get();
         $arrivals = Arrival::all();
-        return view('client.index',compact('bannerSlide','arrivals'));
+        $products = Product::all();
+        return view('client.index',compact('bannerSlide','arrivals', 'products'));
     }
     public function myaccount() {
 
