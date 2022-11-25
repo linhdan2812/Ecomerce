@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Exports\ProductExport;
+use App\Http\Requests\ExportRequest;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -73,7 +74,7 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back();
     }
-    public function export(Request $request) 
+    public function export(ExportRequest $request) 
     {
         $time = $request->input('number');
         return Excel::download(new ProductExport($time), 'get.csv');
