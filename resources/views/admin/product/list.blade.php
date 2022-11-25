@@ -29,7 +29,7 @@
               <td>{{ $item->title }}</td>
               <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="100"></td>
               <td>{{ $item->size }}</td>
-              <td>{{ $item->price }}</td>
+              <td>{{ $item->price }} VNĐ</td>
               <td>{{ $item->category->title }}</td>
               <td>{{ $item->status == 'inactive' ? 'Không hoạt động' : 'Hoạt động'}}</td>
               <td>

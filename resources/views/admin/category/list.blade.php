@@ -29,7 +29,7 @@
                                 <tr>
                                     <th scope="row">{{$stt++}}</th>
                                     <td>{{$item->title}}</td>
-                                    <td>{{$item->summary}}</td>
+                                    <td>{!! $item->summary !!}</td>
                                     @if( $item->status == 'inactive')
                                         <td>Không hoạt động</td>
                                     @else

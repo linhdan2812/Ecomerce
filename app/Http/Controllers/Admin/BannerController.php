@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddBannerRequest;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class BannerController extends Controller
         return view('admin.banners.add');
     }
 
-    public function saveAdd(Request $request)
+    public function saveAdd(AddBannerRequest $request)
     {
         $banner = new Banner();
         $banner->fill($request->all());
