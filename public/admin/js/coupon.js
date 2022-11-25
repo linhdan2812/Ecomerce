@@ -1,4 +1,3 @@
-// alert("hello");
 const money = document.querySelector('#money')
 // const
 const _MONEY = "fixed"
