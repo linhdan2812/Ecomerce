@@ -22,14 +22,6 @@
               <!-- <th scope="col">Thương hiệu</th> -->
               <th scope="col">Trạng thái</th>
               <th><a class="btn btn-success" href="{{ route('admin.product.add') }}">Thêm mới</a></th>
-              <th>
-                <form action="{{ route('product.export') }}">
-                @csrf
-                  <button class="btn btn-success">
-                    Xuất file CSV
-                  </button>
-                </form>
-              </th>
             </tr>
           </thead>
           @php
