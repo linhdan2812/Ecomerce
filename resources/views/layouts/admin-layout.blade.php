@@ -86,12 +86,12 @@
                             <p>Giảm giá</p>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Cài đặt</p>
-                        </a>
-                    </li>
+{{--                    <li>--}}
+{{--                        <a class="nav-link" href="">--}}
+{{--                            <i class="nc-icon nc-bell-55"></i>--}}
+{{--                            <p>Cài đặt</p>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </div>
