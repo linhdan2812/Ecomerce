@@ -4,14 +4,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h2>Danh sách banner</h2>
+                <h2>Danh sách banner slide</h2>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Tiêu đề</th>
                             <th scope="col">Ảnh</th>
-                            <th scope="col">Mô tả</th>
                             <th scope="col">Trạng thái</th>
                             <th scope="col"><a class="btn btn-success" href="{{ route('admin.banner.add') }}">Thêm mới</a></th>
                         </tr>
@@ -20,9 +18,7 @@
                         @foreach ($banners as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->title }}</td>
                             <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="250"></td>
-                            <td>{{ $item->description }}</td>
                             @if( $item->status == 'inactive')
                             <td>Không hoạt động</td>
                             @else

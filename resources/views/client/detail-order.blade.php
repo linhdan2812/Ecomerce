@@ -3,17 +3,24 @@
    <div class="col-lg-9">
         <div class="main-content">
             <div class="wrap-process-order">
+                @if(Session::has('msg'))
+                    <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
+                @endif
                 <div class="top">
                     <h3 class="head-page">Chi tiết đơn hàng</h3>
-                    @if($detailorder->status == 'Đang xử lý' && $detailorder->payment_status == 'Đang xử lý')
+                    @if($detailorder->status_order == 'pending')
                         <div class="right">
-                            <button class="btn-second gray" id ="cancelorder" data-toggle="modal" data-target="#modal-cancel">Hủy đơn hàng</button>
-                            <input type="hidden" name="detailorderid" value="{{ $detailorder->id }}" id="detailorderid">
+                            <a href="{{route('cancel.order',['id' => $detailorder->id])}}" class="btn-second gray">Hủy đơn hàng</a>
+                        </div>
+                    @endif
+                    @if($detailorder->status_order == 'success')
+                        <div class="right">
+                            <a href="{{route('error.order',['id' => $detailorder->id])}}" class="btn-second warning">Báo lỗi</a>
                         </div>
                     @endif
                 </div>
                 <div class="order-info">
-                    <span class="code">Đơn hàng: {{ $detailorder->order_number}}</span>
+                    <span class="code">Đơn hàng: {{ $detailorder->vnp_TxnRef}}</span>
                     <span class="time">Ngày đặt hàng: {{ $detailorder->created_at}}</span>
                 </div>
                 <div class="order-process">
@@ -22,7 +29,7 @@
                         <p>Đang xử lý</p>
                     </div>
                     <div class="item">
-                        <div class="icon"><img src="images/ic-process2.png" alt=""></div>
+                        <div class="icon"><i class="fal fa-check-circle"></i><img src="images/ic-process2.png" alt=""></div>
                         <p>Đang giao hàng</p>
                     </div>
                     <div class="item">
@@ -39,40 +46,40 @@
                             <th class="text-right">Thành tiền</th>
                         </tr>
                         <tr>
-                            <td>
-                                <div class="item-cart v2">
-                                    <a href="" class="img"><img src="images/book-pay1.jpg" alt=""></a>
-                                    <div class="ct">
-                                        <h3 class="title">
-                                            <a href="" title="">Giáo trình Hán ngữ 1 + 2 - Phiên bản tiếng Trung Dương Châu</a>
-                                        </h3>
-                                    </div>
-                                </div>    
-                            </td>
-                            <td align="center">268.000 đ</td>
-                            <td align="center">
-                                1
-                            </td>
-                            <td align="right">268.000 đ</td>
+                            @foreach($test as $key)
+                                <td>
+                                    <div class="item-cart v2">
+                                        <a class="img"><img src="{{asset('storage/'.$key['image'])}}" width="70" alt=""></a>
+                                        <div class="ct">
+                                            <h3 class="title">
+                                                <a href="" title="">{{$key['name']}}</a>
+                                            </h3>
+                                        </div>
+                                    </div>    
+                                </td>
+                                <td align="center">{{$key['price']}} VND</td>
+                                <td align="center">{{$key['quantity']}}</td>
+                                <td align="right">{{$key['price'] * $key['quantity']}} VND</td>
+                            @endforeach
                         </tr>
                     </table>
                 </div>
                 <ul class="order-total">
-                    <li>Tổng tiền hàng:  <span>{{ $detailorder->sub_total}}</span></li>
+                    <li>Tổng tiền hàng:  <span>{{ $detailorder->vnp_Amount}}</span></li>
                     <li>Giảm giá:  <span>{{ $detailorder->coupon ?? 0 }}</span></li>
                     <li>Phí vận chuyển:  <span>{{ $detailorder->shipping_id ?? 0}}</span></li>
-                    <li>Tổng số tiền:  <b>{{ $detailorder->total_amount}}</b></li>
-                    <li>Phương thức thanh toán <small>{{ $detailorder->payment_method}}</small></li>
+                    <li>Tổng số tiền:  <b>{{ $detailorder->vnp_Amount}}</b></li>
+                    <li>Phương thức thanh toán <small>{{ $detailorder->vnp_CardType}}</small></li>
                 </ul>
                 <div class="order-address-person">
                     <p class="title">địa chỉ nhận hàng</p>
                     <ul>
-                        <li><span>Họ và tên:</span>{{ $detailorder->name ?? null}}</li>
-                        <li><span>Số Điện thoại:</span>{{ $detailorder->phone ?? null}}</li>
-                        <li><span>Địa chỉ:</span>{{ $detailorder->addressdetail ?? null}}</li>
+                        <li><span>Họ và tên:</span>{{ $detailorder->vnp_Bill_FirstName . ' ' . $detailorder->vnp_Bill_LastName ?? null}}</li>
+                        <li><span>Số Điện thoại:</span>{{ $detailorder->vnp_Bill_Mobile ?? null}}</li>
+                        <li><span>Địa chỉ:</span>{{ $detailorder->vnp_Bill_Address ?? null}}</li>
                     </ul>
                     <div class="back-order">
-                        <a href="javascript:;" title=""><i class="far fa-long-arrow-alt-left"></i> <span>Trở về đơn hàng</span></a>
+                        <a href="{{route('orders')}}" title=""><i class="far fa-long-arrow-alt-left"></i> <span>Trở về đơn hàng</span></a>
                     </div>
                 </div>
             </div>

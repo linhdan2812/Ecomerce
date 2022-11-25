@@ -5,66 +5,49 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Danh sách đơn hàng</h2>
+                @if(Session::has('msg'))
+                    <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
+                @endif
                 <div>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">order_number</th>
-                                <th scope="col">user</th>
-                                <th scope="col">sub_total</th>
-                                <th scope="col">shipping_id</th>
-                                <th scope="col">coupon</th>
-                                <th scope="col">total_amount</th>
-                                <th scope="col">quantity</th>
-                                <th scope="col">payment_method</th>
-                                <th scope="col">payment_status</th>
-                                <th scope="col">status</th>
-                                <th scope="col">name</th>
-                                <th scope="col">email</th>
-                                <th scope="col">phone</th>
-                                <th scope="col">post_code</th>
-                                <th scope="col">city</th>
-                                <th scope="col">district</th>
-                                <th scope="col">ward</th>
-                                <th scope="col">address_detail</th>
-                                <th scope="col">
-                                    <a href="" class="btn btn-success">Thêm mới</a>
-                                </th>
+                                <th scope="col">Đơn hàng</th>
+                                <th scope="col">Người mua</th>
+                                <th scope="col">Thanh toán</th>
+                                <th scope="col">Chi tiết đơn hàng</th>
+                                <th scope="col">Tình trạng đơn hàng</th>
+                                <th><a class="btn btn-success" href="{{ route('product.export') }}">Xuất file CSV</a></th>
                             </tr>
                         </thead>
-                        @php
-                        $stt = 1;
-                        @endphp
                         <tbody>
-                            @foreach($orders as $item)
+                            @foreach($orders as $order)
                             <tr>
-                                <th scope="row">{{$stt++}}</th>
-                                <td>{{$item->order_number}}</td>
-                                <td>{{$item->user_id}}</td>
-                                <td>{{$item->sub_total}}</td>
-                                <td>{{$item->shipping_id}}</td>
-                                <td>{{$item->coupon}}</td>
-                                <td>{{$item->total_amount}}</td>
-                                <td>{{$item->quantity}}</td>
-                                <td>{{$item->payment_method}}</td>
-                                <td>{{$item->payment_status}}</td>
-                                <td>{{$item->status}}</td>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->email}}</td>
-                                <td>{{$item->phone}}</td>
-                                <td>{{$item->post_code}}</td>
-                                <td>{{$item->city}}</td>
-                                <td>{{$item->district}}</td>
-                                <td>{{$item->ward}}</td>
-                                <td>{{$item->addressdetail}}</td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$order->vnp_TxnRef}}</td>
+                                <td>{{$order->vnp_Bill_FirstName . ' ' . $order->vnp_Bill_LastName}}</td>
+                                @if($order->vnp_TransactionStatus == '00')
+                                <td>Đã thanh toán thành công</td>
+                                @elseif($order->vnp_TransactionStatus == null)
+                                <td>Đã hủy giao dịch</td>
+                                @endif
 
+                                <!-- Chi tiết đơn hàng -->
+                                <td><a href="{{route('admin.order.detail',['id'=>$order->id])}}">Xem</a></td>
 
-
-                                <td>
-                                    <a href="" class="btn btn-warning">Sửa</a>
-                                    <a href="" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">Xóa</a>
-                                </td>
+                                <!-- Trạng thái đơn hàng -->
+                                @if($order->status_order == 'pending' && $order->vnp_TransactionStatus == '00')
+                                <td><a href="{{route('admin.order.stateChange',['id'=>$order->id])}}" class="btn btn-warning">Đang xử lý</a></td>
+                                @elseif($order->status_order == 'confirm' && $order->vnp_TransactionStatus == '00')
+                                <td>Đã xác nhận</td>
+                                @elseif( ( $order->status_order == 'cancel' || $order->status_order == 'pending' ) && ( $order->vnp_TransactionStatus == '00' || $order->vnp_TransactionStatus == null ))
+                                <td><a href="" class="btn btn-danger">Đã hủy đơn hàng</a></td>
+                                @elseif($order->status_order == 'shipping' && $order->vnp_TransactionStatus == '00')
+                                <td><a href="{{route('admin.order.stateChange',['id'=>$order->id])}}" class="btn btn-info">Đang giao hàng</a></td>
+                                @elseif($order->status_order == 'success' && $order->vnp_TransactionStatus == '00')
+                                <td><a href="" class="btn btn-success">Đã giao hàng</a></td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

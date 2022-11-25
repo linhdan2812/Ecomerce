@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 class Order extends Model
 {
     use HasFactory;
@@ -20,6 +20,7 @@ class Order extends Model
         'total_amount',
         'quantity',
         'payment_method',
+        'data',
         'payment_status',
         'status',
         'name',
@@ -29,18 +30,26 @@ class Order extends Model
         'district',
         'ward',
         'addressdetail',
+        'vnp_SecureHash'
     ];
 
     public function shipping(){
-        return $this->hasOne(Shipping::class,'shipping_id');
+        return $this->hasOne(Shipping::class,'id','shipping_id');
     }
 
     public function coupon(){
-        return $this->hasMany(Coupon::class , 'coupon');
+        return $this->hasMany(Coupon::class , 'id');
     }
 
     public function user(){
-        return $this->belongsTo(User::class,'name');
+        return $this->belongsTo(User::class,'user_id');
     }
+    protected function data(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value),
+        );
+    } 
 
 }

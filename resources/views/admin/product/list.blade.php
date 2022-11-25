@@ -1,5 +1,10 @@
 @extends('layouts.admin-layout')
 @section('content')
+<style>
+  #input {
+    width: 25px;
+  }
+</style>
 <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -17,6 +22,15 @@
               <!-- <th scope="col">Thương hiệu</th> -->
               <th scope="col">Trạng thái</th>
               <th><a class="btn btn-success" href="{{ route('admin.product.add') }}">Thêm mới</a></th>
+              <th>
+                <form action="{{ route('product.export') }}">
+                @csrf
+                  <input type="number" name="number" id="number" min="1" max="12" required>
+                  <button class="btn btn-success">
+                    Xuất file CSV
+                  </button>
+                </form>
+              </th>
             </tr>
           </thead>
           @php
@@ -30,12 +44,8 @@
               <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="100"></td>
               <td>{{ $item->size }}</td>
               <td>{{ $item->price }}</td>
-              <td>{{ $item->category->title }}</td>
-              @if( $item->status == 'inactive')
-                <td>Không hoạt động</td>
-              @else
-                <td>Hoạt động</td>
-              @endif
+              {{-- <td>{{ $item->category->title }}</td> --}}
+              <td>{{ $item->status == 'inactive' ? 'Không hoạt động' : 'Hoạt động'}}</td>
               <td>
                 <a class="btn btn-warning" href="{{ route('admin.product.edit', ['id' => $item->id]) }}">Sửa</a>
                 <a class="btn btn-danger" href="{{ route('admin.product.delte', ['id' => $item->id]) }}">Xóa</a>

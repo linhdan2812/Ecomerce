@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\DashboardController;
 use App\Http\Controllers\Location;
 use Illuminate\Http\Request;
@@ -25,3 +26,4 @@ Route::get('getWard',[Location::class,'getWard'])->name('getWard');
 Route::get('deleteAddres/{id}',[Location::class,'deleteAddres'])->name('deleteAddres');
 Route::get('setDefaut/{id}',[Location   ::class,'setDefaut'])->name('setDefaut');
 Route::get('setCancelOrder',[Location::class,'setCancelOrder'])->name('setCancelOrder');
+Route::post('changestatus',[OrderController::class,'changestatus'])->name('changestatus');

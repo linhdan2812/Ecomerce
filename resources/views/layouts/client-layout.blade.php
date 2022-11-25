@@ -44,24 +44,90 @@
     {{ asset('client/account/css/animate.css') }}" type="text/css" rel="stylesheet">
     <link href="
     {{ asset('client/account/css/main.css') }}" type="text/css" rel="stylesheet">
-
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick-theme.css"/>
+    <style>
+        
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          border-radius: 0 !important;
+        }
+        
+        /* Modal Content */
+        .modal-content {
+          position: relative;
+          background-color: #fefefe;
+          margin: auto;
+          padding: 0;
+          border: 1px solid #888 !important;
+          width: 80%;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+          -webkit-animation-name: animatetop;
+          -webkit-animation-duration: 0.4s;
+          animation-name: animatetop;
+          animation-duration: 0.4s;
+          border-radius: 0 !important;
+          border: 1px solid #EBEBEB !important;
+        }
+        
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+          from {top:-300px; opacity:0} 
+          to {top:0; opacity:1}
+        }
+        
+        @keyframes animatetop {
+          from {top:-300px; opacity:0}
+          to {top:0; opacity:1}
+        }
+        
+        /* The Close Button */
+        .close {
+          color: white;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        
+        .modal-header {
+          padding: 2px 16px;
+        }
+        
+        .modal-body {padding: 2px 16px;}
+        .modal-body h1 {font-size: 15; color:red}
+        .modal-footer {
+          padding: 2px 16px;
+        }
+        </style>
 </head>
 
 <body>
-    <!--=======  header offer sticker  =======-->
-
-    <div class="header-offer-sticker text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Sản phẩm mới & Giảm giá lên tới 70%. <a href="">Mua ngay</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--=======  End of header offer sticker  =======-->
-
+@php
+    $user_id = Auth()->user()->id ?? null;
+    $notificationsRead = \DB::table('notifications')->where('user_id',$user_id)->where('read_at',0)->get();
+    $allNotifications = \DB::table('notifications')->where('user_id',$user_id)->get();
+    $wishlists = \DB::table('wishlists')->where('user_id',$user_id)->get();
+@endphp
     <!--====================  header area ====================-->
 
     <div class="header-area header-area--one header-sticky">
@@ -81,7 +147,7 @@
                             </div>
 
                             <div class="header-logo text-center">
-                                <a href="index.html">
+                                <a href="{{ route('home') }}">
                                     <img src="{{asset('client/img/logo.png')}}" class="img-fluid" alt="">
                                 </a>
                             </div>
@@ -93,8 +159,8 @@
 
                                     <ul class="account-dropdown__list">
                                         <li><a href="{{route('myaccount')}}">Tài khoản của tôi</a></li>
-                                        <li><a href="cart.html">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="{{ route('shop') }}">Shopping cart</a></li>
+                                        <li><a href="{{ route('getcheckout') }}">Checkout</a></li>
                                         <li><a href="{{ route('orders') }}">Order Tracking</a></li>
                                         <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                     </ul>
@@ -106,9 +172,13 @@
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>
                                         <li>
-                                            <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count"></span></a></li>
+                                            @if(!empty($notificationsRead))
+                                                <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count">{{$notificationsRead->count() ?? 0}}</span></a></li>
+                                            @endif
                                         <li>
-                                            <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count"></span></a>
+                                            @if(!empty($wishlists))
+                                                <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count">{{$wishlists->count() ?? 0}}</span></a>
+                                            @endif
                                         </li>
                                         <li>
                                             <a href="{{ route('cart') }}"><i class="fa fa-shopping-basket"></i><span class="item-count">{{ count((array) session('cart')) }}</span></a>
@@ -164,7 +234,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="header-logo header-logo--sticky">
-                            <a href="index.html">
+                            <a href="{{ route('home') }}">
                                 <img src="{{asset('client/img/logo-alt.png')}}" class="img-fluid" alt="">
                             </a>
                         </div>
@@ -174,7 +244,7 @@
                             <nav>
                                 <ul>
                                     <li class="">
-                                        <a href="{{route('client.home')}}">Trang chủ</a>
+                                        <a href="{{route('home')}}">Trang chủ</a>
                                     </li>
                                     <li class="">
                                         <a href="{{route('shop')}}">Cửa hàng</a>
@@ -182,84 +252,8 @@
                                     <li class="">
                                         <a href="">Tin tức</a>
                                     </li>
-                                    <!-- <li class="has-children">
-                                        <a href="javascript:void(0)">PAGE</a>
-                                        <ul class="submenu submenu--column-1">
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="contact-us.html">Contact Us</a></li>
-                                            <li><a href="faq.html">F.A.Q</a></li>
-                                            <li><a href="service.html">Our Service</a></li>
-                                        </ul>
-                                    </li> -->
-                                    <!-- <li class="has-children">
-                                        <a href="javascript:void(0)">ELEMENTS</a>
-                                        <ul class="submenu submenu--column-3">
-                                            <li>
-                                                <ul>
-                                                    <li class="megamenu-title">SHOP/PRODUCTS</li>
-                                                    <li><a href="element-product-category.html">Product Categories</a></li>
-                                                    <li><a href="element-product-carousel.html">Products Carousel</a></li>
-                                                    <li><a href="element-product-widget.html">Product Widget</a></li>
-                                                    <li><a href="element-recent-product.html">Recent Products</a></li>
-                                                    <li><a href="element-sale-product.html">Sale Products</a></li>
-                                                    <li><a href="element-featured-product.html">Featured Product</a></li>
-                                                    <li><a href="element-top-rated-product.html">Top Rated Products</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <ul>
-                                                    <li class="megamenu-title">THEMING</li>
-                                                    <li><a href="element-blog-post.html">Blog Posts</a></li>
-                                                    <li><a href="element-mailchimp-form.html">MailChimp Form</a></li>
-                                                    <li><a href="element-accordion-toggles.html">Accordion/Toggles</a></li>
-                                                    <li><a href="element-progress-bar.html">Progress Bars</a></li>
-                                                    <li><a href="element-countdown-timer.html">Countdown Timer</a></li>
-                                                    <li><a href="element-button.html">Buttons</a></li>
-                                                    <li><a href="element-testimonial.html">Testimonials</a></li>
-                                                    <li><a href="element-google-map.html">Google Maps</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="megamenu-image">
-                                                <img src="{{asset('client/img/menu-image/sofa.png')}}" class="img-fluid" alt="">
-                                            </li>
-                                        </ul>
-                                    </li> -->
                                 </ul>
                             </nav>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="header-icon-area header-icon-area--sticky">
-                            <div class="header-icon d-flex justify-content-end">
-                                <ul class="header-icon__list header-icon__list header-icon__list header-icon__list--white-icon">
-                                    <li><a href="javascript:void(0)" id="search-icon-2"><i class="fa fa-search"></i></a></li>
-                                    <li>
-                                        <a href="{{ route('wishlist') }}"><i class="fa fa-heart-o"></i><span class="item-count">1</span></a>
-                                        <div class="minicart-wrapper">
-                                            <p class="minicart-wrapper__title">WISHLIST</p>
-
-                                            <div class="minicart-wrapper__items ps-scroll">
-                                                <div class="minicart-wrapper__items__single">
-                                                    <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
-                                                    <div class="image">
-                                                        <a href="product-details-basic.html">
-                                                            <img src="{{asset('client/img/products/product-1-90x100.jpg')}}" class="img-fluid" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="content">
-                                                        <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
-                                                        <p class="product-calculation"><span class="price">$900</span></p>
-                                                        <a href="javascript:void(0)" class="wishlist-cart-icon"><i class="fa fa-shopping-basket"></i> ADD TO CART</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="minicart-wrapper__buttons mb-0">
-                                                <a href="{{ route('wishlist') }}" class="theme-button theme-button--minicart-button mb-0">VIEW WISHLIST</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -275,6 +269,19 @@
 
     <!--====================  footer ====================-->
 
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/63220ecf54f06e12d894b87b/1gcugjmsq';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
     <div class="footer-area">
         <div class="footer-navigation-area">
             <div class="container wide">
@@ -413,166 +420,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="footer-copyright-area">
-            <div class="container wide">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyright-text text-center">
-                            copyright &copy; 2019 <a href="#">Robin</a>. All Rights Reserved
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!--====================  End of footer  ====================-->
     <!--====================  offcanvas items ====================-->
-
-    <!--=======  offcanvas mobile menu  =======-->
-
-    <div class="offcanvas-mobile-menu" id="offcanvas-mobile-menu">
-        <a href="javascript:void(0)" class="offcanvas-menu-close" id="offcanvas-menu-close-trigger">
-            <i class="pe-7s-close"></i>
-        </a>
-
-        <div class="offcanvas-wrapper">
-
-            <div class="offcanvas-inner-content">
-                <div class="offcanvas-mobile-search-area">
-                    <form action="#">
-                        <input type="search" placeholder="Search ...">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-                <nav class="offcanvas-naviagtion">
-                    <ul>
-                        <li class="menu-item-has-children"><a href="#">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="index.html">Home 01</a></li>
-                                <li><a href="index-2.html">Home 02</a></li>
-                                <li><a href="index-3.html">Home 03</a></li>
-                                <li><a href="index-4.html">Home 04</a></li>
-                                <li><a href="index-5.html">Home 05</a></li>
-                                <li><a href="index-6.html">Home 06</a></li>
-                                <li><a href="index-7.html">Home 07</a></li>
-                                <li><a href="index-8.html">Home 08</a></li>
-                                <li><a href="index-9.html">Home 09</a></li>
-                                <li><a href="instagram-shop.html">Instagram Shop</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children"><a href="#">Page</a>
-                            <ul class="sub-menu">
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                                <li><a href="faq.html">F.A.Q</a></li>
-                                <li><a href="service.html">Our Service</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children"><a href="#">Elements</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item-has-children"><a href="#">Shop/Products</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="element-product-category.html">Product Categories</a></li>
-                                        <li><a href="element-product-carousel.html">Products Carousel</a></li>
-                                        <li><a href="element-product-widget.html">Product Widget</a></li>
-                                        <li><a href="element-recent-product.html">Recent Products</a></li>
-                                        <li><a href="element-sale-product.html">Sale Products</a></li>
-                                        <li><a href="element-featured-product.html">Featured Product</a></li>
-                                        <li><a href="element-top-rated-product.html">Top Rated Products</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children"><a href="#">Theming</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="element-blog-post.html">Blog Posts</a></li>
-                                        <li><a href="element-mailchimp-form.html">MailChimp Form</a></li>
-                                        <li><a href="element-accordion-toggles.html">Accordion/Toggles</a></li>
-                                        <li><a href="element-progress-bar.html">Progress Bars</a></li>
-                                        <li><a href="element-countdown-timer.html">Countdown Timer</a></li>
-                                        <li><a href="element-button.html">Buttons</a></li>
-                                        <li><a href="element-testimonial.html">Testimonials</a></li>
-                                        <li><a href="element-google-map.html">Google Maps</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children"><a href="#">Blog</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item-has-children"><a href="#">Blog post list</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-one-column.html">Blog one column</a> </li>
-                                        <li><a href="blog-two-column.html">Blog two column</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children"><a href="#">Blog post details</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog-post-format-image.html">Blog post format image</a></li>
-                                        <li><a href="blog-post-format-gallery.html">Blog post format gallery</a></li>
-                                        <li><a href="blog-post-format-audio.html">Blog post format audio</a></li>
-                                        <li><a href="blog-post-format-video.html">Blog post format video</a></li>
-                                        <li><a href="blog-post-left-sidebar.html">Blog post left sidebar</a></li>
-                                        <li><a href="blog-post-right-sidebar.html">Blog post right sidebar</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children"><a href="#">Shop</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item-has-children"><a href="#">Shop Pages</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop-fullwidth.html">Shop Fullwidth</a></li>
-                                        <li><a href="shop-list.html">Shop List Layout</a></li>
-                                        <li><a href="shop-no-sidebar.html">Shop No Sidebar</a></li>
-                                        <li><a href="shop-left-sidebar.html">Shop With Left Sidebar</a></li>
-                                        <li><a href="shop-right-sidebar.html">Shop With Right Sidebar</a></li>
-                                        <li><a href="shop-brand.html">Shop By Brand</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item-has-children"><a href="#">Shop Pages(Details)</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="product-details-basic.html">Basic</a></li>
-                                        <li><a href="product-details-fullwidth.html">Fullwidth</a></li>
-                                        <li><a href="product-details-sticky.html">Sticky Details</a></li>
-                                        <li><a href="product-details-bottom-thumbnail.html">Bottom thumbnails</a></li>
-                                        <li><a href="product-details-extra-content.html">Extra content</a></li>
-                                        <li><a href="product-details-variation-image.html">Variations Images</a></li>
-                                        <li><a href="product-details-affiliate.html">Product details affiliate</a></li>
-                                        <li><a href="product-details-group.html">Product details group</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-
-                <div class="offcanvas-widget-area">
-                    <div class="off-canvas-contact-widget">
-                        <div class="header-contact-info">
-                            <ul class="header-contact-info__list">
-                                <li><i class="pe-7s-phone"></i> <a href="tel://12452456012">(1245) 2456 012 </a></li>
-                                <li><i class="pe-7s-mail-open"></i> <a href="mailto:info@yourdomain.com">info@yourdomain.com</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--Off Canvas Widget Social Start-->
-                    <div class="off-canvas-widget-social">
-                        <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
-                        <a href="#" title="Youtube"><i class="fa fa-youtube-play"></i></a>
-                        <a href="#" title="Vimeo"><i class="fa fa-vimeo-square"></i></a>
-                    </div>
-                    <!--Off Canvas Widget Social End-->
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!--=======  End of offcanvas mobile menu  =======-->
 
     <!--====================  End of offcanvas items  ====================-->
     <!--=======  search overlay  =======-->
@@ -614,7 +465,26 @@
     <!--=============================================
     =            JS files        =
     =============================================-->
+    <div id="myModal" class="modal">
 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+            @if(!empty($allNotifications))
+                @foreach ($allNotifications as $item)
+                    <h1>{{ $item->type}}</h1>
+                    <p>{{ $item->data}}</p>
+                @endforeach
+            @endif
+        </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+      
+      </div>
     <!-- Vendor JS -->
     <script src="{{asset('client/js/vendors.js')}}"></script>
 
@@ -622,7 +492,6 @@
     <script src="{{asset('client/js/active.js')}}"></script>
 
     <!--=====  End of JS files ======-->
-
 
     <!-- Revolution Slider JS -->
     <script src="{{asset('client/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
@@ -661,7 +530,56 @@
         {{ asset('client/account/js/datepicker.min.js') }}" type="text/javascript"></script>
     <script src="
         {{ asset('client/account/js/daterangepicker.js') }}" type="text/javascript"></script>
-
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+        $('#notifications').on('click', function(){
+            let url = "{{ route('updateNotification') }}";
+            $.get(url);
+            $('#modalNotification').show();
+        })
+    </script>
+    <script type="text/javascript">
+        window.onload=function(){
+            $('.slider').slick({
+            autoplay:true,
+            autoplaySpeed:1500,
+            arrows:true,
+            prevArrow:'<button type="button" class="slick-prev"></button>',
+            nextArrow:'<button type="button" class="slick-next"></button>',
+            centerMode:true,
+            slidesToShow:3,
+            slidesToScroll:1
+            });
+        };
+    </script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("notifications");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
 </body>
 
 </html>

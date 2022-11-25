@@ -9,7 +9,7 @@ class Address extends Model
 {
     use HasFactory;
     protected $table = 'addresses';
-    protected $fillable = ['name','phone','city','district','ward','detailadress','status','data','user_id'];
+    protected $fillable = ['phone','city','district','ward','detailadress','status','data','user_id'];
     public function user()
     {
         return $this->hasMany(User::class, 'user_id');

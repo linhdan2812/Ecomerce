@@ -8,20 +8,9 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="">Tiêu đề</label>
-                        <input type="text" name="title" class="form-control">
-                    </div>
-                    <div class="form-group">
                         <label for="">Ảnh</label>
                         <input type="file" name="photo" class="form-control">
                         @error('photo')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="">Mô tả</label>
-                        <input type="text" name="description" class="form-control">
-                        @error('description')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

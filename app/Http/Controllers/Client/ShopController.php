@@ -11,15 +11,28 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\Comment;
+use App\Models\Coupon;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['title'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'asc';
+        $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)
+        // ->take($page)->limit((int)$perPage * (int)$page)
+        ->simplePaginate(
+            $perPage = 15, $columns = ['*'], $pageName = 'Shop'
+        );
         return view('client.shop.list', compact('products'));
     }
     // public function index()
@@ -105,27 +118,56 @@ class ShopController extends Controller
         $quantities = $request->input('quantity');
         $names = $request->input('name');
         $subs = $request->input('sub');
+        $coupon = $request->input('coupon');
         $total = $request->input('total');
         $user = User::where('id',$user_id)->first();
         $address = Address::where('user_id',$user_id)->where('status',1)->first();
-        return view('client.shop.checkout',compact('user','quantities','names','subs','total','address'));
+        return view('client.shop.checkout',compact('user','quantities','names','subs','total','coupon','address'));
     }
     // CheckoutRequest $request phải thay cho request
         // Thêm thông tin truyền ra ngoài
     public function postcheckout(Request $request, Response $response)
     {
-        $orders = Order::create([
+        $coupons = Coupon::all();
+        if(array_diff((array) $request->input('coupon'),(array) $coupons)){
+            $coupon = Coupon::where('code',$request->input('coupon'))->first();
+        }
+        if(!empty($coupon)){
+            if($coupon->type == 'fixed'){
+                if ($coupon->minbill <= $request->input('total')){
+                    $subtotal = $request->input('total') - $coupon->value;
+                }else {
+                    $subtotal = $request->input('total');
+                }
+
+            }elseif($coupon->type == 'percent'){
+
+                $subtotal = $request->input('total') * $coupon->value / 100;
+
+            }
+            else{
+
+                $subtotal = $request->input('total') - $coupon->value;
+
+            }
+        }else{
+
+            $subtotal = $request->input('total');
+
+        }
+        $inputs = [
             'order_number' => time(),
             'user_id' => Auth()->user()->id,
-            'sub_total' => $request->input('total'),
+            'sub_total' => $subtotal,
             // 'shipping_id' => 1,
-            'coupon' => 1,
+            'coupon' => $request->input('coupon') ?? null,
             'country' => 1,
             'total_amount'=> $request->input('total'),
             'quantity' => $request->input('quantity'),
             'payment_method' => 1,
             'payment_status'=> 1,
             'status' => 1,
+            'data' => session('cart'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
@@ -133,14 +175,18 @@ class ShopController extends Controller
             'district' => $request->input('district'),
             'ward' => $request->input('ward'),
             'addressdetail' => $request->input('addressdetail')
-        ]);
+        ];
+        $orders = Order::create($inputs);
+        // Sử lý QrCode
+        QrCode::size(250)->generate('ItSolutionStuff.com');
         Session::flash('success');
+        session('cart')->flush();
         return redirect('/');
         // ->setMessage('Thành Công');
     }
     public function detailProduct($id)
     {
-        $productDetail = Product::where('id', $id)->first();
+        $productDetail = Product::query()->with('brand','category')->where('id', $id)->first();
         $listSameProducts = Product::where('category_id', $productDetail->category_id)->get();
         $listComments = Comment::where('product_id', $id)->where('status', 1)->get();
         return view('client.detail-product',compact('productDetail','listSameProducts','listComments'));
