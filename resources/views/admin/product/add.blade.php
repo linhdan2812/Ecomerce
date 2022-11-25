@@ -60,7 +60,7 @@
 
                         <div class="form-group">
                             <label for="">Giá</label>
-                            <input type="text" name="price" class="form-control">
+                            <input  name="price" class="form-control">
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
