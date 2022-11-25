@@ -25,7 +25,6 @@
               <th>
                 <form action="{{ route('product.export') }}">
                 @csrf
-                  <input type="number" name="number" id="number" min="1" max="12" required>
                   <button class="btn btn-success">
                     Xuất file CSV
                   </button>
@@ -57,6 +56,4 @@
         </table>
       </div>
     </div>
-  </div>
-</div>
 @endsection

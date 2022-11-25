@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Chi tiết sản phẩm</label>
-                            <textarea class="ckeditor form-control" name="description" value="{{ $product->description }}"></textarea>
+                            <textarea class="ckeditor form-control" name="description" value="">{{ $product->description }}</textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
