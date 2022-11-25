@@ -48,7 +48,8 @@ class ProductRequest extends FormRequest
             ],
             'price' => [
                 'required',
-                'integer'
+                'integer',
+                'min:0'
             ],
             'discount' => [
                 'integer'
@@ -72,6 +73,7 @@ class ProductRequest extends FormRequest
             'size.required' => 'Hãy nhập size sản phẩm',
             'price.required' => 'Hãy nhập giá sản phẩm',
             'price.integer' => 'Giá sản phẩm phải là số',
+            'price.min' => 'Giá phải là số dương',
             'discount.integer' => 'Giá giảm phải là số',
         ];
         return $message;
