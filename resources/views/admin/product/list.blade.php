@@ -22,15 +22,6 @@
               <!-- <th scope="col">Thương hiệu</th> -->
               <th scope="col">Trạng thái</th>
               <th><a class="btn btn-success" href="{{ route('admin.product.add') }}">Thêm mới</a></th>
-              <th>
-                <form action="{{ route('product.export') }}">
-                @csrf
-                  <input type="number" name="number" id="number" min="1" max="12" required>
-                  <button class="btn btn-success">
-                    Xuất file CSV
-                  </button>
-                </form>
-              </th>
             </tr>
           </thead>
           @php
@@ -57,6 +48,4 @@
         </table>
       </div>
     </div>
-  </div>
-</div>
 @endsection

@@ -1,5 +1,88 @@
 @extends('layouts.client-layout')
 @section('content')
+    <style>
+        HTML SCSSResult Skip Results Iframe * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider {
+            width: 100%;
+            min-height: 45vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            background-color: black;
+
+            input[type="radio"] {
+                position: relative;
+                margin: 0 1rem 1rem 0;
+                transform: scale(1.5);
+                z-index: 100;
+            }
+
+            input[type="radio"]:checked+.slider__content {
+                transition-delay: 0.5s;
+                background-color: black;
+                clip-path: circle(100vw at center);
+            }
+
+            .slider__content {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                transition: 0.5s;
+                clip-path: circle(0px at center);
+
+                img {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .slider__description {
+                    position: relative;
+                    text-align: center;
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: #fff;
+                    max-width: 1000px;
+
+                    h1 {
+                        font-size: 5rem;
+                    }
+
+                    p {
+                        font-size: 1.3rem;
+                        line-height: 1.8rem;
+                        margin: 1rem 0 2rem 0;
+                    }
+
+                    a {
+                        display: inline-block;
+                        padding: 10px 15px;
+                        background-color: white;
+
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        color: black;
+                        text-decoration: none;
+
+                        transition: 0.5s;
+
+                        &:hover {
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+        }
+    </style>
     <!--====================  hero slider area ====================-->
 
     {{-- <div class="hero-slider-area section-space">
@@ -303,38 +386,23 @@
 
 {{--  --}}
     <!--====================  hero slider area ====================-->
-    <style>
-        .slider {
-            width: 100%;
-            height: 60%;
-            margin: 20px auto;
-            text-align: center;
-            padding: 20px;
-            color: white;
-
-            .parent-slide {
-                padding: 15px;
-            }
-
-            img {
-                display: block;
-                margin: auto;
-            }
-        }
-    </style>
     <div class="slider">
         @if (!empty($bannerSlide))
             @foreach ($bannerSlide as $item)
-                <div class="slide">
-                    <img src="{{ asset('storage/' . $item->photo) }}" alt="" class="img-responsive" />
-                    <img src="https://scontent.fhan2-1.fna.fbcdn.net/v/t1.6435-9/131291436_432142931277233_160483647895410291_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Ira2REx8FiYAX__ppla&_nc_ht=scontent.fhan2-1.fna&oh=00_AfCj7B5JSW3B3LjlXL7tEN_47MtfVxxfeuW6VplsHXWA-Q&oe=638F9BBB"
-                        alt="" class="img-responsive" />
-                    <h1>{$item->title}</h1>
+                <div class="slider__content">
+                    <img src="https://i.ibb.co/R9zTS4w/image.jpg" />
+                    <div class="slider__description">
+                        <h1>{{ $item->title }}</h1>
+                        <p>
+                            {{ $item->description }}
+                        </p>
+                        {{-- <a href="#">Read more</a> --}}
+                    </div>
                 </div>
             @endforeach
         @endif
-
     </div>
+
 
     <!--====================  End of hero slider area  ====================-->
 
@@ -343,7 +411,7 @@
     <div class="banner-area section-space">
         <div class="container">
             <div class="row masonry-layout--banner">
-                
+
                 @if (empty($arrivals))
                     @foreach ($arrivals as $item)
                         <div class="col-md-4 masonry-item--banner">
@@ -352,17 +420,19 @@
                             <div class="single-banner">
                                 <div class="single-banner__image">
                                     <a href="shop-left-sidebar.html">
-                                        <img src="{{ asset('client/img/banners/banner-homepage2_1.png') }}" class="img-fluid"
-                                            alt="">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_1.png') }}"
+                                            class="img-fluid" alt="">
                                     </a>
                                 </div>
 
                                 <div class="single-banner__content single-banner__content--overlay">
                                     <p class="banner-small-text">NEW COLLECTION</p>
                                     <p class="banner-big-text">From 99$</p>
-                                    <p class="banner-small-text banner-small-text--end">Complete your interior with our wide range
+                                    <p class="banner-small-text banner-small-text--end">Complete your interior with our wide
+                                        range
                                         <br>
-                                        of furniture</p>
+                                        of furniture
+                                    </p>
                                     <a href="shop-left-sidebar.html"
                                         class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
                                 </div>
@@ -376,15 +446,16 @@
                             <div class="single-banner">
                                 <div class="single-banner__image">
                                     <a href="shop-left-sidebar.html">
-                                        <img src="{{ asset('client/img/banners/banner-homepage2_3.png') }}" class="img-fluid"
-                                            alt="">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_3.png') }}"
+                                            class="img-fluid" alt="">
                                     </a>
                                 </div>
 
                                 <div class="single-banner__content single-banner__content--overlay">
                                     <p class="banner-small-text">DISCOVERY</p>
                                     <p class="banner-big-text">Designer Lighting</p>
-                                    <p class="banner-small-text banner-small-text--end">From table lamps to chandeliers, discover
+                                    <p class="banner-small-text banner-small-text--end">From table lamps to chandeliers,
+                                        discover
                                         over 200 lighting solutions.</p>
                                     <a href="shop-left-sidebar.html"
                                         class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
@@ -399,15 +470,16 @@
                             <div class="single-banner">
                                 <div class="single-banner__image">
                                     <a href="shop-left-sidebar.html">
-                                        <img src="{{ asset('client/img/banners/banner-homepage2_4.png') }}" class="img-fluid"
-                                            alt="">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_4.png') }}"
+                                            class="img-fluid" alt="">
                                     </a>
                                 </div>
 
                                 <div class="single-banner__content single-banner__content--overlay">
                                     <p class="banner-small-text">LUXURY FURNISHINGS FOR EVERY ROOM</p>
                                     <p class="banner-big-text">Plants Everywhere</p>
-                                    <p class="banner-small-text banner-small-text--end">Refresh your interior for less with our wide
+                                    <p class="banner-small-text banner-small-text--end">Refresh your interior for less with
+                                        our wide
                                         range of contemporary furniture.</p>
                                     <a href="shop-left-sidebar.html"
                                         class="theme-button theme-button--banner theme-button--banner--two">SHOP NOW</a>
@@ -422,8 +494,8 @@
                             <div class="single-banner">
                                 <div class="single-banner__image">
                                     <a href="shop-left-sidebar.html">
-                                        <img src="{{ asset('client/img/banners/banner-homepage2_2.png') }}" class="img-fluid"
-                                            alt="">
+                                        <img src="{{ asset('client/img/banners/banner-homepage2_2.png') }}"
+                                            class="img-fluid" alt="">
                                     </a>
                                 </div>
 
@@ -1089,8 +1161,8 @@
 
                     <div class="section-title-area text-center">
                         <h2 class="section-title">Sản phẩm mới</h2>
-{{--                        <p class="section-subtitle">From a welcoming new collection of lounge seating to an executive chair--}}
-{{--                            that melds craft with ergonomics, We want to show you some of our featured products here</p>--}}
+                        {{--                        <p class="section-subtitle">From a welcoming new collection of lounge seating to an executive chair --}}
+                        {{--                            that melds craft with ergonomics, We want to show you some of our featured products here</p> --}}
                     </div>
                 </div>
             </div>
@@ -1103,86 +1175,89 @@
                         <div class="row">
                             @foreach ($products as $item)
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-custom-sm-6">
-                                <!--=======  single short view product  =======-->
+                                    <!--=======  single short view product  =======-->
 
-                                <div class="single-grid-product">
-                                    <div class="single-grid-product__image">
-{{--                                        <div class="product-badge-wrapper">--}}
-{{--                                            <span class="onsale">-17%</span>--}}
-{{--                                            <span class="hot">Hot</span>--}}
-{{--                                        </div>--}}
-                                        <a href="{{ route('detailProduct',['id'=> $item->id]) }}">
-                                            <img src="{{asset('storage/'. $item->photo)}}"
-                                                class="img-fluid" alt="">
-{{--                                            <img src="{{ asset('client/img/products/product-9-2-270x360.jpg') }}"--}}
-{{--                                                class="img-fluid" alt="">--}}
-                                        </a>
-                                        <div class="product-hover-icon-wrapper">
-{{--                                            <span class="single-icon single-icon--quick-view"><a class="cd-trigger"--}}
-{{--                                                    href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true"--}}
-{{--                                                    data-tippy-animation="shift-away" data-tippy-delay="50"--}}
-{{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i--}}
-{{--                                                        class="fa fa-search"></i></a></span>--}}
-                                            <span class="single-icon single-icon--add-to-cart" style="width: 100%"><a href="#"
-                                                    data-tippy="Add to cart" data-tippy-inertia="true"
-                                                    data-tippy-animation="shift-away" data-tippy-delay="50"
-                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
-                                                        class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ hàng</span></a></span>
-{{--                                            <span class="single-icon single-icon--compare"><a href="#"--}}
-{{--                                                    data-tippy="Compare" data-tippy-inertia="true"--}}
-{{--                                                    data-tippy-animation="shift-away" data-tippy-delay="50"--}}
-{{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i--}}
-{{--                                                        class="fa fa-exchange"></i></a></span>--}}
+                                    <div class="single-grid-product">
+                                        <div class="single-grid-product__image">
+                                            {{--                                        <div class="product-badge-wrapper"> --}}
+                                            {{--                                            <span class="onsale">-17%</span> --}}
+                                            {{--                                            <span class="hot">Hot</span> --}}
+                                            {{--                                        </div> --}}
+                                            <a href="{{ route('detailProduct', ['id' => $item->id]) }}">
+                                                <img src="{{ asset('storage/' . $item->photo) }}" class="img-fluid"
+                                                    alt="">
+                                                {{--                                            <img src="{{ asset('client/img/products/product-9-2-270x360.jpg') }}" --}}
+                                                {{--                                                class="img-fluid" alt=""> --}}
+                                            </a>
+                                            <div class="product-hover-icon-wrapper">
+                                                {{--                                            <span class="single-icon single-icon--quick-view"><a class="cd-trigger" --}}
+                                                {{--                                                    href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" --}}
+                                                {{--                                                    data-tippy-animation="shift-away" data-tippy-delay="50" --}}
+                                                {{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i --}}
+                                                {{--                                                        class="fa fa-search"></i></a></span> --}}
+                                                <span class="single-icon single-icon--add-to-cart" style="width: 100%"><a
+                                                        href="#" data-tippy="Add to cart" data-tippy-inertia="true"
+                                                        data-tippy-animation="shift-away" data-tippy-delay="50"
+                                                        data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
+                                                            class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ
+                                                            hàng</span></a></span>
+                                                {{--                                            <span class="single-icon single-icon--compare"><a href="#" --}}
+                                                {{--                                                    data-tippy="Compare" data-tippy-inertia="true" --}}
+                                                {{--                                                    data-tippy-animation="shift-away" data-tippy-delay="50" --}}
+                                                {{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i --}}
+                                                {{--                                                        class="fa fa-exchange"></i></a></span> --}}
+                                            </div>
+                                        </div>
+                                        <div class="single-grid-product__content">
+                                            <h3 class="title"><a
+                                                    href="{{ route('detailProduct', ['id' => $item->id]) }}">{{ $item->title }}</a>
+                                            </h3>
+                                            @if (empty($item->discount))
+                                                <div class="price">
+                                                    <span class="discounted-price">{{ $item->price }}</span>
+                                                </div>
+                                            @else
+                                                <div class="price">
+                                                    <span class="main-price discounted">{{ $item->price }}</span>
+                                                    <span class="discounted-price">{{ $item->discount }}</span>
+                                                </div>
+                                            @endif
+                                            {{--                                        <div class="rating"> --}}
+                                            {{--                                            <i class="fa fa-star active"></i> --}}
+                                            {{--                                            <i class="fa fa-star active"></i> --}}
+                                            {{--                                            <i class="fa fa-star active"></i> --}}
+                                            {{--                                            <i class="fa fa-star active"></i> --}}
+                                            {{--                                            <i class="fa fa-star"></i> --}}
+                                            {{--                                        </div> --}}
+                                            {{--                                        <div class="color"> --}}
+                                            {{--                                            <ul> --}}
+                                            {{--                                                <li><a class="active" href="#" data-tippy="Black" --}}
+                                            {{--                                                        data-tippy-inertia="true" data-tippy-animation="shift-away" --}}
+                                            {{--                                                        data-tippy-delay="50" data-tippy-arrow="true" --}}
+                                            {{--                                                        data-tippy-theme="roundborder"><span --}}
+                                            {{--                                                            class="color-picker black"></span></a></li> --}}
+                                            {{--                                                <li><a href="#" data-tippy="Blue" data-tippy-inertia="true" --}}
+                                            {{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50" --}}
+                                            {{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span --}}
+                                            {{--                                                            class="color-picker blue"></span></a></li> --}}
+                                            {{--                                                <li><a href="#" data-tippy="Brown" data-tippy-inertia="true" --}}
+                                            {{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50" --}}
+                                            {{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span --}}
+                                            {{--                                                            class="color-picker brown"></span></a></li> --}}
+                                            {{--                                            </ul> --}}
+                                            {{--                                        </div> --}}
+                                            <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
+                                                data-tippy-inertia="true" data-tippy-animation="shift-away"
+                                                data-tippy-delay="50" data-tippy-arrow="true"
+                                                data-tippy-theme="sharpborder" data-tippy-placement="left">
+                                                <i class="fa fa-heart-o"></i>
+                                                <i class="fa fa-heart"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="single-grid-product__content">
-                                        <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{$item->title}}</a></h3>
-                                        @if(empty($item->discount))
-                                            <div class="price">
-                                                <span class="discounted-price">{{$item->price}}</span>
-                                            </div>
-                                        @else
-                                            <div class="price">
-                                                <span class="main-price discounted">{{$item->price}}</span>
-                                                <span class="discounted-price">{{$item->discount}}</span>
-                                            </div>
-                                        @endif
-{{--                                        <div class="rating">--}}
-{{--                                            <i class="fa fa-star active"></i>--}}
-{{--                                            <i class="fa fa-star active"></i>--}}
-{{--                                            <i class="fa fa-star active"></i>--}}
-{{--                                            <i class="fa fa-star active"></i>--}}
-{{--                                            <i class="fa fa-star"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="color">--}}
-{{--                                            <ul>--}}
-{{--                                                <li><a class="active" href="#" data-tippy="Black"--}}
-{{--                                                        data-tippy-inertia="true" data-tippy-animation="shift-away"--}}
-{{--                                                        data-tippy-delay="50" data-tippy-arrow="true"--}}
-{{--                                                        data-tippy-theme="roundborder"><span--}}
-{{--                                                            class="color-picker black"></span></a></li>--}}
-{{--                                                <li><a href="#" data-tippy="Blue" data-tippy-inertia="true"--}}
-{{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50"--}}
-{{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span--}}
-{{--                                                            class="color-picker blue"></span></a></li>--}}
-{{--                                                <li><a href="#" data-tippy="Brown" data-tippy-inertia="true"--}}
-{{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50"--}}
-{{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span--}}
-{{--                                                            class="color-picker brown"></span></a></li>--}}
-{{--                                            </ul>--}}
-{{--                                        </div>--}}
-                                        <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
-                                            data-tippy-inertia="true" data-tippy-animation="shift-away"
-                                            data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"
-                                            data-tippy-placement="left">
-                                            <i class="fa fa-heart-o"></i>
-                                            <i class="fa fa-heart"></i>
-                                        </a>
-                                    </div>
-                                </div>
 
-                                <!--=======  End of single short view product  =======-->
-                            </div>
+                                    <!--=======  End of single short view product  =======-->
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -1508,47 +1583,4 @@
         <i class="fa fa-angle-up"></i>
     </button>
     <!-- end of scroll to top -->
-    <html>
-<head>
-    <title>How to Install And Use CKEditor In Laravel? - ItSolutionStuff.com</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-2 mt-5">
-                <div class="card">
-                    <div class="card-header bg-info">
-                        <h6 class="text-white">How to Install And Use CKEditor In Laravel? - ItSolutionStuff.com</h6>
-                    </div>
-                    <div class="card-body">
-                        <form method="post" action="" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control"/>
-                            </div>  
-                            <div class="form-group">
-                                <label><strong>Description :</strong></label>
-                                <textarea class="ckeditor form-control" name="description"></textarea>
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-success btn-sm">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>    
-</body>
-   
-<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-       $('.ckeditor').ckeditor();
-    });
-</script>
-  
-</html>
 @endsection

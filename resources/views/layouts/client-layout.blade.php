@@ -183,7 +183,11 @@
                             <div class="header-icon-area">
                                 <div class="account-dropdown">
                                     @if(Auth::check())
-                                    <a href="#">My account<i class="pe-7s-angle-down"></i></a>
+                                    <a href="#">
+                                        @php
+                                            echo Auth::user()->name
+                                        @endphp
+                                    </a>
 
                                     <ul class="account-dropdown__list">
                                         <li><a href="{{route('myaccount')}}">Tài khoản của tôi</a></li>

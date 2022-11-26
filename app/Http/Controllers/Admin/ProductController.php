@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\SaveProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Exports\ProductExport;
+use App\Http\Requests\ExportRequest;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -50,7 +52,7 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('product', 'brands', 'categories'));
     }
 
-    public function saveEdit($id, ProductRequest $request)
+    public function saveEdit($id, SaveProductRequest $request)
     {
         $product = Product::find($id);
         $product->fill($request->all());
@@ -73,7 +75,7 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back();
     }
-    public function export(Request $request) 
+    public function export(ExportRequest $request) 
     {
         $time = $request->input('number');
         return Excel::download(new ProductExport($time), 'get.csv');
