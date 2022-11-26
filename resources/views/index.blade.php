@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="header-logo text-center">
-                                <a href="index.html">
+                                <a href="{{ route('home')}}">
                                     <img src="{{asset('client/img/logo.png')}}" class="img-fluid" alt="">
                                 </a>
                             </div>
@@ -156,7 +156,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2">
                         <div class="header-logo header-logo--sticky">
-                            <a href="index.html">
+                            <a href="">
                                 <img src="{{asset('client/img/logo-alt.png')}}" class="img-fluid" alt="">
                             </a>
                         </div>

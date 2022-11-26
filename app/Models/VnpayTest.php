@@ -49,6 +49,8 @@ class VnpayTest extends Model
         "vnp_SecureHash_return",
         "user_id",
         "status_order",
+        "note",
+        "Status",
         "cart"
     ];
 }
