@@ -42,13 +42,13 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="">Stock</label>
                             <input type="number" name="stock" class="form-control">
                             @error('stock')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label for="">Kích thước</label>
@@ -62,6 +62,14 @@
                             <label for="">Giá</label>
                             <input  name="price" class="form-control">
                             @error('price')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Giảm giá</label>
+                            <input type="number" name="discount" class="form-control">
+                            @error('discount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

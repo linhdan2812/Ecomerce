@@ -28,8 +28,7 @@
     {{ asset('client/account/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
     <!-- <link href="fonts/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"> -->
     <link href="
-    {{ asset('client/account/fonts/fontawesome-pro-5.8.2-web/css/all.min.css') }}" type="text/css"
-        rel="stylesheet">
+    {{ asset('client/account/fonts/fontawesome-pro-5.8.2-web/css/all.min.css') }}" type="text/css" rel="stylesheet">
     <link href="
     {{ asset('client/account/fonts/elegantIcon/elegantIcon.css') }}" type="text/css" rel="stylesheet">
     <link href="
@@ -45,89 +44,118 @@
     <link href="
     {{ asset('client/account/css/main.css') }}" type="text/css" rel="stylesheet">
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick.css" />
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.0/slick-theme.css" />
     <style>
-        
         /* The Modal (background) */
         .modal {
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
-          padding-top: 100px; /* Location of the box */
-          left: 0;
-          top: 0;
-          width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: rgb(0,0,0); /* Fallback color */
-          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-          border-radius: 0 !important;
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            border-radius: 0 !important;
         }
-        
+
         /* Modal Content */
         .modal-content {
-          position: relative;
-          background-color: #fefefe;
-          margin: auto;
-          padding: 0;
-          border: 1px solid #888 !important;
-          width: 80%;
-          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-          -webkit-animation-name: animatetop;
-          -webkit-animation-duration: 0.4s;
-          animation-name: animatetop;
-          animation-duration: 0.4s;
-          border-radius: 0 !important;
-          border: 1px solid #EBEBEB !important;
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888 !important;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            border-radius: 0 !important;
+            border: 1px solid #EBEBEB !important;
         }
-        
+
         /* Add Animation */
         @-webkit-keyframes animatetop {
-          from {top:-300px; opacity:0} 
-          to {top:0; opacity:1}
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
         }
-        
+
         @keyframes animatetop {
-          from {top:-300px; opacity:0}
-          to {top:0; opacity:1}
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
         }
-        
+
         /* The Close Button */
         .close {
-          color: white;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
         }
-        
+
         .close:hover,
         .close:focus {
-          color: #000;
-          text-decoration: none;
-          cursor: pointer;
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
         }
-        
+
         .modal-header {
-          padding: 2px 16px;
+            padding: 2px 16px;
         }
-        
-        .modal-body {padding: 2px 16px;}
-        .modal-body h1 {font-size: 15; color:red}
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        .modal-body h1 {
+            font-size: 15;
+            color: red
+        }
+
         .modal-footer {
-          padding: 2px 16px;
+            padding: 2px 16px;
         }
-        </style>
+    </style>
 </head>
 
 <body>
-@php
+    @php
     $user_id = Auth()->user()->id ?? null;
     $notificationsRead = \DB::table('notifications')->where('user_id',$user_id)->where('read_at',0)->get();
     $allNotifications = \DB::table('notifications')->where('user_id',$user_id)->get();
     $wishlists = \DB::table('wishlists')->where('user_id',$user_id)->get();
-@endphp
+    @endphp
     <!--====================  header area ====================-->
 
     <div class="header-area header-area--one header-sticky">
@@ -172,21 +200,56 @@
                                     <a title="Register or Login" href="{{route('login')}}">Login</a>
                                     @endif
                                 </div>
-                                 <div class="header-icon">
+                                <div class="header-icon">
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>
                                         <li>
                                             @if(!empty($notificationsRead))
-                                                <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count">{{$notificationsRead->count() ?? 0}}</span></a></li>
-                                            @endif
+                                        <li><a href="javascript:void(0)" id="notifications"><i class="fa fa-bell"></i><span class="item-count">{{$notificationsRead->count() ?? 0}}</span></a></li>
+                                        @endif
                                         <li>
                                             @if(!empty($wishlists))
-                                                <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count">{{$wishlists->count() ?? 0}}</span></a>
+                                            <a href="{{ route('wishlist') }}"><i class="fa fa-heart"></i><span class="item-count">{{$wishlists->count() ?? 0}}</span></a>
                                             @endif
                                         </li>
                                         <li>
                                             <a href="{{ route('cart') }}"><i class="fa fa-shopping-basket"></i><span class="item-count">{{ count((array) session('cart')) }}</span></a>
                                             <div class="minicart-wrapper">
+                                                <p class="minicart-wrapper__title">CART</p>
+
+                                                <div class="minicart-wrapper__items ps-scroll">
+                                                    @if(session('cart'))
+                                                    @foreach(session('cart') as $id => $details)
+                                                    <div class="minicart-wrapper__items__single">
+                                                        <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
+                                                        <div class="image">
+                                                            <a href="product-details-basic.html">
+                                                                <img src="{{asset('storage/'. $details['image'])}}" height="100px" width="80px" class="img-fluid" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <p class="product-title"><a href="product-details-basic.html">{{ $details['name'] }}</a></p>
+                                                            @if($details['discount'])
+                                                            <p class="product-calculation"><span class="count">{{ $details['quantity'] }}</span> x <span class="price">{{ number_format($details['discount']) }} VND</span></p>
+                                                            @else
+                                                            <p class="product-calculation"><span class="count">{{ $details['quantity'] }}</span> x <span class="price">{{ number_format($details['price']) }} VND</span></p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                    @endif
+                                                </div>
+                                                @php $total = 0 @endphp
+                                                @foreach((array) session('cart') as $id => $details)
+                                                @php $total += $details['price'] * $details['quantity'] @endphp
+                                                @endforeach
+                                                <p class="minicart-wrapper__subtotal">Tổng: <span>{{ number_format($total) }} VND</span></p>
+
+                                                <div class="minicart-wrapper__buttons">
+                                                    <a href="{{ route('cart') }}" class="theme-button theme-button--minicart-button">Xem Giỏ Hàng</a>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="minicart-wrapper">
                                                 <p class="minicart-wrapper__title">CART</p>
                                                 <div class="minicart-wrapper__items ps-scroll">
                                                     <div class="row total-header-section">
@@ -195,31 +258,32 @@
                                                         </div>
                                                         @php $total = 0 @endphp
                                                         @foreach((array) session('cart') as $id => $details)
-                                                            @php $total += $details['price'] * $details['quantity'] @endphp
+                                                        @php $total += $details['price'] * $details['quantity'] @endphp
                                                         @endforeach
                                                         <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
                                                             <p>Total: <span class="text-info">$ {{ $total }}</span></p>
                                                         </div>
                                                     </div>
-                                                @if(session('cart'))
-                                                            @foreach(session('cart') as $id => $details)
-                                                                <div class="row cart-detail">
-                                                                    <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                                                        <img src="{{asset('storage/'. $details['image'])}}" height="100px" width="80px" />
-                                                                    </div>
-                                                                    <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                                                        <p>{{ $details['name'] }}</p>
-                                                                        <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
-                                                                    </div>
-                                                                </div>
-                                                            @endforeach
-                                                        @endif
-                                                <div class="minicart-wrapper__buttons">
-                                                    <a href="{{ route('cart') }}" class="theme-button theme-button--minicart-button">VIEW CART</a>
-                                                    <a href="{{ route('getcheckout') }}" class="theme-button theme-button--alt theme-button--minicart-button theme-button--minicart-button--alt mb-0">CHECKOUT</a>
+                                                    @if(session('cart'))
+                                                    @foreach(session('cart') as $id => $details)
+                                                    <div class="row cart-detail">
+                                                        <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                                            <img src="{{asset('storage/'. $details['image'])}}" height="100px" width="80px" />
+                                                        </div>
+                                                        <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                                            <p>{{ $details['name'] }}</p>
+                                                            <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                    @endif
+                                                    <div class="minicart-wrapper__buttons">
+                                                        <a href="{{ route('cart') }}" class="theme-button theme-button--minicart-button">VIEW CART</a>
+                                                        <a href="{{ route('getcheckout') }}" class="theme-button theme-button--alt theme-button--minicart-button theme-button--minicart-button--alt mb-0">CHECKOUT</a>
+                                                    </div>
+                                                    <p class="minicart-wrapper__featuretext">Free Shipping on All Orders Over $100!</p>
                                                 </div>
-                                                <p class="minicart-wrapper__featuretext">Free Shipping on All Orders Over $100!</p>
-                                            </div>
+                                            </div> -->
                                         </li>
                                     </ul>
                                 </div>
@@ -268,21 +332,23 @@
     </div>
 
     <!--====================  End of header area  ====================-->
-    
+
     @yield('content')
 
     <!--====================  footer ====================-->
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/63220ecf54f06e12d894b87b/1gcugjmsq';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/63220ecf54f06e12d894b87b/1gcugjmsq';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
         })();
     </script>
     <!--End of Tawk.to Script-->
@@ -437,10 +503,10 @@
         <!--=======  close icon  =======-->
 
         <span class="close-icon search-close-icon">
-        <a href="javascript:void(0)"  id="search-close-icon">
-            <i class="pe-7s-close"></i>
-        </a>
-    </span>
+            <a href="javascript:void(0)" id="search-close-icon">
+                <i class="pe-7s-close"></i>
+            </a>
+        </span>
 
         <!--=======  End of close icon  =======-->
 
@@ -477,18 +543,18 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-            @if(!empty($allNotifications))
+                @if(!empty($allNotifications))
                 @foreach ($allNotifications as $item)
-                    <h1>{{ $item->type}}</h1>
-                    <p>{{ $item->data}}</p>
+                <h1>{{ $item->type}}</h1>
+                <p>{{ $item->data}}</p>
                 @endforeach
-            @endif
-        </div>
+                @endif
+            </div>
             <div class="modal-footer">
             </div>
         </div>
-      
-      </div>
+
+    </div>
     <!-- Vendor JS -->
     <script src="{{asset('client/js/vendors.js')}}"></script>
 
@@ -537,53 +603,53 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        $('#notifications').on('click', function(){
+        $('#notifications').on('click', function() {
             let url = "{{ route('updateNotification') }}";
             $.get(url);
             $('#modalNotification').show();
         })
     </script>
     <script type="text/javascript">
-        window.onload=function(){
+        window.onload = function() {
             $('.slider').slick({
-            autoplay:true,
-            autoplaySpeed:1500,
-            arrows:true,
-            prevArrow:'<button type="button" class="slick-prev"></button>',
-            nextArrow:'<button type="button" class="slick-next"></button>',
-            centerMode:true,
-            slidesToShow:3,
-            slidesToScroll:1
+                autoplay: true,
+                autoplaySpeed: 1500,
+                arrows: true,
+                prevArrow: '<button type="button" class="slick-prev"></button>',
+                nextArrow: '<button type="button" class="slick-next"></button>',
+                centerMode: true,
+                slidesToShow: 3,
+                slidesToScroll: 1
             });
         };
     </script>
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
-        
+
         // Get the button that opens the modal
         var btn = document.getElementById("notifications");
-        
+
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
-        
+
         // When the user clicks the button, open the modal 
         btn.onclick = function() {
-          modal.style.display = "block";
+            modal.style.display = "block";
         }
-        
+
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
-          modal.style.display = "none";
+            modal.style.display = "none";
         }
-        
+
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
-        </script>
+    </script>
 </body>
 
 </html>

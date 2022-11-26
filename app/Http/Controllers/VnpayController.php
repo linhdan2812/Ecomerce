@@ -127,7 +127,7 @@ class VnpayController extends Controller
         $test->fill([
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
-            "vnp_Amount" => $vnp_Amount,
+            "vnp_Amount" => $vnp_Amount/100,
             "vnp_Command" => "pay",
             "vnp_CreateDate" => $vnp_CreateDate,
             "vnp_CurrCode" => "VND",
@@ -153,6 +153,7 @@ class VnpayController extends Controller
             "vnp_Inv_Taxcode" => $vnp_Inv_Taxcode,
             "vnp_Inv_Type" => $vnp_Inv_Type,
             "vnp_SecureHash" => $vnpSecureHash,
+            "Status" => "0",
             "user_id"   => $user->id,
             "cart" => json_encode(session('cart'))
         ]);
@@ -210,7 +211,6 @@ class VnpayController extends Controller
 
         $Status = 0; // Là trạng thái thanh toán của giao dịch chưa có IPN lưu tại hệ thống của merchant chiều khởi tạo URL thanh toán.
         $orderId = $inputData['vnp_TxnRef'];
-
         DB::beginTransaction();
         try {
             //Check Orderid    
@@ -227,24 +227,40 @@ class VnpayController extends Controller
                         if ($order->Status != NULL && $order->Status == 0) {
                             if ($inputData['vnp_ResponseCode'] == '00' && $inputData['vnp_TransactionStatus'] == '00') {
                                 $Status = 1; // Trạng thái thanh toán thành công
+                                $idOrder = $order->id;
+                                $vnpay = VnpayTest::find($idOrder);
+                                $vnpay->fill([
+                                    'vnp_BankTranNo' => $inputData['vnp_BankTranNo'] ?? null,
+                                    'vnp_CardType' => $inputData['vnp_CardType'] ?? null,
+                                    'vnp_PayDate' => $inputData['vnp_PayDate'] ?? null,
+                                    'vnp_TransactionNo' => $inputData['vnp_TransactionNo'] ?? null,
+                                    'vnp_ResponseCode' => $inputData['vnp_ResponseCode'] ?? null,
+                                    'vnp_TransactionStatus' => $inputData['vnp_TransactionStatus'] ?? null,
+                                    'vnp_SecureHashType' => $inputData['vnp_SecureHashType'] ?? null,
+                                    'vnp_SecureHash_return' => $inputData['vnp_SecureHash'] ?? null,
+                                    'Status' => $Status
+                                ]);
+                                $vnpay->save();
+                                session()->forget('cart');
                             } else {
                                 $Status = 2; // Trạng thái thanh toán thất bại / lỗi
+                                $idOrder = $order->id;
+                                $vnpay = VnpayTest::find($idOrder);
+                                $vnpay->fill([
+                                    'vnp_BankTranNo' => $inputData['vnp_BankTranNo'] ?? null,
+                                    'vnp_CardType' => $inputData['vnp_CardType'] ?? null,
+                                    'vnp_PayDate' => $inputData['vnp_PayDate'] ?? null,
+                                    'vnp_TransactionNo' => $inputData['vnp_TransactionNo'] ?? null,
+                                    'vnp_ResponseCode' => $inputData['vnp_ResponseCode'] ?? null,
+                                    'vnp_TransactionStatus' => $inputData['vnp_TransactionStatus'] ?? null,
+                                    'vnp_SecureHashType' => $inputData['vnp_SecureHashType'] ?? null,
+                                    'vnp_SecureHash_return' => $inputData['vnp_SecureHash'] ?? null,
+                                    'Status' => $Status
+                                ]);
+                                $vnpay->save();
                             }
 
-                            //Cài đặt Code cập nhật kết quả thanh toán, tình trạng đơn hàng vào DB
-                            $idOrder = $order->id;
-                            $vnpay = VnpayTest::find($idOrder);
-                            $vnpay->fill([
-                                'vnp_BankTranNo' => $inputData['vnp_BankTranNo'] ?? null,
-                                'vnp_CardType' => $inputData['vnp_CardType'] ?? null,
-                                'vnp_PayDate' => $inputData['vnp_PayDate'] ?? null,
-                                'vnp_TransactionNo' => $inputData['vnp_TransactionNo'] ?? null,
-                                'vnp_ResponseCode' => $inputData['vnp_ResponseCode'] ?? null,
-                                'vnp_TransactionStatus' => $inputData['vnp_TransactionStatus'] ?? null,
-                                'vnp_SecureHashType' => $inputData['vnp_SecureHashType'] ?? null,
-                                'vnp_SecureHash_return' => $inputData['vnp_SecureHash'] ?? null,
-                            ]);
-                            $vnpay->save();
+
 
                             //Trả kết quả về cho VNPAY: Website/APP TMĐT ghi nhận yêu cầu thành công                
                             $returnData['RspCode'] = '00';

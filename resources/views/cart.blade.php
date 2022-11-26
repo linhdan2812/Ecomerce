@@ -24,42 +24,45 @@
                                             <th class="product-remove">&nbsp;</th>
                                         </tr>
                                     </thead>
-                                            @php $total = 0 @endphp
-                                            @if (session('cart'))
-                                                @foreach (session('cart') as $id => $details)
-                                                    @php $total += $details['price'] * $details['quantity'] @endphp
-
-                                            <tr  data-id="{{ $id }}">
-
-                                                    <td data-th="Product" class="product-name">
-                                                        <a href="">{{ $details['name'] }}</a>
-{{--                                                        <span class="product-variation">Color: Black</span>--}}
-                                                    </td>
-                                                    <td>
-                                                        <div class="row">
-                                                            {{-- <a href="product-details-basic.html"> --}}
-                                                            <img src="{{asset('storage/'. $details['image'])}}"
-                                                                 width="100" height="100" class="img-responsive" />
-                                                            {{-- </a> --}}
-                                                        </div>
-                                                    </td>
-
-                                                    <td data-th="Price" class="product-price"><span class="price">${{ $details['price'] }}</span></td>
-                                                    <td data-th="Quantity">
-                                                        <input type="number"value="{{ $details['quantity'] }}" min="1"
-                                                            class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
-                                                    </td>
-                                                    <td data-th="Subtotal" class="total-price"><span class="price"> ${{ $details['price'] * $details['quantity'] }}</span></td>
-                                                    <td class="product-remove" data-th="">
-                                                        <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
-                                                    </td>
+                                    <tbody>
+                                        @php $total = 0 @endphp
+                                        @if (session('cart'))
+                                        @foreach (session('cart') as $id => $details)
+                                        @php $total += $details['price'] * $details['quantity'] @endphp
+                                        <tr data-id="{{ $id }}">
+                                            <td data-th="Product" class="product-name">
+                                                <a href="">{{ $details['name'] }}</a>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <img src="{{asset('storage/'. $details['image'])}}"
+                                                            width="100" height="100" class="img-responsive" />
+                                                </div>
+                                            </td>
+                                            @if($details['discount'])
+                                            <td data-th="Price" class="product-price"><span class="price">{{ number_format($details['discount']) }} VND</span></td>
+                                            @else
+                                            <td data-th="Price" class="product-price"><span class="price">{{ number_format($details['price']) }} VND</span></td>
+                                            @endif
+                                            <td data-th="Quantity">
+                                                <input type="number"value="{{ $details['quantity'] }}" min="1"
+                                                    class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
+                                            </td>
+                                            @if($details['discount'])
+                                            <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['discount'] * $details['quantity']) }} VND</span></td>
+                                            @else
+                                            <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['price'] * $details['quantity']) }} VND</span></td>
+                                            @endif
+                                            <td class="product-remove" data-th="">
+                                                <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
+                                            </td>
                                         </tr>
                                         @endforeach
-                                        @endif
                                         <input type="hidden" name="quantity[]" value="{{ $details['quantity'] }}">
-                                        <input type="hidden" name="sub[]" value="${{ $details['price'] * $details['quantity'] }}">
+                                        <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VND">
                                         <input type="hidden" name="name[]" value="{{ $details['name'] }}">
                                         <input type="hidden" name="total" value="{{ $total }}">
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -102,11 +105,11 @@
                                 <table class="cart-calculation-table">
                                     <tr>
                                         <th>Giá</th>
-                                        <td class="subtotal">${{ $total }}</td>
+                                        <td class="subtotal">{{ number_format($total) }} VND</td>
                                     </tr>
                                     <tr>
                                         <th>Tổng tiền</th>
-                                        <td class="total">${{ $total }}</td>
+                                        <td class="total">{{ number_format($total) }} VND</td>
                                     </tr>
                                 </table>
 

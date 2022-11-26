@@ -9,7 +9,7 @@
                 <div class="breadcrumb-wrapper">
                     <h2 class="page-title">Wishlist</h2>
                     <ul class="breadcrumb-list">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="">Home</a></li>
                         <li class="active">Wishlist</li>
                     </ul>
                 </div>
