@@ -12,7 +12,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Tên sản phẩm</label>
-                            <input type="text" name="title" class="form-control">
+                            <input type="text" name="title" class="form-control" value="{{ $title }}">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
