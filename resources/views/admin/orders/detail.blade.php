@@ -18,14 +18,14 @@
         <!-- Modal -->
         <div id="ex1" class="modal" style="border-radius: 2px;">
           <h3>Chỉnh sửa đơn hàng</h3>
-          <form action="{{ route('admin.order.update',['id'=>$detailorder->id])}}" method="POST">
+          <form action="{{ route('admin.order.update',['id'=>$detailorder->id])}}" method="get">
             <div>
               <label for="">Lí do</label>
               <input type="text" name="note" id="note" value="note">
             </div>
             <div>
               <label for="">Chuyển trạng thái đơn hàng</label>
-              <select name="" id="">
+              <select name="value" id="">
                 <option value="outStock">Đã hết hàng</option>
                 <option value="shipping">Đang giao hàng</option>
                 <option value="cancel">Đã hủy đơn</option>

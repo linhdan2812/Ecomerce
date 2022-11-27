@@ -136,7 +136,7 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
 
-        Route::post('update-order/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
+        Route::get('update-order/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
 
         //Chi tiết đơn hàng
         Route::get('/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');

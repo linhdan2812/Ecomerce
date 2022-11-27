@@ -102,13 +102,13 @@
                                 <div class="single-grid-product">
                                     <div class="single-grid-product__image">
                                         <a href="{{ route('detailProduct',['id'=> $item->id]) }}" class="image-wrap">
-                                            <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;">
+                                            <img src="{{ $item->photo}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;">
+                                            {{-- <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;"> --}}
                                         </a>
                                         <div class="product-hover-icon-wrapper">
                                             <span class="single-icon single-icon--add-to-cart" style="width: 100%">
                                                 <a href="{{ route('add.to.cart', $item->id) }}" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                    <i class="fa fa-shopping-basket"></i>
-                                                    <span>Thêm vào giỏ hàng</span> </a></span>
+                                                <span>Thêm vào giỏ hàng</span> </a></span>
                                         </div>
                                     </div>
                                     <div class="single-grid-product__content">
