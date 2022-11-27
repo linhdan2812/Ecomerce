@@ -31,7 +31,7 @@ class ShopController extends Controller
         $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)
         // ->take($page)->limit((int)$perPage * (int)$page)
         ->simplePaginate(
-            $perPage = 15, $columns = ['*'], $pageName = 'Shop'
+            $perPage = 18, $columns = ['*'], $pageName = 'Shop'
         );
         return view('client.shop.list', compact('products'));
     }

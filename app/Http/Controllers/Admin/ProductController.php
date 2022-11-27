@@ -75,9 +75,9 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back();
     }
-    public function export(ExportRequest $request) 
+    public function export(Request $request) 
     {
         $time = $request->input('number');
-        return Excel::download(new ProductExport($time), 'get.csv');
+        return Excel::download(new ProductExport($time), 'Báo cáo mua hàng tháng '. $time .'.CSV');
     }
 }
