@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Danh sách Báo lỗi</h2>
+                    <h2>Danh sách hoàn trả hàng</h2>
                     <div>
                         <table class="table">
                             <thead>

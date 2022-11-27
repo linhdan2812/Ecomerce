@@ -39,10 +39,10 @@ class ProductRequest extends FormRequest
                 'required',
                 'mimes:jpg,png'
             ],
-            'stock' => [
-                'required',
-                'integer'
-            ],
+            // 'stock' => [
+            //     'required',
+            //     'integer'
+            // ],
             'size' => [
                 'required'
             ],
@@ -51,9 +51,9 @@ class ProductRequest extends FormRequest
                 'integer',
                 'min:1000'
             ],
-            'discount' => [
-                'integer'
-            ],
+            // 'discount' => [
+            //     'integer'
+            // ],
 
 
         ];

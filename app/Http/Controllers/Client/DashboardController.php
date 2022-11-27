@@ -74,7 +74,7 @@ class DashboardController extends Controller
     {
         $user = $request->user();
         $user->id;
-        $orders = VnpayTest::where('user_id','=',$user->id)->get();
+        $orders = VnpayTest::where('user_id','=',$user->id)->orderBy('created_at','desc')->get();
         return view('client.order',compact('orders'));
     }
     public function detailorder($id)

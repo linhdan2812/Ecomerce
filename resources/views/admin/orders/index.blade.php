@@ -18,7 +18,15 @@
                                 <th scope="col">Thanh toán</th>
                                 <th scope="col">Chi tiết đơn hàng</th>
                                 <th scope="col">Tình trạng đơn hàng</th>
-                                <th><a class="btn btn-success" href="{{ route('product.export') }}">Xuất file CSV</a></th>
+                                <th>
+                                    <form action="{{ route('product.export') }}">
+                                    @csrf
+                                      <input type="number" name="number" id="number" min="1" max="12" required>
+                                      <button class="btn btn-success">
+                                        Xuất file CSV
+                                      </button>
+                                    </form>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>

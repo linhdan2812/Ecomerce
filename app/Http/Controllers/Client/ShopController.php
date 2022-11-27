@@ -68,7 +68,8 @@ class ShopController extends Controller
                 "name" => $product->title,
                 "quantity" => 1,
                 "price" => $product->price,
-                "image" => $product->photo
+                "image" => $product->photo,
+                "discount" => $product->discount
             ];
         }
           

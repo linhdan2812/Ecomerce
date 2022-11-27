@@ -60,7 +60,7 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="">Tìm kiếm theo tên</label>
-                                            <input type="text" class="form-control" name="title" id="title"  placeholder="Nhập tìm kiếm...">
+                                            <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tìm kiếm...">
                                         </div>
                                         <div div class="shop-header__right d-flex justify-content-start justify-content-sm-end align-items-center">
                                             <div class="form-check">
@@ -99,12 +99,10 @@
                             @foreach($products as $item)
                             <div class="col-lg-2 col-md-6 col-sm-6 col-custom-sm-6 col-12">
                                 <!--=======  grid view product  =======-->
-
                                 <div class="single-grid-product">
                                     <div class="single-grid-product__image">
                                         <a href="{{ route('detailProduct',['id'=> $item->id]) }}" class="image-wrap">
                                             <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;">
-{{--                                            <img src="{{$item->photo}}" class="img-fluid" alt="{{ $item->name }}">--}}
                                         </a>
                                         <div class="product-hover-icon-wrapper">
                                             <span class="single-icon single-icon--add-to-cart" style="width: 100%">
@@ -116,14 +114,14 @@
                                     <div class="single-grid-product__content">
                                         <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{$item->title}}</a></h3>
                                         @if(empty($item->discount))
-                                            <div class="price">
-                                                <span class="discounted-price">{{$item->price}}</span>
-                                            </div>
+                                        <div class="price">
+                                            <span class="discounted-price">{{number_format($item->price)}} VND</span>
+                                        </div>
                                         @else
-                                            <div class="price">
-                                                <span class="main-price discounted">{{$item->price}}</span>
-                                                <span class="discounted-price">{{$item->discount}}</span>
-                                            </div>
+                                        <div class="price">
+                                            <span class="main-price discounted">{{ number_format($item->price)}} VND</span><br>
+                                            <span class="discounted-price">{{ number_format($item->discount)}} VND</span>
+                                        </div>
                                         @endif
                                         <!-- <div class="rating">
                                             <i class="fa fa-star active"></i>
@@ -147,7 +145,7 @@
                                 </div>
 
                                 <!--=======  End of grid view product  =======-->
-                                
+
                             </div>
                             @endforeach
 
@@ -157,7 +155,7 @@
 
                         <!--=======  pagination wrapper  =======-->
 
-                       {{$products->links() }}
+                        {{$products->links() }}
 
                         <!--=======  End of pagination wrapper  =======-->
 
