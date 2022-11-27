@@ -62,18 +62,16 @@
       <div class="tb-cart v2">
         <table class="table">
           <tr>
-            <th>Sản phẩm</th>
-            <th>Ảnh</th>
+            <th class="text-center">Sản phẩm</th>
+            <th class="text-center">Ảnh</th>
             <th class="text-center">Giá</th>
             <th class="text-center">Số lượng</th>
             <th class="text-right">Thành tiền</th>
           </tr>
           <tr>
             @foreach($test as $key)
-            <td>
-              <h3 class="title">
+            <td align="center">
                 <a title="">{{$key['name']}}</a>
-              </h3>
             </td>
             <td><a class="img"><img src="{{asset('storage/'.$key['image'])}}" width="70" alt=""></a></td>
             <td align="center">{{$key['price']}} VND</td>
