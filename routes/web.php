@@ -68,6 +68,8 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('thanh-toan', [VnpayController::class, 'index'])->name('thanhtoan');
     Route::post('thanh-toan', [VnpayController::class, 'create']);
     Route::get('vnpay-return', [VnpayController::class, 'return']);
+    Route::get('send-mail', [VnpayController::class, 'sendMail'])->name('send-mail');
+    Route::get('send-mail-change-status', [OrderController::class, 'sendMail'])->name('send-mail-change-status');
 
 });
 
