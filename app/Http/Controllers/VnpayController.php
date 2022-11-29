@@ -284,6 +284,7 @@ class VnpayController extends Controller
                 $returnData['Message'] = 'Invalid signature';
             }
             DB::commit();
+            $this->sendMail();
             return view('client.vnpay.return');
         } catch (Exception $e) {
             DB::rollBack();
@@ -299,14 +300,10 @@ class VnpayController extends Controller
         // $request->session()->flush();
         //Trả lại VNPAY theo định dạng JSON
         // echo json_encode($returnData);
-        // $this->sendMail(Auth::user());
     }
 
     public function sendMail(){
-        // dd(Auth::user());
         $user = Auth::user();
-        Mail::to('hieundph07944@fpt.edu.vn')->send(new OrderMail($user));
-
-        return true;
+        Mail::to($user->mail)->send(new OrderMail($user));
     }
 }

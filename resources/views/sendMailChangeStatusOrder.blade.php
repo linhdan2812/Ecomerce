@@ -30,7 +30,7 @@
                     <p>Giá: {{ $product['price'] }}</p>
                 </label>
                 <label for="">
-                    <p>Giảm giá: {{ $product['discount'] ? $product['discount'] : 'Không'}}</p>
+                    <p>Giảm giá: {{ $product['discount'] ?? 'Không'}}</p>
                 </label>
                 <br><br>
             @endforeach
