@@ -105,11 +105,17 @@
                                             <img src="{{ $item->photo}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;">
                                             {{-- <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;"> --}}
                                         </a>
-                                        <div class="product-hover-icon-wrapper">
-                                            <span class="single-icon single-icon--add-to-cart" style="width: 100%">
-                                                <a href="{{ route('add.to.cart', $item->id) }}" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                <span>Thêm vào giỏ hàng</span> </a></span>
-                                        </div>
+                                        @if ($item->stock > 0)
+                                            <div class="product-hover-icon-wrapper">
+                                                <span class="single-icon single-icon--add-to-cart" style="width: 100%">
+                                                    <a href="{{ route('add.to.cart', $item->id) }}" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                                                    <span>Thêm vào giỏ hàng</span> </a></span>
+                                            </div>
+                                        @else
+                                            <div class="product-hover-icon-wrapper">
+                                                <span> Đã hết hàng </span>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="single-grid-product__content">
                                         <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{$item->title}}</a></h3>
