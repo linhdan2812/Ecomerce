@@ -61,7 +61,7 @@
                                         <input type="hidden" name="quantity[]" value="{{ $details['quantity'] }}">
                                         <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VND">
                                         <input type="hidden" name="name[]" value="{{ $details['name'] }}">
-                                        <input type="hidden" name="total" value="{{ $total }}">
+                                        <input type="hidden" id="total" name="total" value="{{ $total }}">
                                         @endif
                                     </tbody>
                                 </table>
@@ -78,16 +78,14 @@
                                         <!--=======  coupon form  =======-->
 
                                         <div class="coupon-form">
-                                            <form action="#">
-                                                <div class="row row-5">
-                                                    <div class="col-md-7 col-sm-7">
-                                                        <input type="text" name="coupon" value="" id="coupon" placeholder="Nhập mã giảm giá">
-                                                    </div>
-                                                    <div class="col-md-5 col-sm-5">
-                                                        <button class="theme-button theme-button--silver">Áp dụng</button>
-                                                    </div>
+                                            <div class="row row-5">
+                                                <div class="col-md-7 col-sm-7">
+                                                    <input type="text" name="coupon" value="" id="coupon" placeholder="Nhập mã giảm giá">
                                                 </div>
-                                            </form>
+                                                <div class="col-md-5 col-sm-5">
+                                                    <a href="#" id="checkcoupon" class="theme-button theme-button--silver">Áp dụng</a>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <!--=======  End of coupon form  =======-->
@@ -108,8 +106,16 @@
                                         <td class="subtotal">{{ number_format($total) }} VND</td>
                                     </tr>
                                     <tr>
+                                        <th>Số Lượng</th>
+                                        {{-- <td class="subtotal">{{ number_format($total) }} VND</td> --}}
+                                    </tr>
+                                    <tr>
+                                        <th>Giảm giá</th>
+                                        <td class="coupon" id="getCoupon"></td>
+                                    </tr>
+                                    <tr>
                                         <th>Tổng tiền</th>
-                                        <td class="total">{{ number_format($total) }} VND</td>
+                                        <td class="total" id="finalTotal">{{ number_format($total) }} VND</td>
                                     </tr>
                                 </table>
 
@@ -167,6 +173,23 @@
                     }
                 });
             }
+        });
+        $("#checkcoupon").click(function(e) {
+            e.preventDefault();
+            var coupon = $('#coupon').val();
+            var total = $('#total').val();
+            $.ajax({
+                url: '{{ route('checkCoupon') }}',
+                method: "get",
+                data: {
+                    coupon : coupon,
+                    total : total
+                },
+                success: function(response) {
+                    $("#getCoupon").text(new Intl.NumberFormat({ style: 'currency'}).format(response[0]) +' VND');
+                    $("#finalTotal").text(new Intl.NumberFormat({ style: 'currency'}).format(response[1]) +' VND');
+                }
+            });
         });
     </script>
 @endsection

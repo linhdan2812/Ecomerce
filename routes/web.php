@@ -73,6 +73,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
 });
 
+Route::get('checkCoupon',[HomeController::class,'checkCoupon'])->name('checkCoupon');
 //Admin
 Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
