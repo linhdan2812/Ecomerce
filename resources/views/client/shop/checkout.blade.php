@@ -26,7 +26,7 @@
     <div class="checkout-page-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="checkout-form">
                         <!-- Checkout Form s-->
                         <?php
@@ -49,12 +49,10 @@
                                 <input class="form-control" id="order_id" name="order_id" type="hidden" value="<?php echo date("YmdHis") ?>" />
                             </div>
                             <div class="form-group">
-                                <label for="amount">Số tiền</label>
-                                <input class="form-control" id="amount" name="amount" type="number" value="{{ $total }}" />
+                                <input class="form-control" id="amount" name="amount" type="hidden" value="{{ $total }}" />
                             </div>
                             <div class="form-group">
-                                <label for="order_desc">Nội dung thanh toán</label>
-                                <input  class="form-control" type="text" value="Thanh toan hoa don ban hang" id="order_desc" name="order_desc">
+                                <input class="form-control" type="hidden" value="Thanh toan hoa don ban hang" id="order_desc" name="order_desc">
                             </div>
                             <div class="form-group">
                                 <label for="bank_code">Ngân hàng</label>
@@ -92,26 +90,26 @@
                             </div>
                             <div class="form-group">
                                 <label>Họ và tên (*)</label>
-                                <input class="form-control" id="txt_billing_fullname" name="txt_billing_fullname" type="text"/>
+                                <input class="form-control" id="txt_billing_fullname" name="txt_billing_fullname" type="text" />
                             </div>
                             <div class="form-group">
                                 <label>Email (*)</label>
-                                <input class="form-control" id="txt_billing_email" name="txt_billing_email" type="text"/>
+                                <input class="form-control" id="txt_billing_email" name="txt_billing_email" type="text" />
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại (*)</label>
-                                <input class="form-control" id="txt_billing_mobile" name="txt_billing_mobile" type="number"/>
+                                <input class="form-control" id="txt_billing_mobile" name="txt_billing_mobile" type="number" />
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ (*)</label>
-                                <input class="form-control" id="txt_billing_addr1" name="txt_billing_addr1" type="text"/>
+                                <input class="form-control" id="txt_billing_addr1" name="txt_billing_addr1" type="text" />
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="txt_postalcode" name="txt_postalcode" type="hidden" value="100000" />
                             </div>
                             <div class="form-group">
                                 <label>Tỉnh/TP (*)</label>
-                                <input class="form-control" id="txt_bill_city" name="txt_bill_city" type="text"/>
+                                <input class="form-control" id="txt_bill_city" name="txt_bill_city" type="text" />
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="txt_bill_state" name="txt_bill_state" type="hidden" value="" />
@@ -169,73 +167,63 @@
                             </div>
 
                         </form><br>
+                    </div>
+                </div>
+                <div class="col-6">
 
-                        <div class="col-lg-5">
-                            <div class="row">
+                    <h4 class="checkout-title">Tổng giá đơn hàng</h4>
 
-                                <!-- Cart Total -->
-                                <div class="col-12">
+                    <div class="checkout-cart-total">
+                        <h4>Sản phẩm <span>Tổng</span></h4>
 
-                                    <h4 class="checkout-title">Tổng giá đơn hàng</h4>
+                        @php
+                        $total = 0
+                        @endphp
+                        @if (session('cart'))
+                        @foreach (session('cart') as $id => $details)
+                        <input type="hidden" name="data[]" value="{{$id}}">
 
-                                    <div class="checkout-cart-total">
-                                        <h4>Sản phẩm <span>Tổng</span></h4>
+                        @php
+                        $total += $details['price'] * $details['quantity']
+                        @endphp
 
-                                        @php
-                                            $total = 0 
-                                        @endphp
-                                        @if (session('cart'))
-                                            @foreach (session('cart') as $id => $details)
-                                                <input type="hidden" name="data[]" value="{{$id}}">
-
-                                                @php
-                                                    $total += $details['price'] * $details['quantity'] 
-                                                @endphp
-
-                                                <table style="width:100%">
-                                                    <tr data-id="{{ $id }}">
-                                                        <td style="width:50%" data-th="Product" class="product-name">
-                                                            <a href="">{{ $details['name'] }}</a>
-                                                        </td>
-                                                        <td style="width:20;text-align: end;" data-th="Price" class="product-price">
-                                                            <span class="price">{{ $details['price'] }}</span>
-                                                        </td>
-                                                        <td style="width:10%;text-align: end;" data-th="Quantity">
-                                                            X {{ $details['quantity'] }}
-                                                        </td>
-                                                        <td style="width:20%;text-align: end;" data-th="Subtotal" class="total-price">
-                                                            <span class="price"> {{ $details['price'] * $details['quantity'] }}</span>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <br>
-                                            @endforeach
-                                        @endif
-                                        {{-- <ul>
+                        <table style="width:100%">
+                            <tr data-id="{{ $id }}">
+                                <td style="width:50%" data-th="Product" class="product-name">
+                                    <a href="">{{ $details['name'] }}</a>
+                                </td>
+                                <td style="width:20;text-align: end;" data-th="Price" class="product-price">
+                                    <span class="price">{{ $details['price'] }}</span>
+                                </td>
+                                <td style="width:10%;text-align: end;" data-th="Quantity">
+                                    X {{ $details['quantity'] }}
+                                </td>
+                                <td style="width:20%;text-align: end;" data-th="Subtotal" class="total-price">
+                                    <span class="price"> {{ $details['price'] * $details['quantity'] }}</span>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        @endforeach
+                        @endif
+                        {{-- <ul>
                                                         @foreach ( $quantities as $quantity )
                                                             {{$quantity}}
-                                        @endforeach
-                                        @foreach ( $names as $name )
-                                        {{$name}}
-                                        @endforeac
-                                        @foreach ( $subs as $sub )
-                                        {{$sub}}
-                                        @endforeach
-                                        <li>Cillum dolore tortor nisl X 01 <span>$25.00</span></li>
+                        @endforeach
+                        @foreach ( $names as $name )
+                        {{$name}}
+                        @endforeac
+                        @foreach ( $subs as $sub )
+                        {{$sub}}
+                        @endforeach
+                        <li>Cillum dolore tortor nisl X 01 <span>$25.00</span></li>
 
-                                        </ul> --}}
+                        </ul> --}}
+                        <hr>
 
-                                        <p>Tổng tiền tạm tính <span>{{$total}}</span></p>
-                                        <p>Phí ship <span>00.00</span></p>
-
-                                        <h4>Tổng cộng <span>{{$total}}</span></h4>
-                                        <input type="hidden" name="quantity" value="{{ $details['quantity'] }}">
-                                        <input type="hidden" name="amount" value="{{ $total }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <h4>Tổng cộng <span>{{$total}}</span></h4>
+                        <input type="hidden" name="quantity" value="{{ $details['quantity'] }}">
+                        <input type="hidden" name="amount" value="{{ $total }}">
                     </div>
                 </div>
             </div>
