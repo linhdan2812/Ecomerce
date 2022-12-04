@@ -62,6 +62,7 @@
                                         <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VND">
                                         <input type="hidden" name="name[]" value="{{ $details['name'] }}">
                                         <input type="hidden" id="total" name="total" value="{{ $total }}">
+                                        <input type="hidden" id="newTotal" name="newTotal" value="">
                                         @endif
                                     </tbody>
                                 </table>
@@ -186,8 +187,11 @@
                     total : total
                 },
                 success: function(response) {
-                    $("#getCoupon").text(new Intl.NumberFormat({ style: 'currency'}).format(response[0]) +' VND');
-                    $("#finalTotal").text(new Intl.NumberFormat({ style: 'currency'}).format(response[1]) +' VND');
+                    if (response) {
+                        $("#getCoupon").text(new Intl.NumberFormat({ style: 'currency'}).format(response[0]) +' VND');
+                        $("#finalTotal").text(new Intl.NumberFormat({ style: 'currency'}).format(response[1]) +' VND');
+                        $("#newTotal").val(response[1]);
+                    }
                 }
             });
         });

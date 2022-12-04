@@ -221,7 +221,7 @@
                         </ul> --}}
                         <hr>
 
-                        <h4>Tổng cộng <span>{{$total}}</span></h4>
+                        <h4>Tổng cộng <span>{{$newTotal ? $newTotal : $total}}</span></h4>
                         <input type="hidden" name="quantity" value="{{ $details['quantity'] }}">
                         <input type="hidden" name="amount" value="{{ $total }}">
                     </div>

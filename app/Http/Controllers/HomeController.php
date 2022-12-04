@@ -50,7 +50,14 @@ class HomeController extends Controller
                 return $array;
             }
             if( $getCoupon->type == 'percent') {
-                dd(2);
+                if($getCoupon->minbill > $total) {
+                    return false;
+                }
+                $array = [
+                    $value = $total * $getCoupon->value / 100,
+                    $finalTotal = $total - $value,
+                ];
+                return $array;
             }
             if( $getCoupon->type == 'all') {
                 dd(2);

@@ -119,11 +119,12 @@ class ShopController extends Controller
         $quantities = $request->input('quantity');
         $names = $request->input('name');
         $subs = $request->input('sub');
+        $newTotal = $request->input('newTotal');
         $coupon = $request->input('coupon');
-        $total = $request->input('total');
+        $total = $request->input('newTotal') ? $request->input('newTotal') : $request->input('total');
         $user = User::where('id',$user_id)->first();
         $address = Address::where('user_id',$user_id)->where('status',1)->first();
-        return view('client.shop.checkout',compact('user','quantities','names','subs','total','coupon','address'));
+        return view('client.shop.checkout',compact('user','quantities','names','subs','total','coupon','address','newTotal'));
     }
     // CheckoutRequest $request phải thay cho request
         // Thêm thông tin truyền ra ngoài
