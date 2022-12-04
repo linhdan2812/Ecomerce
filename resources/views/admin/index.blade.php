@@ -62,17 +62,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    var xaValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-    var yaValues = [55, 49, 44, 24, 15];
-    var barColors3 = "red";
-
     new Chart("myChart3", {
     type: "bar",
     data: {
-        labels: xaValues,
+        labels: {{ Js::from($moneyLabels) }},
         datasets: [{
-        backgroundColor: barColors3,
-        data: yaValues
+        backgroundColor: "red",
+        data: {{ Js::from($moneyData) }}
         }]
     },
     options: {
@@ -86,17 +82,14 @@
         }
     }
     });
-    var labels =  {{ Js::from($labels) }};
-    var users =  {{ Js::from($data) }};
-    var barColors = ["red", "green","blue","orange","brown"];
 
     const data = {
-        labels: labels,
+        labels: {{ Js::from($labels) }},
         datasets: [{
         label: 'Doanh số bán hàng',
         backgroundColor: 'rgb(255, 99, 132)',
         borderColor: 'rgb(255, 99, 132)',
-        data: users,
+        data: {{ Js::from($data) }},
         }]
     };
   

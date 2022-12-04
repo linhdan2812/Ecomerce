@@ -18,14 +18,14 @@
         <!-- Modal -->
         <div id="ex1" class="modal" style="border-radius: 2px;">
           <h3>Chỉnh sửa đơn hàng</h3>
-          <form action="{{ route('admin.order.update',['id'=>$detailorder->id])}}" method="POST">
+          <form action="{{ route('admin.order.update',['id'=>$detailorder->id])}}" method="get">
             <div>
               <label for="">Lí do</label>
               <input type="text" name="note" id="note" value="note">
             </div>
             <div>
               <label for="">Chuyển trạng thái đơn hàng</label>
-              <select name="" id="">
+              <select name="value" id="">
                 <option value="outStock">Đã hết hàng</option>
                 <option value="shipping">Đang giao hàng</option>
                 <option value="cancel">Đã hủy đơn</option>
@@ -62,18 +62,16 @@
       <div class="tb-cart v2">
         <table class="table">
           <tr>
-            <th>Sản phẩm</th>
-            <th>Ảnh</th>
+            <th class="text-center">Sản phẩm</th>
+            <th class="text-center">Ảnh</th>
             <th class="text-center">Giá</th>
             <th class="text-center">Số lượng</th>
             <th class="text-right">Thành tiền</th>
           </tr>
           <tr>
             @foreach($test as $key)
-            <td>
-              <h3 class="title">
+            <td align="center">
                 <a title="">{{$key['name']}}</a>
-              </h3>
             </td>
             <td><a class="img"><img src="{{asset('storage/'.$key['image'])}}" width="70" alt=""></a></td>
             <td align="center">{{$key['price']}} VND</td>

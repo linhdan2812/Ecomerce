@@ -68,9 +68,12 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('thanh-toan', [VnpayController::class, 'index'])->name('thanhtoan');
     Route::post('thanh-toan', [VnpayController::class, 'create']);
     Route::get('vnpay-return', [VnpayController::class, 'return']);
+    Route::get('send-mail', [VnpayController::class, 'sendMail'])->name('send-mail');
+    Route::get('send-mail-change-status', [OrderController::class, 'sendMail'])->name('send-mail-change-status');
 
 });
 
+Route::get('checkCoupon',[HomeController::class,'checkCoupon'])->name('checkCoupon');
 //Admin
 Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
@@ -136,7 +139,7 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.list');
 
-        Route::post('update-order/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
+        Route::get('update-order/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
 
         //Chi tiết đơn hàng
         Route::get('/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');

@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Product;
+use App\Models\VnpayTest;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 class ProductExport implements FromCollection, WithHeadings
@@ -18,9 +18,14 @@ class ProductExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Product::whereMonth('created_at', $this->time)->get();
+        return VnpayTest::select(
+            'vnp_OrderType',
+            'vnp_Amount',
+            'vnp_Bill_Email',
+            'vnp_Bill_Address'
+        )->whereMonth('created_at', $this->time)->where('status_order','success')->get();
     }
     public function headings() :array {
-    	return ["STT", "Tên tài khoản", "Email", "Loại"];
+    	return ["Loại", "Giá", "Email", "Địa chỉ"];
     }
 }

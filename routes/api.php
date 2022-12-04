@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,4 @@ Route::get('deleteAddres/{id}',[Location::class,'deleteAddres'])->name('deleteAd
 Route::get('setDefaut/{id}',[Location   ::class,'setDefaut'])->name('setDefaut');
 Route::get('setCancelOrder',[Location::class,'setCancelOrder'])->name('setCancelOrder');
 Route::post('changestatus',[OrderController::class,'changestatus'])->name('changestatus');
+Route::post('checkCoupon',[HomeController::class,'checkCoupon'])->name('checkCoupon');
