@@ -31,7 +31,7 @@ class ShopController extends Controller
         $products = Product::where('title', 'LIKE', '%'. $keyword. '%')->orderBy($sort , $sort_by)
         // ->take($page)->limit((int)$perPage * (int)$page)
         ->simplePaginate(
-            $perPage = 15, $columns = ['*'], $pageName = 'Shop'
+            $perPage = 18, $columns = ['*'], $pageName = 'Shop'
         );
         return view('client.shop.list', compact('products'));
     }
@@ -119,11 +119,12 @@ class ShopController extends Controller
         $quantities = $request->input('quantity');
         $names = $request->input('name');
         $subs = $request->input('sub');
+        $newTotal = $request->input('newTotal');
         $coupon = $request->input('coupon');
-        $total = $request->input('total');
+        $total = $request->input('newTotal') ? $request->input('newTotal') : $request->input('total');
         $user = User::where('id',$user_id)->first();
         $address = Address::where('user_id',$user_id)->where('status',1)->first();
-        return view('client.shop.checkout',compact('user','quantities','names','subs','total','coupon','address'));
+        return view('client.shop.checkout',compact('user','quantities','names','subs','total','coupon','address','newTotal'));
     }
     // CheckoutRequest $request phải thay cho request
         // Thêm thông tin truyền ra ngoài

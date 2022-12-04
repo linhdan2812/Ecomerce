@@ -41,7 +41,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="">Năm sinh</label>
-                                        <input type="text" placeholder="Năm sinh" name="birthday" value="{{$user->birthday ?? null}}" class="form-control date-input">
+                                        <input type="text" placeholder="Năm sinh" name="birthday" data-provide="date-input" value="{{date("d-m-Y", strtotime($user->birthday)) ?? null}}" class="form-control date-input">
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
                                 </div>

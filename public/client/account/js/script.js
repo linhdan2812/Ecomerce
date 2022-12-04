@@ -819,6 +819,7 @@ jQuery(function($) {
 
     if($('.date-input').length) {
         $('.date-input').datepicker({
+            format: 'dd/mm/yyyy',
             orientation: "bottom auto",
             todayHighlight: true,
         });

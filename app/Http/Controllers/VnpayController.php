@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\Vnpay;
 use App\Models\VnpayTest;
@@ -10,6 +11,7 @@ use Exception;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class VnpayController extends Controller
 {
@@ -282,6 +284,7 @@ class VnpayController extends Controller
                 $returnData['Message'] = 'Invalid signature';
             }
             DB::commit();
+            $this->sendMail();
             return view('client.vnpay.return');
         } catch (Exception $e) {
             DB::rollBack();
@@ -297,5 +300,10 @@ class VnpayController extends Controller
         // $request->session()->flush();
         //Trả lại VNPAY theo định dạng JSON
         // echo json_encode($returnData);
+    }
+
+    public function sendMail(){
+        $user = Auth::user();
+        Mail::to($user->mail)->send(new OrderMail($user));
     }
 }

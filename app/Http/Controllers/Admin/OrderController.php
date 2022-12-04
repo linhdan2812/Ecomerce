@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ChangeOrderStatusMail;
+use App\Mail\OrderMail;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\RequestOrder;
@@ -12,6 +14,8 @@ use App\Models\Vnpay;
 use App\Models\VnpayTest;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use function React\Promise\all;
 
 class OrderController extends Controller
@@ -38,7 +42,10 @@ class OrderController extends Controller
 
     public function updateOrder(Request $request)
     {
-        $order = VnpayTest::find($request->id);
+        // $order = VnpayTest::find($request->id);
+        $order = VnpayTest::where('id', $request->id)
+            ->update(['status_order' => 'success']);
+        return redirect('/admin/orders');
     }
 
     public function changestatus(Request $request)
@@ -51,12 +58,13 @@ class OrderController extends Controller
     public function stateChange($id)
     {
         $order = VnpayTest::find($id);
+        $msg = '';
         if ($order->status_order == 'pending') {
             $order->fill([
                 'status_order' => 'shipping'
             ]);
             $order->save();
-            return redirect()->back()->with('msg', 'Đã xác nhận để giao hàng');
+            $msg = 'Đã xác nhận để giao hàng';
         }
 
         if ($order->status_order == 'shipping') {
@@ -64,7 +72,20 @@ class OrderController extends Controller
                 'status_order' => 'success'
             ]);
             $order->save();
-            return redirect()->back()->with('msg', 'Đã giao hàng thành công');
+            $msg = 'Đã giao hàng thành công';
         }
+        $this->sendMail($order);
+        return redirect()->back()->with('msg', $msg);
+    }
+
+    public function sendMail($order){
+        $user = Auth::user();
+        if ($order->status_order == 'shipping'){
+            $message = "Đơn hàng của bạn đang được vận chuyển";
+        }else{
+            $message = "Đơn hàng của bạn giao nhận thành công";
+        }
+        $detailProducts = array_values(json_decode($order->cart, true));
+        Mail::to($user->email)->send(new ChangeOrderStatusMail($user, $detailProducts, $message));
     }
 }
