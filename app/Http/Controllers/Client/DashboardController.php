@@ -26,7 +26,11 @@ class DashboardController extends Controller
         $bannerSlide = Banner::query()->where('status','=','active')->orderBy('created_at', 'DESC')->limit(5)->get();
         $arrivals = Arrival::all();
         $products = Product::all();
-        return view('client.index',compact('bannerSlide','arrivals', 'products'));
+        // Mới nhất
+        $lproducts = Product::orderBy('created_at','DESC')->get()->take(8);
+        // nổi bật
+        $fproducts = Product::where('featured','1')->get()->take(8);
+        return view('client.index',compact('bannerSlide','arrivals', 'products','fproducts','lproducts'));
     }
     public function myaccount() {
 
