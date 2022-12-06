@@ -64,20 +64,14 @@
                     {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
                 ]'>
                                             <div class="single-image">
-                                                <img src="{{asset('storage/'. $productDetail->photo)}}" class="img-fluid" alt="">
+                                                <img src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/290944451_1003706946925046_7281273513017301728_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=H5pie0FzNToAX-4Y0g3&_nc_ht=scontent.fhan2-5.fna&oh=00_AfCOdDxBd6ReOAfsq9E88cPZ299aBTpbGObJurgWOdz-QQ&oe=6394F3D1" class="img-fluid" alt="">
                                             </div>
-{{--                                            <div class="single-image">--}}
-{{--                                                <img src="assets/img/products/big1-2.jpg" class="img-fluid" alt="">--}}
-{{--                                            </div>--}}
-{{--                                            <div class="single-image">--}}
-{{--                                                <img src="assets/img/products/big1-3.jpg" class="img-fluid" alt="">--}}
-{{--                                            </div>--}}
-{{--                                            <div class="single-image">--}}
-{{--                                                <img src="assets/img/products/big1-4.jpg" class="img-fluid" alt="">--}}
-{{--                                            </div>--}}
-{{--                                            <div class="single-image">--}}
-{{--                                                <img src="assets/img/products/big1-5.jpg" class="img-fluid" alt="">--}}
-{{--                                            </div>--}}
+                                            
+                                            @foreach (json_decode($productDetail->style) as $item)
+                                                <div class="single-image">
+                                                    <img src="{{ $item->image }}" class="img-fluid" alt="{{ $item->id }}">
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -104,21 +98,6 @@
                 {"breakpoint":575, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} },
                 {"breakpoint":479, "settings": {"slidesToShow": 2, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} }
             ]'>
-{{--                                        <div class="single-image">--}}
-{{--                                            <img src="{{asset('storage/'. $productDetail->photo)}}" class="img-fluid" alt="">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="single-image">--}}
-{{--                                            <img src="assets/img/products/big1-2.jpg" class="img-fluid" alt="">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="single-image">--}}
-{{--                                            <img src="assets/img/products/big1-3.jpg" class="img-fluid" alt="">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="single-image">--}}
-{{--                                            <img src="assets/img/products/big1-4.jpg" class="img-fluid" alt="">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="single-image">--}}
-{{--                                            <img src="assets/img/products/big1-5.jpg" class="img-fluid" alt="">--}}
-{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +125,7 @@
                             <div class="quick-view-other-info">
                                 <div class="other-info-links">
                                     <a href="{{ route('postWishlist',['id'=> $productDetail->id]) }}"><i class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>
-                                    <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a>
+                                    {{-- <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a> --}}
                                 </div>
 
                                 <div class="product-brand">
@@ -161,33 +140,11 @@
                                             Thương hiệu: {{$productDetail->brand->name ?? null}}
                                         </td>
                                     </tr>
-{{--                                    <tr class="single-info">--}}
-{{--                                        <td class="quickview-title">SKU: </td>--}}
-{{--                                        <td class="quickview-value">12345</td>--}}
-{{--                                    </tr>--}}
                                     <tr class="single-info">
                                         <td class="quickview-title">
                                             Danh mục sản phẩm: <a href="#">{{$productDetail->category->title ?? null}}</a>
                                         </td>
                                     </tr>
-{{--                                    <tr class="single-info">--}}
-{{--                                        <td class="quickview-title">Tags: </td>--}}
-{{--                                        <td class="quickview-value">--}}
-{{--                                            <a href="#">Decor</a>,--}}
-{{--                                            <a href="#">Light</a>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                    <tr class="single-info">--}}
-{{--                                        <td class="quickview-title">Share on: </td>--}}
-{{--                                        <td class="quickview-value">--}}
-{{--                                            <ul class="quickview-social-icons">--}}
-{{--                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>--}}
-{{--                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>--}}
-{{--                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>--}}
-{{--                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>--}}
-{{--                                            </ul>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
                                 </table>
                             </div>
                         </div>
@@ -232,16 +189,7 @@
                                     <!--=======  description content  =======-->
 
                                     <div class="description-content">
-                                        <p class="long-desc">Inspired by the simplistic style of traditional Scandinavian design, this cone shaped ceiling pendant adds an understated elegance to any interior design scheme.
-                                            Strung on a 3m coloured cord, this simple yet stylish ceiling light can be hung above your breakfast bar or dining table to enhance your surroundings.
-                                            A modern interpretation of a classic pendant light, Annular is available in a choice of muted colourways and will look wonderful hung alone, or as a cluster for greater visual impact.</p>
-
-                                        <p><b>Light source: Integrated LED (non-replaceable) with 30,000 hour life span.</b></p>
-                                        <p><b>Specification: EU 220-Volts</b></p>
-                                        <p><b>Ceiling rose: White – included</b></p>
-                                        <p><b>Cable: 3 metre adjustable textile cord.</b></p>
-                                        <p><b>Approximate net product weight: 2.6kg</b></p>
-                                        <p><b>This product is hardwired – professional installation recommended.</b></p>
+                                        <p class="long-desc">{{ $productDetail->description ? $productDetail->description : 'Chưa có thông tin chi tiết cho sản phẩm !' }}</p>
                                     </div>
 
                                     <!--=======  End of description content  =======-->
@@ -260,14 +208,18 @@
                                         <table class="additional-info-table">
                                             <tbody>
                                                 <tr>
-                                                    <th>Dimensions</th>
-                                                    <td class="product_dimensions">300 x 24 x 32 cm</td>
+                                                    <th>Size</th>
+                                                    <td class="product_dimensions">{{ $productDetail->size }}</td>
                                                 </tr>
 
                                                 <tr>
-                                                    <th>color</th>
+                                                    <th>Màu Sắc</th>
                                                     <td>
-                                                        <p>Black, Lavender Grey, Pink, White</p>
+                                                        <p>
+                                                            @foreach (json_decode($productDetail->style) as $item)
+                                                {{ $item->color }}
+                                                        @endforeach
+                                                    </p>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -291,14 +243,17 @@
 
                                         <div class="review-comments">
 
-                                            <h4 class="review-comment-title"> {{$listComments->count()}} REVIEWS FOR OLIVIA SHAYN COVER CHAIR</h4>
+                                            <h4 class="review-comment-title"> {{$listComments->count()}} Người đã đánh giá</h4>
 
                                             <!--=======  single-review comment  =======-->
                                         
                                         @foreach ($listComments as $item)
                                             <div class="single-review-comment">
                                                 <div class="single-review-comment__image">
-                                                    <img src="" class="img-fluid" alt="{{ $item->user_id }}">
+                                                    @php
+                                                        $user = \DB::table('users')->where('id',$item->user_id)->first();
+                                                    @endphp
+                                                    <img src="{{ $user ->photo }}" class="img-fluid" alt="{{ $item->user_id }}">
                                                 </div>
 
                                                 <div class="single-review-comment__content">
@@ -316,8 +271,8 @@
                                         <!--=======  review comment form  =======-->
 
                                         <div class="review-comment-form">
-                                            <h4 class="review-comment-title">Add a review</h4>
-                                            <p class="review-comment-subtitle">Your email address will not be published. Required fields are marked *</p>
+                                            <h4 class="review-comment-title">Thêm đánh giá của bạn</h4>
+                                            <p class="review-comment-subtitle">Email của bạn sẽ không được hiển thị công khai. Các trường bắt buộc được đánh dấu *</p>
 
                                             <form action="{{ route('postComment') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
@@ -330,11 +285,11 @@
                                                     <input type="email" id="reviewerEmail" value="" name="reviewerEmail" required>
                                                 </div> --}}
                                                 <div class="form-group">
-                                                    <label for="reviewComment">Your review <span>*</span></label>
+                                                    <label for="reviewComment">Đánh giá của bạn <span>*</span></label>
                                                     <textarea name="reviewComment" id="reviewComment" cols="30" rows="10"></textarea>
                                                 </div>
                                                 <input type="hidden" name="product_id" id="product_id" value="{{$productDetail->id}}">
-                                                <button type="submit" class="theme-button">SUBMIT</button>
+                                                <button type="submit" class="theme-button">Gửi</button>
                                             </form>
                                         </div>
 
