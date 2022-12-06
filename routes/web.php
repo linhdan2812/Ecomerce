@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CouponController;
@@ -54,11 +55,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('updateNotification', [ClientDashboardController::class, 'updateNotification'])->name('updateNotification');
 
     //Hủy đơn hàng
-    Route::get('cancel-order/{id}',[ClientDashboardController::class,'cancelOrder'])->name('cancel.order');
+    Route::get('cancel-order/{id}', [ClientDashboardController::class, 'cancelOrder'])->name('cancel.order');
 
     //Báo lỗi, báo hỏng
-    Route::get('error-order/{id}', [ClientDashboardController::class,'errorOrderForm'])->name('error.order');
-    Route::post('error-order-save/{id}', [ClientDashboardController::class,'errorOrderSave'])->name('error.order.save');
+    Route::get('error-order/{id}', [ClientDashboardController::class, 'errorOrderForm'])->name('error.order');
+    Route::post('error-order-save/{id}', [ClientDashboardController::class, 'errorOrderSave'])->name('error.order.save');
 
     // Route::get('/chat', [ChatsController::class,'index']);
     // Route::get('messages', [ChatsController::class,'fetchMessages']);
@@ -70,10 +71,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('vnpay-return', [VnpayController::class, 'return']);
     Route::get('send-mail', [VnpayController::class, 'sendMail'])->name('send-mail');
     Route::get('send-mail-change-status', [OrderController::class, 'sendMail'])->name('send-mail-change-status');
-
 });
 
-Route::get('checkCoupon',[HomeController::class,'checkCoupon'])->name('checkCoupon');
+Route::get('checkCoupon', [HomeController::class, 'checkCoupon'])->name('checkCoupon');
 //Admin
 Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
@@ -148,15 +148,15 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
         Route::get('edit-order/{id}', [OrderController::class, 'editOrder'])->name('admin.order.edit');
 
         //Chuyển trạng thái đơn hàng
-        Route::get('state-change/{id}',[OrderController::class,'stateChange'])->name('admin.order.stateChange');
+        Route::get('state-change/{id}', [OrderController::class, 'stateChange'])->name('admin.order.stateChange');
     });
 
     //Báo lỗi
     Route::prefix('error')->group(function () {
-        Route::get('/', [ErrorOrderController::class,'index'])->name('admin.error.order.list');
+        Route::get('/', [ErrorOrderController::class, 'index'])->name('admin.error.order.list');
 
         //Xác nhận đổi hàng cho khách
-        Route::get('change-order/{id}',[ErrorOrderController::class,'changeOrder'])->name('change.order');
+        Route::get('change-order/{id}', [ErrorOrderController::class, 'changeOrder'])->name('change.order');
     });
 
     // Coupons
@@ -171,6 +171,18 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
         Route::post('edit/{id}', [CouponController::class, 'saveEdit']);
 
         Route::get('delete/{id}', [CouponController::class, 'delete'])->name('admin.coupon.delete');
+    });
+
+    Route::prefix('blogs')->group(function () {
+        Route::get('list', [BlogController::class, 'index'])->name('admin.blog.list');
+
+        Route::get('add', [BlogController::class, 'add'])->name('admin.blog.add');
+        Route::post('add', [BlogController::class, 'saveAdd']);
+
+        Route::get('edit/{id}', [BlogController::class, 'edit'])->name('admin.blog.edit');
+        Route::post('edit/{id}', [BlogController::class, 'saveEdit']);
+
+        Route::get('delete/{id}', [BlogController::class, 'delete'])->name('admin.blog.delete');
     });
 });
 
