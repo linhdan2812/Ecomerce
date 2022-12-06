@@ -804,6 +804,23 @@
                         {"breakpoint":575, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
                         {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
                     ]'>
+                        <!--=======  single blog post  =======-->
+                        @foreach ($blogs as $item)
+                        <div class="col">
+
+                            <div class="single-slider-blog-post">
+                                <div class="single-slider-blog-post__image">
+                                    <a href="#">
+                                        <img src="{{asset('storage/'. $item->photo)}}"
+                                            class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                                <div class="single-slider-blog-post__content">
+                                    <h3 class="post-title"><a href="#">{{ $item->title }}</a></h3>
+                                    <p class="post-meta"><a href="#">{{ $item->created_at }}</a></p>
+                                    <p class="post-excerpt">{!! Str::limit($item->description, 100) !!}</p>
+                                    <a href="#" class="blog-readmore-link">Read more <i
+                                            class="fa fa-caret-right"></i></a>
                                 <!--=======  single blog post  =======-->
                                 <div class="col">
 
@@ -977,6 +994,8 @@
 
                             <!--=======  End of blog slider wrapper  =======-->
                         </div>
+                        @endforeach                    
+                        <!--=======  End of single blog post  =======-->
                     </div>
                 </div>
             </div>
