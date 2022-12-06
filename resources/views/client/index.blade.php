@@ -1305,154 +1305,28 @@
                         {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
                     ]'>
                         <!--=======  single blog post  =======-->
+                        @foreach ($blogs as $item)
                         <div class="col">
 
                             <div class="single-slider-blog-post">
                                 <div class="single-slider-blog-post__image">
-                                    <a href="blog-post-left-sidebar.html">
-                                        <img src="{{ asset('client/img/blog/slider/one-550x360.jpg') }}"
+                                    <a href="#">
+                                        <img src="{{asset('storage/'. $item->photo)}}"
                                             class="img-fluid" alt="">
                                     </a>
                                 </div>
                                 <div class="single-slider-blog-post__content">
-                                    <h3 class="post-title"><a href="blog-post-left-sidebar.html">The Difference Between
-                                            Green Furniture and Sustainable Furniture</a></h3>
-                                    <p class="post-meta">By <a href="#" class="post-author">admin</a> <span
-                                            class="separator">|</span> <a href="#">January 21, 2019</a></p>
-                                    <p class="post-excerpt">Many furniture companies claim their products are “green,” a
-                                        designation usually referring to material sourcing. Maybe their sofa frames are made
-                                        out of dumpster-sourced scrap metal or their cushions are…</p>
-                                    <a href="blog-post-left-sidebar.html" class="blog-readmore-link">Read more <i
+                                    <h3 class="post-title"><a href="#">{{ $item->title }}</a></h3>
+                                    <p class="post-meta"><a href="#">{{ $item->created_at }}</a></p>
+                                    <p class="post-excerpt">{!! Str::limit($item->description, 100) !!}</p>
+                                    <a href="#" class="blog-readmore-link">Read more <i
                                             class="fa fa-caret-right"></i></a>
                                 </div>
                             </div>
 
                         </div>
-                        <!--=======  End of single blog post  =======-->
-                        <!--=======  single blog post  =======-->
-                        <div class="col">
-
-                            <div class="single-slider-blog-post">
-                                <div class="single-slider-blog-post__image">
-                                    <a href="blog-post-left-sidebar.html">
-                                        <img src="{{ asset('client/img/blog/slider/two-550x360.jpg') }}"
-                                            class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="single-slider-blog-post__content">
-                                    <h3 class="post-title"><a href="blog-post-left-sidebar.html">A Busy Person Guide To
-                                            Getting Organized Room</a></h3>
-                                    <p class="post-meta">By <a href="#" class="post-author">admin</a> <span
-                                            class="separator">|</span> <a href="#">January 21, 2019</a></p>
-                                    <p class="post-excerpt">Many furniture companies claim their products are “green,” a
-                                        designation usually referring to material sourcing. Maybe their sofa frames are made
-                                        out of dumpster-sourced scrap metal or their cushions are…</p>
-                                    <a href="blog-post-left-sidebar.html" class="blog-readmore-link">Read more <i
-                                            class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--=======  End of single blog post  =======-->
-                        <!--=======  single blog post  =======-->
-                        <div class="col">
-
-                            <div class="single-slider-blog-post">
-                                <div class="single-slider-blog-post__image">
-                                    <a href="blog-post-left-sidebar.html">
-                                        <img src="{{ asset('client/img/blog/slider/three-550x360.jpg') }}"
-                                            class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="single-slider-blog-post__content">
-                                    <h3 class="post-title"><a href="blog-post-left-sidebar.html">Three Sneaky Storage
-                                            Solutions For Small Spaces</a></h3>
-                                    <p class="post-meta">By <a href="#" class="post-author">admin</a> <span
-                                            class="separator">|</span> <a href="#">January 21, 2019</a></p>
-                                    <p class="post-excerpt">Many furniture companies claim their products are “green,” a
-                                        designation usually referring to material sourcing. Maybe their sofa frames are made
-                                        out of dumpster-sourced scrap metal or their cushions are…</p>
-                                    <a href="blog-post-left-sidebar.html" class="blog-readmore-link">Read more <i
-                                            class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--=======  End of single blog post  =======-->
-                        <!--=======  single blog post  =======-->
-                        <div class="col">
-
-                            <div class="single-slider-blog-post">
-                                <div class="single-slider-blog-post__image">
-                                    <a href="blog-post-left-sidebar.html">
-                                        <img src="{{ asset('client/img/blog/slider/four-550x360.jpg') }}"
-                                            class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="single-slider-blog-post__content">
-                                    <h3 class="post-title"><a href="blog-post-left-sidebar.html">The Future of Senior
-                                            Housing</a></h3>
-                                    <p class="post-meta">By <a href="#" class="post-author">admin</a> <span
-                                            class="separator">|</span> <a href="#">January 21, 2019</a></p>
-                                    <p class="post-excerpt">Many furniture companies claim their products are “green,” a
-                                        designation usually referring to material sourcing. Maybe their sofa frames are made
-                                        out of dumpster-sourced scrap metal or their cushions are…</p>
-                                    <a href="blog-post-left-sidebar.html" class="blog-readmore-link">Read more <i
-                                            class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--=======  End of single blog post  =======-->
-                        <!--=======  single blog post  =======-->
-                        <div class="col">
-
-                            <div class="single-slider-blog-post">
-                                <div class="single-slider-blog-post__image">
-                                    <a href="blog-post-left-sidebar.html">
-                                        <img src="{{ asset('client/img/blog/slider/five-550x360.jpg') }}"
-                                            class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="single-slider-blog-post__content">
-                                    <h3 class="post-title"><a href="blog-post-left-sidebar.html">Creating An Organized
-                                            Multi-Use Room</a></h3>
-                                    <p class="post-meta">By <a href="#" class="post-author">admin</a> <span
-                                            class="separator">|</span> <a href="#">January 21, 2019</a></p>
-                                    <p class="post-excerpt">Many furniture companies claim their products are “green,” a
-                                        designation usually referring to material sourcing. Maybe their sofa frames are made
-                                        out of dumpster-sourced scrap metal or their cushions are…</p>
-                                    <a href="blog-post-left-sidebar.html" class="blog-readmore-link">Read more <i
-                                            class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--=======  End of single blog post  =======-->
-                        <!--=======  single blog post  =======-->
-                        <div class="col">
-
-                            <div class="single-slider-blog-post">
-                                <div class="single-slider-blog-post__image">
-                                    <a href="blog-post-left-sidebar.html">
-                                        <img src="{{ asset('client/img/blog/slider/six-550x360.jpg') }}"
-                                            class="img-fluid" alt="">
-                                    </a>
-                                </div>
-                                <div class="single-slider-blog-post__content">
-                                    <h3 class="post-title"><a href="blog-post-left-sidebar.html">Sustainable Furniture
-                                            in Modern World</a></h3>
-                                    <p class="post-meta">By <a href="#" class="post-author">admin</a> <span
-                                            class="separator">|</span> <a href="#">January 21, 2019</a></p>
-                                    <p class="post-excerpt">Many furniture companies claim their products are “green,” a
-                                        designation usually referring to material sourcing. Maybe their sofa frames are made
-                                        out of dumpster-sourced scrap metal or their cushions are…</p>
-                                    <a href="blog-post-left-sidebar.html" class="blog-readmore-link">Read more <i
-                                            class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
-
-                        </div>
+                        @endforeach
+                        
                         <!--=======  End of single blog post  =======-->
 
                     </div>

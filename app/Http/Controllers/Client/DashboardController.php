@@ -10,6 +10,7 @@ use App\Models\Address;
 use App\Models\Arrival;
 use App\Models\Order;
 use App\Http\Requests\AccountRequest;
+use App\Models\Blog;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -18,6 +19,7 @@ use App\Models\Product;
 use App\Models\RequestOrder;
 use App\Models\Vnpay;
 use App\Models\VnpayTest;
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
@@ -26,7 +28,8 @@ class DashboardController extends Controller
         $bannerSlide = Banner::query()->where('status','=','active')->orderBy('created_at', 'DESC')->limit(5)->get();
         $arrivals = Arrival::all();
         $products = Product::all();
-        return view('client.index',compact('bannerSlide','arrivals', 'products'));
+        $blogs = Blog::all();
+        return view('client.index',compact('bannerSlide','arrivals', 'products','blogs'));
     }
     public function myaccount() {
 
