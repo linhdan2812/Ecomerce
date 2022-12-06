@@ -69,6 +69,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="nav-link" href="{{ route('admin.blog.list') }}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Blog</p>
+                        </a>
+                    </li>
+                    <li>
                         <a class="nav-link" href="{{ route('admin.order.list') }}">
                             <i class="nc-icon nc-atom"></i>
                             <p>Đơn hàng</p>
