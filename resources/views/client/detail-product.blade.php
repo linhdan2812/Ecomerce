@@ -112,7 +112,7 @@
                             <h2 class="item-title">{{$productDetail->title}}</h2>
                             <p class="price">
                                 <span class="main-price">{{$productDetail->price}}</span>
-                                <span class="discounted-price">{{$foproductDetail->discount ?? null}}</span>
+                                <span class="discounted-price">{{$productDetail->discount ?? null}}</span>
                             </p>
                             <p class="description">{{$productDetail->description ?? ''}}</p>
                             <div class="add-to-cart-btn d-inline-block">
