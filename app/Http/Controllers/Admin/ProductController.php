@@ -32,15 +32,28 @@ class ProductController extends Controller
 
     public function saveAdd(ProductRequest $request)
     {
-        $product = new Product();
-        $product->fill($request->all());
-
+        if ($request->hasFile('image')) {
+            $newFileName = uniqid() . '-' . $request->image[0]->getClientOriginalName();
+            $pathImage = $request->image[0]->storeAs('public/uploads/products', $newFileName);
+        }
+        $arr_tojson = array(
+            'size' => $request->size[0] ?? '',
+            'color' => $request->color[0] ?? '', 
+            'image' => $pathImage ?? '',
+        );
         if ($request->hasFile('photo')) {
             $newFileName = uniqid() . '-' . $request->photo->getClientOriginalName();
             $path = $request->photo->storeAs('public/uploads/products', $newFileName);
-            $product->photo = str_replace('public/', '', $path);
         }
-        $product->save();
+        $product = Product::create([
+            'title' => $request->title ?? '',
+            'summary' => $request->summary ?? '',
+            'description' => $request->description ?? '',
+            'price' => $request->price ?? '',
+            'discount' => $request->discount ?? '',
+            'photo' => str_replace('public/', '', $path) ?? '',
+            'style' => [json_encode($arr_tojson)] ?? '',
+        ]);
         return redirect(route('admin.product.list'))->with('msg','Thêm mới thành công!');
     }
 

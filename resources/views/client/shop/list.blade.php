@@ -102,8 +102,7 @@
                                 <div class="single-grid-product">
                                     <div class="single-grid-product__image">
                                         <a href="{{ route('detailProduct',['id'=> $item->id]) }}" class="image-wrap">
-                                            <img src="{{ $item->photo}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;">
-                                            {{-- <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;"> --}}
+                                            <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="{{ $item->name }}" style="width: 100%;height: 250px;">
                                         </a>
                                         @if ($item->stock > 0)
                                             <div class="product-hover-icon-wrapper">
