@@ -85,7 +85,8 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-
+                        <a href="#" id="special" class="btn btn-primary">Đặc biệt</a>
+                        <p id="label"></p>
                         <div class="form-group">
                             <label for="status">Trạng thái</label>
                             <select class="form-control" name="status" id="status">
@@ -105,6 +106,13 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('.ckeditor').ckeditor();
+        });
+        $('#special').click(function() {
+            $("#label").html(`
+            <input type="text" name="size[]" class="form-control" placeholder="Kích cỡ" value=""/>
+            <input type="input" name="color[]" value="" placeholder="Màu sắc" class="form-control"/>
+            <input type="file" name="image[]" value=""  placeholder="Ảnh" class="form-control">
+            `);
         });
     </script>
 @endsection

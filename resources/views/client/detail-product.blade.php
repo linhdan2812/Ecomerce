@@ -69,7 +69,7 @@
                                             
                                             @foreach (json_decode($productDetail->style) as $item)
                                                 <div class="single-image">
-                                                    <img src="{{ $item->image }}" class="img-fluid" alt="{{ $item->id }}">
+                                                    <img src="{{asset('storage/'. $item->image)}}" class="img-fluid" alt="" />
                                                 </div>
                                             @endforeach
                                         </div>
@@ -113,10 +113,16 @@
 
                         <div class="product-details-description-wrapper">
                             <h2 class="item-title">{{$productDetail->title}}</h2>
-                            <p class="price">
-                                <span class="main-price">{{$productDetail->price}}</span>
-                                <span class="discounted-price">{{$productDetail->discount ?? null}}</span>
-                            </p>
+                            @if(empty($productDetail->discount))
+                                <div class="price">
+                                    <span class="discounted-price">{{number_format($productDetail->price)}} VND</span>
+                                </div>
+                            @else
+                                <div class="price">
+                                    <span class="main-price discounted">{{ number_format($productDetail->price)}} VND</span><br>
+                                    <span class="discounted-price">{{ number_format($productDetail->discount)}} VND</span>
+                                </div>
+                            @endif
                             <p class="description">{{$productDetail->description ?? ''}}</p>
                             <div class="add-to-cart-btn d-inline-block">
                                 <a class="theme-button theme-button--alt" href="{{ route('add.to.cart', $productDetail->id) }}">Thêm vào giỏ hàng</a>
@@ -217,9 +223,9 @@
                                                     <td>
                                                         <p>
                                                             @foreach (json_decode($productDetail->style) as $item)
-                                                {{ $item->color }}
-                                                        @endforeach
-                                                    </p>
+                                                                {{ $item->color }}
+                                                            @endforeach
+                                                        </p>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -369,21 +375,16 @@
                                             </div>
                                             <div class="single-grid-product__content">
                                                 <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{ $item->title }}</a></h3>
-                                                <div class="price"><span class="main-price">{{ $item->price }}</span> <span class="discounted-price">{{ $item->discount }}</span></div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star active"></i>
-                                                    <i class="fa fa-star active"></i>
-                                                    <i class="fa fa-star active"></i>
-                                                    <i class="fa fa-star active"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-{{--                                                <div class="color">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a class="active" href="#" data-tippy="Black" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker black"></span></a></li>--}}
-{{--                                                        <li><a href="#" data-tippy="Blue" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker blue"></span></a></li>--}}
-{{--                                                        <li><a href="#" data-tippy="Brown" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="roundborder"><span class="color-picker brown"></span></a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
+                                                @if(empty($item->discount))
+                                                    <div class="price">
+                                                        <span class="discounted-price">{{number_format($item->price)}} VND</span>
+                                                    </div>
+                                                @else
+                                                    <div class="price">
+                                                        <span class="main-price discounted">{{ number_format($item->price)}} VND</span><br>
+                                                        <span class="discounted-price">{{ number_format($item->discount)}} VND</span>
+                                                    </div>
+                                                @endif
                                                 <a href="#" class="favorite-icon" data-tippy="Add to Wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left">
                                                     <i class="fa fa-heart-o"></i>
                                                     <i class="fa fa-heart"></i>
