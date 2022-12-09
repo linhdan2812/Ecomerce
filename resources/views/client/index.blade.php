@@ -1311,7 +1311,7 @@
                             <div class="single-slider-blog-post">
                                 <div class="single-slider-blog-post__image">
                                     <a href="#">
-                                        <img src="{{asset('storage/'. $item->photo)}}"
+                                        <img src="{{asset('storage/'. $item['photo'])}}"
                                             class="img-fluid" alt="">
                                     </a>
                                 </div>
@@ -1319,8 +1319,8 @@
                                     <h3 class="post-title"><a href="#">{{ $item->title }}</a></h3>
                                     <p class="post-meta"><a href="#">{{ $item->created_at }}</a></p>
                                     <p class="post-excerpt">{!! Str::limit($item->description, 50) !!}</p>
-                                    <a href="#" class="blog-readmore-link">Read more <i
-                                            class="fa fa-caret-right"></i></a>
+{{--                                    <a href="#" class="blog-readmore-link">Read more <i--}}
+{{--                                            class="fa fa-caret-right"></i></a>--}}
                                 </div>
                             </div>
 
