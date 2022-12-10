@@ -41,37 +41,57 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        <!-- <div class="form-group">
-                            <label for="">Stock</label>
-                            <input type="number" name="stock" class="form-control">
-                            @error('stock')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div> -->
-
+                        <div class="form-group">
+                            <label for="">Thêm ảnh('có thể trống')</label>
+                            <div class="">
+                                <div class="col-lg-12">
+                                    <div id="row">
+                                        <div class="input-group m-3">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-danger" id="DeleteRow" type="button">
+                                                    <i class="bi bi-trash"></i>
+                                                    Delete
+                                                </button>
+                                            </div>
+                                            <input type="file" name="image[]" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div id="newinput"></div>
+                                    <button id="rowAdder" type="button" class="btn btn-dark">
+                                        <span class="bi bi-plus-square-dotted">
+                                        </span> Thêm ảnh
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="">Kích thước</label>
-                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox1" value="S">
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox1"
+                                value="S">
                             <label class="form-check-label form-control" for="inlineCheckbox1">S</label>
-                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox2" value="M">
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox2"
+                                value="M">
                             <label class="form-check-label form-control" for="inlineCheckbox2">M</label>
-                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox3" value="L">
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox3"
+                                value="L">
                             <label class="form-check-label form-control" for="inlineCheckbox3">L</label>
-                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox4" value="XL">
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox4"
+                                value="XL">
                             <label class="form-check-label form-control" for="inlineCheckbox4">XL</label>
                         </div>
                         <div class="form-group">
                             <label for="">Màu sắc</label>
-                            <input class="form-check-input form-control" name="color[]" type="checkbox" id="inlineCheckbox1" value="Trắng">
+                            <input class="form-check-input form-control" name="color[]" type="checkbox" id="inlineCheckbox1"
+                                value="Trắng">
                             <label class="form-check-label form-control" for="inlineCheckbox1">Trắng</label>
-                            <input class="form-check-input form-control" name="color[]" type="checkbox" id="inlineCheckbox2" value="Đen">
+                            <input class="form-check-input form-control" name="color[]" type="checkbox" id="inlineCheckbox2"
+                                value="Đen">
                             <label class="form-check-label form-control" for="inlineCheckbox2">Đen</label>
                             <input type="text" name="color[]" placeholder="khác" value="">
                         </div>
                         <div class="form-group">
                             <label for="">Giá</label>
-                            <input  name="price" class="form-control">
+                            <input name="price" class="form-control">
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -116,5 +136,19 @@
         $(document).ready(function() {
             $('.ckeditor').ckeditor();
         });
+        $("#rowAdder").click(function() {
+            newRowAdd =
+                '<div id="row"> <div class="input-group m-3">' +
+                '<div class="input-group-prepend">' +
+                '<button class="btn btn-danger" id="DeleteRow" type="button">' +
+                '<i class="bi bi-trash"></i> Delete</button> </div>' +
+                ' <input type="file" name="image[]" class="form-control"> </div> </div>';
+
+            $('#newinput').append(newRowAdd);
+        });
+
+        $("body").on("click", "#DeleteRow", function() {
+            $(this).parents("#row").remove();
+        })
     </script>
 @endsection
