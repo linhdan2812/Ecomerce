@@ -83,7 +83,7 @@
                     <li>
                         <a class="nav-link" href="{{ route('admin.error.order.list') }}">
                             <i class="nc-icon nc-atom"></i>
-                            <p>Báo lỗi</p>
+                            <p>Danh sách sản phẩm hoàn về</p>
                         </a>
                     </li>
                     <li>

@@ -284,7 +284,7 @@ class VnpayController extends Controller
                 $returnData['Message'] = 'Invalid signature';
             }
             DB::commit();
-            $this->sendMail();
+            // $this->sendMail();
             return view('client.vnpay.return');
         } catch (Exception $e) {
             DB::rollBack();
