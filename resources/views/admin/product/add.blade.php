@@ -52,12 +52,23 @@
 
                         <div class="form-group">
                             <label for="">Kích thước</label>
-                            <input type="text" name="size" class="form-control">
-                            @error('size')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox1" value="S">
+                            <label class="form-check-label form-control" for="inlineCheckbox1">S</label>
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox2" value="M">
+                            <label class="form-check-label form-control" for="inlineCheckbox2">M</label>
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox3" value="L">
+                            <label class="form-check-label form-control" for="inlineCheckbox3">L</label>
+                            <input class="form-check-input form-control" name="size[]" type="checkbox" id="inlineCheckbox4" value="XL">
+                            <label class="form-check-label form-control" for="inlineCheckbox4">XL</label>
                         </div>
-
+                        <div class="form-group">
+                            <label for="">Màu sắc</label>
+                            <input class="form-check-input form-control" name="color[]" type="checkbox" id="inlineCheckbox1" value="Trắng">
+                            <label class="form-check-label form-control" for="inlineCheckbox1">Trắng</label>
+                            <input class="form-check-input form-control" name="color[]" type="checkbox" id="inlineCheckbox2" value="Đen">
+                            <label class="form-check-label form-control" for="inlineCheckbox2">Đen</label>
+                            <input type="text" name="color[]" placeholder="khác" value="">
+                        </div>
                         <div class="form-group">
                             <label for="">Giá</label>
                             <input  name="price" class="form-control">
@@ -85,8 +96,6 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <a href="#" id="special" class="btn btn-primary">Đặc biệt</a>
-                        <p id="label"></p>
                         <div class="form-group">
                             <label for="status">Trạng thái</label>
                             <select class="form-control" name="status" id="status">
@@ -106,13 +115,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('.ckeditor').ckeditor();
-        });
-        $('#special').click(function() {
-            $("#label").html(`
-            <input type="text" name="size[]" class="form-control" placeholder="Kích cỡ" value=""/>
-            <input type="input" name="color[]" value="" placeholder="Màu sắc" class="form-control"/>
-            <input type="file" name="image[]" value=""  placeholder="Ảnh" class="form-control">
-            `);
         });
     </script>
 @endsection
