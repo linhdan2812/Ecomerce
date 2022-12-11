@@ -63,9 +63,9 @@
                     {"breakpoint":575, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
                     {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
                 ]'>
-                                            <div class="single-image">
+                                            {{-- <div class="single-image">
                                                 <img src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/290944451_1003706946925046_7281273513017301728_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=H5pie0FzNToAX-4Y0g3&_nc_ht=scontent.fhan2-5.fna&oh=00_AfCOdDxBd6ReOAfsq9E88cPZ299aBTpbGObJurgWOdz-QQ&oe=6394F3D1" class="img-fluid" alt="">
-                                            </div>
+                                            </div> --}}
                                                 <div class="single-image">
                                                     <img src="{{asset('storage/'.$productDetail['photo'])}}" class="img-fluid" alt="">
                                                 </div>

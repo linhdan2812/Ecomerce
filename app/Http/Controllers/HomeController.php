@@ -60,7 +60,6 @@ class HomeController extends Controller
                 return $array;
             }
             if( $getCoupon->type == 'all') {
-                dd(2);
             }
             return false;
         }

@@ -32,6 +32,13 @@ class ProductController extends Controller
 
     public function saveAdd(ProductRequest $request)
     {
+        $imageArr = [];
+        foreach ($request->image as $item)
+        {
+            $newFileName = uniqid() . '-' . $item->getClientOriginalName();
+            $path = $request->photo->storeAs('public/uploads/products', $newFileName);
+            array_push($imageArr,$path);
+        };
         if ($request->hasFile('photo')) {
             $newFileName = uniqid() . '-' . $request->photo->getClientOriginalName();
             $path = $request->photo->storeAs('public/uploads/products', $newFileName);
@@ -45,6 +52,7 @@ class ProductController extends Controller
             'photo' => str_replace('public/', '', $path) ?? '',
             'size' => json_encode($request->size) ?? '',
             'color' => json_encode($request->color) ?? '',
+            'images' => json_encode(str_replace('public/', '', $imageArr)) ?? '',
             'status' => $request->status ?? 'active'
         ]);
         return redirect(route('admin.product.list'))->with('msg','Thêm mới thành công!');

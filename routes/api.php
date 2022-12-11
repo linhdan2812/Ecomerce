@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Client\DashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Location;
 use Illuminate\Http\Request;
@@ -29,3 +30,4 @@ Route::get('setDefaut/{id}',[Location   ::class,'setDefaut'])->name('setDefaut')
 Route::get('setCancelOrder',[Location::class,'setCancelOrder'])->name('setCancelOrder');
 Route::post('changestatus',[OrderController::class,'changestatus'])->name('changestatus');
 Route::post('checkCoupon',[HomeController::class,'checkCoupon'])->name('checkCoupon');
+Route::get('get-dashboard', [AdminDashboardController::class, 'changeIndex'])->name('changeIndex');

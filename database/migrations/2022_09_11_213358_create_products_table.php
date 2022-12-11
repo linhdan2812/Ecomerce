@@ -26,7 +26,7 @@ return new class extends Migration
             $table->enum('status',['active','inactive'])->default('inactive');
             $table->enum('featured',['1','2'])->default('1');
             $table->float('price');
-            $table->longText('style');
+            $table->longText('images');
             $table->float('discount')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
