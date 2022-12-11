@@ -15,7 +15,6 @@
                             <th scope="col"><a class="btn btn-success" href="{{ route('admin.blog.add') }}">Thêm mới</a></th>
                         </tr>
                     </thead>
-                
                     <tbody>
                         @foreach ($blogs as $item)
                             <tr>

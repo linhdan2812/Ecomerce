@@ -1214,12 +1214,12 @@
                                             </h3>
                                             @if (empty($item->discount))
                                                 <div class="price">
-                                                    <span class="discounted-price">{{ $item->price }}</span>
+                                                    <span class="discounted-price">{{ number_format($item->price) }} VNĐ</span>
                                                 </div>
                                             @else
                                                 <div class="price">
-                                                    <span class="main-price discounted">{{ $item->price }}</span>
-                                                    <span class="discounted-price">{{ $item->discount }}</span>
+                                                    <span class="main-price discounted">{{ number_format($item->price) }} VNĐ</span>
+                                                    <span class="discounted-price">{{ number_format($item->discount) }} VNĐ</span>
                                                 </div>
                                             @endif
                                             {{--                                        <div class="rating"> --}}
@@ -1318,7 +1318,7 @@
                                 <div class="single-slider-blog-post__content">
                                     <h3 class="post-title"><a href="#">{{ $item->title }}</a></h3>
                                     <p class="post-meta"><a href="#">{{ $item->created_at }}</a></p>
-                                    <p class="post-excerpt">{!! Str::limit($item->description, 50) !!}</p>
+                                    <p class="post-excerpt">{!! Str::limit($item->description, 100) !!}</p>
 {{--                                    <a href="#" class="blog-readmore-link">Read more <i--}}
 {{--                                            class="fa fa-caret-right"></i></a>--}}
                                 </div>
@@ -1326,7 +1326,7 @@
 
                         </div>
                         @endforeach
-                        
+
                         <!--=======  End of single blog post  =======-->
 
                     </div>
