@@ -10,6 +10,16 @@
     <div class="row">
       <div class="col-md-12">
         <h2>Danh sách sản phẩm</h2>
+        <form action="{{ route('admin.product.list') }}" method="get">
+          @csrf
+          <div style="display: flex;">
+            <div style="display: flex;height: 30px;margin-right: 30px;">
+              <p>Tìm kiếm theo tên</p>
+              <input type="text" name="searchName" style="height: 100%;margin-left: 10px;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="padding: 0 10px;">Tìm kiếm</button>
+          </div>
+        </form>
         <table class="table">
           <thead>
             <tr>
