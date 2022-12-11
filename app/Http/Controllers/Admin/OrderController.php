@@ -20,9 +20,27 @@ use function React\Promise\all;
 
 class OrderController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $orders = VnpayTest::all();
+    //     return view('admin.orders.index', compact('orders'));
+    // }
+
+    public function index(Request $request)
     {
-        $orders = VnpayTest::all();
+        $orderSearch = VnpayTest::query();
+        if($request->searchStatus == 'all' && !$request->searchName){
+            $orders = $orderSearch->get();
+        }else{
+            if ($request->has('searchName')) {
+                $orderSearch->where('vnp_TxnRef', 'LIKE', '%' . $request->searchName . '%');
+            }
+
+            if ($request->has('searchStatus') && $request->searchStatus != 'all') {
+                $orderSearch->where('status_order', $request->searchStatus);
+            }
+            $orders = $orderSearch->get();
+        }
         return view('admin.orders.index', compact('orders'));
     }
 

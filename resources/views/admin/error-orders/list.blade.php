@@ -28,8 +28,8 @@
                             @foreach($errorOrder as $item)
                                 <tr>
                                     <th scope="row">{{$stt++}}</th>
-                                    <td>{{$item->id_order}}</td>
-                                    <td>{{$item->id_user}}</td>
+                                    <td>{{$item->orderId->vnp_TxnRef}}</td>
+                                    <td>{{$item->user->name}}</td>
                                     <td>{{$item->note}}</td>
                                     <td>
                                         <a href="{{route('admin.order.detail',['id'=>$item->id_order])}}"

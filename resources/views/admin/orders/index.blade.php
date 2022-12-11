@@ -8,6 +8,26 @@
                 @if(Session::has('msg'))
                     <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
                 @endif
+                <form action="{{ route('admin.order.list') }}" method="get">
+                    @csrf
+                    <div style="display: flex;">
+                        <div style="display: flex;height: 30px;margin-right: 30px;">
+                            <p>Tìm kiếm theo trạng thái</p>
+                            <select class="select" style="height: 100%;margin-left: 10px;" name="searchStatus">
+                                <option value="all">Tất cả</option>
+                                <option value="pending">Chờ xử lý</option>
+                                <option value="shipping">Đang giao hàng</option>
+                                <option value="success">Đã giao hàng</option>
+                                <option value="cancel">Đã hủy</option>
+                            </select>
+                        </div>
+                        <div style="display: flex;height: 30px;margin-right: 30px;">
+                            <p>Tìm kiếm theo tên</p>
+                            <input type="text" name="searchName" style="height: 100%;margin-left: 10px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="padding: 0 10px;">Tìm kiếm</button>
+                    </div>
+                </form>
                 <div>
                     <table class="table">
                         <thead>
@@ -38,7 +58,7 @@
                                 @if($order->vnp_TransactionStatus == '00')
                                 <td>Đã thanh toán thành công</td>
                                 @elseif($order->vnp_TransactionStatus == null)
-                                <td>Đã hủy giao dịch</td>
+                                <td>Thanh toán thất bại</td>
                                 @endif
 
                                 <!-- Chi tiết đơn hàng -->
