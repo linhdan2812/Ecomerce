@@ -16,9 +16,18 @@ use Maatwebsite\Excel\Facades\Excel;
 class ProductController extends Controller
 {
 
-    public function list()
+    public function list(Request $request)
     {
-        $products = Product::all();
+        $productSearch = Product::query();
+        if(!$request->searchName){
+            $products = $productSearch->get();
+        }else{
+            if ($request->has('searchName')) {
+                $productSearch->where('title', 'LIKE', '%' . $request->searchName . '%');
+            }
+
+            $products = $productSearch->get();
+        }
         $products->load('category', 'brand');
         return view('admin.product.list', compact('products'));
     }
