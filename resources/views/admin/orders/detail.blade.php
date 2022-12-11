@@ -12,7 +12,7 @@
       @if(Session::has('msg'))
       <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
       @endif
-      <div class="top">
+      <div class="top" style="display: flex;justify-content: space-between">
         <h3 class="head-page">Chi tiết đơn hàng</h3>
 
         <!-- Modal -->
@@ -21,7 +21,8 @@
           <form action="{{ route('admin.order.update',['id'=>$detailorder->id])}}" method="get">
             <div>
               <label for="">Lí do</label>
-              <input type="text" name="note" id="note" value="note">
+{{--              <input type="text" name="note" id="note" value="note">--}}
+              <textarea cols="30" rows="5" name="note" id="note" value="note" style="width: 100%"></textarea>
             </div>
             <div>
               <label for="">Chuyển trạng thái đơn hàng</label>
@@ -34,12 +35,16 @@
               </select>
             </div>
             <input type="hidden" name="id" value="{{$detailorder->id}}">
-            <a href="#" rel="modal:close">Đóng</a>
-            <button type="submit">Lưu</button>
+            <div style="text-align: center">
+              <button><a href="#" rel="modal:close">Đóng</a></button>
+              <button type="submit" style="color: #00bbff">Lưu</button>
+            </div>
           </form>
         </div>
 
-        <p><a href="#ex1" rel="modal:open">Chỉnh sửa đơn hàng</a></p>
+        <a href="#ex1" rel="modal:open" style="text-align: end;color: #00bbff;margin: 30px;border: 1px solid #00bbff;border-radius: 5px;padding: 10px;">
+          Chỉnh sửa đơn hàng
+        </a>
       </div><br>
       <div class="order-info">
         <span class="code"><b>Đơn hàng:</b> {{ $detailorder->vnp_TxnRef}}</span><br>
@@ -82,10 +87,10 @@
         </table>
       </div>
       <ul class="order-total">
-        <li><b>Tổng tiền hàng:</b> <span>{{ $detailorder->vnp_Amount}}</span></li>
+        <li><b>Tổng tiền hàng:</b> <span> {{ $detailorder->vnp_Amount}} VND</span></li>
         <li><b>Giảm giá:</b> <span>{{ $detailorder->coupon ?? 0 }}</span></li>
         <li><b>Phí vận chuyển:</b> <span>{{ $detailorder->shipping_id ?? 0}}</span></li>
-        <li><b>Tổng số tiền:</b> <b>{{ $detailorder->vnp_Amount}}</b></li>
+        <li><b>Tổng số tiền:</b> <b>{{ $detailorder->vnp_Amount}} VND</b></li>
         <li><b>Phương thức thanh toán: </b> <small>{{ $detailorder->vnp_CardType}}</small></li>
       </ul>
       <div class="order-address-person">
@@ -94,7 +99,7 @@
         </b>
         <ul>
           <li><span><b> Họ và tên: </b></span>{{ $detailorder->vnp_Bill_FirstName . ' ' . $detailorder->vnp_Bill_LastName ?? null}}</li>
-          <li><span><b>Số Điện thoại: </b></span>{{ $detailorder->vnp_Bill_Mobile ?? null}}</li>
+          <li><span><b>Số điện thoại: </b></span>{{ $detailorder->vnp_Bill_Mobile ?? null}}</li>
           <li><span><b> Địa chỉ: </b></span>{{ $detailorder->vnp_Bill_Address ?? null}}</li>
         </ul>
       </div>

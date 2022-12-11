@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ErrorOrderController extends Controller
 {
     public function index(){
-        $errorOrder = RequestOrder::all();
+        $errorOrder = RequestOrder::query()->with(['user','orderId'])->get();
         return view('admin.error-orders.list', compact('errorOrder'));
     }
 
