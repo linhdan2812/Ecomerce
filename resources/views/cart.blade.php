@@ -1,6 +1,6 @@
 @extends('index')
 
-@section('content') 
+@section('content')
     <div class="page-content-wrapper">
         <!--=======  shopping cart wrapper  =======-->
 
@@ -40,18 +40,18 @@
                                                 </div>
                                             </td>
                                             @if($details['discount'])
-                                            <td data-th="Price" class="product-price"><span class="price">{{ number_format($details['discount']) }} VND</span></td>
+                                            <td data-th="Price" class="product-price"><span class="price">{{ number_format($details['discount']) }} VNĐ</span></td>
                                             @else
-                                            <td data-th="Price" class="product-price"><span class="price">{{ number_format($details['price']) }} VND</span></td>
+                                            <td data-th="Price" class="product-price"><span class="price">{{ number_format($details['price']) }} VNĐ</span></td>
                                             @endif
                                             <td data-th="Quantity">
                                                 <input type="number"value="{{ $details['quantity'] }}" min="1"
                                                     class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
                                             </td>
                                             @if($details['discount'])
-                                            <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['discount'] * $details['quantity']) }} VND</span></td>
+                                            <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['discount'] * $details['quantity']) }} VNĐ</span></td>
                                             @else
-                                            <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['price'] * $details['quantity']) }} VND</span></td>
+                                            <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['price'] * $details['quantity']) }} VNĐ</span></td>
                                             @endif
                                             <td class="product-remove" data-th="">
                                                 <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
@@ -59,7 +59,7 @@
                                         </tr>
                                         @endforeach
                                         <input type="hidden" name="quantity[]" value="{{ $details['quantity'] }}">
-                                        <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VND">
+                                        <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VNĐ">
                                         <input type="hidden" name="name[]" value="{{ $details['name'] }}">
                                         <input type="hidden" id="total" name="total" value="{{ $total }}">
                                         <input type="hidden" id="newTotal" name="newTotal" value="">
@@ -104,11 +104,11 @@
                                 <table class="cart-calculation-table">
                                     <tr>
                                         <th>Giá</th>
-                                        <td class="subtotal">{{ number_format($total) }} VND</td>
+                                        <td class="subtotal">{{ number_format($total) }} VNĐ</td>
                                     </tr>
                                     <tr>
                                         <th>Số Lượng</th>
-                                        {{-- <td class="subtotal">{{ number_format($total) }} VND</td> --}}
+                                        {{-- <td class="subtotal">{{ number_format($total) }} VNĐ</td> --}}
                                     </tr>
                                     <tr>
                                         <th>Giảm giá</th>
@@ -116,7 +116,7 @@
                                     </tr>
                                     <tr>
                                         <th>Tổng tiền</th>
-                                        <td class="total" id="finalTotal">{{ number_format($total) }} VND</td>
+                                        <td class="total" id="finalTotal">{{ number_format($total) }} VNĐ</td>
                                     </tr>
                                 </table>
 
@@ -188,8 +188,8 @@
                 },
                 success: function(response) {
                     if (response) {
-                        $("#getCoupon").text(new Intl.NumberFormat({ style: 'currency'}).format(response[0]) +' VND');
-                        $("#finalTotal").text(new Intl.NumberFormat({ style: 'currency'}).format(response[1]) +' VND');
+                        $("#getCoupon").text(new Intl.NumberFormat({ style: 'currency'}).format(response[0]) +' VNĐ');
+                        $("#finalTotal").text(new Intl.NumberFormat({ style: 'currency'}).format(response[1]) +' VNĐ');
                         $("#newTotal").val(response[1]);
                     }
                 }
