@@ -49,7 +49,7 @@
                                 <input class="form-control" id="order_id" name="order_id" type="hidden" value="<?php echo date("YmdHis") ?>" />
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="amount" name="amount" type="hidden" value="{{ $total }}" />
+                                <input class="form-control" id="amount" name="amount" type="hidden" value="{{ number_format($total) }} VNĐ" />
                             </div>
                             <div class="form-group">
                                 <input class="form-control" type="hidden" value="Thanh toan hoa don ban hang" id="order_desc" name="order_desc">
@@ -193,13 +193,13 @@
                                     <a href="">{{ $details['name'] }}</a>
                                 </td>
                                 <td style="width:20;text-align: end;" data-th="Price" class="product-price">
-                                    <span class="price">{{ $details['price'] }}</span>
+                                    <span class="price">{{ number_format($details['price']) }}</span>
                                 </td>
                                 <td style="width:10%;text-align: end;" data-th="Quantity">
                                     X {{ $details['quantity'] }}
                                 </td>
                                 <td style="width:20%;text-align: end;" data-th="Subtotal" class="total-price">
-                                    <span class="price"> {{ $details['price'] * $details['quantity'] }}</span>
+                                    <span class="price"> {{ number_format($details['price'] * $details['quantity']) }} VNĐ</span>
                                 </td>
                             </tr>
                         </table>
@@ -221,7 +221,7 @@
                         </ul> --}}
                         <hr>
 
-                        <h4>Tổng cộng <span>{{$newTotal ? $newTotal : $total}}</span></h4>
+                        <h4>Tổng cộng <span>{{number_format($newTotal ? $newTotal : $total)}} VNĐ</span></h4>
                         <input type="hidden" name="quantity" value="{{ $details['quantity'] }}">
                         <input type="hidden" name="amount" value="{{ $total }}">
                     </div>
