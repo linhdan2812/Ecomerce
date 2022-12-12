@@ -30,7 +30,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  
+
 
 </head>
 
@@ -63,13 +63,13 @@
 
                             <div class="header-icon-area">
                                 <div class="account-dropdown">
-                                    <a href="my-account.html">Login / Register <i class="pe-7s-angle-down"></i></a>
+                                    <a href="my-account.html">Đăng nhập / Đăng ký <i class="pe-7s-angle-down"></i></a>
 
                                     <ul class="account-dropdown__list">
-                                        <li><a href="my-account.html">My account</a></li>
-                                        <li><a href="cart.html">Shopping cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="order-tracking.html">Order Tracking</a></li>
+                                        <li><a href="my-account.html">Tài khoản của tôi</a></li>
+                                        <li><a href="cart.html">Giỏ hàng</a></li>
+                                        <li><a href="checkout.html">Thanh toán</a></li>
+                                        <li><a href="order-tracking.html">Theo dõi đơn hàng</a></li>
                                     </ul>
                                 </div>
 
@@ -597,9 +597,9 @@
             @if(session('success'))
                 <div class="alert alert-success">
                 {{ session('success') }}
-                </div> 
+                </div>
             @endif
-        
+
             @yield('content')
         </div>
     </div>

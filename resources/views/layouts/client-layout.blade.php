@@ -191,13 +191,13 @@
 
                                     <ul class="account-dropdown__list">
                                         <li><a href="{{route('myaccount')}}">Tài khoản của tôi</a></li>
-                                        <li><a href="{{ route('shop') }}">Shopping cart</a></li>
-                                        <li><a href="{{ route('getcheckout') }}">Checkout</a></li>
-                                        <li><a href="{{ route('orders') }}">Order Tracking</a></li>
+                                        <li><a href="{{ route('shop') }}">Cửa hàng</a></li>
+                                        <li><a href="{{ route('getcheckout') }}">Thanh toán</a></li>
+                                        <li><a href="{{ route('orders') }}">Lịch sửa mua hàng</a></li>
                                         <li><a href="{{ route('logout') }}">Đăng xuất</a></li>
                                     </ul>
                                     @else
-                                    <a title="Register or Login" href="{{route('login')}}">Login</a>
+                                    <a title="Register or Login" href="{{route('login')}}">Đăng nhập</a>
                                     @endif
                                 </div>
                                 <div class="header-icon">
@@ -633,7 +633,7 @@
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
+        // When the user clicks the button, open the modal
         btn.onclick = function() {
             modal.style.display = "block";
         }
