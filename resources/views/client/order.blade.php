@@ -36,7 +36,7 @@
                                 <tr>
                                     <td><a href="{{ route('order.detail',[ 'id' => $item->id])}}" title="">{{$item->vnp_TxnRef}}</a></td>
                                     <td>{{$item->created_at}}</td>
-                                    <td><b>{{$item->vnp_Amount}}</b></td>
+                                    <td><b>{{number_format($item->vnp_Amount)}} VNĐ</b></td>
 
                                     <!-- Trạng thái thanh toán -->
                                     @if($item->vnp_TransactionStatus == '00')
