@@ -35,17 +35,22 @@
 
                         <div class="product-details-slider-area product-details-slider-area--side-move">
 
-{{--                            <div class="product-badge-wrapper">--}}
-{{--                                <span class="hot">Hot</span>--}}
-{{--                            </div>--}}
+                            {{--                            <div class="product-badge-wrapper"> --}}
+                            {{--                                <span class="hot">Hot</span> --}}
+                            {{--                            </div> --}}
 
                             <div class="row row-5">
                                 <div class="col-md-9 order-1 order-md-2">
                                     <div class="big-image-wrapper">
                                         <div class="enlarge-icon">
-                                            <a class="btn-zoom-popup" href="javascript:void(0)" data-tippy="Click to enlarge" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"><i class="pe-7s-expand1"></i></a>
+                                            <a class="btn-zoom-popup" href="javascript:void(0)"
+                                                data-tippy="Click to enlarge" data-tippy-placement="left"
+                                                data-tippy-inertia="true" data-tippy-animation="shift-away"
+                                                data-tippy-delay="50" data-tippy-arrow="true"
+                                                data-tippy-theme="sharpborder"><i class="pe-7s-expand1"></i></a>
                                         </div>
-                                        <div class="product-details-big-image-slider-wrapper product-details-big-image-slider-wrapper--side-space theme-slick-slider" data-slick-setting='{
+                                        <div class="product-details-big-image-slider-wrapper product-details-big-image-slider-wrapper--side-space theme-slick-slider"
+                                            data-slick-setting='{
                     "slidesToShow": 1,
                     "slidesToScroll": 1,
                     "arrows": false,
@@ -55,7 +60,8 @@
                     "speed": 500,
                     "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
                     "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
-                }' data-slick-responsive='[
+                }'
+                                            data-slick-responsive='[
                     {"breakpoint":1501, "settings": {"slidesToShow": 1, "arrows": false} },
                     {"breakpoint":1199, "settings": {"slidesToShow": 1, "arrows": false} },
                     {"breakpoint":991, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
@@ -66,15 +72,17 @@
                                             {{-- <div class="single-image">
                                                 <img src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/290944451_1003706946925046_7281273513017301728_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=H5pie0FzNToAX-4Y0g3&_nc_ht=scontent.fhan2-5.fna&oh=00_AfCOdDxBd6ReOAfsq9E88cPZ299aBTpbGObJurgWOdz-QQ&oe=6394F3D1" class="img-fluid" alt="">
                                             </div> --}}
-                                                <div class="single-image">
-                                                    <img src="{{asset('storage/'.$productDetail['photo'])}}" class="img-fluid" alt="">
-                                                </div>
+                                            <div class="single-image">
+                                                <img src="{{ asset('storage/' . $productDetail['photo']) }}"
+                                                    class="img-fluid" alt="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3 order-2 order-md-1">
-                                    <div class="product-details-small-image-slider-wrapper product-details-small-image-slider-wrapper--vertical-space theme-slick-slider" data-slick-setting='{
+                                    <div class="product-details-small-image-slider-wrapper product-details-small-image-slider-wrapper--vertical-space theme-slick-slider"
+                                        data-slick-setting='{
                 "slidesToShow": 3,
                 "slidesToScroll": 1,
                 "centerMode": false,
@@ -87,7 +95,8 @@
                 "focusOnSelect": true,
                 "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-up" },
                 "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-down" }
-            }' data-slick-responsive='[
+            }'
+                                        data-slick-responsive='[
                 {"breakpoint":1501, "settings": {"slidesToShow": 3, "arrows": true} },
                 {"breakpoint":1199, "settings": {"slidesToShow": 3, "arrows": true} },
                 {"breakpoint":991, "settings": {"slidesToShow": 3, "arrows": true, "slidesToScroll": 1} },
@@ -109,25 +118,28 @@
                         <!--=======  product details description area  =======-->
 
                         <div class="product-details-description-wrapper">
-                            <h2 class="item-title">{{$productDetail->title}}</h2>
-                            @if(empty($productDetail->discount))
+                            <h2 class="item-title">{{ $productDetail->title }}</h2>
+                            @if (empty($productDetail->discount))
                                 <div class="price">
-                                    <span class="discounted-price">{{number_format($productDetail->price)}} VND</span>
+                                    <span class="discounted-price">{{ number_format($productDetail->price) }} VND</span>
                                 </div>
                             @else
                                 <div class="price">
-                                    <span class="main-price discounted">{{ number_format($productDetail->price)}} VND</span><br>
-                                    <span class="discounted-price">{{ number_format($productDetail->discount)}} VND</span>
+                                    <span class="main-price discounted">{{ number_format($productDetail->price) }}
+                                        VND</span><br>
+                                    <span class="discounted-price">{{ number_format($productDetail->discount) }} VND</span>
                                 </div>
                             @endif
-                            <p class="description">{{$productDetail->description ?? ''}}</p>
+                            <p class="description">{{ $productDetail->description ?? '' }}</p>
                             <div class="add-to-cart-btn d-inline-block">
-                                <a class="theme-button theme-button--alt" href="{{ route('add.to.cart', $productDetail->id) }}">Thêm vào giỏ hàng</a>
+                                <a class="theme-button theme-button--alt"
+                                    href="{{ route('add.to.cart', $productDetail->id) }}">Thêm vào giỏ hàng</a>
                             </div>
 
                             <div class="quick-view-other-info">
                                 <div class="other-info-links">
-                                    <a href="{{ route('postWishlist',['id'=> $productDetail->id]) }}"><i class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>
+                                    <a href="{{ route('postWishlist', ['id' => $productDetail->id]) }}"><i
+                                            class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>
                                     {{-- <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a> --}}
                                 </div>
 
@@ -140,12 +152,13 @@
                                 <table>
                                     <tr class="single-info">
                                         <td class="quickview-title">
-                                            Thương hiệu: {{$productDetail->brand->name ?? null}}
+                                            Thương hiệu: {{ $productDetail->brand->name ?? null }}
                                         </td>
                                     </tr>
                                     <tr class="single-info">
                                         <td class="quickview-title">
-                                            Danh mục sản phẩm: <a href="#">{{$productDetail->category->title ?? null}}</a>
+                                            Danh mục sản phẩm: <a
+                                                href="#">{{ $productDetail->category->title ?? null }}</a>
                                         </td>
                                     </tr>
                                 </table>
@@ -165,14 +178,17 @@
         <div class="single-product-description-tab-area section-space">
             <!--=======  description tab navigation  =======-->
 
-            @if(Session::has('message'))
+            @if (Session::has('message'))
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif
             <div class="description-tab-navigation">
                 <div class="nav nav-tabs justify-content-center" id="nav-tab2" role="tablist">
-                    <a class="nav-item nav-link active" id="description-tab" data-toggle="tab" href="#product-description" role="tab" aria-selected="true">Chi tiết sản phẩm</a>
-                    <a class="nav-item nav-link" id="additional-info-tab" data-toggle="tab" href="#product-additional-info" role="tab" aria-selected="false">Thông tin bổ sung</a>
-                    <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#product-review" role="tab" aria-selected="false">Đánh giá ({{$listComments->count()}})</a>
+                    <a class="nav-item nav-link active" id="description-tab" data-toggle="tab" href="#product-description"
+                        role="tab" aria-selected="true">Chi tiết sản phẩm</a>
+                    <a class="nav-item nav-link" id="additional-info-tab" data-toggle="tab" href="#product-additional-info"
+                        role="tab" aria-selected="false">Thông tin bổ sung</a>
+                    <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#product-review" role="tab"
+                        aria-selected="false">Đánh giá ({{ $listComments->count() }})</a>
                 </div>
             </div>
 
@@ -185,14 +201,17 @@
 
                 <div class="tab-content">
 
-                    <div class="tab-pane fade show active" id="product-description" role="tabpanel" aria-labelledby="description-tab">
+                    <div class="tab-pane fade show active" id="product-description" role="tabpanel"
+                        aria-labelledby="description-tab">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <!--=======  description content  =======-->
 
                                     <div class="description-content">
-                                        <p class="long-desc">{{ $productDetail->description ? $productDetail->description : 'Chưa có thông tin chi tiết cho sản phẩm !' }}</p>
+                                        <p class="long-desc">
+                                            {{ $productDetail->description ? $productDetail->description : 'Chưa có thông tin chi tiết cho sản phẩm !' }}
+                                        </p>
                                     </div>
 
                                     <!--=======  End of description content  =======-->
@@ -201,7 +220,8 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="product-additional-info" role="tabpanel" aria-labelledby="additional-info-tab">
+                    <div class="tab-pane fade" id="product-additional-info" role="tabpanel"
+                        aria-labelledby="additional-info-tab">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -212,17 +232,23 @@
                                             <tbody>
                                                 <tr>
                                                     <th>Size</th>
-                                                    <td class="product_dimensions">{{ $productDetail->size }}</td>
+                                                    <td class="product_dimensions">
+                                                        <p>
+                                                            @foreach (json_decode($productDetail->size) as $item)
+                                                                {{ $item }}
+                                                            @endforeach
+                                                        </p>
+                                                    </td>
                                                 </tr>
 
                                                 <tr>
                                                     <th>Màu Sắc</th>
                                                     <td>
                                                         <p>
-                                                            @foreach (json_decode($productDetail->style) as $item)
-                                                {{ $item->color }}
-                                                        @endforeach
-                                                    </p>
+                                                            @foreach (json_decode($productDetail->color) as $item)
+                                                                {{ $item }}
+                                                            @endforeach
+                                                        </p>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -246,25 +272,30 @@
 
                                         <div class="review-comments">
 
-                                            <h4 class="review-comment-title"> {{$listComments->count()}} Người đã đánh giá</h4>
+                                            <h4 class="review-comment-title"> {{ $listComments->count() }} Người đã đánh
+                                                giá</h4>
 
                                             <!--=======  single-review comment  =======-->
-                                        
-                                        @foreach ($listComments as $item)
-                                            <div class="single-review-comment">
-                                                <div class="single-review-comment__image">
-                                                    @php
-                                                        $user = \DB::table('users')->where('id',$item->user_id)->first();
-                                                    @endphp
-                                                    <img src="{{ $user ->photo }}" class="img-fluid" alt="{{ $item->user_id }}">
-                                                </div>
 
-                                                <div class="single-review-comment__content">
-                                                    <div class="review-time"><i class="fa fa-calendar"></i>{{ $item->created_at }}</div>
-                                                    <p class="review-text">{{ $item->content }}</p>
+                                            @foreach ($listComments as $item)
+                                                <div class="single-review-comment">
+                                                    <div class="single-review-comment__image">
+                                                        @php
+                                                            $user = \DB::table('users')
+                                                                ->where('id', $item->user_id)
+                                                                ->first();
+                                                        @endphp
+                                                        <img src="{{ $user->photo }}" class="img-fluid"
+                                                            alt="{{ $item->user_id }}">
+                                                    </div>
+
+                                                    <div class="single-review-comment__content">
+                                                        <div class="review-time"><i
+                                                                class="fa fa-calendar"></i>{{ $item->created_at }}</div>
+                                                        <p class="review-text">{{ $item->content }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
                                             <!--=======  End of single-review comment  =======-->
 
                                         </div>
@@ -275,9 +306,11 @@
 
                                         <div class="review-comment-form">
                                             <h4 class="review-comment-title">Thêm đánh giá của bạn</h4>
-                                            <p class="review-comment-subtitle">Email của bạn sẽ không được hiển thị công khai. Các trường bắt buộc được đánh dấu *</p>
+                                            <p class="review-comment-subtitle">Email của bạn sẽ không được hiển thị công
+                                                khai. Các trường bắt buộc được đánh dấu *</p>
 
-                                            <form action="{{ route('postComment') }}" method="POST" enctype="multipart/form-data">
+                                            <form action="{{ route('postComment') }}" method="POST"
+                                                enctype="multipart/form-data">
                                                 @csrf
                                                 {{-- <div class="form-group">
                                                     <label for="reviewerName">Name <span>*</span> </label>
@@ -291,7 +324,8 @@
                                                     <label for="reviewComment">Đánh giá của bạn <span>*</span></label>
                                                     <textarea name="reviewComment" id="reviewComment" cols="30" rows="10"></textarea>
                                                 </div>
-                                                <input type="hidden" name="product_id" id="product_id" value="{{$productDetail->id}}">
+                                                <input type="hidden" name="product_id" id="product_id"
+                                                    value="{{ $productDetail->id }}">
                                                 <button type="submit" class="theme-button">Gửi</button>
                                             </form>
                                         </div>
@@ -332,7 +366,8 @@
                     <div class="col-lg-12">
                         <!--=======  product slider wrapper  =======-->
 
-                        <div class="product-slider-wrapper theme-slick-slider" data-slick-setting='{
+                        <div class="product-slider-wrapper theme-slick-slider"
+                            data-slick-setting='{
                         "slidesToShow": 4,
                         "slidesToScroll": 4,
                         "arrows": true,
@@ -341,7 +376,8 @@
                         "speed": 500,
                         "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
                         "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
-                    }' data-slick-responsive='[
+                    }'
+                            data-slick-responsive='[
                         {"breakpoint":1501, "settings": {"slidesToShow": 4, "slidesToScroll": 4, "arrows": false} },
                         {"breakpoint":1199, "settings": {"slidesToShow": 3, "slidesToScroll": 3, "arrows": false} },
                         {"breakpoint":991, "settings": {"slidesToShow": 2,"slidesToScroll": 2, "arrows": true, "dots": false} },
@@ -349,40 +385,67 @@
                         {"breakpoint":575, "settings": {"slidesToShow": 2, "slidesToScroll": 2,"arrows": false, "dots": true} },
                         {"breakpoint":479, "settings": {"slidesToShow": 1,"slidesToScroll": 1, "arrows": true, "dots": false} }
                     ]'>
-                            @if($listSameProducts)
+                            @if ($listSameProducts)
                                 @foreach ($listSameProducts as $item)
                                     <div class="col">
                                         <!--=======  single short view product  =======-->
 
                                         <div class="single-grid-product">
                                             <div class="single-grid-product__image">
-{{--                                                <div class="product-badge-wrapper">--}}
-{{--                                                    <span class="onsale">-17%</span>--}}
-{{--                                                    <span class="hot">Hot</span>--}}
-{{--                                                </div>--}}
-                                                <a href="{{ route('detailProduct',['id'=> $item->id]) }}" class="image-wrap">
-                                                    <img src="{{asset('storage/'. $item->photo)}}" class="img" alt="" height="400px">
-{{--                                                    <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="">--}}
+                                                {{--                                                <div class="product-badge-wrapper"> --}}
+                                                {{--                                                    <span class="onsale">-17%</span> --}}
+                                                {{--                                                    <span class="hot">Hot</span> --}}
+                                                {{--                                                </div> --}}
+                                                <a href="{{ route('detailProduct', ['id' => $item->id]) }}"
+                                                    class="image-wrap">
+                                                    <img src="{{ asset('storage/' . $item->photo) }}" class="img"
+                                                        alt="" height="400px">
+                                                    {{--                                                    <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt=""> --}}
                                                 </a>
                                                 <div class="product-hover-icon-wrapper">
-                                                    <span class="single-icon single-icon--quick-view"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="fa fa-search"></i></a></span>
-                                                    <span class="single-icon single-icon--add-to-cart"><a href="{{ route('postWishlist',['id'=> $productDetail->id]) }}" data-tippy="Add to cart" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="fa fa-shopping-basket"></i> <span>ADD TO CART</span></a></span>
-                                                    <span class="single-icon single-icon--compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="fa fa-exchange"></i></a></span>
+                                                    <span class="single-icon single-icon--quick-view"><a
+                                                            class="cd-trigger" href="#qv-1" data-tippy="Quick View"
+                                                            data-tippy-inertia="true" data-tippy-animation="shift-away"
+                                                            data-tippy-delay="50" data-tippy-arrow="true"
+                                                            data-tippy-theme="sharpborder"><i
+                                                                class="fa fa-search"></i></a></span>
+                                                    <span class="single-icon single-icon--add-to-cart"><a
+                                                            href="{{ route('postWishlist', ['id' => $productDetail->id]) }}"
+                                                            data-tippy="Add to cart" data-tippy-inertia="true"
+                                                            data-tippy-animation="shift-away" data-tippy-delay="50"
+                                                            data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
+                                                                class="fa fa-shopping-basket"></i> <span>ADD TO
+                                                                CART</span></a></span>
+                                                    <span class="single-icon single-icon--compare"><a href="#"
+                                                            data-tippy="Compare" data-tippy-inertia="true"
+                                                            data-tippy-animation="shift-away" data-tippy-delay="50"
+                                                            data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
+                                                                class="fa fa-exchange"></i></a></span>
                                                 </div>
                                             </div>
                                             <div class="single-grid-product__content">
-                                                <h3 class="title"><a href="{{ route('detailProduct',['id'=> $item->id]) }}">{{ $item->title }}</a></h3>
-                                                @if(empty($item->discount))
+                                                <h3 class="title"><a
+                                                        href="{{ route('detailProduct', ['id' => $item->id]) }}">{{ $item->title }}</a>
+                                                </h3>
+                                                @if (empty($item->discount))
                                                     <div class="price">
-                                                        <span class="discounted-price">{{number_format($item->price)}} VND</span>
+                                                        <span class="discounted-price">{{ number_format($item->price) }}
+                                                            VND</span>
                                                     </div>
                                                 @else
                                                     <div class="price">
-                                                        <span class="main-price discounted">{{ number_format($item->price)}} VND</span><br>
-                                                        <span class="discounted-price">{{ number_format($item->discount)}} VND</span>
+                                                        <span
+                                                            class="main-price discounted">{{ number_format($item->price) }}
+                                                            VND</span><br>
+                                                        <span
+                                                            class="discounted-price">{{ number_format($item->discount) }}
+                                                            VND</span>
                                                     </div>
                                                 @endif
-                                                <a href="#" class="favorite-icon" data-tippy="Add to Wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder" data-tippy-placement="left">
+                                                <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
+                                                    data-tippy-inertia="true" data-tippy-animation="shift-away"
+                                                    data-tippy-delay="50" data-tippy-arrow="true"
+                                                    data-tippy-theme="sharpborder" data-tippy-placement="left">
                                                     <i class="fa fa-heart-o"></i>
                                                     <i class="fa fa-heart"></i>
                                                 </a>

@@ -31,7 +31,7 @@
                                         @php $total += $details['price'] * $details['quantity'] @endphp
                                         <tr data-id="{{ $id }}">
                                             <td data-th="Product" class="product-name">
-                                                <a href="">{{ $details['name'] }}</a>
+                                                <a href="{{ route('detailProduct',['id'=> $id]) }}">{{ $details['name'] }}</a>
                                             </td>
                                             <td>
                                                 <div class="row">

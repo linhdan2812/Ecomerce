@@ -572,12 +572,10 @@
                                             class="img-fluid" alt="">
                                     </a>
                                     <div class="product-hover-icon-wrapper">
-                                        <span class="single-icon single-icon--quick-view"><a class="cd-trigger"
-                                                href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true"
-                                                data-tippy-animation="shift-away" data-tippy-delay="50"
-                                                data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
+                                        <span class="single-icon single-icon--quick-view"><a class="single-icon"
+                                                href="{{ route('postWishlist',['id'=> $product->id]) }}" data-tippy="Yêu thích"><i
                                                     class="fa fa-search"></i></a></span>
-                                        <span class="single-icon single-icon--add-to-cart"><a href="#"
+                                        <span class="single-icon single-icon--add-to-cart"><a href="{{ route('add.to.cart', $product->id) }}"
                                                 data-tippy="Add to cart" data-tippy-inertia="true"
                                                 data-tippy-animation="shift-away" data-tippy-delay="50"
                                                 data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
