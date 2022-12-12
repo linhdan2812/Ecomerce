@@ -525,9 +525,8 @@
                 <div class="col-lg-12">
 
                     <div class="section-title-area text-center">
-                        <h2 class="section-title">New Arrivals</h2>
-                        <p class="section-subtitle">Our traditional dining tables, chairs, case pieces and other traditional
-                            dining furniture are geared toward those who appreciate the simplicity and true craftsmanship.
+                        <h2 class="section-title">Sản phẩm nổi bật</h2>
+                        <p class="section-subtitle">Đây là danh mục các sản phẩm nổi bật
                         </p>
                     </div>
                 </div>
