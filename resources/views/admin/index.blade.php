@@ -13,14 +13,13 @@
                     <button id="replaceDataObjectYear" class="btn btn-primary">Doanh số bán hàng theo năm</button>
                 </div>
                 <div class="col-md-6">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h4 class="card-title">Doanh thu bán hàng</h4>
-                        </div>
-                        <div class="card-body ">
-                            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-                        </div>
+                    <div style="width:105%;">
+                        <canvas id="myChart"></canvas>
                     </div>
+                    <br>
+                    <br>
+                    <button id="replaceMoneyObject" class="btn btn-primary">Doanh thu bán hàng theo tháng</button>
+                    <button id="replaceMoneyObjectYear" class="btn btn-primary">Doanh thu bán hàng theo năm</button>
                 </div>
             </div>
         </div>
@@ -28,80 +27,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // new Chart("myChart3", {
-        // type: "bar",
-        // data: {
-        //     labels: {{ Js::from($moneyLabels) }},
-        //     datasets: [{
-        //     backgroundColor: "red",
-        //     data: {{ Js::from($moneyData) }}
-        //     }]
-        // },
-        // options: {
-        //     legend: {display: false},
-        //     scales: {
-        //     yAxes: [{
-        //         ticks: {
-        //         beginAtZero: true
-        //         }
-        //     }],
-        //     }
-        // }
-        // });
-
-        // const data = {
-        //     labels: {{ Js::from($labels) }},
-        //     datasets: [{
-        //     label: 'Doanh số bán hàng',
-        //     backgroundColor: 'rgb(255, 99, 132)',
-        //     borderColor: 'rgb(255, 99, 132)',
-        //     data: {{ Js::from($data) }},
-        //     }]
-        // };
-
-        // const config = {
-        //     type: 'line',
-        //     data: data,
-        //     options: {}
-        // };
-
-        // const myChart = new Chart(
-        //     document.getElementById('myChart'),
-        //     config
-        // );
-        // // logic to get new data
-        // var getData = function() {
-        //     var e = document.getElementById("brgyselector");
-        //     var strUser = e.value;
-        //     $.ajax({
-        //         url: 'url_to_controller_action',
-        //         success: function(data) {
-        //         // process your data to pull out what you plan to use to update the chart
-        //         // e.g. new label and a new data point
-
-        //         // you can use loop through response data
-        //         // add new label and data point to chart's underlying data structures
-        //         myChart.data.labels.push("Label");
-        //         myChart.data.datasets[0].data.push('set point');
-
-        //         // re-render the chart
-        //         myChart.update();
-        //         }
-        //     });
-        // };
-
-        // const brgy = document.getElementById('brgyselector');
-        // brgy.addEventListener('change', getData);
-
         window.chartColors = {
             red: 'rgb(255, 99, 132)',
+            green: 'rgb(75, 192, 192)',
+            yellow: 'rgb(255, 205, 86)',
         };
         var config = {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: {{ Js::from($labels) }},
                 datasets: [{
-                    label: "Doanh số bán hàng theo năm",
+                    label: "Doanh số bán hàng theo tháng",
                     backgroundColor: window.chartColors.red,
                     borderColor: window.chartColors.red,
                     data: {{ Js::from($data) }},
@@ -140,12 +76,119 @@
                 }
             }
         };
-
+        var config2 = {
+            type: 'bar',
+            data: {
+                labels: {{ Js::from($moneyLabels) }},
+                datasets: [{
+                    label: "Doanh thu bán hàng theo tháng",
+                    backgroundColor: window.chartColors.green,
+                    borderColor: window.chartColors.green,
+                    data: {{ Js::from($moneyData) }},
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Month'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+        document.getElementById('replaceMoneyObject').addEventListener('click', function() {
+            var newDataObjectYear = {
+                labels: {{ Js::from($moneyLabels2) }},
+                datasets: [{
+                    label: "Doanh thu bán hàng theo tháng",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: window.chartColors.yellow,
+                    borderColor: window.chartColors.yellow,
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgb(255, 99, 132)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgb(255, 99, 132)",
+                    pointHoverBorderColor: "rgb(255, 99, 132)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: {{ Js::from($moneyData2) }},
+                    spanGaps: false,
+                }]
+            };
+            // the newDataObject does not override myLine.data object: why???
+            myLine2.data = newDataObjectYear;
+            // ... but updating a single value works: why??? 
+            myLine2.data.datasets[0].data[0] = {{ Js::from($moneyData2) }}[0];
+            window.myLine2.update();
+        });
+        document.getElementById('replaceMoneyObjectYear').addEventListener('click', function() {
+            var newDataObject = {
+                labels: {{ Js::from($moneyLabels) }},
+                datasets: [{
+                    label: "Doanh thu bán hàng theo ngày",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: window.chartColors.green,
+                    borderColor: window.chartColors.green,
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: {{ Js::from($moneyData) }},
+                    spanGaps: false,
+                }]
+            };
+            // the newDataObject does not override myLine.data object: why???
+            myLine2.data = newDataObject;
+            // ... but updating a single value works: why??? 
+            myLine2.data.datasets[0].data[0] = {{ Js::from($moneyData) }}[0];
+            window.myLine2.update();
+        });
         document.getElementById('replaceDataObjectYear').addEventListener('click', function() {
             var newDataObjectYear = {
                 labels: {{ Js::from($labels) }},
                 datasets: [{
-                    label: "Doanh số bán hàng theo năm",
+                    label: "Doanh số bán hàng theo tháng",
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgb(255, 99, 132)",
@@ -177,7 +220,7 @@
             var newDataObject = {
                 labels: {{ Js::from($labels2) }},
                 datasets: [{
-                    label: "Doanh số bán hàng theo tháng",
+                    label: "Doanh số bán hàng theo ngày",
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgba(75,192,192,0.4)",
@@ -208,6 +251,8 @@
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
             window.myLine = getNewChart(ctx, config);
+            var ctx2 = document.getElementById("myChart").getContext("2d");
+            window.myLine2 = getNewChart(ctx2, config2);
         };
 
         function getNewChart(canvas, config) {
