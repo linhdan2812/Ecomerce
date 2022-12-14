@@ -107,7 +107,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="">
+                                @foreach (json_decode($productDetail->images) as $item)
 
+                                    <img class="" width="100px" height="100px" src="{{ asset('storage/' . $item) }}"
+                                        alt="">
+                                @endforeach
+                            </div>
 
 
                         </div>
@@ -116,7 +122,7 @@
                     </div>
                     <div class="col-lg-6">
                         <!--=======  product details description area  =======-->
-
+                        {{-- <h1>{{ dd(json_decode($productDetail->images)) }}</h1> --}}
                         <div class="product-details-description-wrapper">
                             <h2 class="item-title">{{ $productDetail->title }}</h2>
                             @if (empty($productDetail->discount))
@@ -387,6 +393,7 @@
                         {"breakpoint":575, "settings": {"slidesToShow": 2, "slidesToScroll": 2,"arrows": false, "dots": true} },
                         {"breakpoint":479, "settings": {"slidesToShow": 1,"slidesToScroll": 1, "arrows": true, "dots": false} }
                     ]'>
+
                             @if ($listSameProducts)
                                 @foreach ($listSameProducts as $item)
                                     <div class="col">
