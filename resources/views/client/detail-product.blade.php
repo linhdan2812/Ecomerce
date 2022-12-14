@@ -130,7 +130,7 @@
                                     <span class="discounted-price">{{ number_format($productDetail->discount) }} VND</span>
                                 </div>
                             @endif
-                            <p class="description">{{ $productDetail->description ?? '' }}</p>
+                            <p class="description">{!! $productDetail->description ?? '' !!}</p>
                             <div class="add-to-cart-btn d-inline-block">
                                 <a class="theme-button theme-button--alt"
                                     href="{{ route('add.to.cart', $productDetail->id) }}">Thêm vào giỏ hàng</a>
@@ -210,7 +210,7 @@
 
                                     <div class="description-content">
                                         <p class="long-desc">
-                                            {{ $productDetail->description ? $productDetail->description : 'Chưa có thông tin chi tiết cho sản phẩm !' }}
+                                            {!! $productDetail->description ? $productDetail->description : 'Chưa có thông tin chi tiết cho sản phẩm !' !!}
                                         </p>
                                     </div>
 
@@ -234,6 +234,7 @@
                                                     <th>Size</th>
                                                     <td class="product_dimensions">
                                                         <p>
+                                                            {{-- @dd(json_decode($productDetail->size)) --}}
                                                             @foreach (json_decode($productDetail->size) as $item)
                                                                 {{ $item }}
                                                             @endforeach
@@ -245,6 +246,7 @@
                                                     <th>Màu Sắc</th>
                                                     <td>
                                                         <p>
+
                                                             @foreach (json_decode($productDetail->color) as $item)
                                                                 {{ $item }}
                                                             @endforeach

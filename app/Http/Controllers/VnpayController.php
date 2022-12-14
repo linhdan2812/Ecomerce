@@ -24,7 +24,7 @@ class VnpayController extends Controller
     {
         $user = $request->user();
         $user->id;
-        // dd($request->all());
+        // dd($_POST['amount']);
         $vnp_TmnCode = "TMAIHSK1"; //Website ID in VNPAY System
         $vnp_HashSecret = "EYKIZFCSMVAZJGORHNILDOPRJGOITIML"; //Secret key
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -65,7 +65,6 @@ class VnpayController extends Controller
         $vnp_Inv_Company = $_POST['txt_inv_company'];
         $vnp_Inv_Taxcode = $_POST['txt_inv_taxcode'];
         $vnp_Inv_Type = $_POST['cbo_inv_type'];
-
         $vnp_CreateDate = date('YmdHis');
 
         $inputData = array(
@@ -122,7 +121,7 @@ class VnpayController extends Controller
 
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         $test = new VnpayTest();
@@ -215,12 +214,12 @@ class VnpayController extends Controller
         $orderId = $inputData['vnp_TxnRef'];
         DB::beginTransaction();
         try {
-            //Check Orderid    
+            //Check Orderid
             //Kiểm tra checksum của dữ liệu
             if ($secureHash == $vnp_SecureHash) {
-                //Lấy thông tin đơn hàng lưu trong Database và kiểm tra trạng thái của đơn hàng, mã đơn hàng là: $orderId            
+                //Lấy thông tin đơn hàng lưu trong Database và kiểm tra trạng thái của đơn hàng, mã đơn hàng là: $orderId
                 //Việc kiểm tra trạng thái của đơn hàng giúp hệ thống không xử lý trùng lặp, xử lý nhiều lần một giao dịch
-                //Giả sử: $order = mysqli_fetch_assoc($result);   
+                //Giả sử: $order = mysqli_fetch_assoc($result);
                 $order = NULL;
                 $order = DB::table('vnpay_tests')->where('vnp_TxnRef', $orderId)->first();
                 if ($order != NULL) {
@@ -264,7 +263,7 @@ class VnpayController extends Controller
 
 
 
-                            //Trả kết quả về cho VNPAY: Website/APP TMĐT ghi nhận yêu cầu thành công                
+                            //Trả kết quả về cho VNPAY: Website/APP TMĐT ghi nhận yêu cầu thành công
                             $returnData['RspCode'] = '00';
                             $returnData['Message'] = 'Confirm Success';
                         } else {

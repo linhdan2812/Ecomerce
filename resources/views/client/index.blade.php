@@ -565,7 +565,7 @@
                                         <span class="onsale">-17%</span>
                                         <span class="hot">Hot</span>
                                     </div>
-                                    <a href="product-details-basic.html" class="image-wrap">
+                                    <a href="{{ route('detailProduct', ['id' => $item->id]) }}" class="image-wrap">
                                         <img src="{{ asset('storage/'.$product->photo) }}"
                                             class="img-fluid" alt="">
                                         <img src="{{ asset('storage/'.$product->photo) }}"
@@ -687,7 +687,7 @@
                                                 {{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i --}}
                                                 {{--                                                        class="fa fa-search"></i></a></span> --}}
                                                 <span class="single-icon single-icon--add-to-cart" style="width: 100%"><a
-                                                        href="#" data-tippy="Add to cart" data-tippy-inertia="true"
+                                                        href="{{ route('add.to.cart', $product->id) }}" data-tippy="Add to cart" data-tippy-inertia="true"
                                                         data-tippy-animation="shift-away" data-tippy-delay="50"
                                                         data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
                                                             class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ
