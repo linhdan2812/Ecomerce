@@ -45,7 +45,7 @@ class ProductController extends Controller
         foreach ($request->image as $item)
         {
             $newFileName = uniqid() . '-' . $item->getClientOriginalName();
-            $path = $request->photo->storeAs('public/uploads/products', $newFileName);
+            $path = $item->storeAs('public/uploads/products', $newFileName);
             array_push($imageArr,$path);
         };
         if ($request->hasFile('photo')) {

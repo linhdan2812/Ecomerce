@@ -34,11 +34,6 @@
                         <!--=======  product details slider area  =======-->
 
                         <div class="product-details-slider-area product-details-slider-area--side-move">
-
-                            {{--                            <div class="product-badge-wrapper"> --}}
-                            {{--                                <span class="hot">Hot</span> --}}
-                            {{--                            </div> --}}
-
                             <div class="row row-5">
                                 <div class="col-md-9 order-1 order-md-2">
                                     <div class="big-image-wrapper">
@@ -51,30 +46,35 @@
                                         </div>
                                         <div class="product-details-big-image-slider-wrapper product-details-big-image-slider-wrapper--side-space theme-slick-slider"
                                             data-slick-setting='{
-                    "slidesToShow": 1,
-                    "slidesToScroll": 1,
-                    "arrows": false,
-                    "autoplay": false,
-                    "autoplaySpeed": 5000,
-                    "fade": true,
-                    "speed": 500,
-                    "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
-                    "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
-                }'
+                                                "slidesToShow": 1,
+                                                "slidesToScroll": 1,
+                                                "arrows": false,
+                                                "autoplay": false,
+                                                "autoplaySpeed": 5000,
+                                                "fade": true,
+                                                "speed": 500,
+                                                "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
+                                                "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
+                                            }'
                                             data-slick-responsive='[
-                    {"breakpoint":1501, "settings": {"slidesToShow": 1, "arrows": false} },
-                    {"breakpoint":1199, "settings": {"slidesToShow": 1, "arrows": false} },
-                    {"breakpoint":991, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
-                    {"breakpoint":767, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
-                    {"breakpoint":575, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
-                    {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
-                ]'>
-                                            {{-- <div class="single-image">
-                                                <img src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/290944451_1003706946925046_7281273513017301728_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=H5pie0FzNToAX-4Y0g3&_nc_ht=scontent.fhan2-5.fna&oh=00_AfCOdDxBd6ReOAfsq9E88cPZ299aBTpbGObJurgWOdz-QQ&oe=6394F3D1" class="img-fluid" alt="">
-                                            </div> --}}
+                                                {"breakpoint":1501, "settings": {"slidesToShow": 1, "arrows": false} },
+                                                {"breakpoint":1199, "settings": {"slidesToShow": 1, "arrows": false} },
+                                                {"breakpoint":991, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                                {"breakpoint":767, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                                {"breakpoint":575, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} },
+                                                {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false, "slidesToScroll": 1} }
+                                            ]'>
                                             <div class="single-image">
                                                 <img src="{{ asset('storage/' . $productDetail['photo']) }}"
                                                     class="img-fluid" alt="">
+                                            </div>
+                                            <div class="single-image">
+                                                @if ($productDetail->images)
+                                                    @foreach (json_decode($productDetail->images) as $item)
+                                                        <img class="" width="100px" height="100px"
+                                                            src="{{ asset('storage/' . $item) }}" alt="">
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -83,46 +83,35 @@
                                 <div class="col-md-3 order-2 order-md-1">
                                     <div class="product-details-small-image-slider-wrapper product-details-small-image-slider-wrapper--vertical-space theme-slick-slider"
                                         data-slick-setting='{
-                "slidesToShow": 3,
-                "slidesToScroll": 1,
-                "centerMode": false,
-                "arrows": true,
-                "vertical": true,
-                "autoplay": false,
-                "autoplaySpeed": 5000,
-                "speed": 500,
-                "asNavFor": ".product-details-big-image-slider-wrapper",
-                "focusOnSelect": true,
-                "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-up" },
-                "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-down" }
-            }'
+                                            "slidesToShow": 3,
+                                            "slidesToScroll": 1,
+                                            "centerMode": false,
+                                            "arrows": true,
+                                            "vertical": true,
+                                            "autoplay": false,
+                                            "autoplaySpeed": 5000,
+                                            "speed": 500,
+                                            "asNavFor": ".product-details-big-image-slider-wrapper",
+                                            "focusOnSelect": true,
+                                            "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-up" },
+                                            "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-down" }
+                                        }'
                                         data-slick-responsive='[
-                {"breakpoint":1501, "settings": {"slidesToShow": 3, "arrows": true} },
-                {"breakpoint":1199, "settings": {"slidesToShow": 3, "arrows": true} },
-                {"breakpoint":991, "settings": {"slidesToShow": 3, "arrows": true, "slidesToScroll": 1} },
-                {"breakpoint":767, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} },
-                {"breakpoint":575, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} },
-                {"breakpoint":479, "settings": {"slidesToShow": 2, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} }
-            ]'>
+                                            {"breakpoint":1501, "settings": {"slidesToShow": 3, "arrows": true} },
+                                            {"breakpoint":1199, "settings": {"slidesToShow": 3, "arrows": true} },
+                                            {"breakpoint":991, "settings": {"slidesToShow": 3, "arrows": true, "slidesToScroll": 1} },
+                                            {"breakpoint":767, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} },
+                                            {"breakpoint":575, "settings": {"slidesToShow": 3, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} },
+                                            {"breakpoint":479, "settings": {"slidesToShow": 2, "arrows": false, "slidesToScroll": 1, "vertical": false, "centerMode": true} }
+                                        ]'>
                                     </div>
                                 </div>
                             </div>
-                            <div class="">
-                                @foreach (json_decode($productDetail->images) as $item)
-
-                                    <img class="" width="100px" height="100px" src="{{ asset('storage/' . $item) }}"
-                                        alt="">
-                                @endforeach
-                            </div>
-
-
                         </div>
-
                         <!--=======  End of product details slider area  =======-->
                     </div>
                     <div class="col-lg-6">
                         <!--=======  product details description area  =======-->
-                        {{-- <h1>{{ dd(json_decode($productDetail->images)) }}</h1> --}}
                         <div class="product-details-description-wrapper">
                             <h2 class="item-title">{{ $productDetail->title }}</h2>
                             @if (empty($productDetail->discount))
@@ -240,10 +229,11 @@
                                                     <th>Size</th>
                                                     <td class="product_dimensions">
                                                         <p>
-                                                            {{-- @dd(json_decode($productDetail->size)) --}}
-                                                            @foreach (json_decode($productDetail->size) as $item)
-                                                                {{ $item }}
-                                                            @endforeach
+                                                            @if ($productDetail->size)
+                                                                @foreach (json_decode($productDetail->size) as $item)
+                                                                    {{ $item }}
+                                                                @endforeach
+                                                            @endif
                                                         </p>
                                                     </td>
                                                 </tr>
@@ -252,10 +242,11 @@
                                                     <th>Màu Sắc</th>
                                                     <td>
                                                         <p>
-
-                                                            @foreach (json_decode($productDetail->color) as $item)
-                                                                {{ $item }}
-                                                            @endforeach
+                                                            @if ($productDetail->color)
+                                                                @foreach (json_decode($productDetail->color) as $item)
+                                                                    {{ $item }}
+                                                                @endforeach
+                                                            @endif
                                                         </p>
                                                     </td>
                                                 </tr>
