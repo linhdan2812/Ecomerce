@@ -40,7 +40,7 @@ class ShopController extends Controller
     //     $products = Product::all();
     //     return view('products', compact('products'));
     // }
-  
+
     /**
      * Write code on Method
      *
@@ -50,7 +50,7 @@ class ShopController extends Controller
     {
         return view('cart');
     }
-  
+
     /**
      * Write code on Method
      *
@@ -60,7 +60,7 @@ class ShopController extends Controller
     {
         $product = Product::findOrFail($id);
         $cart = session()->get('cart', []);
-  
+
         if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
@@ -72,11 +72,11 @@ class ShopController extends Controller
                 "discount" => $product->discount
             ];
         }
-          
+
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Thêm sản phẩm vào giỏ hàng thành công   !');
     }
-  
+
     /**
      * Write code on Method
      *
@@ -91,7 +91,7 @@ class ShopController extends Controller
             session()->flash('success', 'Cart updated successfully');
         }
     }
-  
+
     /**
      * Write code on Method
      *
@@ -188,10 +188,12 @@ class ShopController extends Controller
     }
     public function detailProduct($id)
     {
+
         $productDetail = Product::query()->with('brand','category')->where('id', $id)->first();
         $listSameProducts = Product::where('category_id', $productDetail->category_id)->take(8)->get();
         $listComments = Comment::where('product_id', $id)->where('status', 1)->get();
         return view('client.detail-product',compact('productDetail','listSameProducts','listComments'));
+        
     }
     public function postComment(Request $request)
     {
