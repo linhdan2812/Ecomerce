@@ -53,7 +53,7 @@ class DashboardController extends Controller
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
-            'birthday' => $request->input('birthday'),
+            'birthday' => date("Y-d-m", strtotime($request->input('birthday'))),
             'gender' => $request->input('gender'),
         ]);
         return redirect()->back();

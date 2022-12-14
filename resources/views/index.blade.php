@@ -47,14 +47,6 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="header-info-wrapper">
-
-                            <div class="header-contact-info">
-                                <ul class="header-contact-info__list">
-                                    <li><i class="pe-7s-phone"></i> <a href="tel://12452456012">(1245) 2456 012 </a></li>
-                                    <li><i class="pe-7s-mail-open"></i> <a href="mailto:info@yourdomain.com">info@yourdomain.com</a></li>
-                                </ul>
-                            </div>
-
                             <div class="header-logo text-center">
                                 <a href="{{ route('home')}}">
                                     <img src="{{asset('client/img/logo.png')}}" class="img-fluid" alt="">
@@ -1002,7 +994,7 @@
                         <div class="header-contact-info">
                             <ul class="header-contact-info__list">
                                 <li><i class="pe-7s-phone"></i> <a href="tel://12452456012">(1245) 2456 012 </a></li>
-                                <li><i class="pe-7s-mail-open"></i> <a href="mailto:info@yourdomain.com">info@yourdomain.com</a></li>
+                                <li> <a href="mailto:"></a></li>
                             </ul>
                         </div>
                     </div>
