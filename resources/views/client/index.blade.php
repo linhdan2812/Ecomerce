@@ -565,7 +565,7 @@
                                         <span class="onsale">-17%</span>
                                         <span class="hot">Hot</span>
                                     </div>
-                                    <a href="{{ route('detailProduct', ['id' => $item->id]) }}" class="image-wrap">
+                                    <a href="{{ route('detailProduct', ['id' => $product->id]) }}" class="image-wrap">
                                         <img src="{{ asset('storage/'.$product->photo) }}"
                                             class="img-fluid" alt="">
                                         <img src="{{ asset('storage/'.$product->photo) }}"
