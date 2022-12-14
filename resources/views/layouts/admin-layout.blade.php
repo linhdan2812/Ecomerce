@@ -92,6 +92,12 @@
                             <p>Giảm giá</p>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="{{ route('admin.comment.list') }}">
+                            <i class="nc-icon nc-pin-3"></i>
+                            <p>Bình luận</p>
+                        </a>
+                    </li>
 {{--                    <li>--}}
 {{--                        <a class="nav-link" href="">--}}
 {{--                            <i class="nc-icon nc-bell-55"></i>--}}

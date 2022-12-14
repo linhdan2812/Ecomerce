@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ErrorOrderController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Client\DashboardController as ClientDashboardController;
 use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\LoginController;
@@ -172,7 +173,11 @@ Route::prefix('admin/')->middleware('authadmin')->group(function () {
 
         Route::get('delete/{id}', [CouponController::class, 'delete'])->name('admin.coupon.delete');
     });
+    Route::prefix('comments')->group(function () {
 
+        Route::get('list', [CommentController::class, 'index'])->name('admin.comment.list');
+        Route::get('edit/{id}', [CommentController::class, 'edit'])->name('admin.comment.edit');
+    });
     Route::prefix('blogs')->group(function () {
         Route::get('list', [BlogController::class, 'index'])->name('admin.blog.list');
 
