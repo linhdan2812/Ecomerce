@@ -284,7 +284,7 @@ class VnpayController extends Controller
             }
             DB::commit();
             // $this->sendMail();
-            return view('client.vnpay.return');
+            return redirect()->route('push-notification');
         } catch (Exception $e) {
             DB::rollBack();
             $returnData['RspCode'] = '99';

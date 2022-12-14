@@ -32,6 +32,22 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('admin/css/demo.css')}}" rel="stylesheet" />
     <script src="{{asset('admin/js/core/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        const pusher = new Pusher('7f612ad69a21be6f9def', {
+            cluster: 'ap1'
+        });
+
+        const channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function(data) {
+            // alert(JSON.stringify(data));
+            alert(JSON.stringify(data.message));
+        });
+    </script>
 </head>
 
 <body>
@@ -114,6 +130,19 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="navbar-nav ml-auto">
+{{--                            @foreach($notifications as $key)--}}
+{{--                                <li class="nav-item dropdown mr-2" id="{{ $key->id }}">--}}
+                            <li class="nav-item dropdown mr-2 user">
+                                <a href="#" class="nav-link" data-toggle="dropdown">
+                                    <i class="fa fa-bell text-black" style="display: flex;line-height: normal !important;top: 7px !important;">
+{{--                                            @if($key->unread)--}}
+{{--                                                <span class="badge badge-danger pending">{{ $key->unread }}</span>--}}
+                                        <span class="badge badge-danger pending">0</span>
+{{--                                            @endif--}}
+                                    </i>
+                                </a>
+                            </li>
+{{--                            @endforeach--}}
                             <li class="nav-item">
                                 <a class="nav-link" href="">
                                     <span class="no-icon">{{Auth::user()->name}}</span>
