@@ -77,21 +77,16 @@ class OrderController extends Controller
     {
         $order = VnpayTest::find($id);
         $msg = '';
+        $status = '';
         if ($order->status_order == 'pending') {
-            $order->fill([
-                'status_order' => 'shipping'
-            ]);
-            $order->save();
+            $status = 'shipping';
             $msg = 'Đã xác nhận để giao hàng';
-        }
-
-        if ($order->status_order == 'shipping') {
-            $order->fill([
-                'status_order' => 'success'
-            ]);
-            $order->save();
+        }else if($order->status_order == 'shipping') {
+            $status = 'success';
             $msg = 'Đã giao hàng thành công';
         }
+        $order->fill(['status_order' => $status]);
+        $order->save();
         $this->sendMail($order);
         return redirect()->back()->with('msg', $msg);
     }
