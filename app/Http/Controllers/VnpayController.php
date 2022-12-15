@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NotificationEvent;
 use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\Vnpay;
@@ -284,6 +285,8 @@ class VnpayController extends Controller
             }
             DB::commit();
             // $this->sendMail();
+            // return redirect()->route('push-notification');
+            event(new NotificationEvent('Bạn vừa có đơn hàng mới'));
             return view('client.vnpay.return');
         } catch (Exception $e) {
             DB::rollBack();
