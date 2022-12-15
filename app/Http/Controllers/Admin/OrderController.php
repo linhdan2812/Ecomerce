@@ -85,9 +85,9 @@ class OrderController extends Controller
             $status = 'success';
             $msg = 'Đã giao hàng thành công';
         }
-        $order->fill(['status_order' => $status]);
+        $order->status_order = $status;
         $order->save();
-        $this->sendMail($order);
+        // $this->sendMail($order);
         return redirect()->back()->with('msg', $msg);
     }
 

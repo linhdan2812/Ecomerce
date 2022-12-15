@@ -45,8 +45,8 @@
                             <th class="text-center">Số lượng</th>
                             <th class="text-right">Thành tiền</th>
                         </tr>
+                        @foreach($test as $key)
                         <tr>
-                            @foreach($test as $key)
                                 <td>
                                     <div class="item-cart v2">
                                         <a class="img"><img src="{{asset('storage/'.$key['image'])}}" width="70" alt=""></a>
@@ -60,8 +60,8 @@
                                 <td align="center">{{$key['price']}} VND</td>
                                 <td align="center">{{$key['quantity']}}</td>
                                 <td align="right">{{$key['price'] * $key['quantity']}} VND</td>
-                            @endforeach
                         </tr>
+                        @endforeach
                     </table>
                 </div>
                 <ul class="order-total">
