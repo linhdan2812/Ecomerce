@@ -9,36 +9,18 @@
 </head>
 <body>
 @component('mail::message')
-    <div>
         <h1>Xin chào {{$user->name}}</h1>
         <div>
             <h1>{{ $message }}</h1>
         </div>
-        <div>
-            <h1>Thông tin chi tiết đơn hàng</h1>
-            @foreach($products as $product)
-                <label for="">
-                    <p>Tên sản phẩm: {{ $product['name'] }}</p>
-                </label>
-{{--                <label for="">--}}
-{{--                    <img src="{{asset('storage/'. $product['image'])}}" alt="">--}}
-{{--                </label>--}}
-                <label for="">
-                    <p>Số lượng: {{ $product['quantity'] }}</p>
-                </label>
-                <label for="">
-                    <p>Giá: {{ $product['price'] }}</p>
-                </label>
-                <label for="">
-                    <p>Giảm giá: {{ $product['discount'] ?? 'Không'}}</p>
-                </label>
-                <br><br>
-            @endforeach
-        </div>
-        <div>
-            <h1>Xin cảm ơn</h1>
-        </div>
-    </div>
+        <h1>Thông tin chi tiết đơn hàng</h1>
+        @foreach($products as $product)
+            <h3>Tên sản phẩm: {{ $product['name'] }}</h3>
+            <h3>Số lượng: {{ $product['quantity'] }}</h3>
+            <h3>Giá: {{ $product['price'] }}</h3>
+            <h3>Giảm giá: {{ $product['discount'] ?? 'Không'}}</h3><br>
+        @endforeach
+        Xin cảm ơn
 @endcomponent
 </body>
 </html>

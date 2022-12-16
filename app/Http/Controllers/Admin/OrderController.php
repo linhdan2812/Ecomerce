@@ -87,7 +87,7 @@ class OrderController extends Controller
         }
         $order->status_order = $status;
         $order->save();
-        // $this->sendMail($order);
+        $this->sendMail($order);
         return redirect()->back()->with('msg', $msg);
     }
 
