@@ -87,10 +87,10 @@
         </table>
       </div>
       <ul class="order-total">
-        <li><b>Tổng tiền hàng:</b> <span> {{ $detailorder->vnp_Amount}} VND</span></li>
+        <li><b>Tổng tiền hàng:</b> <span> {{ number_format($detailorder->vnp_Amount)}} VND</span></li>
         <li><b>Giảm giá:</b> <span>{{ $detailorder->coupon ?? 0 }}</span></li>
         <li><b>Phí vận chuyển:</b> <span>{{ $detailorder->shipping_id ?? 0}}</span></li>
-        <li><b>Tổng số tiền:</b> <b>{{ $detailorder->vnp_Amount}} VND</b></li>
+        <li><b>Tổng số tiền:</b> <b>{{ number_format($detailorder->vnp_Amount)}} VND</b></li>
         <li><b>Phương thức thanh toán: </b> <small>{{ $detailorder->vnp_CardType}}</small></li>
       </ul>
       <div class="order-address-person">

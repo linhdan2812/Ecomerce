@@ -62,7 +62,7 @@ class OrderController extends Controller
     {
         // $order = VnpayTest::find($request->id);
         $order = VnpayTest::where('id', $request->id)
-            ->update(['status_order' => 'success']);
+            ->update(['status_order' => $request->input('value')]);
         return redirect('/admin/orders');
     }
 
