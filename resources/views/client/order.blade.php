@@ -4,22 +4,6 @@
         <div class="main-content">
             <div class="top-content v2 wow fadeInUp">
                 <h4 class="title">Đơn hàng của tôi</h4>
-                <div class="control">
-                    <span class="text">Ngày đặt hàng</span>
-                    <div class="form-group date">
-                        <input type="text" class="form-control pick-date">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <div class="form-group select">
-                        <select name="" id="" class="form-control">
-                            <option value="">Trạng thái đơn hàng</option>
-                            <option value="">Đang vận chuyển</option>
-                            <option value="">Đang xử lý</option>
-                            <option value="">Giao hàng thành công</option>
-                        </select>
-                        <i class="fas fa-caret-circle-down"></i>
-                    </div>
-                </div>
             </div>
             <div class="body-content">
                 <div class="order-list v2 wow fadeInUp">

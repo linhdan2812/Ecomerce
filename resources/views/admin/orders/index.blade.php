@@ -59,6 +59,8 @@
                                 <td>Đã thanh toán thành công</td>
                                 @elseif($order->vnp_TransactionStatus == null)
                                 <td>Thanh toán thất bại</td>
+                                @else
+                                <td></td>
                                 @endif
 
                                 <!-- Chi tiết đơn hàng -->
@@ -66,14 +68,16 @@
 
                                 <!-- Trạng thái đơn hàng -->
                                 @if($order->status_order == 'pending' && $order->vnp_TransactionStatus == '00')
-                                <td><a href="{{route('admin.order.stateChange',['id'=>$order->id])}}" class="btn btn-warning">Đang xử lý</a></td>
+                                <td><a href="#" class="btn btn-warning">Đang xử lý</a></td>
                                 @elseif($order->status_order == 'confirm' && $order->vnp_TransactionStatus == '00')
                                 <td>Đã xác nhận</td>
+                                @elseif( ($order->status_order == 'pending' ) && ( $order->vnp_TransactionStatus == '02' || $order->vnp_TransactionStatus == null ))
+                                <td><a href="" class="btn btn-danger">Đang chờ xử lý</a></td>
                                 @elseif( ( $order->status_order == 'cancel' || $order->status_order == 'pending' ) && ( $order->vnp_TransactionStatus == '00' || $order->vnp_TransactionStatus == null ))
                                 <td><a href="" class="btn btn-danger">Đã hủy đơn hàng</a></td>
                                 @elseif($order->status_order == 'shipping' && $order->vnp_TransactionStatus == '00')
-                                <td><a href="{{route('admin.order.stateChange',['id'=>$order->id])}}" class="btn btn-info">Đang giao hàng</a></td>
-                                @elseif($order->status_order == 'success' && $order->vnp_TransactionStatus == '00')
+                                <td><a href="#" class="btn btn-info">Đang giao hàng</a></td>
+                                @elseif($order->status_order == 'success')
                                 <td><a href="" class="btn btn-success">Đã giao hàng</a></td>
                                 @endif
                             </tr>

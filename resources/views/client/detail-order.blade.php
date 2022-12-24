@@ -57,18 +57,18 @@
                                         </div>
                                     </div>    
                                 </td>
-                                <td align="center">{{$key['price']}} VND</td>
+                                <td align="center">{{number_format($key['price'])}} VND</td>
                                 <td align="center">{{$key['quantity']}}</td>
-                                <td align="right">{{$key['price'] * $key['quantity']}} VND</td>
+                                <td align="right">{{number_format($key['price'] * $key['quantity'])}} VND</td>
                         </tr>
                         @endforeach
                     </table>
                 </div>
                 <ul class="order-total">
-                    <li>Tổng tiền hàng:  <span>{{ $detailorder->vnp_Amount}}</span></li>
+                    <li>Tổng tiền hàng:  <span>{{ number_format($detailorder->vnp_Amount) ?? 0 }} VND   </span></li>
                     <li>Giảm giá:  <span>{{ $detailorder->coupon ?? 0 }}</span></li>
                     <li>Phí vận chuyển:  <span>{{ $detailorder->shipping_id ?? 0}}</span></li>
-                    <li>Tổng số tiền:  <b>{{ $detailorder->vnp_Amount}}</b></li>
+                    <li>Tổng số tiền:  <b>{{ number_format($detailorder->vnp_Amount ?? 0)}} VND</b></li>
                     <li>Phương thức thanh toán <small>{{ $detailorder->vnp_CardType}}</small></li>
                 </ul>
                 <div class="order-address-person">
