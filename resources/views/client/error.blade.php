@@ -33,13 +33,13 @@
                 </div>
                 <form action="{{route('error.order.save',['id'=>$order->id])}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div>
-                        <label for="">Ghi chú (nếu có)</label>
-                        <input type="text" name="note">
+                    <div class="form-group">
+                        <label for="order_id"><b>Ghi chú (nếu có)</b></label>
+                        <input class="form-control" id="note" name="note" type="text" />
                     </div>
                     <div>
-                        <label for="">Sản phẩm</label>
-                        <select name="name_product" id="">
+                        <label  for="">Sản phẩm</label>
+                        <select class="form-select" name="name_product" aria-label="Default select example">
                             @foreach($product as $key)
                             <option value="{{$key['name']}}">{{$key['name']}}</option>
                             @endforeach

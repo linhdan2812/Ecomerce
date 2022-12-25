@@ -73,8 +73,8 @@
             <th class="text-center">Số lượng</th>
             <th class="text-right">Thành tiền</th>
           </tr>
+          @foreach($test as $key)
           <tr>
-            @foreach($test as $key)
             <td align="center">
                 <a title="">{{$key['name']}}</a>
             </td>
@@ -82,8 +82,8 @@
             <td align="center">{{$key['price']}} VND</td>
             <td align="center">{{$key['quantity']}}</td>
             <td align="right">{{$key['price'] * $key['quantity']}} VND</td>
-            @endforeach
           </tr>
+          @endforeach
         </table>
       </div>
       <ul class="order-total">
