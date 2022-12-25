@@ -386,10 +386,9 @@
 
 {{--  --}}
     <!--====================  hero slider area ====================-->
-    <div class="slider">
         @if (!empty($bannerSlide))
             @foreach ($bannerSlide as $item)
-                <div class="slider__content">
+                <div>
                     <img width="100%" src="{{ asset('storage/'. $item->photo) }}" />
                     <div class="slider__description">
                         <h1>{{ $item->title }}</h1>
@@ -401,7 +400,6 @@
                 </div>
             @endforeach
         @endif
-    </div>
 
 
     <!--====================  End of hero slider area  ====================-->
