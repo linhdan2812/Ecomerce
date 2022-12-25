@@ -10,7 +10,7 @@
                     <h3 class="head-page">Chi tiết đơn hàng</h3>
                     @if($detailorder->status_order == 'pending')
                         <div class="right">
-                            <a href="{{route('cancel.order',['id' => $detailorder->id])}}" class="btn-second gray">Hủy đơn hàng</a>
+                            <a href="{{route('cancel.order',['id' => $detailorder->id])}}" onclick="return confirm('Bạn có chắc muốn hủy đơn hàng này không?');" class="btn-second gray">Hủy đơn hàng</a>
                         </div>
                     @endif
                     @if($detailorder->status_order == 'success')
