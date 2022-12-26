@@ -28,7 +28,7 @@
                             @foreach($errorOrder as $item)
                                 <tr>
                                     <th scope="row">{{$stt++}}</th>
-                                    <td>{{$item->orderId->vnp_TxnRef}}</td>
+                                    <td>{{$item->orderId->vnp_TxnRef ?? 0}}</td>
                                     <td>{{$item->user->name}}</td>
                                     <td>{{$item->note}}</td>
                                     <td>

@@ -97,13 +97,13 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="">Giảm giá</label>
                             <input type="number" name="discount" class="form-control">
                             @error('discount')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label for="category_id">Loại hàng</label>

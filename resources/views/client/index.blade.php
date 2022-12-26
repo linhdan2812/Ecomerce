@@ -559,10 +559,10 @@
 
                             <div class="single-grid-product">
                                 <div class="single-grid-product__image">
-                                    <div class="product-badge-wrapper">
+                                    <!-- <div class="product-badge-wrapper">
                                         <span class="onsale">-17%</span>
                                         <span class="hot">Hot</span>
-                                    </div>
+                                    </div> -->
                                     <a href="{{ route('detailProduct', ['id' => $product->id]) }}" class="image-wrap">
                                         <img src="{{ asset('storage/'.$product->photo) }}"
                                             class="img-fluid" alt="">
@@ -587,16 +587,17 @@
                                 </div>
                                 <div class="single-grid-product__content">
                                     <h3 class="title"><a href="product-details-basic.html">{{ $product->title }}</a></h3>
-                                    <div class="price"><span class="main-price discounted">{{ $product->price }}</span> <span
-                                            class="discounted-price">{{ number_format($product->price) }} VNĐ</span></div>
-                                    <div class="rating">
+                                    <div class="price">
+                                        <!-- <span class="main-price discounted">{{ $product->price }}</span>  -->
+                                        <span class="discounted-price">{{ number_format($product->price) }} VNĐ</span></div>
+                                    <!-- <div class="rating">
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="color">
+                                    </div> -->
+                                    <!-- <div class="color">
                                         <ul>
                                             <li><a class="active" href="#" data-tippy="Black"
                                                     data-tippy-inertia="true" data-tippy-animation="shift-away"
@@ -612,7 +613,7 @@
                                                     data-tippy-arrow="true" data-tippy-theme="roundborder"><span
                                                         class="color-picker brown"></span></a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                     <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
                                         data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50"
                                         data-tippy-arrow="true" data-tippy-theme="sharpborder"
