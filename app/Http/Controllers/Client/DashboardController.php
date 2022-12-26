@@ -34,8 +34,8 @@ class DashboardController extends Controller
         // Mới nhất
         $lproducts = Product::orderBy('created_at','DESC')->get()->take(8);
         // nổi bật
-        // $fproducts = Product::where('featured','1')->get()->take(8);
-        return view('client.index',compact('bannerSlide','arrivals', 'products','lproducts','bannerSlide','arrivals', 'products','blogs'));
+        $fproducts = Product::where('stock','1')->get()->take(8);
+        return view('client.index',compact('bannerSlide','arrivals', 'fproducts', 'products','lproducts','bannerSlide','arrivals', 'products','blogs'));
 
     }
     public function myaccount() {

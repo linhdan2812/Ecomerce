@@ -30,7 +30,10 @@
                 </form>
                 <form action="{{ route('product.export') }}">
                     @csrf
-                    <input type="number" name="number" placeholder="Lựa chọn tháng xuất file" id="number" min="1" max="12" required>
+                    <label for="">Tháng</label>
+                    <input type="number" name="month" id="month" min="1" max="12" required>
+                    <label for="">Năm</label>
+                    <input type="number" name="year" pattern="\d{4}" min="2000" id="year" required>
                     <button class="btn btn-success">
                     Xuất file CSV
                     </button>
