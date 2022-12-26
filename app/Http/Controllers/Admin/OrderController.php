@@ -87,7 +87,7 @@ class OrderController extends Controller
         VnpayTest::where('id', $request->id)
             ->update([
                 'status_order' => $request->input('value'),
-                'note' => $order->note ? $request->input('note').' - thời gian: '. Carbon::now() . ' - Trạng thái đơn hàng: '. $text .',' . $order->note : $request->input('note'),
+                'note' => $order->note ? $request->input('note').' - thời gian: '. Carbon::now() . ' - Trạng thái đơn hàng: '. $text .',' . $order->note : $request->input('note').' - thời gian: '. Carbon::now() . ' - Trạng thái đơn hàng: '. $text,
             ]);
         return redirect('/admin/orders');
     }
