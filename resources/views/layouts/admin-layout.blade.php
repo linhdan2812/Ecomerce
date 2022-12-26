@@ -63,7 +63,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin.dashboard')}}">
                             <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Bảng điều khiển</p>
+                            <p>Thống kê</p>
                         </a>
                     </li>
                     <li>
@@ -150,7 +150,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('logout')}}">
-                                    <span class="no-icon">Log out</span>
+                                    <span class="no-icon">Đăng xuất</span>
                                 </a>
                             </li>
                         </ul>
