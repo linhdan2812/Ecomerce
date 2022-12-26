@@ -12,6 +12,7 @@ use App\Models\Shipping;
 use App\Models\User;
 use App\Models\Vnpay;
 use App\Models\VnpayTest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -61,10 +62,32 @@ class OrderController extends Controller
     public function updateOrder(Request $request)
     {
         $order = VnpayTest::find($request->id);
+        $text = '';
+        if($request->input('value') == 'success') {
+            $text = 'Thành Công';
+        }
+        if($request->input('value') == 'pending') {
+            $text = 'Đang xử lý';
+        }
+        if($request->input('value') == 'repeat') {
+            $text = 'Đã Hoàn hàng';
+        }
+        if($request->input('value') == 'outStock') {
+            $text = 'Đã hết hàng';
+        }
+        if($request->input('value') == 'cancel') {
+            $text = 'Đã hủy đơn hàng';
+        }
+        if($request->input('value') == 'shipping') {
+            $text = 'Đang giao hàng';
+        }
+        if($request->input('value') == 'success') {
+            $text = 'Thành Công';
+        }
         VnpayTest::where('id', $request->id)
             ->update([
                 'status_order' => $request->input('value'),
-                'note' => $order->note ? $request->input('note') .',' . $order->note : $request->input('note'),
+                'note' => $order->note ? $request->input('note').' - thời gian: '. Carbon::now() . ' - Trạng thái đơn hàng: '. $text .',' . $order->note : $request->input('note'),
             ]);
         return redirect('/admin/orders');
     }
