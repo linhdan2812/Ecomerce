@@ -92,6 +92,7 @@ class DashboardController extends Controller
         $detailorder = VnpayTest::where('id', '=', $id)->first();
         $cart = $detailorder->cart;
         $test = json_decode($cart, true);
+        // dd($detailorder);
         return view('client.detail-order',compact('detailorder', 'test'));
     }
 

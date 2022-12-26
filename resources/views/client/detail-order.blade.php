@@ -24,18 +24,39 @@
                     <span class="time">Ngày đặt hàng: {{ $detailorder->created_at}}</span>
                 </div>
                 <div class="order-process">
-                    <div class="item active">
-                        <div class="icon"><img src="images/ic-process1.png" alt=""></div>
-                        <p>Đang xử lý</p>
-                    </div>
-                    <div class="item">
-                        <div class="icon"><i class="fal fa-check-circle"></i><img src="images/ic-process2.png" alt=""></div>
-                        <p>Đang giao hàng</p>
-                    </div>
-                    <div class="item">
-                        <div class="icon"><i class="fal fa-check-circle"></i></div>
-                        <p>Đã giao hàng</p>
-                    </div>
+                    @if($detailorder->status_order == "pending")
+                        <div class="item active">
+                            <div class="icon"><i class="fal fa-check-circle"></i></div>
+                            <p>Đang xử lý</p>
+                        </div>
+                    @else
+                        <div class="item active">
+                            <div class="icon"><i class="fal fa-check-circle"></i></div>
+                            <p>Đang xử lý</p>
+                        </div>
+                    @endif
+                    @if($detailorder->status_order == "shipping" || $detailorder->status_order == "success")
+                        <div class="item active">
+                            <div class="icon"><i class="fal fa-check-circle"></i></div>
+                            <p>Đang giao hàng</p>
+                        </div>
+                    @else
+                        <div class="item">
+                            <div class="icon"><i class="fal fa-check-circle"></i></div>
+                            <p>Đang giao hàng</p>
+                        </div>
+                    @endif
+                    @if($detailorder->status_order == "success")
+                        <div class="item active">
+                            <div class="icon"><i class="fal fa-check-circle"></i></div>
+                            <p>Đã giao hàng</p>
+                        </div>
+                    @else
+                        <div class="item">
+                            <div class="icon"><i class="fal fa-check-circle"></i></div>
+                            <p>Đã giao hàng</p>
+                        </div>
+                    @endif
                 </div>
                 <div class="tb-cart v2">
                     <table class="table">
