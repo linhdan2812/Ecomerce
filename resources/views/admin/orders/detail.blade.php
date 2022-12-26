@@ -75,13 +75,13 @@
           </tr>
           @foreach($test as $key)
           <tr>
-            <td align="center">
+            <td align="left">
                 <a title="">{{$key['name']}}</a>
             </td>
             <td><a class="img"><img src="{{asset('storage/'.$key['image'])}}" width="70" alt=""></a></td>
-            <td align="center">{{$key['price']}} VND</td>
+            <td align="center">{{number_format($key['price'],0,'.')}} VND</td>
             <td align="center">{{$key['quantity']}}</td>
-            <td align="right">{{$key['price'] * $key['quantity']}} VND</td>
+            <td align="right">{{number_format($key['price'] * $key['quantity'],0,'.')}} VND</td>
           </tr>
           @endforeach
         </table>
