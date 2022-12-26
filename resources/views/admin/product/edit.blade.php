@@ -47,7 +47,9 @@
                         </div>
                         <div class="form-group">
                             <label for="">Kích thước</label>
-                            <input type="text" name="size" value="{{ $product->size }}" class="form-control">
+                            <input type="text" name="size" value="@foreach (json_decode($product->size) as $item2)
+                                {{  str_replace(' ', '', $item2) }}
+                              @endforeach" class="form-control">
                             @error('size')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
