@@ -9,8 +9,9 @@ class ProductExport implements FromCollection, WithHeadings
 {
     private $time;
 
-    public function __construct(int $time) {
-    	$this->time = $time;
+    public function __construct( $month,$year) {
+    	$this->month = $month;
+        $this->year = $year;
     }
 
     /**
@@ -23,7 +24,7 @@ class ProductExport implements FromCollection, WithHeadings
             'vnp_Amount',
             'vnp_Bill_Email',
             'vnp_Bill_Address'
-        )->whereMonth('created_at', $this->time)->where('status_order','success')->get();
+        )->whereMonth('created_at', $this->month)->whereYear('created_at', $this->year)->where('status_order','success')->get();
     }
     public function headings() :array {
     	return ["Loại", "Giá", "Email", "Địa chỉ"];

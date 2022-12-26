@@ -100,7 +100,12 @@ class ProductController extends Controller
     }
     public function export(Request $request) 
     {
-        $time = $request->input('number');
-        return Excel::download(new ProductExport($time), 'Báo cáo mua hàng tháng '. $time .'.CSV');
+        $month = $request->input('month');
+        $year = $request->input('year');
+        $time = array(
+            'month' => $month,
+            'year' => $year,
+        );
+        return Excel::download(new ProductExport($month,$year), 'Báo cáo mua hàng tháng '. $month . ' năm '. $year .'.CSV');
     }
 }
