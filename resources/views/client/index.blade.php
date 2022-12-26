@@ -553,7 +553,7 @@
                         {"breakpoint":479, "settings": {"slidesToShow": 1,"slidesToScroll": 1, "arrows": true, "dots": false} }
                     ]'>
 
-                        @foreach ($products as $product)
+                        @foreach ($fproducts as $product)
                         <div class="col">
                             <!--=======  single short view product  =======-->
 
@@ -663,7 +663,7 @@
 
                     <div class="product-row-wrapper">
                         <div class="row">
-                            @foreach ($products as $item)
+                            @foreach ($lproducts as $item)
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-custom-sm-6">
                                     <!--=======  single short view product  =======-->
 
