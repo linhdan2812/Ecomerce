@@ -64,7 +64,7 @@ class OrderController extends Controller
         VnpayTest::where('id', $request->id)
             ->update([
                 'status_order' => $request->input('value'),
-                'note' => $request->input('note') .' | ' . $order->note,
+                'note' => $order->note ? $request->input('note') .',' . $order->note : $request->input('note'),
             ]);
         return redirect('/admin/orders');
     }
