@@ -70,8 +70,12 @@
                                 <!-- Trạng thái đơn hàng -->
                                 @if($order->status_order == 'pending' && $order->vnp_TransactionStatus == '00')
                                 <td><a href="#" class="btn btn-warning">Đang xử lý</a></td>
+                                @elseif($order->status_order == 'outStock')
+                                <td class="btn btn-warning">Đã hết hàng</td>
                                 @elseif($order->status_order == 'confirm' && $order->vnp_TransactionStatus == '00')
-                                <td>Đã xác nhận</td>
+                                <td class="btn btn-warning">Đã xác nhận</td>
+                                @elseif($order->status_order == 'repeat' && $order->vnp_TransactionStatus == '00')
+                                <td class="btn btn-warning">Đã hoàn hàng</td>
                                 @elseif( ($order->status_order == 'pending' ) && ( $order->vnp_TransactionStatus == '02' || $order->vnp_TransactionStatus == null ))
                                 <td><a href="" class="btn btn-danger">Đang chờ xử lý</a></td>
                                 @elseif( ( $order->status_order == 'cancel' || $order->status_order == 'pending' ) && ( $order->vnp_TransactionStatus == '00' || $order->vnp_TransactionStatus == null ))

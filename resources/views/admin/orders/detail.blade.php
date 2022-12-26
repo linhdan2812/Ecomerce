@@ -32,6 +32,7 @@
                 <option value="cancel">Đã hủy đơn</option>
                 <option value="pending">Chờ xử lí</option>
                 <option value="success">Đã giao hàng</option>
+                <option value="repeat">Hoàn hàng</option>
               </select>
             </div>
             <input type="hidden" name="id" value="{{$detailorder->id}}">
@@ -92,6 +93,25 @@
         <li><b>Phí vận chuyển:</b> <span>{{ $detailorder->shipping_id ?? 0}}</span></li>
         <li><b>Tổng số tiền:</b> <b>{{ number_format($detailorder->vnp_Amount)}} VND</b></li>
         <li><b>Phương thức thanh toán: </b> <small>{{ $detailorder->vnp_CardType}}</small></li>
+        <li><b>Tình trạng đơn hàng:</b>
+          @if($detailorder->status_order == 'pending' && $detailorder->vnp_TransactionStatus == '00')
+          Đang xử lý
+          @elseif($detailorder->status_order == 'repeat')
+          Đã Hoàn hàng
+          @elseif($detailorder->status_order == 'outStock')
+          Đã hết hàng
+          @elseif($detailorder->status_order == 'confirm' && $order->vnp_TransactionStatus == '00')
+          Đã xác nhận
+          @elseif( ($detailorder->status_order == 'pending' ) && ( $detailorder->vnp_TransactionStatus == '02' || $detailorder->vnp_TransactionStatus == null ))
+          Đang chờ xử lý
+          @elseif( ( $detailorder->status_order == 'cancel' || $detailorder->status_order == 'pending' ) && ( $detailorder->vnp_TransactionStatus == '00' || $detailorder->vnp_TransactionStatus == null ))
+          Đã hủy đơn hàng
+          @elseif($detailorder->status_order == 'shipping' && $detailorder->vnp_TransactionStatus == '00')
+          Đang giao hàng
+          @elseif($detailorder->status_order == 'success')
+          Đã giao hàng
+          @endif</li>
+        <li><b>Lý do: </b> {{ $detailorder->note}}</li>
       </ul>
       <div class="order-address-person">
         <b>
