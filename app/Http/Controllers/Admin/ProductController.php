@@ -18,17 +18,17 @@ class ProductController extends Controller
 
     public function list(Request $request)
     {
-        $productSearch = Product::query();
-        if(!$request->searchName){
-            $products = $productSearch->get();
-        }else{
-            if ($request->has('searchName')) {
-                $productSearch->where('title', 'LIKE', '%' . $request->searchName . '%');
-            }
-
-            $products = $productSearch->get();
-        }
-        $products->load('category', 'brand');
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['searchName'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'asc';
+        $products = Product::where('title', 'LIKE', '%'. $keyword. '%')
+        ->simplePaginate(
+            $perPage = 18, $columns = ['*'], $pageName = 'Shop'
+        );
         return view('admin.product.list', compact('products'));
     }
 

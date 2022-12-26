@@ -47,17 +47,17 @@
                 {{ $item2 }}
               @endforeach</td>
               <td>{{ number_format($item->price) }} VND</td>
-              {{-- <td>{{ $item->category->title }}</td> --}}
+              <td>{{ $item->category ?? ''}}</td>
               <td>{{ $item->status == 'inactive' ? 'Không hoạt động' : 'Hoạt động'}}</td>
               <td>
                 <a class="btn btn-warning" href="{{ route('admin.product.edit', ['id' => $item->id]) }}">Sửa</a>
                 <a class="btn btn-danger" href="{{ route('admin.product.delte', ['id' => $item->id]) }}">Xóa</a>
               </td>
             </tr>
-
             @endforeach
           </tbody>
         </table>
+        {{ $products->links() }}
       </div>
     </div>
 @endsection
