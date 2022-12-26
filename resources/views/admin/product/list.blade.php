@@ -43,7 +43,9 @@
               <th scope="row">{{$stt++}}</th>
               <td>{{ $item->title }}</td>
               <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="100"></td>
-              <td>{{ $item->size }}</td>
+              <td>@foreach (json_decode($item->size) as $item2)
+                {{ $item2 }}
+              @endforeach</td>
               <td>{{ number_format($item->price) }} VND</td>
               {{-- <td>{{ $item->category->title }}</td> --}}
               <td>{{ $item->status == 'inactive' ? 'Không hoạt động' : 'Hoạt động'}}</td>

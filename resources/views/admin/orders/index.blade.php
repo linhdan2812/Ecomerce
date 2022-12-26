@@ -41,7 +41,7 @@
                                 <th>
                                     <form action="{{ route('product.export') }}">
                                     @csrf
-                                      <input type="number" name="number" id="number" min="1" max="12" required>
+                                      <input type="number" name="number" placeholder="Lựa chọn tháng xuất file" id="number" min="1" max="12" required>
                                       <button class="btn btn-success">
                                         Xuất file CSV
                                       </button>
