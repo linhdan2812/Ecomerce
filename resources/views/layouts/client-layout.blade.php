@@ -146,6 +146,9 @@
         .modal-footer {
             padding: 2px 16px;
         }
+        .header-logo .img-fluid {
+        width: 30% !important;
+        }
     </style>
 </head>
 

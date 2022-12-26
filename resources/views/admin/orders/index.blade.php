@@ -28,6 +28,13 @@
                         <button type="submit" class="btn btn-primary" style="padding: 0 10px;">Tìm kiếm</button>
                     </div>
                 </form>
+                <form action="{{ route('product.export') }}">
+                    @csrf
+                    <input type="number" name="number" placeholder="Lựa chọn tháng xuất file" id="number" min="1" max="12" required>
+                    <button class="btn btn-success">
+                    Xuất file CSV
+                    </button>
+                </form>
                 <div>
                     <table class="table">
                         <thead>
@@ -38,15 +45,6 @@
                                 <th scope="col">Thanh toán</th>
                                 <th scope="col">Chi tiết đơn hàng</th>
                                 <th scope="col">Tình trạng đơn hàng</th>
-                                <th>
-                                    <form action="{{ route('product.export') }}">
-                                    @csrf
-                                      <input type="number" name="number" placeholder="Lựa chọn tháng xuất file" id="number" min="1" max="12" required>
-                                      <button class="btn btn-success">
-                                        Xuất file CSV
-                                      </button>
-                                    </form>
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
