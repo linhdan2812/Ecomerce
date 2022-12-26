@@ -62,7 +62,7 @@
           <p><b style="color: red;">Ghi chú của khách hàng:</b> {{$request_order->note ?? ''}}</p>
           <p><b style="color: red;">Ảnh kèm theo:</b> <img src="{{asset('storage/'. $request_order->image)}}" width="200" alt=""></p>
         </div><br>
-        <a href="{{route('change.order',['id'=>$request_order->id_order])}}" class="btn btn-primary">Xác nhận đổi hàng cho khách</a>
+        <!-- <a href="{{route('change.order',['id'=>$request_order->id_order])}}" class="btn btn-primary">Xác nhận đổi hàng cho khách</a> -->
       </div><br>
       @endif
       <div class="tb-cart v2">
