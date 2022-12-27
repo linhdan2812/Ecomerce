@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Events\NotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Http\Request;
@@ -129,6 +130,7 @@ class DashboardController extends Controller
             $request_order->image = str_replace('public/', '', $path);
         }
         $request_order->save();
+        event(new NotificationEvent('Bạn vừa có đơn hàng báo lỗi'));
         return redirect()->route('order.detail',['id' => $id])->with('msg','Báo lỗi thành công');
     }
 
