@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Address;
 use App\Models\Comment;
 use App\Models\Coupon;
+use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
@@ -48,7 +49,11 @@ class ShopController extends Controller
      */
     public function cart()
     {
-        return view('cart');
+        $time_now = Carbon::now();
+        
+        $coupons = Coupon::where('expired_at','>',$time_now)->get();
+        
+        return view('cart',compact('coupons'));
     }
 
     /**
