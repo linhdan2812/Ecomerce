@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CartRequest;
 use App\Models\Product;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ShopController extends Controller
@@ -115,8 +117,17 @@ class ShopController extends Controller
     }
     public function getcheckout(Request $request)
     {
-        // CheckoutRequest $request phải thay cho request
-        // Thêm thông tin truyền ra ngoài
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|unique:posts|max:255',
+        ]);
+        foreach ($request->input('quantity') as $k => $value) {
+            foreach ($request->input('stock') as $key => $value) {
+                if($request->input('quantity')[$k] >$value){
+                    toastr()->info('Số lượng đang lớn hơn số hàng chúng tôi có!!');
+                    return redirect()->back();
+                }
+            }
+        }
         $user_id = Auth()->user()->id;
         $quantities = [];
         $names = [];

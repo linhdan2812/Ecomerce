@@ -28,6 +28,7 @@
                                         @php $total = 0 @endphp
                                         @if (session('cart'))
                                         @foreach (session('cart') as $id => $details)
+                                        @php $a = DB::table('products')->find($id) @endphp
                                         @php $total += $details['price'] * $details['quantity'] @endphp
                                         <tr data-id="{{ $id }}">
                                             <td data-th="Product" class="product-name">
@@ -45,9 +46,10 @@
                                             <td data-th="Price" class="product-price"><span class="price">{{ number_format($details['price']) }} VNĐ</span></td>
                                             @endif
                                             <td data-th="Quantity">
-                                                <input type="number"value="{{ $details['quantity'] }}" min="1"
+                                                <input type="number"value="{{ $details['quantity'] }}" name="quantity" min="1"
                                                     class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
                                             </td>
+                                            <input type="hidden" name="stock" value="{{ $a->stock }}">
                                             @if($details['discount'])
                                             <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['discount'] * $details['quantity']) }} VNĐ</span></td>
                                             @else
@@ -58,6 +60,7 @@
                                             </td>
                                         </tr>
                                         @endforeach
+                                        <input type="hidden" name="stock[]" value="{{ $a->stock }}">
                                         <input type="hidden" name="quantity[]" value="{{ $details['quantity'] }}">
                                         <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VNĐ">
                                         <input type="hidden" name="name[]" value="{{ $details['name'] }}">
@@ -233,5 +236,7 @@
                 }
             });
         });
+        var a = $a->stock;
+        console.log(a);
     </script>
 @endsection
