@@ -48,7 +48,7 @@ class OrderController extends Controller
     public function detail($id)
     {
         $detailorder = VnpayTest::where('id', $id)->first();
-        $request_order = RequestOrder::where('id_order', $id)->first();
+        $request_order = RequestOrder::where('id_order', $id)->orderBy('id', 'desc')->first();
         $cart = $detailorder->cart;
         $test = json_decode($cart, true);
         return view('admin.orders.detail', compact('detailorder', 'test', 'request_order'));

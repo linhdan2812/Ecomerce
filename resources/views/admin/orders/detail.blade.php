@@ -111,7 +111,7 @@
           @elseif($detailorder->status_order == 'success')
           Đã giao hàng
           @endif</li>
-        <li><b>Lý do: </b> <ul class="order-total"> @foreach (explode(",",$detailorder->note) as $item)
+        <li><b>Lịch sử giao hàng: </b> <ul class="order-total"> @foreach (explode(",",$detailorder->note) as $item)
           <li>{{$item }}</li>
         @endforeach</ul></li>
       </ul>
