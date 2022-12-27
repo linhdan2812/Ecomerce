@@ -53,7 +53,6 @@ class DashboardController extends Controller
         ->update([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
             'birthday' => date("Y-d-m", strtotime($request->input('birthday'))),
             'gender' => $request->input('gender'),
         ]);
@@ -78,7 +77,7 @@ class DashboardController extends Controller
                 'status' => 0,
                 'user_id' => Auth()->user()->id,
             ]);
-            return view('client.myaccount',compact('address'));
+            return view('client.address',compact('address'));
         }
     }
     public function orders(Request $request)
