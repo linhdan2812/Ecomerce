@@ -97,7 +97,45 @@
                             <!--=======  End of coupon area  =======-->
                         </div>
 
-                        <div class="col-lg-6 offset-lg-6">
+                        <div class="col-lg-7">
+                            <div class="cart-calculation-area">
+                                <h3>Mã giảm giá đang có</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">STT</th>
+                                            <th scope="col">Tên mã giảm giá</th>
+                                            <th scope="col">Giảm giá</th>
+                                            <th scope="col">Đơn tối thiểu</th>
+                                            <th scope="col">Hạn sử dụng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                        $stt = 1;
+                                        @endphp
+                                        @foreach($coupons as $coupon)
+                                        <tr>
+                                            <td scope="row">{{$stt++}}</td>
+                                            <td>{{$coupon->code}}</td>
+                                            @if($coupon->type == 'percent')
+                                            <td>{{$coupon->value}} %</td>
+                                            <td>Cả đơn hàng</td>
+                                            @elseif($coupon->type == 'fixed')
+                                            <td>{{number_format($coupon->value,0,',')}}VND</td>
+                                            <td>{{number_format($coupon->minbill,0,',')}}VND</td>
+                                            @elseif($coupon->type == 'all')
+                                            <td>{{$coupon->value}} %</td>
+                                            <td>Cả đơn hàng</td>
+                                            @endif
+                                            <td>{{$coupon->expired_at}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
                             <div class="cart-calculation-area">
                                 <h2 class="cart-calculation-area__title">Tổng hóa đơn</h2>
 
