@@ -131,30 +131,18 @@
                             </div>
 
                             <div class="quick-view-other-info">
-                                <div class="other-info-links">
-                                    <a href="{{ route('postWishlist', ['id' => $productDetail->id]) }}"><i
-                                            class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>
-                                    {{-- <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a> --}}
-                                </div>
-
-                                <div class="product-brand">
-                                    <a href="shop-left-sidebar.html">
-                                        <img src="assets/img/brands/brand-2.png" class="img-fluid" alt="">
-                                    </a>
-                                </div>
-
                                 <table>
-                                    <tr class="single-info">
-                                        <td class="quickview-title">
-                                            Thương hiệu: {{ $productDetail->brand->name ?? null }}
-                                        </td>
-                                    </tr>
                                     <tr class="single-info">
                                         <td class="quickview-title">
                                             Danh mục sản phẩm: <a
                                                 href="#">{{ $productDetail->category->title ?? null }}</a>
                                         </td>
                                     </tr>
+                                    <div class="other-info-links">
+                                        <a href="{{ route('postWishlist', ['id' => $productDetail->id]) }}"><i
+                                                class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>
+                                        {{-- <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a> --}}
+                                    </div>
                                 </table>
                             </div>
                         </div>
@@ -229,8 +217,11 @@
                                                     <td class="product_dimensions">
                                                         <p>
                                                             @if ($productDetail->size)
-                                                                @foreach (json_decode($productDetail->size) as $item)
+                                                                @foreach (json_decode($productDetail->size) as $index => $item)
                                                                     {{ $item }}
+                                                                    @if ($index < count(json_decode($productDetail->size)) - 1)
+                                                                        ,
+                                                                    @endif
                                                                 @endforeach
                                                             @endif
                                                         </p>
@@ -242,8 +233,11 @@
                                                     <td>
                                                         <p>
                                                             @if ($productDetail->color)
-                                                                @foreach (json_decode($productDetail->color) as $item)
-                                                                    {{ $item }},
+                                                                @foreach (json_decode($productDetail->color) as $index => $item)
+                                                                    {{ $item }}
+                                                                    @if ($index < count(json_decode($productDetail->color)) - 2)
+                                                                        ,
+                                                                    @endif
                                                                 @endforeach
                                                             @endif
                                                         </p>
