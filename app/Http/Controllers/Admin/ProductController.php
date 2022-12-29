@@ -98,7 +98,7 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back();
     }
-    public function export(Request $request) 
+    public function export(Request $request)
     {
         $month = $request->input('month');
         $year = $request->input('year');

@@ -170,7 +170,7 @@
                     <div class="col-lg-12">
                         <div class="header-info-wrapper">
 
-                            
+
 
                             <div class="header-logo text-center">
                                 <a href="{{ route('home') }}">
@@ -358,49 +358,44 @@
                         <div class="row">
                             <div class="col-6 col-sm-4">
                                 <div class="footer-widget">
-                                    <h4 class="footer-widget__title">ABOUT US</h4>
+                                    <h4 class="footer-widget__title">VỀ CHÚNG TÔI</h4>
                                     <nav class="footer-widget__navigation">
                                         <ul>
-                                            <li><a href="#">About Us</a></li>
-                                            <li><a href="#">Newsletter Sign Up</a></li>
-                                            <li><a href="#">History</a></li>
-                                            <li><a href="#">Brands</a></li>
-                                            <li><a href="#">Press Office</a></li>
-                                            <li><a href="#">Contact Us</a></li>
-                                            <li><a href="#">Terms & Conditions</a></li>
-                                            <li><a href="#">Privacy Policy</a></li>
+                                            <li><a href="#">Về chúng tôi</a></li>
+                                            <li><a href="#">Đăng ký tin tức</a></li>
+                                            <li><a href="#">Lịch sử</a></li>
+                                            <li><a href="#">Thương hiệu</a></li>
+                                            <li><a href="#">Văn phòng</a></li>
+                                            <li><a href="#">Liên hệ với chúng tôi</a></li>
+                                            <li><a href="#">Chính sách bảo mật</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-6 col-sm-4">
                                 <div class="footer-widget">
-                                    <h4 class="footer-widget__title">SERVICES</h4>
+                                    <h4 class="footer-widget__title">DỊCH VỤ</h4>
                                     <nav class="footer-widget__navigation">
                                         <ul>
-                                            <li><a href="#">Price promise</a></li>
-                                            <li><a href="#">How to order</a></li>
-                                            <li><a href="#">Returns</a></li>
-                                            <li><a href="#">UK delivery</a></li>
-                                            <li><a href="#">International delivery</a></li>
-                                            <li><a href="#">Want it? Can’t find it?</a></li>
-                                            <li><a href="#">Customer feedback</a></li>
-                                            <li><a href="#">Measuring Advice</a></li>
+                                            <li><a href="#">Cam kết giá</a></li>
+                                            <li><a href="#">Đặt hàng</a></li>
+                                            <li><a href="#">Trả hàng</a></li>
+                                            <li><a href="#">Vận chuyển</a></li>
+                                            <li><a href="#">Phản hồi của khách hàng</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-6 col-sm-4">
                                 <div class="footer-widget">
-                                    <h4 class="footer-widget__title">USEFUL LINKS</h4>
+                                    <h4 class="footer-widget__title">LIÊN KẾT</h4>
                                     <nav class="footer-widget__navigation">
                                         <ul>
-                                            <li><a href="#">Privacy Policy</a></li>
-                                            <li><a href="#">Returns</a></li>
-                                            <li><a href="#">Terms & Conditions</a></li>
-                                            <li><a href="#">Contact Us</a></li>
-                                            <li><a href="#">Latest News</a></li>
-                                            <li><a href="#">Our Sitemap</a></li>
+                                            <li><a href="#">Chính sách bảo mật</a></li>
+                                            <li><a href="#">Trả hàng</a></li>
+                                            <li><a href="#">Điều khoản</a></li>
+                                            <li><a href="#">Liên hệ với chúng tôi</a></li>
+                                            <li><a href="#">Bài viết mới nhất</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -411,36 +406,32 @@
                         <div class="row">
                             <div class="col-6 col-sm-4">
                                 <div class="footer-widget">
-                                    <h4 class="footer-widget__title">WORK WITH US</h4>
+                                    <h4 class="footer-widget__title">LÀM VIỆC VỚI CHÚNG TÔI</h4>
                                     <nav class="footer-widget__navigation">
                                         <ul>
-                                            <li><a href="#">Careers</a></li>
-                                            <li><a href="#">Affiliates</a></li>
-                                            <li><a href="#">Travel Scholarship</a></li>
+                                            <li><a href="#">Tuyển dụng</a></li>
+                                            <li><a href="#">Chi nhánh</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-6 col-sm-4">
                                 <div class="footer-widget">
-                                    <h4 class="footer-widget__title">GIFTS</h4>
+                                    <h4 class="footer-widget__title">MÃ GIẢM GIÁ</h4>
                                     <nav class="footer-widget__navigation">
                                         <ul>
-                                            <li><a href="#">Gift vouchers</a></li>
-                                            <li><a href="#">Return customers</a></li>
+                                            <li><a href="#">Mã giảm</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-6 col-sm-4">
                                 <div class="footer-widget">
-                                    <h4 class="footer-widget__title">CATEGORIES</h4>
+                                    <h4 class="footer-widget__title">DANH MỤC</h4>
                                     <nav class="footer-widget__navigation">
                                         <ul>
-                                            <li><a href="#">Living Room</a></li>
-                                            <li><a href="#">Kitchen</a></li>
-                                            <li><a href="#">Bathroom</a></li>
-                                            <li><a href="#">Outdoors</a></li>
+                                            <li><a href="#">Áo</a></li>
+                                            <li><a href="#">Quần</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -449,14 +440,14 @@
                     </div>
                     <div class="col-xl-4 col-custom-xl-6 col-lg-6">
                         <div class="footer-widget footer-widget--two">
-                            <h4 class="footer-widget__title">10% OFF YOUR FIRST ORDER</h4>
-                            <p class="footer-widget__text">Join our community and be the first to know about offers, new collections and interior trends.</p>
+                            <h4 class="footer-widget__title">10% CHO ĐƠN HÀNG ĐẦU TIÊN</h4>
+                            <p class="footer-widget__text">Tham gia cùng chúng tôi để là người đầu tiên biết về các ưu đãi và sản phẩm mới</p>
 
                             <div class="newsletter-form-area">
                                 <form id="mc-form" class="mc-form">
                                     <div class="footer-widget__newsletter-form">
-                                        <input type="email" placeholder="Your Email" required>
-                                        <button type="submit">SUBSCRIBE US</button>
+                                        <input type="email" placeholder="Nhập Email" required>
+                                        <button type="submit">Đăng ký</button>
                                     </div>
                                 </form>
                             </div>
@@ -471,7 +462,7 @@
                         </div>
 
                         <div class="footer-widget footer-widget--two">
-                            <span class="footer-widget__text footer-widget__text--two">Follow us</span>
+                            <span class="footer-widget__text footer-widget__text--two">THEO DÕI</span>
                             <ul class="footer-widget__social-links">
                                 <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
