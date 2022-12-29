@@ -16,17 +16,17 @@
         <h3 class="head-page">Chi tiết đơn hàng</h3>
 
         <!-- Modal -->
-        <div id="ex1" class="modal" style="border-radius: 2px;">
+        <div id="ex1" class="modal col-md-6" style="border-radius: 2px;">
           <h3>Chỉnh sửa đơn hàng</h3>
           <form action="{{ route('admin.order.update',['id'=>$detailorder->id])}}" method="get">
             <div>
               <label for="">Lí do</label>
 {{--              <input type="text" name="note" id="note" value="note">--}}
-              <textarea cols="30" rows="5" name="note" id="note" value="note" style="width: 100%"></textarea>
+              <textarea cols="50" rows="5" name="note" id="note" value="note" ></textarea>
             </div>
-            <div>
+            <div class="mb-3">
               <label for="">Chuyển trạng thái đơn hàng</label>
-              <select name="value" id="">
+              <select class="custom-select" name="value" id="">
                 <option value="outStock">Đã hết hàng</option>
                 <option value="shipping">Đang giao hàng</option>
                 <option value="cancel">Đã hủy đơn</option>
@@ -37,8 +37,8 @@
             </div>
             <input type="hidden" name="id" value="{{$detailorder->id}}">
             <div style="text-align: center">
-              <button><a href="#" rel="modal:close">Đóng</a></button>
-              <button type="submit" style="color: #00bbff">Lưu</button>
+              <button class="btn btn-primamry"><a href="#" rel="modal:close">Đóng</a></button>
+              <button class="btn btn-primamry" type="submit" style="color: #00bbff">Lưu</button>
             </div>
           </form>
         </div>

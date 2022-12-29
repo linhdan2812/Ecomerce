@@ -11,7 +11,7 @@
                             <th scope="col">title</th>
                             <th scope="col">slug</th>
                             <th scope="col">photo</th>
-                            <th scope="col" class="col-6">description</th>
+                            <th scope="col" class="col-3">description</th>
                             <th scope="col"><a class="btn btn-success" href="{{ route('admin.blog.add') }}">Thêm mới</a></th>
                         </tr>
                     </thead>
@@ -20,7 +20,7 @@
                             <tr>
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->slug }}</td>
-                                <td><img src="{{asset('storage/'. $item->photo)}}" alt=""></td>
+                                <td><img height="300px" width="500px" src="{{asset('storage/'. $item->photo)}}" alt=""></td>
                                 <td>{!! $item->description !!}</td>
                                 <td>
                                     <a href="{{ route('admin.blog.edit',['id' => $item->id]) }}" class="btn btn-warning">Sửa</a>
