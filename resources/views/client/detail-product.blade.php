@@ -7,11 +7,10 @@
                     <!--=======  breadcrumb wrapper  =======-->
 
                     <div class="breadcrumb-wrapper">
-                        <h2 class="page-title">Shop</h2>
+                        <h2 class="page-title">Cửa hàng</h2>
                         <ul class="breadcrumb-list">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/shop">Shop</a></li>
-                            <li class="active">Shop product</li>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li><a href="/shop">Cửa hàng</a></li>
                         </ul>
                     </div>
 
@@ -127,7 +126,7 @@
                             @endif
                             <p class="description">{!! $productDetail->description ?? '' !!}</p>
                             <div class="add-to-cart-btn d-inline-block">
-                                <a class="theme-button theme-button--alt"
+                                <a class="theme-button theme-button--alt mt-5"
                                     href="{{ route('add.to.cart', $productDetail->id) }}">Thêm vào giỏ hàng</a>
                             </div>
 
@@ -244,7 +243,7 @@
                                                         <p>
                                                             @if ($productDetail->color)
                                                                 @foreach (json_decode($productDetail->color) as $item)
-                                                                    {{ $item }}
+                                                                    {{ $item }},
                                                                 @endforeach
                                                             @endif
                                                         </p>
