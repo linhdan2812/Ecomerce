@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NotificationEvent;
 use App\Mail\OrderMail;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Vnpay;
 use App\Models\VnpayTest;
 use Illuminate\Http\Request;
@@ -23,6 +24,13 @@ class VnpayController extends Controller
 
     public function create(Request $request)
     {
+        foreach ($request->input('quantity') as $k => $v) {
+            foreach ($request->input('id') as $key => $value) {
+                $stock = Product::where('id',$value)->first();
+                Product::where('id', $value)
+                ->update(['stock' => $stock->stock- $v]);
+            }
+        }
         $user = $request->user();
         $user->id;
         // dd($_POST['amount']);
