@@ -31,6 +31,7 @@
                                         @php $a = DB::table('products')->find($id) @endphp
                                         @php $total += $details['price'] * $details['quantity'] @endphp
                                         <tr data-id="{{ $id }}">
+                                            <input type="hidden" name="id" value="{{ $id }}">
                                             <td data-th="Product" class="product-name">
                                                 <a href="{{ route('detailProduct',['id'=> $id]) }}">{{ $details['name'] }}</a>
                                             </td>
@@ -60,6 +61,7 @@
                                             </td>
                                         </tr>
                                         @endforeach
+                                        <input type="hidden" name="id[]" value="{{ $id }}">
                                         <input type="hidden" name="stock[]" value="{{ $a->stock }}">
                                         <input type="hidden" name="quantity[]" value="{{ $details['quantity'] }}">
                                         <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VNĐ">
@@ -236,7 +238,5 @@
                 }
             });
         });
-        var a = $a->stock;
-        console.log(a);
     </script>
 @endsection

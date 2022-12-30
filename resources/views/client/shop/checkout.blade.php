@@ -87,6 +87,40 @@
                                         </select>
                                     </div>
                                 </div>
+                                @foreach ($id as $item )
+                                    <input type="hidden" name="id[]" value="{{ $item }}">    
+                                @endforeach
+                                @foreach ($quantities as $item )
+                                    <input type="hidden" name="quantity[]" value="{{ $item }}">  
+                                @endforeach
+                                
+                                <div class="otherAddress">
+                                    <div class="form-group">
+                                        <label>Họ và tên (*)</label>
+                                        <input class="form-control" id="txt_billing_fullname" value="{{ $user->name }}" name="txt_billing_fullname"
+                                            type="text" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email (*)</label>
+                                        <input class="form-control" id="txt_billing_email" value="{{ $user->email }}" name="txt_billing_email"
+                                            type="text" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số điện thoại (*)</label>
+                                        <input class="form-control" id="txt_billing_mobile" value="{{ $user->phone }}" name="txt_billing_mobile"
+                                            type="number" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Địa chỉ (*)</label>
+                                        <input class="form-control" id="txt_billing_addr1" value="{{ $address->district.' | '. $address->ward . ' | ' . $address->detailadress}}" name="txt_billing_addr1"
+                                            type="text" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tỉnh/TP (*)</label>
+                                        <input class="form-control" id="txt_bill_city" value="{{ $address->city }}"  name="txt_bill_city"
+                                            type="text" />
+                                    </div>
+                                </div>
                                 <div class="myAddress">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -129,34 +163,6 @@
                                     <input class="form-control" id="txtexpire" name="txtexpire" type="hidden"
                                         value="<?php echo $expire; ?>" />
                                 </div>
-                                <div class="otherAddress">
-                                    <div class="form-group">
-                                        <label>Họ và tên (*)</label>
-                                        <input class="form-control" id="txt_billing_fullname" name="txt_billing_fullname"
-                                            type="text" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email (*)</label>
-                                        <input class="form-control" id="txt_billing_email" name="txt_billing_email"
-                                            type="text" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Số điện thoại (*)</label>
-                                        <input class="form-control" id="txt_billing_mobile" name="txt_billing_mobile"
-                                            type="number" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Địa chỉ (*)</label>
-                                        <input class="form-control" id="txt_billing_addr1" name="txt_billing_addr1"
-                                            type="text" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tỉnh/TP (*)</label>
-                                        <input class="form-control" id="txt_bill_city" name="txt_bill_city"
-                                            type="text" />
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     <input class="form-control" id="txt_postalcode" name="txt_postalcode" type="hidden"
                                         value="100000" />
