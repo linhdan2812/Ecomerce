@@ -26,6 +26,7 @@
               <th scope="col">STT</th>
               <th scope="col">Tên sản phẩm</th>
               <th scope="col">Ảnh</th>
+              <th scope="col">Số lượng còn lại</th>
               <th scope="col">Kích thước</th>
               <th scope="col">Giá</th>
               <th scope="col">Loại hàng</th>
@@ -43,6 +44,7 @@
               <th scope="row">{{$stt++}}</th>
               <td>{{ $item->title }}</td>
               <td><img src="{{asset('storage/'. $item->photo)}}" alt="" width="100"></td>
+              <td>{{ $item->stock }}</td>
               <td>@foreach (json_decode($item->size) as $item2)
                 {{ $item2 }}
               @endforeach</td>
