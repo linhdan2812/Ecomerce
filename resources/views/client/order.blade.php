@@ -40,6 +40,8 @@
                                     <td>Đang giao hàng</td>
                                     @elseif($item->status_order == 'success' && $item->vnp_TransactionStatus == '00')
                                     <td>Đã giao hàng</td>
+                                    @elseif($item->status_order == 'finished' && $item->vnp_TransactionStatus == '00')
+                                    <td>Đã hoàn thành</td>
                                     @endif
 
                                 </tr>

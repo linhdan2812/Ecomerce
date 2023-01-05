@@ -17,7 +17,7 @@
 
         <!-- Modal -->
         <div id="ex1" class="modal col-md-6" style="border-radius: 2px;">
-          <h3>Chỉnh sửa đơn hàng</h3>
+          <h3>Cập nhật trạng thái</h3>
           <form action="{{ route('admin.order.update',['id'=>$detailorder->id])}}" method="get">
             <div>
               <label for="">Lí do</label>
@@ -27,12 +27,11 @@
             <div class="mb-3">
               <label for="">Chuyển trạng thái đơn hàng</label>
               <select class="custom-select" name="value" id="">
-                <option value="outStock">Đã hết hàng</option>
                 <option value="shipping">Đang giao hàng</option>
-                <option value="cancel">Đã hủy đơn</option>
-                <option value="pending">Chờ xử lí</option>
+                <option value="cancel">Hủy đơn hàng</option>
                 <option value="success">Đã giao hàng</option>
                 <option value="repeat">Hoàn hàng</option>
+                <option value="pending">Chờ xử lí</option>
               </select>
             </div>
             <input type="hidden" name="id" value="{{$detailorder->id}}">
@@ -43,9 +42,15 @@
           </form>
         </div>
 
-        <a href="#ex1" rel="modal:open" style="text-align: end;color: #00bbff;margin: 30px;border: 1px solid #00bbff;border-radius: 5px;padding: 10px;">
-          Chỉnh sửa đơn hàng
-        </a>
+        @if($detailorder->status_order != "finished")
+          <a href="#ex1" rel="modal:open" style="text-align: end;color: #00bbff;margin: 30px;border: 1px solid #00bbff;border-radius: 5px;padding: 10px;">
+            Cập nhật trạng thái đơn hàng
+          </a>
+        @else
+          <a style="text-align: end;color: #00bbff;margin: 30px;border: 1px solid #00bbff;border-radius: 5px;padding: 10px;">
+            Đã hoàn thành
+          </a>
+        @endif
       </div><br>
       <div class="order-info">
         <span class="code"><b>Đơn hàng:</b> {{ $detailorder->vnp_TxnRef}}</span><br>

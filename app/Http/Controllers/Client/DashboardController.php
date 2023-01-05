@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Events\NotificationEvent;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
@@ -21,6 +22,7 @@ use App\Models\RequestOrder;
 use App\Models\Vnpay;
 use App\Models\VnpayTest;
 use Illuminate\Support\Str;
+use function PHPUnit\Framework\throwException;
 
 class DashboardController extends Controller
 {
@@ -84,8 +86,32 @@ class DashboardController extends Controller
     {
         $user = $request->user();
         $user->id;
-        $orders = VnpayTest::where('user_id','=',$user->id)->orderBy('created_at','desc')->get();
+        $orders = VnpayTest::where('user_id','=',$user->id)->orderBy('updated_at','desc')->get();
+
+        $finishedOrders = VnpayTest::query()->where('user_id','=',$user->id)
+                                            ->where('status_order','=','success')->get();
+
+        if ($finishedOrders){
+            foreach ($finishedOrders as $order) {
+                if (Carbon::parse($order->updated_at)->addDay(3) <= Carbon::now()){
+                    $order->update([
+                                       'status_order' => 'finished'
+                                   ]);
+                }
+            }
+        }
         return view('client.order',compact('orders'));
+    }
+
+    public function orderFinished($id)
+    {
+        $order = VnpayTest::find($id);
+        if ($order->status_order == "success"){
+            $order->update([
+                'status_order' => 'finished'
+                           ]);
+        }
+        return redirect()->back();
     }
     public function detailorder($id)
     {
