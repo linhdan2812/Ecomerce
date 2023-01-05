@@ -112,12 +112,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Địa chỉ (*)</label>
-                                        <input class="form-control" id="txt_billing_addr1" value="{{ $address->district.' | '. $address->ward . ' | ' . $address->detailadress}}" name="txt_billing_addr1"
+                                        <input class="form-control" id="txt_billing_addr1" value="{{ $address?->district.' | '. $address?->ward . ' | ' . $address?->detailadress}}" name="txt_billing_addr1"
                                             type="text" />
                                     </div>
                                     <div class="form-group">
                                         <label>Tỉnh/TP (*)</label>
-                                        <input class="form-control" id="txt_bill_city" value="{{ $address->city }}"  name="txt_bill_city"
+                                        <input class="form-control" id="txt_bill_city" value="{{ $address?->city }}"  name="txt_bill_city"
                                             type="text" />
                                     </div>
                                 </div>
@@ -138,12 +138,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputAddress2">Địa chỉ</label>
-                                        <input type="text" class="form-control" value="{{ $address->district.' | '. $address->ward . ' | ' . $address->detailadress}}" id="txt_billing_addr1" name="txt_billing_addr1" disabled>
+                                        <input type="text" class="form-control" value="{{ $address?->district.' | '. $address?->ward . ' | ' . $address?->detailadress}}" id="txt_billing_addr1" name="txt_billing_addr1" disabled>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputCity">Tỉnh</label>
-                                            <input type="text" class="form-control" value="{{ $address->city }}" id="txt_bill_city" name="txt_bill_city" disabled>
+                                            <input type="text" class="form-control" value="{{ $address?->city }}" id="txt_bill_city" name="txt_bill_city" disabled>
                                         </div>
                                     </div>
                                 </div>
