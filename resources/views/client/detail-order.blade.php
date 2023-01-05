@@ -16,6 +16,7 @@
                     @if($detailorder->status_order == 'success')
                         <div class="right">
                             <a href="{{route('error.order',['id' => $detailorder->id])}}" class="btn-second warning">Báo lỗi</a>
+                            <a href="{{route('order.finished',['id' => $detailorder->id])}}" class="btn-second success">Hoàn thành</a>
                         </div>
                     @endif
                 </div>
@@ -35,7 +36,7 @@
                             <p>Đang xử lý</p>
                         </div>
                     @endif
-                    @if($detailorder->status_order == "shipping" || $detailorder->status_order == "success")
+                    @if($detailorder->status_order == "shipping" || $detailorder->status_order == "success" || $detailorder->status_order == "finished")
                         <div class="item active">
                             <div class="icon"><i class="fal fa-check-circle"></i></div>
                             <p>Đang giao hàng</p>
@@ -46,7 +47,7 @@
                             <p>Đang giao hàng</p>
                         </div>
                     @endif
-                    @if($detailorder->status_order == "success")
+                    @if($detailorder->status_order == "success" || $detailorder->status_order == "finished")
                         <div class="item active">
                             <div class="icon"><i class="fal fa-check-circle"></i></div>
                             <p>Đã giao hàng</p>
@@ -57,6 +58,17 @@
                             <p>Đã giao hàng</p>
                         </div>
                     @endif
+                        @if($detailorder->status_order == "finished")
+                            <div class="item active">
+                                <div class="icon"><i class="fal fa-check-circle"></i></div>
+                                <p>Đã hoàn thành</p>
+                            </div>
+                        @else
+                            <div class="item">
+                                <div class="icon"><i class="fal fa-check-circle"></i></div>
+                                <p>Đã hoàn thành</p>
+                            </div>
+                        @endif
                 </div>
                 <div class="tb-cart v2">
                     <table class="table">

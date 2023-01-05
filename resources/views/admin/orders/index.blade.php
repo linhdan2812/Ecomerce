@@ -19,11 +19,12 @@
                                 <option value="shipping">Đang giao hàng</option>
                                 <option value="success">Đã giao hàng</option>
                                 <option value="cancel">Đã hủy</option>
+                                <option value="finished">Đã hoàn thành</option>
                             </select>
                         </div>
                         <div style="display: flex;height: 30px;margin-right: 30px;">
-                            <p>Tìm kiếm theo tên</p>
-                            <input type="text" name="searchName" style="height: 100%;margin-left: 10px;">
+                            <p>Tìm kiếm theo mã đơn hàng</p>
+                            <input type="text" name="searchId" style="height: 100%;margin-left: 10px;">
                         </div>
                         <button type="submit" class="btn btn-primary" style="padding: 0 10px;">Tìm kiếm</button>
                     </div>
@@ -84,6 +85,8 @@
                                 <td><a href="#" class="btn btn-info">Đang giao hàng</a></td>
                                 @elseif($order->status_order == 'success')
                                 <td><a href="" class="btn btn-success">Đã giao hàng</a></td>
+                                @elseif($order->status_order == 'finished')
+                                <td><a href="#" class="btn btn-info">Đã hoàn thành</a></td>
                                 @endif
                             </tr>
                             @endforeach

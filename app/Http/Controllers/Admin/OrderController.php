@@ -30,17 +30,28 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $orderSearch = VnpayTest::query();
-        if($request->searchStatus == 'all' && !$request->searchName){
+        if($request->searchStatus == 'all' && !$request->searchId){
             $orders = $orderSearch->get();
         }else{
-            if ($request->has('searchName')) {
-                $orderSearch->where('vnp_TxnRef', 'LIKE', '%' . $request->searchName . '%');
+            if ($request->has('searchId')) {
+                $orderSearch->where('vnp_TxnRef', 'LIKE', '%' . $request->searchId . '%');
             }
 
             if ($request->has('searchStatus') && $request->searchStatus != 'all') {
                 $orderSearch->where('status_order', $request->searchStatus);
             }
-            $orders = $orderSearch->get();
+            $orders = $orderSearch->orderBy('updated_at','DESC')->get();
+        }
+        $finishedOrders = VnpayTest::query()->where('status_order','=','success')->get();
+
+        if ($finishedOrders){
+            foreach ($finishedOrders as $order) {
+                if (Carbon::parse($order->updated_at)->addDay(3) <= Carbon::now()){
+                    $order->update([
+                                       'status_order' => 'finished'
+                                   ]);
+                }
+            }
         }
         return view('admin.orders.index', compact('orders'));
     }
