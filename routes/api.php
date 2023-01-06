@@ -31,3 +31,5 @@ Route::get('setCancelOrder',[Location::class,'setCancelOrder'])->name('setCancel
 Route::post('changestatus',[OrderController::class,'changestatus'])->name('changestatus');
 Route::post('checkCoupon',[HomeController::class,'checkCoupon'])->name('checkCoupon');
 Route::get('get-dashboard', [AdminDashboardController::class, 'changeIndex'])->name('changeIndex');
+Route::get('firstChart', [AdminDashboardController::class, 'firstChart'])->name('firstChart');
+Route::get('listUserSoft', [AdminDashboardController::class, 'listUserSoft'])->name('listUserSoft');
