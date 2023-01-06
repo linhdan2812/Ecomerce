@@ -31,8 +31,17 @@
     <link href="{{asset('admin/css/light-bootstrap-dashboard.css?v=2.0.0')}} " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('admin/css/demo.css')}}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <script src="{{asset('admin/js/core/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script>
 
         // Enable pusher logging - don't include this in production
@@ -165,6 +174,7 @@
 </body>
 <!--   Core JS Files   -->
 <script src="{{asset('admin/js/core/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
+<script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="{{asset('admin/js/core/popper.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('admin/js/core/bootstrap.min.js')}}" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->

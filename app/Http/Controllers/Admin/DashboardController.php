@@ -9,6 +9,7 @@ use App\Models\VnpayTest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 class DashboardController extends Controller
 {
@@ -52,5 +53,32 @@ class DashboardController extends Controller
 
         // tỷ trọng bán hàng
         return view('admin.index', compact('labels', 'data', 'labels2', 'data2', 'moneyLabels', 'moneyData', 'moneyLabels2', 'moneyData2'));
+    }
+    public function firstChart(Request $request, Response $response)
+    {
+        return 1;
+    }
+
+    public function listUserSoft(Request $request, Response $response)
+    {
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['searchName'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'asc';
+        $users = VnpayTest::select(\DB::raw("COUNT(vnpay_tests.user_id) as count"),'users.name')
+        ->orderBy(\DB::raw("COUNT(vnpay_tests.user_id) as count"),$sort_by)
+        ->simplePaginate(
+            $perPage = 18, $columns = ['*'], $pageName = 'Shop'
+        );
+        if ($request['from']) {
+            $users = $users->where('vnpay_tests.created_at', '>=', $request['from']);
+        }
+        if ($request['to']) {
+            $users = $users->where('vnpay_tests.created_at', '<=', $request['to']);
+        }
+        return $users;
     }
 }
