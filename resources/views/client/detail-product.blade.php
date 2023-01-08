@@ -112,6 +112,8 @@
                     <div class="col-lg-6">
                         <!--=======  product details description area  =======-->
                         <div class="product-details-description-wrapper">
+                            <form action="{{route('add.to.cart')}}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="{{$productDetail->id}}">
                             <h2 class="item-title">{{ $productDetail->title }}</h2>
                             @if (empty($productDetail->discount))
                                 <div class="price">
@@ -125,9 +127,45 @@
                                 </div>
                             @endif
                             <p class="description">{!! $productDetail->description ?? '' !!}</p>
+                                @csrf
+                                <div class="flex mt-5" style="display: flex;">
+                                    <h1 class="stock" style="font-size: 20px;font-weight: bolder;margin-right: 20px;">Số lượng</h1>
+                                    @if($productDetail->stock <= 0)
+                                        <p style="margin: 5px 0 0 15px">Sản phẩm đã hết hàng</p>
+                                    @else
+                                        <input type="number" name="stock" min="1" value="1">
+                                        <p style="margin: 5px 0 0 15px">{{$productDetail->stock}} sản phẩm có sẵn</p>
+                                    @endif
+                                </div>
+                                <div class="flex mt-5" style="display: flex;">
+                                    <h1 class="stock" style="font-size: 20px;font-weight: bolder;margin-right: 20px;">Màu sắc</h1>
+                                    @if($productDetail->color)
+                                        @foreach(json_decode($productDetail->color) as $color)
+                                            <input type="radio" name="color" style="margin: 0 2px 0 20px" value="{{$color}}"><p style="margin-top: 5px;">{{$color}}</p>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="flex mt-5" style="display: flex;">
+                                    <h1 class="stock" style="font-size: 20px;font-weight: bolder;margin-right: 20px;">Size</h1>
+                                    @if($productDetail->size)
+                                        @foreach(json_decode($productDetail->size) as $size)
+                                            <input type="radio" name="size" style="margin: 0 2px 0 20px" value="{{$size}}"><p style="margin-top: 5px;">{{$size}}</p>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <br>
+                                @if($errors->any())
+                                    <h4 style="color: red;">{{$errors->first()}}</h4>
+                                @endif
+                                @if($productDetail->stock > 0)
+                                    <div class="add-to-cart-btn d-inline-block">
+                                        <button type="submit" class="theme-button theme-button--alt mt-5">Thêm vào giỏ hàng</button>
+                                    </div>
+                                @endif
+                            </form>
                             <div class="add-to-cart-btn d-inline-block">
                                 <a class="theme-button theme-button--alt mt-5"
-                                    href="{{ route('add.to.cart', $productDetail->id) }}">Thêm vào giỏ hàng</a>
+                                   href="{{ route('postWishlist', ['id' => $productDetail->id]) }}">Thêm vào danh sách yêu thích</a>
                             </div>
 
                             <div class="quick-view-other-info">
@@ -138,11 +176,11 @@
                                                 href="#">{{ $productDetail->category->title ?? null }}</a>
                                         </td>
                                     </tr>
-                                    <div class="other-info-links">
-                                        <a href="{{ route('postWishlist', ['id' => $productDetail->id]) }}"><i
-                                                class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>
-                                        {{-- <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a> --}}
-                                    </div>
+{{--                                    <div class="other-info-links">--}}
+{{--                                        <a href="{{ route('postWishlist', ['id' => $productDetail->id]) }}"><i--}}
+{{--                                                class="fa fa-heart-o"></i>Thêm vào danh sách yêu thích</a>--}}
+{{--                                        --}}{{-- <a href="javascript:void(0)"><i class="fa fa-exchange"></i>So sánh</a> --}}
+{{--                                    </div>--}}
                                 </table>
                             </div>
                         </div>
