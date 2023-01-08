@@ -40,7 +40,9 @@ class OrderController extends Controller
             if ($request->has('searchStatus') && $request->searchStatus != 'all') {
                 $orderSearch->where('status_order', $request->searchStatus);
             }
-            $orders = $orderSearch->orderBy('updated_at','DESC')->get();
+            $orders = $orderSearch->orderBy('updated_at','DESC')->simplePaginate(
+                $perPage = 20, $columns = ['*'], $pageName = 'orders'
+            );
         }
         $finishedOrders = VnpayTest::query()->where('status_order','=','success')->get();
 

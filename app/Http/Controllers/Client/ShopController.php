@@ -44,6 +44,11 @@ class ShopController extends Controller
     //     return view('products', compact('products'));
     // }
 
+    public function removeToCart($id){
+        session()->remove($id);
+        return redirect()->back()->with('Xóa sản phẩm thành công');
+    }
+
     /**
      * Write code on Method
      *
@@ -63,25 +68,69 @@ class ShopController extends Controller
      *
      * @return response()
      */
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
-        $product = Product::findOrFail($id);
-        $cart = session()->get('cart', []);
-
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "name" => $product->title,
-                "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->photo,
-                "discount" => $product->discount
-            ];
+        if ($request->stock <= 0 || !is_int((int)$request->stock)){
+            return redirect()->back()->withErrors(['msg' => 'Số lượng sản phẩm phải là số nguyên dương']);
+            // ->with('danger', 'Số lượng sản phẩm vượt quá sản phẩm hiện có');
         }
 
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Thêm sản phẩm vào giỏ hàng thành công   !');
+        if (!$request->color || !$request->size){
+            return redirect()->back()->withErrors(['msg' => 'Hãy chọn size và màu sắc']);
+        }
+
+        $product = Product::findOrFail($request->id);
+        $cart = session()->get('cart', []);
+
+        $arrayId = [];
+        foreach ($cart as $item){
+            $arrayId[] = $item['id'];
+        }
+        if (!in_array($request->id, array_unique($arrayId))){
+            session()->push('cart', [
+                "id" => $request->id,
+                "name" => $product->title,
+                "quantity" => $request->stock,
+                "price" => $product->price,
+                "image" => $product->photo,
+                "discount" => $product->discount,
+                "color" => $request->color,
+                "size" => $request->size,
+            ]);
+        }elseif (in_array($request->id, array_unique($arrayId))){
+            foreach ($cart as $item){
+                if ($item['id'] == $request->id){
+                    if ($item['color'] == $request->color && $item['size'] == $request->size){
+                        $newStock =  $item['quantity'] + $request->stock;
+                        session()->pull('cart', $item);
+                        session()->push('cart', [
+                            "id" => $request->id,
+                            "name" => $product->title,
+                            "quantity" => $newStock,
+                            "price" => $product->price,
+                            "image" => $product->photo,
+                            "discount" => $product->discount,
+                            "color" => $request->color,
+                            "size" => $request->size,
+                        ]);
+                    }else{
+                        session()->push('cart', [
+                            "id" => $request->id,
+                            "name" => $product->title,
+                            "quantity" => $request->stock,
+                            "price" => $product->price,
+                            "image" => $product->photo,
+                            "discount" => $product->discount,
+                            "color" => $request->color,
+                            "size" => $request->size,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        // session()->flush();
+        return redirect()->back()->with('success', 'Thêm sản phẩm vào giỏ hàng thành công !');
     }
 
     /**

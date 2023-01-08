@@ -20,6 +20,8 @@
                                             <th class="product-name">Ảnh sản phẩm</th>
                                             <th class="product-price">Giá</th>
                                             <th style="width:15%" class="product-quantity">Số lượng</th>
+                                            <th style="" class="product-quantity">Màu sắc</th>
+                                            <th style="" class="product-quantity">Size</th>
                                             <th class="product-subtotal">Tổng giá</th>
                                             <th class="product-remove">&nbsp;</th>
                                         </tr>
@@ -28,7 +30,7 @@
                                         @php $total = 0 @endphp
                                         @if (session('cart'))
                                         @foreach (session('cart') as $id => $details)
-                                        @php $a = DB::table('products')->find($id) @endphp
+                                        @php $a = DB::table('products')->find($details['id']) @endphp
                                         @php $total += $details['price'] * $details['quantity'] @endphp
                                         <tr data-id="{{ $id }}">
                                             <input type="hidden" name="id" value="{{ $id }}">
@@ -51,13 +53,21 @@
                                                     class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
                                             </td>
                                             <input type="hidden" name="stock" value="{{ $a->stock }}">
+                                            @if($details['color'])
+                                                <td data-th="Subtotal" class="total-price"><span class="color"> {{$details['color'] }}</span></td>
+                                            @endif
+                                            @if($details['size'])
+                                                <td data-th="Subtotal" class="total-price"><span class="size"> {{$details['size'] }}</span></td>
+                                            @endif
                                             @if($details['discount'])
                                             <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['discount'] * $details['quantity']) }} VNĐ</span></td>
                                             @else
                                             <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['price'] * $details['quantity']) }} VNĐ</span></td>
                                             @endif
                                             <td class="product-remove" data-th="">
-                                                <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
+                                                <a href="{{route('removeProduct', ['id' => $details['id']])}}">
+                                                    <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach

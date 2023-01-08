@@ -38,7 +38,8 @@ Route::prefix('/')->middleware('auth')->group(function () {
     //Shop
     Route::get('shop', [ShopController::class, 'index'])->name('shop');
     Route::get('cart', [ShopController::class, 'cart'])->name('cart');
-    Route::get('add-to-cart/{id}', [ShopController::class, 'addToCart'])->name('add.to.cart');
+    Route::post('add-to-cart', [ShopController::class, 'addToCart'])->name('add.to.cart');
+    Route::get('remove-to-cart/{id}', [ShopController::class, 'removeToCart'])->name('removeProduct');
     Route::patch('update-cart', [ShopController::class, 'update'])->name('update.cart');
     Route::delete('remove-from-cart', [ShopController::class, 'remove'])->name('remove.from.cart');
     Route::get('getcheckout', [ShopController::class, 'getcheckout'])->name('getcheckout');
