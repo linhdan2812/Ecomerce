@@ -67,18 +67,56 @@ class DashboardController extends Controller
         $perPage = $request['perPage'] ?? 1;
         $page = $request['page'] ?? '';
         $keyword = $request['searchName'] ?? '';
-        $sort_by = $request['sort_by'] ?? 'asc';
+        $sort_by = $request['sort_by'] ?? 'desc';
         $users = VnpayTest::select(\DB::raw("COUNT(vnpay_tests.user_id) as count"),'users.name')
-        ->orderBy(\DB::raw("COUNT(vnpay_tests.user_id) as count"),$sort_by)
+        ->join('users','users.id','vnpay_tests.user_id')
+        ->where('vnpay_tests.status_order', 'LIKE', 'success')
+        ->groupBy('users.name')
+        ->orderBy(\DB::raw("COUNT(vnpay_tests.user_id)"),$sort_by)
         ->simplePaginate(
-            $perPage = 18, $columns = ['*'], $pageName = 'Shop'
+            $perPage = 18, $columns = ['*'], $pageName = 'Count'
         );
-        if ($request['from']) {
+        if (!empty($request['from'])) {
             $users = $users->where('vnpay_tests.created_at', '>=', $request['from']);
         }
-        if ($request['to']) {
+        if (!empty($request['to'])) {
             $users = $users->where('vnpay_tests.created_at', '<=', $request['to']);
         }
         return $users;
+    }
+    public function listProductSoft(Request $request, Response $response)
+    {
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['searchName'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'desc';
+        $products = VnpayTest::select('cart')
+        ->where('status_order', 'LIKE', 'success')
+        ->simplePaginate(
+            $perPage = 18, $columns = ['*'], $pageName = 'Count'
+        );
+        if (!empty($request['from'])) {
+            $products = $products->where('vnpay_tests.created_at', '>=', $request['from']);
+        }
+        if (!empty($request['to'])) {
+            $products = $products->where('vnpay_tests.created_at', '<=', $request['to']);
+        }
+        $oldname = '';
+        $Array = [];
+        foreach ($products as $key => $value) {
+            $value = json_decode($value->cart);
+            foreach ((array)$value as $k => $v) {
+                $Arr = (array)$value;
+                $Array1 = array(
+                    $v->name,
+                    (int)$v->quantity,
+                );
+                array_push($Array,$Array1);
+            }
+        }
+        return $Array;
     }
 }

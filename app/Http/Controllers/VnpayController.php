@@ -165,7 +165,7 @@ class VnpayController extends Controller
             "vnp_SecureHash" => $vnpSecureHash,
             "Status" => "0",
             "user_id"   => $user->id,
-            "cart" => json_encode(session('cart'))
+            "cart" => json_encode(session('cart'),JSON_UNESCAPED_UNICODE)
         ]);
         $test->save();
         $returnData = array(

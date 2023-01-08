@@ -33,3 +33,4 @@ Route::post('checkCoupon',[HomeController::class,'checkCoupon'])->name('checkCou
 Route::get('get-dashboard', [AdminDashboardController::class, 'changeIndex'])->name('changeIndex');
 Route::get('firstChart', [AdminDashboardController::class, 'firstChart'])->name('firstChart');
 Route::get('listUserSoft', [AdminDashboardController::class, 'listUserSoft'])->name('listUserSoft');
+Route::get('listProductSoft', [AdminDashboardController::class, 'listProductSoft'])->name('listProductSoft');
