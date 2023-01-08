@@ -5,11 +5,11 @@
       <div class="row">
         <div class="col-sm-4">
           <label for="">Từ:</label>
-          <input class="date form-control" id="from" width="50%" value="" type="text">
+          <input class="date form-control" id="fromlistProductASC" width="50%" value="" type="text">
         </div>
         <div class="col-sm-4">
           <label for="">Tới:</label>
-          <input class="date form-control" id="to" width="50%" value="" type="text">
+          <input class="date form-control" id="tolistProductASC" width="50%" value="" type="text">
         </div>
         <div class="col-sm-4">
           <button class="btn btn-success" id="searchlistProductASC">Tìm kiếm</button>
@@ -59,8 +59,8 @@
         });
       $('#searchlistProductASC').click(function(){
         let url = "{{route('listProductSoft')}}"
-        let from = $('#from').val()
-        let to = $('#to').val();
+        let from = $('#fromlistProductASC').val()
+        let to = $('#tolistProductASC').val();
         let text = '';
         $.get(url,{
           to : to,
