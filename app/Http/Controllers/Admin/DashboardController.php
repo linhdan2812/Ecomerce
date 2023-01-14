@@ -56,7 +56,26 @@ class DashboardController extends Controller
     }
     public function firstChart(Request $request, Response $response)
     {
-        return 1;
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['searchName'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'desc';
+        $Orders = VnpayTest::select('vnp_Amount','created_at','cart', DB::raw("YEAR(created_at) as year"),DB::raw("MONTH(created_at) as month"))
+        ->where('status_order', 'LIKE', 'success')
+        ->simplePaginate(
+            $perPage = 18, $columns = ['*'], $pageName = 'Count'
+        );
+        if (!empty($request['from'])) {
+            $Orders = $Orders->where('vnpay_tests.created_at', '>=', $request['from']);
+        }
+        if (!empty($request['to'])) {
+            $Orders = $Orders->where('vnpay_tests.created_at', '<=', $request['to']);
+        }
+        dd($Orders);
+        return $Orders;
     }
 
     public function listUserSoft(Request $request, Response $response)
