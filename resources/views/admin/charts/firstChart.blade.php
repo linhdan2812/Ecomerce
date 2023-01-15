@@ -75,6 +75,7 @@
             let dataYear2 = [];
             let data4 = [];
             dataArray.forEach(element => {
+
                 var dataAmount = _.sumBy(element[1], function(o) { return parseInt(o.vnp_Amount); });
                 dataY = {
                         name: element[0],
@@ -83,18 +84,21 @@
                     };
                 dataYear.push(dataY);
                     
+
                 var dataArray2 = Object.entries(_.groupBy(element[1], data2 => data2.month));
+
                 dataArray2.forEach(entries => {
+
                     var dataAmount2 = _.sumBy(entries[1], function(o) { return parseInt(o.vnp_Amount); });
-                    var data3 = ['Tháng' + entries[0], dataAmount2 ]
-                    data4.push(data3);
+                    data4.push(['Tháng ' + entries[0], dataAmount2 ]);
                     dataY2 = {
-                        name: element[0],
-                        id: element[0],
-                        data: data4
+                            name: element[0],
+                            id: element[0],
+                            data: data4
                         };
                         dataYear2.push(dataY2);
                     })
+                    data4 = [];
                 });
             Highcharts.chart('container', {
                 chart: {
@@ -167,7 +171,9 @@
             var dataArray = Object.entries(_.groupBy(dataChart, data => data.year));
             let dataYear = [];
             let dataYear2 = [];
+            let data4 = [];
             dataArray.forEach(element => {
+
                 var dataAmount = _.sumBy(element[1], function(o) { return parseInt(o.vnp_Amount); });
                 dataY = {
                         name: element[0],
@@ -176,21 +182,21 @@
                     };
                 dataYear.push(dataY);
                     
+
                 var dataArray2 = Object.entries(_.groupBy(element[1], data2 => data2.month));
+
                 dataArray2.forEach(entries => {
+
                     var dataAmount2 = _.sumBy(entries[1], function(o) { return parseInt(o.vnp_Amount); });
+                    data4.push(['Tháng ' + entries[0], dataAmount2 ]);
                     dataY2 = {
-                        name: element[0],
-                        id: element[0],
-                        data: [
-                                [
-                                    'Tháng' + entries[0],
-                                    dataAmount2
-                                ]
-                            ]
+                            name: element[0],
+                            id: element[0],
+                            data: data4
                         };
                         dataYear2.push(dataY2);
                     })
+                    data4 = [];
                 });
             Highcharts.chart('container', {
                 chart: {
