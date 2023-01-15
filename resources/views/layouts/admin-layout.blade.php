@@ -174,6 +174,7 @@
     </div>
 </body>
 <!--   Core JS Files   -->
+<script src='https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js'></script>
 <script src="{{asset('admin/js/core/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
 <script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="{{asset('admin/js/core/popper.min.js')}}" type="text/javascript"></script>
