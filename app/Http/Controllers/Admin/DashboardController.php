@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use App\Models\VnpayTest;
 use Carbon\Carbon;
@@ -102,6 +103,7 @@ class DashboardController extends Controller
         }
         return $users;
     }
+
     public function listProductSoft(Request $request, Response $response)
     {
         $request = $request->all();
@@ -136,5 +138,28 @@ class DashboardController extends Controller
             }
         }
         return $Array;
+    }
+
+    public function listProductOver(Request $request, Response $response)
+    {
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['searchName'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'desc';
+        $users = Product::select('title','stock')
+        ->where('products.stock', '<=', '10')
+        ->simplePaginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'Count'
+        );
+        if (!empty($request['from'])) {
+            $users = $users->where('products.created_at', '>=', date('Y-m-d', strtotime($request['from'])));
+        }
+        if (!empty($request['to'])) {
+            $users = $users->where('products.created_at', '<=', date('Y-m-d', strtotime($request['to'])));
+        }
+        return $users;
     }
 }
