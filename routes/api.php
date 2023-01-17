@@ -34,3 +34,4 @@ Route::get('get-dashboard', [AdminDashboardController::class, 'changeIndex'])->n
 Route::get('firstChart', [AdminDashboardController::class, 'firstChart'])->name('firstChart');
 Route::get('listUserSoft', [AdminDashboardController::class, 'listUserSoft'])->name('listUserSoft');
 Route::get('listProductSoft', [AdminDashboardController::class, 'listProductSoft'])->name('listProductSoft');
+Route::get('listProductOver', [AdminDashboardController::class, 'listProductOver'])->name('listProductOver');
