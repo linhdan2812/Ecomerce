@@ -162,4 +162,40 @@ class DashboardController extends Controller
         }
         return $users;
     }
+
+    public function listProduct(Request $request, Response $response)
+    {
+        $request = $request->all();
+        $page = $request['page'] ?? 18;
+        $sort = $request['sort'] ?? 'title';
+        $perPage = $request['perPage'] ?? 1;
+        $page = $request['page'] ?? '';
+        $keyword = $request['searchName'] ?? '';
+        $sort_by = $request['sort_by'] ?? 'desc';
+        $products = VnpayTest::select('cart')
+        ->where('status_order', 'LIKE', 'success')
+        ->simplePaginate(
+            $perPage = 18, $columns = ['*'], $pageName = 'Count'
+        );
+        if (!empty($request['from'])) {
+            $products = $products->where('vnpay_tests.created_at', '>=', date('Y-m-d', strtotime($request['from'])));
+        }
+        if (!empty($request['to'])) {
+            $products = $products->where('vnpay_tests.created_at', '<=', date('Y-m-d', strtotime($request['to'])));
+        }
+        $oldname = '';
+        $Array = [];
+        foreach ($products as $key => $value) {
+            $value = json_decode($value->cart);
+            foreach ((array)$value as $k => $v) {
+                $Arr = (array)$value;
+                $Array1 = array(
+                    $v->name,
+                    (int)$v->price,
+                );
+                array_push($Array,$Array1);
+            }
+        }
+        return $Array;
+    }
 }
