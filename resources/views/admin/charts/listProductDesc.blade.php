@@ -25,10 +25,18 @@
 </div>
 <script type="text/javascript">
     $(function () {
+      const format = num => {
+          const n = String(num),
+                p = n.indexOf('.')
+          return n.replace(
+              /\d(?=(?:\d{3})+(?:\.|$))/g,
+              (m, i) => p < 0 || i < p ? `${m},` : m
+          )
+      }
       $('.date').datepicker({  
         format: 'dd-mm-yyyy'
       });
-      let url = "{{route('listProductSoft')}}"
+      let url = "{{route('listProduct')}}"
       let text1 = '';
       let oldname = '';
         $.get(url,{
@@ -52,7 +60,7 @@
                   a = item[0],
                   b = sum += item[1];
                 });
-                text1 += `<li class="list-group-item">${index + 1 } Sản phẩm: ${a} Số lần: ${b}</li>`;
+                text1 += `<li class="list-group-item">${index + 1 } Sản phẩm: ${a} Số lần: ${b} VND</li>`;
               }
             }
           document.getElementById('listProductDESC').innerHTML = text1;

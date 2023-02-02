@@ -35,3 +35,4 @@ Route::get('firstChart', [AdminDashboardController::class, 'firstChart'])->name(
 Route::get('listUserSoft', [AdminDashboardController::class, 'listUserSoft'])->name('listUserSoft');
 Route::get('listProductSoft', [AdminDashboardController::class, 'listProductSoft'])->name('listProductSoft');
 Route::get('listProductOver', [AdminDashboardController::class, 'listProductOver'])->name('listProductOver');
+Route::get('listProduct', [AdminDashboardController::class, 'listProduct'])->name('listProduct');
