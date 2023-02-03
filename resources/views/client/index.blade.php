@@ -574,10 +574,10 @@
                                                 href="{{ route('postWishlist',['id'=> $product->id]) }}" data-tippy="Yêu thích"><i
                                                     class="fa fa-search"></i></a></span>
                                         <span class="single-icon single-icon--add-to-cart"><a href="{{ route('add.to.cart', $product->id) }}"
-                                                data-tippy="Add to cart" data-tippy-inertia="true"
+                                                data-tippy="Thêm vào giỏ hàng" data-tippy-inertia="true"
                                                 data-tippy-animation="shift-away" data-tippy-delay="50"
                                                 data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
-                                                    class="fa fa-shopping-basket"></i> <span>ADD TO CART</span></a></span>
+                                                    class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ hàng</span></a></span>
                                         <span class="single-icon single-icon--compare"><a href="#"
                                                 data-tippy="Compare" data-tippy-inertia="true"
                                                 data-tippy-animation="shift-away" data-tippy-delay="50"
@@ -586,7 +586,7 @@
                                     </div>
                                 </div>
                                 <div class="single-grid-product__content">
-                                    <h3 class="title"><a href="product-details-basic.html">{{ $product->title }}</a></h3>
+                                    <h3 class="title"><a href="{{ route('detailProduct', ['id' => $product->id]) }}">{{ $product->title }}</a></h3>
                                     <div class="price">
                                         <!-- <span class="main-price discounted">{{ $product->price }}</span>  -->
                                         <span class="discounted-price">{{ number_format($product->price) }} VNĐ</span></div>
@@ -686,7 +686,7 @@
                                                 {{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i --}}
                                                 {{--                                                        class="fa fa-search"></i></a></span> --}}
                                                 <span class="single-icon single-icon--add-to-cart" style="width: 100%"><a
-                                                        href="{{ route('add.to.cart', $product->id) }}" data-tippy="Add to cart" data-tippy-inertia="true"
+                                                        href="{{ route('add.to.cart', $product->id) }}" data-tippy="Thêm vào giỏ hàng" data-tippy-inertia="true"
                                                         data-tippy-animation="shift-away" data-tippy-delay="50"
                                                         data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
                                                             class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ

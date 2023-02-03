@@ -84,7 +84,7 @@
                                                         <div class="content">
                                                             <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
                                                             <p class="product-calculation"><span class="price">$900</span></p>
-                                                            <a href="javascript:void(0)" class="wishlist-cart-icon"><i class="fa fa-shopping-basket"></i> ADD TO CART</a>
+                                                            <a href="javascript:void(0)" class="wishlist-cart-icon"><i class="fa fa-shopping-basket"></i> Thêm vào giỏ hàng</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -345,7 +345,7 @@
                                                     <div class="content">
                                                         <p class="product-title"><a href="product-details-basic.html">Atelier Fuji NC Chair</a></p>
                                                         <p class="product-calculation"><span class="price">$900</span></p>
-                                                        <a href="javascript:void(0)" class="wishlist-cart-icon"><i class="fa fa-shopping-basket"></i> ADD TO CART</a>
+                                                        <a href="javascript:void(0)" class="wishlist-cart-icon"><i class="fa fa-shopping-basket"></i> Thêm vào giỏ hàng</a>
                                                     </div>
                                                 </div>
                                             </div>

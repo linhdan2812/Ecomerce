@@ -44,12 +44,12 @@
                                 @foreach ($products as $item)
                                 <tr>
                                     <td class="product-thumbnail">
-                                        <a href="product-details-basic.html">
+                                        <a href="{{ route('detailProduct', ['id' => $item->id]) }}">
                                             <img src="{{asset('storage/'. $item->photo)}}" class="img-fluid" alt="">
                                         </a>
                                     </td>
                                     <td class="product-name">
-                                        <a href="product-details-basic.html">{{ $item->title }}</a>
+                                        <a href="{{ route('detailProduct', ['id' => $item->id]) }}">{{ $item->title }}</a>
                                         <span class="product-variation">Color: Black</span>
                                     </td>
 
@@ -65,7 +65,7 @@
                                         <span class="stock-stat-message">{{ $item->stock  == 0 ? 'IN STOCK' : 'done'}}</span>
                                     </td>
 
-                                    <td class="add-to-cart"><button class="theme-button theme-button--alt theme-button--wishlist"><a href="{{ route('add.to.cart', $item->id) }}">ADD TO CART</a></button></td>
+                                    <td class="add-to-cart"><button class="theme-button theme-button--alt theme-button--wishlist"><a href="{{ route('add.to.cart', $item->id) }}">Thêm vào giỏ hàng</a></button></td>
 
                                     <td class="product-remove">
                                         <a href="">
