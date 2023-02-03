@@ -112,7 +112,7 @@
                     <div class="col-lg-6">
                         <!--=======  product details description area  =======-->
                         <div class="product-details-description-wrapper">
-                            <form action="{{route('add.to.cart')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('add.to.cart', ['id' => $productDetail->id])}}" method="get" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="{{$productDetail->id}}">
                             <h2 class="item-title">{{ $productDetail->title }}</h2>
                             @if (empty($productDetail->discount))
@@ -442,7 +442,7 @@
                                                                 class="fa fa-search"></i></a></span>
                                                     <span class="single-icon single-icon--add-to-cart"><a
                                                             href="{{ route('postWishlist', ['id' => $productDetail->id]) }}"
-                                                            data-tippy="Add to cart" data-tippy-inertia="true"
+                                                            data-tippy="Thêm vào giỏ hàng" data-tippy-inertia="true"
                                                             data-tippy-animation="shift-away" data-tippy-delay="50"
                                                             data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
                                                                 class="fa fa-shopping-basket"></i> <span>ADD TO

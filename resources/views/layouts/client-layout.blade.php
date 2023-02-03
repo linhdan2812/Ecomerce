@@ -221,12 +221,12 @@
                                                     <div class="minicart-wrapper__items__single">
                                                         <a href="javascript:void(0)" class="close-icon"><i class="pe-7s-close"></i></a>
                                                         <div class="image">
-                                                            <a href="product-details-basic.html">
+                                                            <a href="{{ route('detailProduct', ['id' => $id]) }}">
                                                                 <img src="{{asset('storage/'. $details['image'])}}" height="100px" width="80px" class="img-fluid" alt="">
                                                             </a>
                                                         </div>
                                                         <div class="content">
-                                                            <p class="product-title"><a href="product-details-basic.html">{{ $details['name'] }}</a></p>
+                                                            <p class="product-title"><a href="{{ route('detailProduct', ['id' => $id]) }}">{{ $details['name'] }}</a></p>
                                                             @if($details['discount'])
                                                             <p class="product-calculation"><span class="count">{{ $details['quantity'] }}</span> x <span class="price">{{ number_format($details['discount']) }} VND</span></p>
                                                             @else
