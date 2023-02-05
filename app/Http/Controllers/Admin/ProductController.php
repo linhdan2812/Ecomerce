@@ -59,6 +59,7 @@ class ProductController extends Controller
             'summary' => $request->summary ?? '',
             'description' => $request->description ?? '',
             'price' => $request->price ?? '',
+            'stock' => $request->stock ?? '',
             'discount' => $request->discount ?? '',
             'photo' => str_replace('public/', '', $path) ?? '',
             'size' => json_encode($request->size) ?? '',
