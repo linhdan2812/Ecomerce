@@ -42,7 +42,7 @@
         $.get(url,{
           }).done(function( data ) {
             if( data.length === 0 || data.length == 'undefined'){
-              text += `<li class="list-group-item">Không có dự liệu nào phù hợp!!!</li>`;
+              text1 += `<li class="list-group-item">Không có dự liệu nào phù hợp!!!</li>`;
             }
             else {
               result = data.reduce(function(r, a) {
@@ -74,6 +74,7 @@
           to : to,
           from: from,
           }).done(function( data ) {
+            console.log(data);
             if( data.length === 0 || data.length == 'undefined'){
               text += `<li class="list-group-item">Không có dự liệu nào phù hợp!!!</li>`;
             }
