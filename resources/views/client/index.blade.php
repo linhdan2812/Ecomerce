@@ -754,7 +754,7 @@
     <!--====================  End of product double row area  ====================-->
     <!--====================  blog slider ====================-->
 
-    <div class="blog-slider-area">
+    {{-- <div class="blog-slider-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -802,8 +802,7 @@
                                     <h3 class="post-title"><a href="#">{{ $item->title }}</a></h3>
                                     <p class="post-meta"><a href="#">{{ $item->created_at }}</a></p>
                                     <p class="post-excerpt">{!! Str::limit($item->description, 100) !!}</p>
-{{--                                    <a href="#" class="blog-readmore-link">Read more <i--}}
-{{--                                            class="fa fa-caret-right"></i></a>--}}
+
                                 </div>
                             </div>
 
@@ -818,119 +817,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!--====================  End of blog slider  ====================-->
     <!--====================  brand logo slider ====================-->
 
-    <div class="brand-logo-slider-area bg--light-grey">
-        <div class="container wide">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!--=======  brand logo slider wrapper  =======-->
-
-                    <div class="brand-logo-slider-wrapper theme-slick-slider"
-                        data-slick-setting='{
-                        "slidesToShow": 6,
-                        "arrows": true,
-                        "autoplay": false,
-                        "autoplaySpeed": 5000,
-                        "speed": 500,
-                        "prevArrow": {"buttonClass": "slick-prev", "iconClass": "fa fa-angle-left" },
-                        "nextArrow": {"buttonClass": "slick-next", "iconClass": "fa fa-angle-right" }
-                    }'
-                        data-slick-responsive='[
-                        {"breakpoint":1501, "settings": {"slidesToShow": 5} },
-                        {"breakpoint":1199, "settings": {"slidesToShow": 4} },
-                        {"breakpoint":991, "settings": {"slidesToShow": 3} },
-                        {"breakpoint":767, "settings": {"slidesToShow": 2} },
-                        {"breakpoint":575, "settings": {"slidesToShow": 2} },
-                        {"breakpoint":479, "settings": {"slidesToShow": 1} }
-                    ]'>
-
-                        <!--=======  single brand logo  =======-->
-
-                        <div class="single-brand-logo">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/brands/brand-2.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <!--=======  End of single brand logo  =======-->
-
-                        <!--=======  single brand logo  =======-->
-
-                        <div class="single-brand-logo">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/brands/brand-3.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <!--=======  End of single brand logo  =======-->
-
-                        <!--=======  single brand logo  =======-->
-
-                        <div class="single-brand-logo">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/brands/brand-4.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <!--=======  End of single brand logo  =======-->
-
-                        <!--=======  single brand logo  =======-->
-
-                        <div class="single-brand-logo">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/brands/brand-6.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <!--=======  End of single brand logo  =======-->
-
-                        <!--=======  single brand logo  =======-->
-
-                        <div class="single-brand-logo">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/brands/brand-7.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <!--=======  End of single brand logo  =======-->
-
-                        <!--=======  single brand logo  =======-->
-
-                        <div class="single-brand-logo">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/brands/brand-11.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <!--=======  End of single brand logo  =======-->
-
-                        <!--=======  single brand logo  =======-->
-
-                        <div class="single-brand-logo">
-                            <a href="shop-left-sidebar.html">
-                                <img src="{{ asset('client/img/brands/brand-12.png') }}" class="img-fluid"
-                                    alt="">
-                            </a>
-                        </div>
-
-                        <!--=======  End of single brand logo  =======-->
-                    </div>
-
-                    <!--=======  End of brand logo slider wrapper  =======-->
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!--====================  End of brand logo slider  ====================-->\
 
