@@ -87,7 +87,6 @@
                             <input class="form-check-input form-control" name="color[]" type="checkbox" id="inlineCheckbox2"
                                 value="Đen">
                             <label class="form-check-label form-control" for="inlineCheckbox2">Đen</label>
-                            <input type="text" name="color[]" placeholder="khác" value="">
                         </div>
                         <div class="form-group">
                             <label for="">Giá</label>

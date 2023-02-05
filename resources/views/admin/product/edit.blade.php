@@ -46,15 +46,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="">Kích thước</label>
-                            <input type="text" name="size" value="@foreach (json_decode($product->size) as $item2)
-                                {{  str_replace(' ', '', $item2) }}
-                              @endforeach" class="form-control">
-                            @error('size')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                             <label for="">Giá</label>
                             <input type="text" name="price" value="{{ $product->price }}" class="form-control">
                             @error('price')
