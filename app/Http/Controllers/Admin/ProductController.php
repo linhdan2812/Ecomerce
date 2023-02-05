@@ -42,12 +42,14 @@ class ProductController extends Controller
     public function saveAdd(ProductRequest $request)
     {
         $imageArr = [];
-        foreach ($request->image as $item)
-        {
-            $newFileName = uniqid() . '-' . $item->getClientOriginalName();
-            $path = $item->storeAs('public/uploads/products', $newFileName);
-            array_push($imageArr,$path);
-        };
+        if($request->image) {
+            foreach ($request->image as $item)
+            {
+                $newFileName = uniqid() . '-' . $item->getClientOriginalName();
+                $path = $item->storeAs('public/uploads/products', $newFileName);
+                array_push($imageArr,$path);
+            };
+        }
         if ($request->hasFile('photo')) {
             $newFileName = uniqid() . '-' . $request->photo->getClientOriginalName();
             $path = $request->photo->storeAs('public/uploads/products', $newFileName);

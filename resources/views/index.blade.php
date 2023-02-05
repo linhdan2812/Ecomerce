@@ -54,17 +54,6 @@
                             </div>
 
                             <div class="header-icon-area">
-                                <div class="account-dropdown">
-                                    <a href="my-account.html">Đăng nhập / Đăng ký <i class="pe-7s-angle-down"></i></a>
-
-                                    <ul class="account-dropdown__list">
-                                        <li><a href="my-account.html">Tài khoản của tôi</a></li>
-                                        <li><a href="cart.html">Giỏ hàng</a></li>
-                                        <li><a href="checkout.html">Thanh toán</a></li>
-                                        <li><a href="order-tracking.html">Theo dõi đơn hàng</a></li>
-                                    </ul>
-                                </div>
-
                                 <div class="header-icon">
                                     <ul class="header-icon__list">
                                         <li><a href="javascript:void(0)" id="search-icon"><i class="fa fa-search"></i></a></li>

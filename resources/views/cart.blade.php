@@ -30,7 +30,7 @@
                                         @php $total = 0 @endphp
                                         @if (session('cart'))
                                         @foreach (session('cart') as $id => $details)
-                                        @php $a = DB::table('products')->find($details['id']) @endphp
+                                        @php $a = DB::table('products')->find($details['id'] ?? $id) @endphp
                                         @php $total += $details['price'] * $details['quantity'] @endphp
                                         <tr data-id="{{ $id }}">
                                             <input type="hidden" name="id" value="{{ $id }}">
@@ -52,11 +52,28 @@
                                                 <input type="number"value="{{ $details['quantity'] }}" name="quantity" min="1"
                                                     class="form-control quantity update-cart" oninput="this.value = Math.round(this.value);"/>
                                             </td>
-                                            <input type="hidden" name="stock" value="{{ $a->stock }}">
-                                            @if($details['color'])
+                                            <input type="hidden" name="stock" value="{{ $a->stock }} ?? 0">
+                                            
+                                            @if(!$details['color'])
+                                                <td data-th="Subtotal" class="total-price"><span class="color">
+                                                    <select name="color[]" class="form-control">
+                                                        @foreach ( json_decode($a->color) as $index => $item )
+                                                            <option value="{{$item}}">{{$item}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </span></td>
+                                            @else
                                                 <td data-th="Subtotal" class="total-price"><span class="color"> {{$details['color'] }}</span></td>
                                             @endif
-                                            @if($details['size'])
+                                            @if(!$details['size'])
+                                                <td data-th="Subtotal" class="total-price"><span class="size">
+                                                    <select name="size[]" class="form-control">
+                                                        @foreach ( json_decode($a->size) as $index => $item )
+                                                            <option value="{{$item}}">{{$item}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </span></td>
+                                            @else
                                                 <td data-th="Subtotal" class="total-price"><span class="size"> {{$details['size'] }}</span></td>
                                             @endif
                                             @if($details['discount'])
@@ -65,7 +82,7 @@
                                             <td data-th="Subtotal" class="total-price"><span class="price"> {{ number_format($details['price'] * $details['quantity']) }} VNĐ</span></td>
                                             @endif
                                             <td class="product-remove" data-th="">
-                                                <a href="{{route('removeProduct', ['id' => $details['id']])}}">
+                                                <a href="{{route('removeProduct', ['id' => $id])}}">
                                                     <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
                                                 </a>
                                             </td>
@@ -73,6 +90,8 @@
                                         @endforeach
                                         <input type="hidden" name="id[]" value="{{ $id }}">
                                         <input type="hidden" name="stock[]" value="{{ $a->stock }}">
+                                        <input type="hidden" name="color[]" value="{{ $details['color'] }}">
+                                        <input type="hidden" name="size[]" value="{{ $details['size'] }}">
                                         <input type="hidden" name="quantity[]" value="{{ $details['quantity'] }}">
                                         <input type="hidden" name="sub[]" value=" {{ $details['price'] * $details['quantity'] }} VNĐ">
                                         <input type="hidden" name="name[]" value="{{ $details['name'] }}">

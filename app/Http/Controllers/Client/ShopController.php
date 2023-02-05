@@ -84,14 +84,78 @@ class ShopController extends Controller
                 "quantity" => 1,
                 "price" => $product->price,
                 "image" => $product->photo,
-                "discount" => $product->discount
+                "discount" => $product->discount,
+                "color" => '',
+                "size" => '',
             ];
         }
 
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Thêm sản phẩm vào giỏ hàng thành công   !');
     }
+    public function addToCartPost(Request $request)
+    {
+        if ($request->stock <= 0 || !is_int((int)$request->stock)){
+            return redirect()->back()->withErrors(['msg' => 'Số lượng sản phẩm phải là số nguyên dương']);
+            // ->with('danger', 'Số lượng sản phẩm vượt quá sản phẩm hiện có');
+        }
 
+        if (!$request->color || !$request->size){
+            return redirect()->back()->withErrors(['msg' => 'Hãy chọn size và màu sắc']);
+        }
+        
+        $product = Product::findOrFail($request->id);
+        $cart = session()->get('cart', []);
+        $arrayId = [];
+        foreach ($cart as $item){
+            $arrayId[] = $item['id'];
+        }
+        if (!in_array($request->id, array_unique($arrayId))){
+            session()->put('cart', [
+                "id" => $request->id,
+                "name" => $product->title,
+                "quantity" => $request->stock,
+                "price" => $product->price,
+                "image" => $product->photo,
+                "discount" => $product->discount,
+                "color" => $request->color,
+                "size" => $request->size,
+            ]);
+        }elseif (in_array($request->id, array_unique($arrayId))){
+            foreach ($cart as $item){
+                if ($item['id'] == $request->id){
+                    if ($item['color'] == $request->color && $item['size'] == $request->size){
+                        $newStock =  $item['quantity'] + $request->stock;
+                        session()->pull('cart', $item);
+                        session()->put('cart', [
+                            "id" => $request->id,
+                            "name" => $product->title,
+                            "quantity" => $newStock,
+                            "price" => $product->price,
+                            "image" => $product->photo,
+                            "discount" => $product->discount,
+                            "color" => $request->color,
+                            "size" => $request->size,
+                        ]);
+                    }else{
+                        session()->put('cart', [
+                            "id" => $request->id,
+                            "name" => $product->title,
+                            "quantity" => $request->stock,
+                            "price" => $product->price,
+                            "image" => $product->photo,
+                            "discount" => $product->discount,
+                            "color" => $request->color,
+                            "size" => $request->size,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        // session()->flush();
+        return redirect()->back()->with('success', 'Thêm sản phẩm vào giỏ hàng thành công !');
+    }
     /**
      * Write code on Method
      *
