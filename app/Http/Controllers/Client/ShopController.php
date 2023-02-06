@@ -60,9 +60,9 @@ class ShopController extends Controller
     public function cart()
     {
         $time_now = Carbon::now();
-        
+
         $coupons = Coupon::where('expired_at','>',$time_now)->get();
-        
+
         return view('cart',compact('coupons'));
     }
 
@@ -80,6 +80,7 @@ class ShopController extends Controller
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
+                'id' => $id,
                 "name" => $product->title,
                 "quantity" => 1,
                 "price" => $product->price,
@@ -103,7 +104,7 @@ class ShopController extends Controller
         if (!$request->color || !$request->size){
             return redirect()->back()->withErrors(['msg' => 'Hãy chọn size và màu sắc']);
         }
-        
+
         $product = Product::findOrFail($request->id);
         $cart = session()->get('cart', []);
         $arrayId = [];
@@ -111,7 +112,7 @@ class ShopController extends Controller
             $arrayId[] = $item['id'];
         }
         if (!in_array($request->id, array_unique($arrayId))){
-            session()->put('cart', [
+            $cart[$request->id] = [
                 "id" => $request->id,
                 "name" => $product->title,
                 "quantity" => $request->stock,
@@ -120,14 +121,16 @@ class ShopController extends Controller
                 "discount" => $product->discount,
                 "color" => $request->color,
                 "size" => $request->size,
-            ]);
+                "stt" => $request->id,
+            ];
+            session()->put('cart', $cart);
         }elseif (in_array($request->id, array_unique($arrayId))){
             foreach ($cart as $item){
                 if ($item['id'] == $request->id){
                     if ($item['color'] == $request->color && $item['size'] == $request->size){
                         $newStock =  $item['quantity'] + $request->stock;
                         session()->pull('cart', $item);
-                        session()->put('cart', [
+                        $cart[$request->id] = [
                             "id" => $request->id,
                             "name" => $product->title,
                             "quantity" => $newStock,
@@ -136,9 +139,21 @@ class ShopController extends Controller
                             "discount" => $product->discount,
                             "color" => $request->color,
                             "size" => $request->size,
-                        ]);
+                            "stt" => $request->id,
+                        ];
+                        session()->put('cart', $cart);
                     }else{
-                        session()->put('cart', [
+                        if(in_array($request->id, array_unique($arrayId))){
+                            $arrayStt = [];
+                            foreach ($cart as $cartItem){
+                                $arrayStt[] = $cartItem['stt'];
+                            }
+                            do {
+                                $key = $request->id++;
+                            }
+                            while (in_array($key, $arrayStt));
+                        }
+                        $cart[$key] = [
                             "id" => $request->id,
                             "name" => $product->title,
                             "quantity" => $request->stock,
@@ -147,7 +162,9 @@ class ShopController extends Controller
                             "discount" => $product->discount,
                             "color" => $request->color,
                             "size" => $request->size,
-                        ]);
+                            "stt" => $key,
+                        ];
+                        session()->put('cart', $cart);
                     }
                 }
             }
