@@ -460,21 +460,6 @@
                             </div><!-- mailchimp-alerts end -->
 
                         </div>
-
-                        <div class="footer-widget footer-widget--two">
-                            <span class="footer-widget__text footer-widget__text--two">THEO DÕI</span>
-                            <ul class="footer-widget__social-links">
-                                <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#" title="LinkedIn"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#" title="Youtube"><i class="fa fa-youtube-play"></i></a></li>
-                            </ul>
-                        </div>
-
-                        <div class="footer-payment-logo">
-                            <img src="{{asset('client/img/icons/payments.png')}}" class="img-fluid" alt="">
-                        </div>
                     </div>
                 </div>
             </div>
