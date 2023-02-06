@@ -386,20 +386,20 @@
 
 {{--  --}}
     <!--====================  hero slider area ====================-->
-        @if (!empty($bannerSlide))
-            @foreach ($bannerSlide as $item)
-                <div>
-                    <img width="100%" src="{{ asset('storage/'. $item->photo) }}" />
-                    <div class="slider__description">
-                        <h1>{{ $item->title }}</h1>
-                        <p>
-                            {{ $item->description }}
-                        </p>
-                        {{-- <a href="#">Read more</a> --}}
-                    </div>
+    @if (!empty($bannerSlide))
+        @foreach ($bannerSlide as $item)
+            <div>
+                <img width="100%" src="{{ asset('storage/' . $item->photo) }}" />
+                <div class="slider__description">
+                    <h1>{{ $item->title }}</h1>
+                    <p>
+                        {{ $item->description }}
+                    </p>
+                    {{-- <a href="#">Read more</a> --}}
                 </div>
-            @endforeach
-        @endif
+            </div>
+        @endforeach
+    @endif
 
 
     <!--====================  End of hero slider area  ====================-->
@@ -552,47 +552,54 @@
                         {"breakpoint":575, "settings": {"slidesToShow": 2, "slidesToScroll": 2,"arrows": false, "dots": true} },
                         {"breakpoint":479, "settings": {"slidesToShow": 1,"slidesToScroll": 1, "arrows": true, "dots": false} }
                     ]'>
+                        @if (!empty($fproducts))
+                            @foreach ($fproducts as $product)
+                                <div class="col">
+                                    <!--=======  single short view product  =======-->
 
-                        @foreach ($fproducts as $product)
-                        <div class="col">
-                            <!--=======  single short view product  =======-->
-
-                            <div class="single-grid-product">
-                                <div class="single-grid-product__image">
-                                    <!-- <div class="product-badge-wrapper">
+                                    <div class="single-grid-product">
+                                        <div class="single-grid-product__image">
+                                            <!-- <div class="product-badge-wrapper">
                                         <span class="onsale">-17%</span>
                                         <span class="hot">Hot</span>
                                     </div> -->
-                                    <a href="{{ route('detailProduct', ['id' => $product->id]) }}" class="image-wrap">
-                                        <img src="{{ asset('storage/'.$product->photo) }}"
-                                            class="img-fluid" alt="">
-                                        <img src="{{ asset('storage/'.$product->photo) }}"
-                                            class="img-fluid" alt="">
-                                    </a>
-                                    <div class="product-hover-icon-wrapper">
-                                        <span class="single-icon single-icon--quick-view"><a class="single-icon"
-                                                href="{{ route('postWishlist',['id'=> $product->id]) }}" data-tippy="Yêu thích"><i
-                                                    class="fa fa-heart"></i></a></span>
-                                        <span class="single-icon single-icon--add-to-cart"><a href="{{ route('add.to.cart', $product->id) }}"
-                                                data-tippy="Thêm vào giỏ hàng" data-tippy-inertia="true"
-                                                data-tippy-animation="shift-away" data-tippy-delay="50"
-                                                data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
-                                                    class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ hàng</span></a></span>
-                                    </div>
-                                </div>
-                                <div class="single-grid-product__content">
-                                    <h3 class="title"><a href="{{ route('detailProduct', ['id' => $product->id]) }}">{{ $product->title }}</a></h3>
-                                    <div class="price">
-                                        <!-- <span class="main-price discounted">{{ $product->price }}</span>  -->
-                                        <span class="discounted-price">{{ number_format($product->price) }} VNĐ</span></div>
-                                    <!-- <div class="rating">
+                                            <a href="{{ route('detailProduct', ['id' => $product->id]) }}"
+                                                class="image-wrap">
+                                                <img src="{{ asset('storage/' . $product->photo) }}" class="img-fluid"
+                                                    alt="">
+                                                <img src="{{ asset('storage/' . $product->photo) }}" class="img-fluid"
+                                                    alt="">
+                                            </a>
+                                            <div class="product-hover-icon-wrapper">
+                                                <span class="single-icon single-icon--quick-view"><a class="single-icon"
+                                                        href="" data-tippy="Yêu thích"><i
+                                                            class="fa fa-heart"></i></a></span>
+                                                <span class="single-icon single-icon--add-to-cart"><a
+                                                        href="{{ route('add.to.cart', $product->id) }}"
+                                                        data-tippy="Thêm vào giỏ hàng" data-tippy-inertia="true"
+                                                        data-tippy-animation="shift-away" data-tippy-delay="50"
+                                                        data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
+                                                            class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ
+                                                            hàng</span></a></span>
+                                            </div>
+                                        </div>
+                                        <div class="single-grid-product__content">
+                                            <h3 class="title"><a
+                                                    href="{{ route('detailProduct', ['id' => $product->id]) }}">{{ $product->title }}</a>
+                                            </h3>
+                                            <div class="price">
+                                                <!-- <span class="main-price discounted">{{ $product->price }}</span>  -->
+                                                <span class="discounted-price">{{ number_format($product->price) }}
+                                                    VNĐ</span>
+                                            </div>
+                                            <!-- <div class="rating">
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star"></i>
                                     </div> -->
-                                    <!-- <div class="color">
+                                            <!-- <div class="color">
                                         <ul>
                                             <li><a class="active" href="#" data-tippy="Black"
                                                     data-tippy-inertia="true" data-tippy-animation="shift-away"
@@ -609,19 +616,21 @@
                                                         class="color-picker brown"></span></a></li>
                                         </ul>
                                     </div> -->
-                                    <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
-                                        data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50"
-                                        data-tippy-arrow="true" data-tippy-theme="sharpborder"
-                                        data-tippy-placement="left">
-                                        <i class="fa fa-heart-o"></i>
-                                        <i class="fa fa-heart"></i>
-                                    </a>
-                                </div>
-                            </div>
+                                            <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
+                                                data-tippy-inertia="true" data-tippy-animation="shift-away"
+                                                data-tippy-delay="50" data-tippy-arrow="true"
+                                                data-tippy-theme="sharpborder" data-tippy-placement="left">
+                                                <i class="fa fa-heart-o"></i>
+                                                <i class="fa fa-heart"></i>
+                                            </a>
+                                        </div>
+                                    </div>
 
-                            <!--=======  End of single short view product  =======-->
-                        </div>
-                        @endforeach
+                                    <!--=======  End of single short view product  =======-->
+                                </div>
+                            @endforeach
+                        @endif
+
 
 
 
@@ -658,90 +667,100 @@
 
                     <div class="product-row-wrapper">
                         <div class="row">
-                            @foreach ($lproducts as $item)
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-custom-sm-6">
-                                    <!--=======  single short view product  =======-->
+                            @if (!empty($lproducts))
+                                @foreach ($lproducts as $item)
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-custom-sm-6">
+                                        <!--=======  single short view product  =======-->
 
-                                    <div class="single-grid-product">
-                                        <div class="single-grid-product__image">
-                                            {{--                                        <div class="product-badge-wrapper"> --}}
-                                            {{--                                            <span class="onsale">-17%</span> --}}
-                                            {{--                                            <span class="hot">Hot</span> --}}
-                                            {{--                                        </div> --}}
-                                            <a href="{{ route('detailProduct', ['id' => $item->id]) }}">
-                                                <img src="{{ asset('storage/' . $item->photo) }}" class="img-fluid"
-                                                    alt="">
-                                                {{--                                            <img src="{{ asset('client/img/products/product-9-2-270x360.jpg') }}" --}}
-                                                {{--                                                class="img-fluid" alt=""> --}}
-                                            </a>
-                                            <div class="product-hover-icon-wrapper">
-                                                <span class="single-icon single-icon--quick-view"><a class="single-icon"
-                                                    href="{{ route('postWishlist',['id'=> $product->id]) }}" data-tippy="Yêu thích"><i
-                                                        class="fa fa-heart"></i></a></span>
-                                                <span class="single-icon single-icon--add-to-cart" style="width: 100%"><a
-                                                        href="{{ route('add.to.cart', $product->id) }}" data-tippy="Thêm vào giỏ hàng" data-tippy-inertia="true"
-                                                        data-tippy-animation="shift-away" data-tippy-delay="50"
-                                                        data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
-                                                            class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ
-                                                            hàng</span></a></span>
-                                                {{--                                            <span class="single-icon single-icon--compare"><a href="#" --}}
-                                                {{--                                                    data-tippy="Compare" data-tippy-inertia="true" --}}
-                                                {{--                                                    data-tippy-animation="shift-away" data-tippy-delay="50" --}}
-                                                {{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i --}}
-                                                {{--                                                        class="fa fa-exchange"></i></a></span> --}}
+                                        <div class="single-grid-product">
+                                            <div class="single-grid-product__image">
+                                                {{--                                        <div class="product-badge-wrapper"> --}}
+                                                {{--                                            <span class="onsale">-17%</span> --}}
+                                                {{--                                            <span class="hot">Hot</span> --}}
+                                                {{--                                        </div> --}}
+                                                <a href="{{ route('detailProduct', ['id' => $item->id]) }}">
+                                                    <img src="{{ asset('storage/' . $item->photo) }}" class="img-fluid"
+                                                        alt="">
+                                                    {{--                                            <img src="{{ asset('client/img/products/product-9-2-270x360.jpg') }}" --}}
+                                                    {{--                                                class="img-fluid" alt=""> --}}
+                                                </a>
+                                                <div class="product-hover-icon-wrapper">
+                                                    <span class="single-icon single-icon--quick-view"><a
+                                                            class="single-icon"
+                                                            href="{{ route('postWishlist', ['id' => $item->id]) }}"
+                                                            data-tippy="Yêu thích"><i class="fa fa-heart"></i></a></span>
+                                                    <span class="single-icon single-icon--add-to-cart"
+                                                        style="width: 100%"><a
+                                                            href="{{ route('add.to.cart', $item->id) }}"
+                                                            data-tippy="Thêm vào giỏ hàng" data-tippy-inertia="true"
+                                                            data-tippy-animation="shift-away" data-tippy-delay="50"
+                                                            data-tippy-arrow="true" data-tippy-theme="sharpborder"><i
+                                                                class="fa fa-shopping-basket"></i> <span>Thêm vào giỏ
+                                                                hàng</span></a></span>
+                                                    {{--                                            <span class="single-icon single-icon--compare"><a href="#" --}}
+                                                    {{--                                                    data-tippy="Compare" data-tippy-inertia="true" --}}
+                                                    {{--                                                    data-tippy-animation="shift-away" data-tippy-delay="50" --}}
+                                                    {{--                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder"><i --}}
+                                                    {{--                                                        class="fa fa-exchange"></i></a></span> --}}
+                                                </div>
+                                            </div>
+                                            <div class="single-grid-product__content">
+                                                <h3 class="title"><a
+                                                        href="{{ route('detailProduct', ['id' => $item->id]) }}">{{ $item->title }}</a>
+                                                </h3>
+                                                @if (empty($item->discount))
+                                                    <div class="price">
+                                                        <span class="discounted-price">{{ number_format($item->price) }}
+                                                            VNĐ</span>
+                                                    </div>
+                                                @else
+                                                    <div class="price">
+                                                        <span
+                                                            class="main-price discounted">{{ number_format($item->price) }}
+                                                            VNĐ</span>
+                                                        <span
+                                                            class="discounted-price">{{ number_format($item->discount) }}
+                                                            VNĐ</span>
+                                                    </div>
+                                                @endif
+                                                {{--                                        <div class="rating"> --}}
+                                                {{--                                            <i class="fa fa-star active"></i> --}}
+                                                {{--                                            <i class="fa fa-star active"></i> --}}
+                                                {{--                                            <i class="fa fa-star active"></i> --}}
+                                                {{--                                            <i class="fa fa-star active"></i> --}}
+                                                {{--                                            <i class="fa fa-star"></i> --}}
+                                                {{--                                        </div> --}}
+                                                {{--                                        <div class="color"> --}}
+                                                {{--                                            <ul> --}}
+                                                {{--                                                <li><a class="active" href="#" data-tippy="Black" --}}
+                                                {{--                                                        data-tippy-inertia="true" data-tippy-animation="shift-away" --}}
+                                                {{--                                                        data-tippy-delay="50" data-tippy-arrow="true" --}}
+                                                {{--                                                        data-tippy-theme="roundborder"><span --}}
+                                                {{--                                                            class="color-picker black"></span></a></li> --}}
+                                                {{--                                                <li><a href="#" data-tippy="Blue" data-tippy-inertia="true" --}}
+                                                {{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50" --}}
+                                                {{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span --}}
+                                                {{--                                                            class="color-picker blue"></span></a></li> --}}
+                                                {{--                                                <li><a href="#" data-tippy="Brown" data-tippy-inertia="true" --}}
+                                                {{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50" --}}
+                                                {{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span --}}
+                                                {{--                                                            class="color-picker brown"></span></a></li> --}}
+                                                {{--                                            </ul> --}}
+                                                {{--                                        </div> --}}
+                                                <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
+                                                    data-tippy-inertia="true" data-tippy-animation="shift-away"
+                                                    data-tippy-delay="50" data-tippy-arrow="true"
+                                                    data-tippy-theme="sharpborder" data-tippy-placement="left">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <i class="fa fa-heart"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="single-grid-product__content">
-                                            <h3 class="title"><a
-                                                    href="{{ route('detailProduct', ['id' => $item->id]) }}">{{ $item->title }}</a>
-                                            </h3>
-                                            @if (empty($item->discount))
-                                                <div class="price">
-                                                    <span class="discounted-price">{{ number_format($item->price) }} VNĐ</span>
-                                                </div>
-                                            @else
-                                                <div class="price">
-                                                    <span class="main-price discounted">{{ number_format($item->price) }} VNĐ</span>
-                                                    <span class="discounted-price">{{ number_format($item->discount) }} VNĐ</span>
-                                                </div>
-                                            @endif
-                                            {{--                                        <div class="rating"> --}}
-                                            {{--                                            <i class="fa fa-star active"></i> --}}
-                                            {{--                                            <i class="fa fa-star active"></i> --}}
-                                            {{--                                            <i class="fa fa-star active"></i> --}}
-                                            {{--                                            <i class="fa fa-star active"></i> --}}
-                                            {{--                                            <i class="fa fa-star"></i> --}}
-                                            {{--                                        </div> --}}
-                                            {{--                                        <div class="color"> --}}
-                                            {{--                                            <ul> --}}
-                                            {{--                                                <li><a class="active" href="#" data-tippy="Black" --}}
-                                            {{--                                                        data-tippy-inertia="true" data-tippy-animation="shift-away" --}}
-                                            {{--                                                        data-tippy-delay="50" data-tippy-arrow="true" --}}
-                                            {{--                                                        data-tippy-theme="roundborder"><span --}}
-                                            {{--                                                            class="color-picker black"></span></a></li> --}}
-                                            {{--                                                <li><a href="#" data-tippy="Blue" data-tippy-inertia="true" --}}
-                                            {{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50" --}}
-                                            {{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span --}}
-                                            {{--                                                            class="color-picker blue"></span></a></li> --}}
-                                            {{--                                                <li><a href="#" data-tippy="Brown" data-tippy-inertia="true" --}}
-                                            {{--                                                        data-tippy-animation="shift-away" data-tippy-delay="50" --}}
-                                            {{--                                                        data-tippy-arrow="true" data-tippy-theme="roundborder"><span --}}
-                                            {{--                                                            class="color-picker brown"></span></a></li> --}}
-                                            {{--                                            </ul> --}}
-                                            {{--                                        </div> --}}
-                                            <a href="#" class="favorite-icon" data-tippy="Add to Wishlist"
-                                                data-tippy-inertia="true" data-tippy-animation="shift-away"
-                                                data-tippy-delay="50" data-tippy-arrow="true"
-                                                data-tippy-theme="sharpborder" data-tippy-placement="left">
-                                                <i class="fa fa-heart-o"></i>
-                                                <i class="fa fa-heart"></i>
-                                            </a>
-                                        </div>
-                                    </div>
 
-                                    <!--=======  End of single short view product  =======-->
-                                </div>
-                            @endforeach
+                                        <!--=======  End of single short view product  =======-->
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
 
