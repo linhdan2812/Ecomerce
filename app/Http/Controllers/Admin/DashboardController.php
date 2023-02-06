@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         //  dự liệu bán hàng theo trong năm
         $users = VnpayTest::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
-            ->where('status_order', 'LIKE', 'success')
+            ->where('status_order', 'LIKE', 'finished')
             ->whereYear('created_at', date('Y'))
             ->groupBy(DB::raw("Month(created_at)"))
             ->pluck('count', 'month_name');
@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
         // dự liệu bán hàng theo tháng hiện tại
         $users2 = VnpayTest::select(DB::raw("COUNT(*) as count"), DB::raw("DAY(created_at) as day"))
-            ->where('status_order', 'LIKE', 'success')
+            ->where('status_order', 'LIKE', 'finished')
             ->whereMonth('created_at', Carbon::now()->month)
             ->groupBy(DB::raw("DAY(created_at)"))
             ->pluck('count', 'day');
@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
         // Doanh thu bán hàng theo năm
         $money = VnpayTest::select(DB::raw("SUM(vnp_Amount) as totalAmount"), DB::raw("MONTHNAME(created_at) as monthName"))
-            ->where('status_order', 'LIKE', 'success')
+            ->where('status_order', 'LIKE', 'finished')
             ->whereYear('created_at', date('Y'))
             ->groupBy(DB::raw("Month(created_at)"))
             ->pluck('totalAmount', 'monthName');
@@ -45,7 +45,7 @@ class DashboardController extends Controller
 
         // Doanh thu bán hàng theo tháng
         $money2 = VnpayTest::select(DB::raw("SUM(vnp_Amount) as totalAmount"), DB::raw("DAY(created_at) as monthName"))
-            ->where('status_order', 'LIKE', 'success')
+            ->where('status_order', 'LIKE', 'finished')
             ->whereMonth('created_at', Carbon::now()->month)
             ->groupBy(DB::raw("DAY(created_at)"))
             ->pluck('totalAmount', 'monthName');
