@@ -34,12 +34,16 @@
                                     </div>
                                 </div>
                                 <div class="right-address">
-                                    <div class="top">
-                                        @if($item->status != 1) <a href="javascript:;" class="delete" data-toggle="modal" data-target="#exampleModal">Xóa</a>@endif
-                                    </div>
-                                    <div class="bottom">
-                                        <a  class="btn" href="{{route('setDefaut',['id'=>$item->id])}}" class="setDefaut" @if($item->status == 1) hidden @endif>Thiết lập mặc định</a>
-                                    </div>
+                                    @if($item->status != 1) 
+                                        <div class="top">
+                                            <a href="javascript:;" class="delete" data-toggle="modal" data-target="#exampleModal">Xóa</a>
+                                        </div>
+                                    @endif
+                                    @if($item->status == 0)
+                                        <div class="bottom">
+                                            <a  class="btn" href="{{route('setDefaut',['id'=>$item->id])}}" class="setDefaut" >Thiết lập mặc định</a>
+                                        </div>
+                                    @if
                                 </div>
                             </div>
                               <!-- Modal -->
