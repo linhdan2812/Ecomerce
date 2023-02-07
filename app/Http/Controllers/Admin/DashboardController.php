@@ -118,11 +118,8 @@ class DashboardController extends Controller
         ->simplePaginate(
             $perPage = 18, $columns = ['*'], $pageName = 'Count'
         );
-        if (!empty($request['from'])) {
-            $products = $products->where('vnpay_tests.created_at', '>=', date('Y-m-d', strtotime($request['from'])));
-        }
-        if (!empty($request['to'])) {
-            $products = $products->where('vnpay_tests.created_at', '<=', date('Y-m-d', strtotime($request['to'])));
+        if (!empty($request['from']) || !empty($request['to'])) {
+            $products = $products->whereBetween('vnpay_tests.created_at', [date('Y-m-d', strtotime($request['from'])), date('Y-m-d', strtotime($request['to'])) ]);
         }
         $oldname = '';
         $Array = [];
